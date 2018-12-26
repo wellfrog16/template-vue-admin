@@ -1,0 +1,158 @@
+// 配置变量
+@import './config.less';
+// 动画
+
+@import './common/common.less';
+@import './common/keyframes.less';
+@import './common/transition.less';
+
+// ------------------------------------初始化全局样式-----------------------------------------
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    font-size: @g-fontSize;
+    background-color: @g-backgroundColor;
+    color: @g-color;
+
+    &.lock {
+        overflow: hidden;
+    }
+}
+
+// ------------------------------------框架-----------------------------------------
+
+// element-ui
+
+.el-card {
+    font-size: 14px;
+    color: #fff;
+    background: @table-cell-bgcolor;
+
+    /* .el-table {
+        background-color: rgb(60, 112, 165);
+
+        th {
+            color: #fff;
+            background-color: rgb(60, 112, 165);
+        }
+
+        tr {
+            background-color: rgb(60, 112, 165);
+            color: #fff;
+
+            &:hover {
+                color: #000;
+            }
+        }
+    } */
+
+    .el-card__header {
+        padding: 8px 20px;
+        line-height: 30px;
+
+        i {
+            font-size: 14px;
+            color: #fff;
+            margin-right: 5px;
+        }
+
+        button {
+            float: right;
+            font-size: 14px;
+            color: #fff;
+
+            i {
+                font-size: 12px;
+                margin-left: 5px;
+            }
+        }
+    }
+}
+
+::-ms-scrollbar-thumb {
+    background-color: @card-split-line-color;
+    border-radius: 10px;
+}
+
+::-ms-scrollbar-button {
+    background-color: @card-split-line-color;
+}
+
+// 表格公共样式
+.el-table {
+    // border: none !important;
+    background-color: @table-cell-bgcolor;
+
+    thead, tbody {
+        background-color: @table-thead-background !important;
+        color: @font-input-header;
+
+        .el-table__header-wrapper {
+            .el-table__header {
+                border-color: @table-in-border;
+                background-color: @table-thead-background;
+            }
+        }
+
+        .el-table__footer-wrapper {
+            .el-table__footer {
+                border-color: @table-in-border;
+                background-color: @table-thead-background;
+            }
+        }
+    }
+
+    .el-table__empty-block .el-table__empty-text {
+        color: @font-sub;
+    }
+
+    tr {
+        height: 40px;
+        background-color: @table-cell-bgcolor;
+
+        th {
+            padding: 8px 0;
+            border-bottom: 1px solid @background-forms;
+            border-right: 1px solid @background-forms;
+            background-color: @table-in-border !important;
+        }
+
+        td {
+            padding: 8px 0;
+            color: @font-sub;
+            border-bottom: 1px solid @table-cell-color;
+            border-right: 1px solid @table-cell-color;
+        }
+
+        td:last-child {
+            padding: 8px 0;
+            color: @font-sub;
+            border-bottom: 1px solid @table-cell-color;
+            border-right: none;
+        }
+
+        th.gutter:last-of-type {
+            border-bottom: 1px solid @table-cell-color !important;
+        }
+    }
+
+    tr.current-row, tr:hover {
+        td {
+            background-color: @table-highlight-color !important;
+        }
+    }
+
+    .el-table__append-wrapper {
+        table {
+            width: 100%;
+
+            td {
+                text-align: center;
+            }
+        }
+    }
+}

@@ -1,0 +1,181 @@
+body {
+  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  background-color: #fff;
+}
+.menu-fix-icon {
+  vertical-align: middle;
+  margin-right: 5px;
+  width: 24px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1;
+}
+.fullsize {
+  width: 100%;
+  height: 100%;
+}
+.abs-fullsize {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.rel-fullsize {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hide {
+  display: none;
+}
+.show {
+  display: block;
+}
+@keyframes kf-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes kf-block {
+  10% {
+    transform: rotate(90deg);
+  }
+  35%,
+  65% {
+    transform: rotate(0deg);
+  }
+  80% {
+    transform: rotate(90deg);
+  }
+  100% {
+    transform: rotate(90deg);
+  }
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+body {
+  font-size: 14px;
+  background-color: #fff;
+  color: #000;
+}
+body.lock {
+  overflow: hidden;
+}
+.el-card {
+  font-size: 14px;
+  color: #fff;
+  background: #3c70a5;
+  /* .el-table {
+        background-color: rgb(60, 112, 165);
+
+        th {
+            color: #fff;
+            background-color: rgb(60, 112, 165);
+        }
+
+        tr {
+            background-color: rgb(60, 112, 165);
+            color: #fff;
+
+            &:hover {
+                color: #000;
+            }
+        }
+    } */
+}
+.el-card .el-card__header {
+  padding: 8px 20px;
+  line-height: 30px;
+}
+.el-card .el-card__header i {
+  font-size: 14px;
+  color: #fff;
+  margin-right: 5px;
+}
+.el-card .el-card__header button {
+  float: right;
+  font-size: 14px;
+  color: #fff;
+}
+.el-card .el-card__header button i {
+  font-size: 12px;
+  margin-left: 5px;
+}
+::-ms-scrollbar-thumb {
+  background-color: red;
+  border-radius: 10px;
+}
+::-ms-scrollbar-button {
+  background-color: red;
+}
+.el-table {
+  background-color: #3c70a5;
+}
+.el-table thead,
+.el-table tbody {
+  background-color: #3c70a5 !important;
+  color: #fff;
+}
+.el-table thead .el-table__header-wrapper .el-table__header,
+.el-table tbody .el-table__header-wrapper .el-table__header {
+  border-color: #3c70a5;
+  background-color: #3c70a5;
+}
+.el-table thead .el-table__footer-wrapper .el-table__footer,
+.el-table tbody .el-table__footer-wrapper .el-table__footer {
+  border-color: #3c70a5;
+  background-color: #3c70a5;
+}
+.el-table .el-table__empty-block .el-table__empty-text {
+  color: 14px;
+}
+.el-table tr {
+  height: 40px;
+  background-color: #3c70a5;
+}
+.el-table tr th {
+  padding: 8px 0;
+  border-bottom: 1px solid yellow;
+  border-right: 1px solid yellow;
+  background-color: #3c70a5 !important;
+}
+.el-table tr td {
+  padding: 8px 0;
+  color: 14px;
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+.el-table tr td:last-child {
+  padding: 8px 0;
+  color: 14px;
+  border-bottom: 1px solid #ccc;
+  border-right: none;
+}
+.el-table tr th.gutter:last-of-type {
+  border-bottom: 1px solid #ccc !important;
+}
+.el-table tr.current-row td,
+.el-table tr:hover td {
+  background-color: black !important;
+}
+.el-table .el-table__append-wrapper table {
+  width: 100%;
+}
+.el-table .el-table__append-wrapper table td {
+  text-align: center;
+}
