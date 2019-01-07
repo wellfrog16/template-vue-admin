@@ -25,8 +25,14 @@ export default {
         return {
             width: 'auto',
             collapse: false,
-            menuData: menu.filter(this.$router.options.routes)
+            menuData: menu.filter(this.$router.options.routes),
+            test: [1, 2, 3]
         };
+    },
+    mounted() {
+        for (const item of this.test) {
+            console.log(item);
+        }
     },
     methods: {
         toggle() {
