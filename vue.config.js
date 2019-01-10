@@ -1,9 +1,10 @@
 const mock = require('./mock');
+const pages = require('./build/pages');
 const LessPluginFun = require('less-plugin-functions');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 
 module.exports = {
-    baseUrl: '/',
+    publicPath: '/',
     assetsDir: 'src/assets',
 
     devServer: {
@@ -13,22 +14,8 @@ module.exports = {
         before(app) { mock(app); }
     },
 
-    // todo 自动根据文件名处理多页，而不用单独一个个去写
     pages: {
-        index: {
-            entry: 'src/pages/index/main.js',
-            template: 'public/index.html',
-            filename: 'index.html',
-            title: 'Index Page',
-            chunks: ['chunk-vendors', 'chunk-common', 'index']
-        },
-        demo: {
-            entry: 'src/pages/demo/main.js',
-            template: 'public/index.html',
-            filename: 'demo.html',
-            title: 'Demo Page',
-            chunks: ['chunk-vendors', 'chunk-common', 'demo']
-        }
+        ...pages(process.env.NODE_ENV)
     },
 
     configureWebpack: {

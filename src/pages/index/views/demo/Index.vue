@@ -28,7 +28,6 @@ export default {
     },
     methods: {
         handleClick() {
-            console.log(34234);
         }
     }
 };

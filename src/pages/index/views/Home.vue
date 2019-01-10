@@ -26,7 +26,7 @@ export default {
             width: 'auto',
             collapse: false,
             menuData: menu.filter(this.$router.options.routes),
-            test: [1, 2, 3]
+            test: {a: 1, b: 2, c: 3}
         };
     },
     mounted() {

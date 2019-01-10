@@ -35,7 +35,7 @@ const scrollBehavior = (to, from, savedPosition) => {
 
 // todo 按模块写入单独的文件引用
 const router = new Router({
-    mode: 'history',
+    // mode: 'history',
     scrollBehavior,
     routes: [
         {
