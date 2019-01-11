@@ -2,7 +2,7 @@
 function currency(val, unit = '', decimals) {
     if (decimals === undefined || decimals === null) {
         const arr = (val + '').split('.');
-        decimals = arr.length === 2 ? arr[1].length : 2;
+        decimals = arr.length === 2 ? arr[1].length : 0;
     }
     const digitsRE = /(\d{3})(?=\d)/g;
     val = parseFloat(val);
