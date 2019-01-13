@@ -70,8 +70,22 @@ function getUrlParam(url) {
     }
 }
 
+function setRootSize(maxSize = 75) {
+    $(() => {
+        let fontSize = window.innerWidth / 10;
+        fontSize = fontSize > maxSize ? maxSize : fontSize;
+        $('html').css('font-size', fontSize);
+    });
+}
+
+function autoRootSize() {
+    $(window).on('resize', () => setRootSize());
+    $(() => setRootSize());
+}
+
 export default {
     localStorage: localStorageZ,
     isEmpty,
-    getUrlParam
+    getUrlParam,
+    autoRootSize
 };
