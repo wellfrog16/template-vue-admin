@@ -1,3 +1,5 @@
+import Vue from 'vue';
+
 // 货币格式化
 function currency(val, unit = '', decimals) {
     if (decimals === undefined || decimals === null) {
@@ -26,6 +28,4 @@ function currency(val, unit = '', decimals) {
         floatx;
 }
 
-export default {
-    currency
-};
+Vue.filter('currency', currency);
