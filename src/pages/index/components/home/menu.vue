@@ -4,7 +4,7 @@
              :background-color="backgroundColor"
              :text-color="textColor"
              :active-text-color="activeTextColor"
-             :default-openeds="defaultOpends"
+             :default-openeds="defaultOpeneds"
              :default-active="defaultActive"
     >
         <template v-for="(item, index) in data">

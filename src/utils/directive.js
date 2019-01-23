@@ -24,6 +24,18 @@ Vue.directive('swiperight', {
     }
 });
 
+Vue.directive('swipeup', {
+    bind: function(el, binding) {
+        vueTouch(el, 'swipeup', binding);
+    }
+});
+
+Vue.directive('swipedown', {
+    bind: function(el, binding) {
+        vueTouch(el, 'swipedown', binding);
+    }
+});
+
 Vue.directive('press', {
     bind: function(el, binding) {
         vueTouch(el, 'press', binding);
