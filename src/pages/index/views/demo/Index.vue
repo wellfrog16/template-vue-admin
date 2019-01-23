@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import echarts from '@/components/index/demo/echarts.vue';
-import mock from '@/components/index/demo/mock.vue';
+import echarts from '../../components/demo/echarts.vue';
+import mock from '../../components/demo/mock.vue';
 
 export default {
     components: {echarts, mock},

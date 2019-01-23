@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import AsideMenu from '@/components/index/home/menu';
+import AsideMenu from '../../components/home/menu.vue';
 import menu from '@/helper/menu';
 
 export default {
@@ -58,7 +58,7 @@ export default {
 </style>
 
 <style lang="less" module>
-@import '../../../assets/style/config.less';
+@import '../../../../assets/style/config.less';
 
 @height: 60px;
 

@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from '../views/Home.vue';
+import Home from '../views/home/Index.vue';
 
 Vue.use(Router);
 
@@ -67,7 +67,7 @@ const router = new Router({
             children: [
                 {path: 'database', name: '数据库', icon: 'el-icon-tickets', component: Root},
                 {path: 'log1', name: '日志', icon: 'el-icon-document', component: Root},
-                {path: 'file1', name: '文件管理', icon: 'fa-memus fas fa-sun fa-lg', component: Root},
+                {path: 'file1', name: '文件管理', icon: 'menu-fix-icon fas fa-sun fa-lg', component: Root},
                 {
                     path: 'config1',
                     name: '设置',
