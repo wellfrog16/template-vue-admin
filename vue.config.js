@@ -24,7 +24,8 @@ module.exports = {
             echarts: 'echarts',
             moment: 'moment',
             underscore: '_',
-            axios: 'axios'
+            axios: 'axios',
+            hammer: 'Hammer'
         },
         plugins: [
             new StyleLintPlugin({
