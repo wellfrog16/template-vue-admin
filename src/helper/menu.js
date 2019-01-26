@@ -6,5 +6,5 @@ function filter(data) {
 }
 
 export default {
-    filter
+    filter,
 };

@@ -7,37 +7,37 @@ function vueTouch(el, type, binding) {
 }
 
 Vue.directive('tap', {
-    bind: function(el, binding) {
+    bind(el, binding) {
         vueTouch(el, 'tap', binding);
-    }
+    },
 });
 
 Vue.directive('swipeleft', {
-    bind: function(el, binding) {
+    bind(el, binding) {
         vueTouch(el, 'swipeleft', binding);
-    }
+    },
 });
 
 Vue.directive('swiperight', {
-    bind: function(el, binding) {
+    bind(el, binding) {
         vueTouch(el, 'swiperight', binding);
-    }
+    },
 });
 
 Vue.directive('swipeup', {
-    bind: function(el, binding) {
+    bind(el, binding) {
         vueTouch(el, 'swipeup', binding);
-    }
+    },
 });
 
 Vue.directive('swipedown', {
-    bind: function(el, binding) {
+    bind(el, binding) {
         vueTouch(el, 'swipedown', binding);
-    }
+    },
 });
 
 Vue.directive('press', {
-    bind: function(el, binding) {
+    bind(el, binding) {
         vueTouch(el, 'press', binding);
-    }
+    },
 });

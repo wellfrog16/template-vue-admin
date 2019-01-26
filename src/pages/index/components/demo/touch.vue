@@ -17,7 +17,7 @@
 export default {
     data() {
         return {
-            log: ''
+            log: '',
         };
     },
     methods: {
@@ -39,7 +39,7 @@ export default {
         handleSwipedown() {
             this.log = 'swipedown';
         },
-    }
+    },
 };
 </script>
 

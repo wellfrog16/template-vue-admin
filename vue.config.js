@@ -1,7 +1,7 @@
-const mock = require('./mock');
-const pages = require('./build/pages');
 const LessPluginFun = require('less-plugin-functions');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
+const mock = require('./mock');
+const pages = require('./build/pages');
 
 module.exports = {
     publicPath: '/',
@@ -11,11 +11,11 @@ module.exports = {
         host: '0.0.0.0',
         port: 8080,
         proxy: null,
-        before(app) { mock(app); }
+        before(app) { mock(app); },
     },
 
     pages: {
-        ...pages(process.env.NODE_ENV)
+        ...pages(process.env.NODE_ENV),
     },
 
     configureWebpack: {
@@ -25,14 +25,14 @@ module.exports = {
             moment: 'moment',
             underscore: '_',
             axios: 'axios',
-            hammer: 'Hammer'
+            hammer: 'Hammer',
         },
         plugins: [
             new StyleLintPlugin({
                 context: 'src',
-                files: ['**/*.less', '**/*.s?(a|c)ss', '**/*.vue']
-            })
-        ]
+                files: ['**/*.less', '**/*.s?(a|c)ss', '**/*.vue'],
+            }),
+        ],
     },
 
     lintOnSave: true,
@@ -45,22 +45,23 @@ module.exports = {
         // css预设器配置项
         loaderOptions: {
             less: {
-                plugins: [ new LessPluginFun() ]
+                plugins: [new LessPluginFun()],
             },
         },
         // 启用 CSS modules for all css / pre-processor files.
-        modules: false
+        modules: false,
     },
 
-    chainWebpack: config => {
+    chainWebpack: (config) => {
         config.module
             .rule('eslint')
             .use('eslint-loader')
             .loader('eslint-loader')
-            .tap(options => {
-                options.emitError = true;
+            .tap((options) => {
+                const option = options;
+                option.emitError = true;
                 // 修改它的选项...
-                return options;
+                return option;
             });
-    }
+    },
 };

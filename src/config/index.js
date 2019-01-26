@@ -1,11 +1,11 @@
+import $ from 'jquery';
 import devConfig from './dev';
 import prodConfig from './prod';
-import $ from 'jquery';
 // 基础配置，一些默认设置
 
 const settings = {
     pagesize: 10,
-    uploadName: 'avatar'
+    uploadName: 'avatar',
 };
 
 // 借助jquery进行深度复制和合并

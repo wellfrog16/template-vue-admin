@@ -22,18 +22,18 @@ import mock from '../../components/demo/mock.vue';
 import touch from '../../components/demo/touch.vue';
 
 export default {
-    components: {echarts, mock, touch},
+    components: { echarts, mock, touch },
     data() {
         return {
-            activeName: 'tab-c'
+            activeName: 'tab-a',
         };
     },
     mounted() {
     },
     methods: {
         handleClick() {
-        }
-    }
+        },
+    },
 };
 </script>
 

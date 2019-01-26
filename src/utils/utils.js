@@ -11,10 +11,10 @@ const localStorageZ = {
     set(key, val, expires) {
         const type = $.type(expires);
         const createAt = moment().format('YYYY-MM-DD HH:mm:ss');
-        const item = {val, type, createAt};
+        const item = { val, type, createAt };
         const handle = {
             date() { item.expires = moment(expires).format('YYYY-MM-DD HH:mm:ss'); },
-            number() { item.expires = expires; }
+            number() { item.expires = expires; },
         };
 
         handle[type] && handle[type]();
@@ -47,7 +47,7 @@ const localStorageZ = {
             },
             undefined() {
                 result = item.val;
-            }
+            },
         };
 
         handle[item.type] && handle[item.type]();
@@ -55,17 +55,17 @@ const localStorageZ = {
     },
     clear(key) {
         localStorage.removeItem(key);
-    }
+    },
 };
 
 //
 function getUrlParam(url) {
-    let result = {};
+    const result = {};
     if (!isEmpty(url) && url.split('?').length === 2) {
         const query = url.split('?')[1].split('&');
-        query.forEach(item => {
+        query.forEach((item) => {
             const arr = item.split('=');
-            result[arr[0]] = arr[1];
+            result[arr[0]] = arr[1]; // eslint-disable-line
         });
     }
 }
@@ -87,5 +87,5 @@ export default {
     localStorage: localStorageZ,
     isEmpty,
     getUrlParam,
-    autoRootSize
+    autoRootSize,
 };

@@ -22,7 +22,7 @@ export default {
         return {
             tableData: [],
             page: 1,
-            pagesize: 20
+            pagesize: 20,
         };
     },
     mounted() {
@@ -35,7 +35,7 @@ export default {
             if (res.err) {
                 console.log(res.err);
             } else {
-                const {list, total} = res;
+                const { list, total } = res;
 
                 this.total = total;
                 this.tableData = list;
@@ -43,18 +43,18 @@ export default {
         },
         refresh() {
             this.list();
-        }
+        },
     },
     computed: {
         listParams() {
-            let params = {
+            const params = {
                 page: this.page,
-                pagesize: this.pagesize
+                pagesize: this.pagesize,
             };
 
             return params;
-        }
-    }
+        },
+    },
 };
 </script>
 

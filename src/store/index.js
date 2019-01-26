@@ -9,7 +9,7 @@ import haha from '@/store/module/index/demo2/haha';
 Vue.use(Vuex);
 
 const state = {
-    count: 0
+    count: 0,
 };
 
 const mutations = {};
@@ -25,6 +25,6 @@ export default new Vuex.Store({
     modules: {
         demo1,
         hehe,
-        haha
-    }
+        haha,
+    },
 });

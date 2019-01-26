@@ -25,19 +25,16 @@ import AsideMenu from '../../components/home/menu.vue';
 import menu from '@/helper/menu';
 
 export default {
-    components: {AsideMenu},
+    components: { AsideMenu },
     data() {
         return {
             width: 'auto',
             collapse: false,
             menuData: menu.filter(this.$router.options.routes),
-            test: [1, 2, 3]
+            test: [1, 2, 3],
         };
     },
     mounted() {
-        for (const item of this.test) {
-            console.log(item);
-        }
     },
     methods: {
         toggle() {
@@ -51,8 +48,8 @@ export default {
                 swit.addClass(this.$style['switch-tran']);
             }
             this.collapse = !this.collapse;
-        }
-    }
+        },
+    },
 };
 </script>
 
