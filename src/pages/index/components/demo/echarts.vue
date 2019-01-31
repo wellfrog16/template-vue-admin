@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import { echarts, $ } from '@/utils/cdn';
+
 export default {
     data() {
         return {

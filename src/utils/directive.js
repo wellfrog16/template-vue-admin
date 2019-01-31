@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import Hammer from 'hammer';
+import { Hammer } from '@/utils/cdn';
 
 function vueTouch(el, type, binding) {
     const hammertime = new Hammer(el);

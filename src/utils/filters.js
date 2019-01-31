@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import _ from 'underscore';
+import { _ } from '@/utils/cdn';
 
 // 货币格式化
 function currency(vals, units = '', decimals) {

@@ -19,14 +19,14 @@ module.exports = {
     },
 
     configureWebpack: {
-        externals: {
-            jquery: 'jQuery',
-            echarts: 'echarts',
-            moment: 'moment',
-            underscore: '_',
-            axios: 'axios',
-            hammer: 'Hammer',
-        },
+        // externals: {
+        //     jquery: 'jQuery',
+        //     echarts: 'echarts',
+        //     moment: 'moment',
+        //     underscore: '_',
+        //     axios: 'axios',
+        //     hammer: 'Hammer',
+        // },
         plugins: [
             new StyleLintPlugin({
                 context: 'src',

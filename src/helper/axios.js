@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { axios } from '@/utils/cdn';
 import { Loading, Notification } from 'element-ui';
 import conf from '@/config';
 

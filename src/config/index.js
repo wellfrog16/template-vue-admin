@@ -1,4 +1,4 @@
-import $ from 'jquery';
+import { $ } from '@/utils/cdn';
 import devConfig from './dev';
 import prodConfig from './prod';
 // 基础配置，一些默认设置

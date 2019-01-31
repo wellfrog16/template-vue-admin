@@ -1,5 +1,4 @@
-import $ from 'jquery';
-import moment from 'moment';
+import { $, moment } from '@/utils/cdn';
 
 // 空判断
 function isEmpty(val) {

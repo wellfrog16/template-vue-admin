@@ -9,8 +9,13 @@ module.exports = {
     ],
     // cdn 引用作为的全局对象
     globals: {
+        'window': true,
         '$': true,
         'echarts': true,
+        'moment': true,
+        'axios': true,
+        'Hammer': true,
+        '_': true,
     },
     rules: {
         indent: [2, 4], // 缩进风格
