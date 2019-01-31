@@ -9,7 +9,7 @@
     "stylelint": "stylelint */**/*.{css,less,vue} --fix"
   },
   "dependencies": {
-    "element-ui": "^2.4.11",
+    "element-ui": "^2.5.2",
     "vue": "^2.5.22",
     "vue-router": "^3.0.2",
     "vuex": "^3.1.0"
