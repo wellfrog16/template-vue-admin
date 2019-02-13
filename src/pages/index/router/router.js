@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Home from '../views/home/Index.vue';
 import Root from '../../../components/Root.vue';
+import Login from '../views/login/Index.vue';
 
 Vue.use(Router);
 
@@ -40,6 +41,21 @@ const router = new Router({
     routes: [
         {
             path: '',
+            redirect: { name: '登入界面' },
+            meta: {
+                hidden: true,
+            },
+        },
+        {
+            path: '/login',
+            name: '登入界面',
+            component: Login,
+            meta: {
+                hidden: true,
+            },
+        },
+        {
+            path: '/home',
             name: '一级菜单',
             component: Home,
             icon: 'el-icon-setting',
