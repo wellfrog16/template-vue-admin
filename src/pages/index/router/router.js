@@ -58,6 +58,7 @@ const router = new Router({
             path: '/home',
             name: '一级菜单',
             component: Home,
+            redirect: { name: 'Demo' },
             icon: 'el-icon-setting',
             children: [
                 {

@@ -16,6 +16,7 @@ module.exports = {
         'axios': true,
         'Hammer': true,
         '_': true,
+        'screenfull': true,
     },
     rules: {
         indent: [2, 4], // 缩进风格

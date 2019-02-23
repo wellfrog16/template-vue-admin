@@ -11,7 +11,10 @@
         </el-aside>
         <el-container>
             <el-header :class="$style.header">
-                <i :class="[$style.switch, 'fas fa-bars fa-lg']" @click="toggle"></i>
+                <div>
+                    <i :class="[$style.switch, 'fas fa-bars fa-lg']" @click="toggle"></i>
+                </div>
+                <functions />
             </el-header>
             <el-main :class="$style.main">
                 <router-view/>
@@ -22,10 +25,12 @@
 
 <script>
 import AsideMenu from '../../components/home/menu.vue';
+import Functions from '../../components/home/functions.vue';
 import menu from '@/helper/menu';
+import { $ } from '@/utils/cdn';
 
 export default {
-    components: { AsideMenu },
+    components: { AsideMenu, Functions },
     data() {
         return {
             width: 'auto',
@@ -38,8 +43,8 @@ export default {
     },
     methods: {
         toggle() {
-            const swit = this.$jquery(`.${this.$style.switch}`);
-            const target = this.$jquery(`.${this.$style.logo} span`);
+            const swit = $(`.${this.$style.switch}`);
+            const target = $(`.${this.$style.logo} span`);
             if (this.collapse) {
                 setTimeout(() => target.show(), 100);
                 swit.removeClass(this.$style['switch-tran']);
@@ -52,12 +57,6 @@ export default {
     },
 };
 </script>
-
-<style>
-.aside-menu:not(.el-menu--collapse) {
-    width: 250px;
-}
-</style>
 
 <style lang="less" module>
 @import '../../../../assets/style/config.less';
@@ -75,6 +74,10 @@ export default {
 
 .container {
     height: 100vh;
+
+    :global(.aside-menu:not(.el-menu--collapse)) {
+        width: 250px;
+    }
 }
 
 .aside {
@@ -90,6 +93,8 @@ export default {
     height: @height;
     line-height: @height;
     border-bottom: 1px solid @g-color-border4;
+    display: flex;
+    justify-content: space-between;
 }
 
 .switch {

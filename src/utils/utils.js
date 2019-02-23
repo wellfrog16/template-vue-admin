@@ -119,6 +119,12 @@ function autoRootSize() {
     $(() => setRootSize());
 }
 
+/**
+ * 生成4位数字的canvas
+ *
+ * @param {HTMLDom} canvas
+ * @returns
+ */
 function createCode(canvas) {
     const ctx = canvas.getContext('2d');
     const chars = [

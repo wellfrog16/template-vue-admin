@@ -26,7 +26,7 @@
                         <i
                             slot="suffix"
                             class="el-input__icon fas fa-lg fa-fw"
-                            :class="[$style['icon-eye'], classEye]"
+                            :class="[$style['icon-eye'], clsEye]"
                             @click="showPwd"
                             onselectstart="return false"
                         ></i>
@@ -47,7 +47,7 @@
                         height="40"
                         ref="canvas"
                         :class="$style.canvas"
-                        @click="refreshCode()"
+                        @click="refreshCode"
                         onselectstart="return false"
                     ></canvas>
                 </el-form-item>
@@ -64,9 +64,13 @@ import utils from '@/utils/utils';
 export default {
     data() {
         return {
+            preset: {
+                username: 'admin',
+                password: 'admin888',
+                code: '',
+            },
             form: {
                 passwordType: 'password',
-                code: '',
                 fields: {
                     username: 'admin',
                     password: 'admin888',
@@ -91,15 +95,34 @@ export default {
             const domCanvas = this.$refs.canvas;
             const code = utils.createCode(domCanvas);
 
-            this.form.code = code;
+            this.preset.code = code;
         },
-        handleLogin() {},
+        handleLogin() {
+            this.$refs.form.validate().then(() => {
+                // 先校验验证码
+                if (this.preset.code.toLowerCase() !== this.form.fields.code.toLowerCase()) { return; }
+
+                // 比对数据，实际应用时是发送请求
+                if (this.form.fields.username === this.preset.username
+                    && this.form.fields.password === this.preset.password
+                ) {
+                    this.saveLoginInfo();
+                    this.$router.push({ path: '/home' });
+                } else {
+                    console.log('登陆失败');
+                }
+            }).catch(() => {});
+        },
+        // 保存登陆信息
+        saveLoginInfo() {
+            console.log('112233');
+        },
     },
     computed: {
         isPassword() {
             return this.form.passwordType === 'password';
         },
-        classEye() {
+        clsEye() {
             return {
                 'fa-eye-slash': this.isPassword,
                 'fa-eye': !this.isPassword,
