@@ -1,12 +1,25 @@
-import { $, moment } from '@/utils/cdn';
+import { $, moment, _ } from '@/utils/cdn';
 
-// 空判断
+
+/**
+ * 普通空判断
+ *
+ * @param {string} val
+ * @returns
+ */
 function isEmpty(val) {
     return val === null || val === '' || val === undefined;
 }
 
 // 带有效期的localStorage
 const localStorageZ = {
+    /**
+     * 设置localStorge
+     *
+     * @param {string} key
+     * @param {string} val
+     * @param {date | number(秒)} expires
+     */
     set(key, val, expires) {
         const type = $.type(expires);
         const createAt = moment().format('YYYY-MM-DD HH:mm:ss');
@@ -19,6 +32,12 @@ const localStorageZ = {
         handle[type] && handle[type]();
         localStorage.setItem(key, JSON.stringify(item));
     },
+    /**
+     * 获取localStorge
+     *
+     * @param {string} key
+     * @returns
+     */
     get(key) {
         const val = localStorage.getItem(key);
         if (isEmpty(val)) { return ''; }
@@ -52,12 +71,21 @@ const localStorageZ = {
         handle[item.type] && handle[item.type]();
         return result;
     },
+    /**
+     * 删除指定的localStorge
+     *
+     * @param {string} key
+     */
     clear(key) {
         localStorage.removeItem(key);
     },
 };
 
-//
+/**
+ * 浏览器query数据json化
+ *
+ * @param {string} url
+ */
 function getUrlParam(url) {
     const result = {};
     if (!isEmpty(url) && url.split('?').length === 2) {
@@ -69,6 +97,11 @@ function getUrlParam(url) {
     }
 }
 
+/**
+ * 设置html根字体大小
+ *
+ * @param {number} [maxSize=75]
+ */
 function setRootSize(maxSize = 75) {
     $(() => {
         let fontSize = window.innerWidth / 10;
@@ -77,9 +110,54 @@ function setRootSize(maxSize = 75) {
     });
 }
 
+/**
+ * window的resize事件
+ *
+ */
 function autoRootSize() {
     $(window).on('resize', () => setRootSize());
     $(() => setRootSize());
+}
+
+function createCode(canvas) {
+    const ctx = canvas.getContext('2d');
+    const chars = [
+        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'j', 'k',
+        'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'u', 'v',
+        'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F',
+        'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R',
+        'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+        1, 2, 3, 4, 5, 6, 7, 8, 9,
+    ];
+
+    let code = '';
+    ctx.clearRect(0, 0, 80, 39);
+    for (let i = 0; i < 4; i += 1) {
+        const char = chars[_.random(56)];
+        code += char;
+        ctx.font = `${_.random(20, 25)}px SimHei`; // 设置字体随机大小
+        ctx.fillStyle = '#D3D7F7';
+        ctx.fillStyle = '#333';
+        ctx.textBaseline = 'middle';
+        ctx.shadowOffsetX = _.random(-3, 3);
+        ctx.shadowOffsetY = _.random(-3, 3);
+        ctx.shadowBlur = _.random(-3, 3);
+        ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+        const x = 80 / 5 * (i + 1);
+        const y = 39 / 2;
+        const deg = _.random(-25, 25);
+
+        // 设置旋转角度和坐标原点
+        ctx.translate(x, y);
+        ctx.rotate(deg * Math.PI / 180);
+        ctx.fillText(char, 0, 0);
+
+        // 恢复旋转角度和坐标原点
+        ctx.rotate(-deg * Math.PI / 180);
+        ctx.translate(-x, -y);
+    }
+
+    return code;
 }
 
 export default {
@@ -87,4 +165,5 @@ export default {
     isEmpty,
     getUrlParam,
     autoRootSize,
+    createCode,
 };
