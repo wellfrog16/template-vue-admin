@@ -25,7 +25,7 @@
 
 <script>
 import AsideMenu from '../../components/home/menu.vue';
-import Functions from '../../components/home/functions.vue';
+import Functions from '../../components/home/functions/index.vue';
 import menu from '@/helper/menu';
 import { $ } from '@/utils/cdn';
 

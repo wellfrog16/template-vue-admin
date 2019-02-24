@@ -109,13 +109,14 @@ export default {
                     this.saveLoginInfo();
                     this.$router.push({ path: '/home' });
                 } else {
-                    console.log('登陆失败');
+                    this.$message.error('登陆失败');
                 }
             }).catch(() => {});
         },
         // 保存登陆信息
         saveLoginInfo() {
-            console.log('112233');
+            utils.localStorage.set('username', this.form.fields.username, 60 * 60 * 2);
+            // this.$message.info('保存登陆信息');
         },
     },
     computed: {
