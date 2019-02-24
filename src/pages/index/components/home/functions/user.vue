@@ -14,7 +14,14 @@
 </template>
 
 <script>
+import { helper } from '@/helper/laker';
+
 export default {
+    data() {
+        return {
+            username: ''
+        };
+    },
     methods: {
         // 通知
         handleNotification() {
