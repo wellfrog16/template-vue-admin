@@ -7,5 +7,5 @@ function site() {
 }
 
 export default {
-    site
+    site,
 };

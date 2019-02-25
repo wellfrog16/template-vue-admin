@@ -14,12 +14,12 @@
 </template>
 
 <script>
-import { helper } from '@/helper/laker';
+// import { helper } from '@/helper/lakes';
 
 export default {
     data() {
         return {
-            username: ''
+            username: '',
         };
     },
     methods: {
