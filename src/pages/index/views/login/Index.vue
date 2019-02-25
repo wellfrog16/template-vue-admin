@@ -119,7 +119,10 @@ export default {
                     && this.form.fields.password === this.preset.password
                 ) {
                     this.saveLoginInfo();
-                    this.$router.push({ path: '/home' });
+
+                    // 返回原先的路径
+                    const path = this.$route.query.from || '/home';
+                    this.$router.push({ path });
                 } else {
                     this.$message.error('登陆失败');
                 }
@@ -128,8 +131,7 @@ export default {
         // 保存登陆信息
         saveLoginInfo() {
             utils.localStorage.set('username', this.form.fields.username, 60 * 60 * 2);
-            this.$store.commit('site/setVal', { username: this.form.fields.username });
-            // this.$message.info('保存登陆信息');
+            // this.$store.commit('site/setVal', { username: this.form.fields.username });
         },
     },
     computed: {

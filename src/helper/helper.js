@@ -6,6 +6,9 @@ function site() {
         destory() {
             utils.localStorage.clear('username');
         },
+        isActive() {
+            return !utils.isEmpty(this.username);
+        },
     };
 }
 

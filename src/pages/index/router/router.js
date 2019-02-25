@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Home from '../views/home/Index.vue';
 import Root from '../../../components/Root.vue';
 import Login from '../views/login/Index.vue';
+import { helper } from '@/helper/lakes';
 
 Vue.use(Router);
 
@@ -125,8 +126,16 @@ const router = new Router({
 
 // todo
 router.beforeEach((to, from, next) => {
-    // todo权限校验等
-    next();
+    const normal = ['/login'];
+    const site = helper.site();
+
+    // 登陆权限校验
+    if (!normal.includes(to.path) && !site.isActive()) {
+        // 无权限则返回登录页，并带入想要进入的路径
+        router.push({ path: '/login', query: { from: to.path } });
+    } else {
+        next();
+    }
 });
 
 export default router;
