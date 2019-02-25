@@ -63,6 +63,14 @@ import utils from '@/utils/utils';
 
 export default {
     data() {
+        const validateCode = (rule, value, callback) => {
+            if (value.toLowerCase() !== this.preset.code.toLowerCase()) {
+                callback(new Error('验证码不正确'));
+            } else {
+                callback();
+            }
+        };
+
         return {
             preset: {
                 username: 'admin',
@@ -79,13 +87,17 @@ export default {
                 rules: {
                     username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
                     password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
-                    code: [{ required: true, message: '请输入验证码', trigger: 'blur' }],
+                    code: [
+                        { required: true, message: '请输入验证码', trigger: 'blur' },
+                        { validator: validateCode, trigger: 'blur' },
+                    ],
                 },
             },
         };
     },
     mounted() {
         this.refreshCode();
+        window.vue = this;
     },
     methods: {
         showPwd() {
@@ -116,6 +128,7 @@ export default {
         // 保存登陆信息
         saveLoginInfo() {
             utils.localStorage.set('username', this.form.fields.username, 60 * 60 * 2);
+            this.$store.commit('site/setVal', { username: this.form.fields.username });
             // this.$message.info('保存登陆信息');
         },
     },
