@@ -51,6 +51,8 @@ export default {
 .dropdown-link {
     cursor: default;
     user-select: none;
+    display: inline-block;
+    height: 100%;
 }
 
 .dropdown-menu {
