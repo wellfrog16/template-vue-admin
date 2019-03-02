@@ -22,14 +22,8 @@
                         placeholder="密码"
                         auto-complete="on"
                         :type="form.passwordType"
+                        show-password
                     >
-                        <i
-                            slot="suffix"
-                            class="el-input__icon fas fa-lg fa-fw"
-                            :class="[$style['icon-eye'], clsEye]"
-                            @click="showPwd"
-                            onselectstart="return false"
-                        ></i>
                     </el-input>
                 </el-form-item>
 
@@ -100,9 +94,6 @@ export default {
         window.vue = this;
     },
     methods: {
-        showPwd() {
-            this.form.passwordType = this.isPassword ? 'text' : 'password';
-        },
         refreshCode() {
             const domCanvas = this.$refs.canvas;
             const code = utils.createCode(domCanvas);
