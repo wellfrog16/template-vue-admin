@@ -81,10 +81,24 @@ const router = new Router({
                     icon: 'el-icon-setting',
                     children: [
                         {
-                            path: 'dictionary', name: '三级菜单1', icon: 'el-icon-document', component: Root,
+                            path: 'dictionary1', name: '三级菜单1', icon: 'el-icon-document', component: Root,
                         },
                         {
-                            path: 'dictionary', name: '三级菜单2', icon: 'el-icon-document', component: Root,
+                            path: 'dictionary2', name: '三级菜单2', icon: 'el-icon-document', component: Root,
+                        },
+                        {
+                            path: 'config',
+                            name: '二级菜单909',
+                            component: Root,
+                            icon: 'el-icon-setting',
+                            children: [
+                                {
+                                    path: 'dictionary3', name: '三级菜单111', icon: 'el-icon-document', component: Root,
+                                },
+                                {
+                                    path: 'dictionary4', name: '三级菜单211', icon: 'el-icon-document', component: Root,
+                                },
+                            ],
                         },
                     ],
                 },
@@ -112,10 +126,10 @@ const router = new Router({
                     icon: 'el-icon-setting',
                     children: [
                         {
-                            path: 'dictionary2', name: '常规', icon: 'el-icon-document', component: Root,
+                            path: 'dictionary21', name: '常规', icon: 'el-icon-document', component: Root,
                         },
                         {
-                            path: 'dictionary3', name: '字典', icon: 'el-icon-document', component: Root,
+                            path: 'dictionary31', name: '字典', icon: 'el-icon-document', component: Root,
                         },
                     ],
                 },
