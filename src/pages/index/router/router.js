@@ -55,6 +55,22 @@ const router = new Router({
                 hidden: true,
             },
         },
+        // icon
+        {
+            path: '/icon',
+            name: '图标',
+            component: Home,
+            redirect: { name: 'Demo' },
+            icon: 'el-icon-setting',
+            children: [
+                {
+                    name: 'Font-awesome',
+                    path: 'font-awesome',
+                    icon: 'el-icon-tickets',
+                    component: () => import('../views/icon/index.vue'),
+                },
+            ],
+        },
         {
             path: '/home',
             name: '一级菜单',
