@@ -7,15 +7,15 @@
             <el-col
                 :span="2"
                 v-for="item in items"
-                :key="item"
-                v-text="item"
+                :key="item.category + '/' + item.name"
+                v-text="item.name"
             ></el-col>
         </el-row>
     </el-card>
 </template>
 
 <script>
-import items from './items';
+import { items } from './items';
 
 export default {
     mounted() {
