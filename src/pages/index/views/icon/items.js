@@ -1507,13 +1507,13 @@ const brands = [
     'zhihu',
 ];
 
-function transform(arr, category) {
-    return arr.map(item => ({ category, name: item }));
+function transform(arr, category, prepend) {
+    return arr.map(item => ({ category, name: item, prepend }));
 }
 
-const items = transform(solid, 'solid').concat(
-    transform(regular, 'regular'),
-    transform(brands, 'brands'),
+const items = transform(solid, 'solid', 'fas').concat(
+    transform(regular, 'regular', 'far'),
+    transform(brands, 'brands', 'fab'),
 );
 
 items.sort((a, b) => a.name.localeCompare(b.name));

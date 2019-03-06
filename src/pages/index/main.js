@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import ElementUI from 'element-ui';
+import InfiniteLoading from 'vue-infinite-loading'; // 滚动加载
 // import filters from '@/utils/filters';
 import store from '@/store';
 import router from './router/router';
@@ -15,6 +16,7 @@ Vue.config.productionTip = false;
 
 // 插件
 Vue.use(ElementUI);
+Vue.use(InfiniteLoading);
 
 new Vue({
     router,

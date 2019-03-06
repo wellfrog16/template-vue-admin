@@ -17,6 +17,7 @@ module.exports = {
         'Hammer': true,
         '_': true,
         'screenfull': true,
+        'ClipboardJS': true,
     },
     rules: {
         indent: [2, 4], // 缩进风格

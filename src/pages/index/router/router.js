@@ -60,13 +60,18 @@ const router = new Router({
             path: '/icon',
             name: '图标',
             component: Home,
-            redirect: { name: 'Demo' },
-            icon: 'el-icon-setting',
+            icon: 'menu-fix-icon fab fa-fonticons fa-lg fa-fw',
             children: [
                 {
-                    name: 'Font-awesome',
+                    name: 'element-ui',
+                    path: 'element-ui',
+                    icon: 'menu-fix-icon fab fa-fonticons-fi fa-lg-fw',
+                    component: () => import('../views/icon/index.vue'),
+                },
+                {
+                    name: 'font-awesome',
                     path: 'font-awesome',
-                    icon: 'el-icon-tickets',
+                    icon: 'menu-fix-icon fab fa-fonticons-fi fa-lg-fw',
                     component: () => import('../views/icon/index.vue'),
                 },
             ],

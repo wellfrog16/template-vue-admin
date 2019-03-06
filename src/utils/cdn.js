@@ -11,4 +11,5 @@ export {
     Hammer, // 手势库
     _, // lodash函数库
     screenfull, // 全屏
+    ClipboardJS, // 复制
 };
