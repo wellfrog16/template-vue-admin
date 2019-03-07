@@ -65,14 +65,40 @@ const router = new Router({
                 {
                     name: 'element-ui',
                     path: 'element-ui',
-                    icon: 'menu-fix-icon fab fa-fonticons-fi fa-lg-fw',
-                    component: () => import('../views/icon/index.vue'),
+                    icon: 'menu-fix-icon fab fa-fonticons-fi fa-lg fa-fw',
+                    component: () => import('../views/icon/elIcon.vue'),
+                },
+                {
+                    name: 'font-awesome',
+                    path: 'font-awesome',
+                    icon: 'menu-fix-icon fab fa-fonticons-fi fa-lg fa-fw',
+                    component: () => import('../views/icon/fontAwesome.vue'),
+                },
+            ],
+        },
+        {
+            path: '/ui',
+            name: 'UI',
+            component: Home,
+            icon: 'menu-fix-icon fab fa-ethereum fa-lg fa-fw',
+            children: [
+                {
+                    name: '按钮',
+                    path: 'button',
+                    icon: 'menu-fix-icon far fa-file fa-lg fa-fw',
+                    component: () => import('../views/icon/elIcon.vue'),
+                },
+                {
+                    name: '富文本框',
+                    path: 'editor',
+                    icon: 'menu-fix-icon far fa-credit-card fa-lg fa-fw',
+                    component: () => import('../views/icon/elIcon.vue'),
                 },
                 {
                     name: 'font-awesome',
                     path: 'font-awesome',
                     icon: 'menu-fix-icon fab fa-fonticons-fi fa-lg-fw',
-                    component: () => import('../views/icon/index.vue'),
+                    component: () => import('../views/icon/fontAwesome.vue'),
                 },
             ],
         },

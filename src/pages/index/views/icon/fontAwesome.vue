@@ -59,7 +59,7 @@ export default {
     mounted() {
         const clipboard = new ClipboardJS(`.${this.$style.list}>div>div`, {
             text(trigger) {
-                return trigger.querySelector('i').className;
+                return `${trigger.querySelector('i').className.replace('fa-3x', 'fa-lg')}`;
             },
         });
 
