@@ -107,7 +107,8 @@ export default {
 .card {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    box-sizing: border-box;
+    height: 100%;
 
     :global(.el-card__header) {
         flex: 0 0 100px;

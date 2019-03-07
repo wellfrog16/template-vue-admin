@@ -37,7 +37,7 @@ const scrollBehavior = (to, from, savedPosition) => {
 
 // todo 按模块写入单独的文件引用
 const router = new Router({
-    // mode: 'history',
+    mode: 'history',
     scrollBehavior,
     routes: [
         {
@@ -86,7 +86,7 @@ const router = new Router({
                     name: '按钮',
                     path: 'button',
                     icon: 'menu-fix-icon far fa-file fa-lg fa-fw',
-                    component: () => import('../views/icon/elIcon.vue'),
+                    component: () => import('../views/ui/index.vue'),
                 },
                 {
                     name: '富文本框',

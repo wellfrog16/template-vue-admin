@@ -110,7 +110,5 @@ export default {
 
 .main {
     background-color: #f0f2f5;
-    display: flex;
-    flex-direction: column;
 }
 </style>
