@@ -9,19 +9,19 @@
     "stylelint": "stylelint */**/*.{css,less,vue} --fix"
   },
   "dependencies": {
-    "element-ui": "^2.6.0",
+    "element-ui": "^2.6.1",
     "vue": "^2.6.8",
     "vue-infinite-loading": "^2.4.3",
     "vue-router": "^3.0.2",
     "vuex": "^3.1.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.4.1",
-    "@vue/cli-plugin-eslint": "^3.4.1",
-    "@vue/cli-service": "^3.4.1",
+    "@vue/cli-plugin-babel": "^3.5.0",
+    "@vue/cli-plugin-eslint": "^3.5.0",
+    "@vue/cli-service": "^3.5.0",
     "@vue/eslint-config-airbnb": "^4.0.0",
     "babel-eslint": "^10.0.1",
-    "eslint": "^5.15.0",
+    "eslint": "^5.15.1",
     "eslint-plugin-vue": "^5.2.2",
     "less": "^3.0.4",
     "less-loader": "^4.1.0",
