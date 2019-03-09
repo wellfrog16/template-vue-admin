@@ -35,6 +35,8 @@ const scrollBehavior = (to, from, savedPosition) => {
     return position;
 };
 
+const icon = 'menu-fix-icon fas fa-pager fa-lg fa-fw';
+
 // todo 按模块写入单独的文件引用
 const router = new Router({
     mode: 'history',
@@ -59,8 +61,8 @@ const router = new Router({
         {
             path: '/icon',
             name: '图标',
-            component: Home,
             icon: 'menu-fix-icon fab fa-fonticons fa-lg fa-fw',
+            component: Home,
             children: [
                 {
                     name: 'element-ui',
@@ -79,8 +81,8 @@ const router = new Router({
         {
             path: '/ui',
             name: 'UI',
-            component: Home,
             icon: 'menu-fix-icon fab fa-ethereum fa-lg fa-fw',
+            component: Home,
             children: [
                 {
                     name: '合集',
@@ -92,7 +94,21 @@ const router = new Router({
                     name: '表格',
                     path: 'table',
                     icon: 'menu-fix-icon fas fa-table fa-lg fa-fw',
-                    component: () => import('../views/icon/FontAwesome.vue'),
+                    component: Root,
+                    children: [
+                        {
+                            name: '综合',
+                            path: 'package',
+                            icon,
+                            component: () => import('../views/ui/table/Complex.vue'),
+                        },
+                        {
+                            name: '滚动加载',
+                            path: 'lazy',
+                            icon,
+                            component: () => import('../views/ui/table/Lazy.vue'),
+                        },
+                    ],
                 },
                 {
                     name: '富文本框',
@@ -104,24 +120,24 @@ const router = new Router({
         },
         {
             path: '/chart',
-            name: '图标',
+            name: '图表',
             component: Home,
             icon: 'menu-fix-icon far fa-chart-bar fa-lg fa-fw',
             children: [
                 {
-                    name: '合集',
+                    name: '合集1',
                     path: 'package',
                     icon: 'el-icon-goods',
                     component: () => import('../views/ui/Package.vue'),
                 },
                 {
-                    name: '表格',
+                    name: '表格1',
                     path: 'table',
                     icon: 'menu-fix-icon fas fa-table fa-lg fa-fw',
                     component: () => import('../views/icon/FontAwesome.vue'),
                 },
                 {
-                    name: '富文本框',
+                    name: '富文本框1',
                     path: 'editor',
                     icon: 'menu-fix-icon far fa-credit-card fa-lg fa-fw',
                     component: () => import('../views/icon/ElIcon.vue'),

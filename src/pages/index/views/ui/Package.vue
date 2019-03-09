@@ -79,11 +79,13 @@ export default {
     a {
         line-height: 30px;
         display: block;
+        transition: all 0.2s ease-in;
 
         &:hover, &:global(.active) {
             padding: 0 14px;
             background-color: @g-theme-color;
             color: #fff;
+            transition: all 0.3s ease-in;
         }
     }
 }
