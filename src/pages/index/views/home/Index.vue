@@ -7,17 +7,18 @@
                 :data="menuData"
                 :collapse="collapse"
                 background-color="#1f2d3d"
-                text-color="#fff" />
+                text-color="#fff"
+                active-text-color="#ffa" />
         </el-aside>
         <el-container>
             <el-header :class="$style.header">
                 <div>
-                    <i :class="[$style.switch, 'fas fa-bars fa-lg']" @click="toggle"></i>
+                    <i :class="[$style.switch, 'fas fa-bars fa-lg']" @click="toggle" />
                 </div>
                 <functions />
             </el-header>
             <el-main :class="$style.main">
-                <router-view/>
+                <router-view />
             </el-main>
         </el-container>
     </el-container>
