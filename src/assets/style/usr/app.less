@@ -12,3 +12,31 @@ a {
     border-left: 5px solid @g-theme-color;
     margin: 20px 0;
 }
+
+.container-complex-table {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .search {
+        background-color: #fff;
+        padding: 20px 20px 15px 20px;
+        margin-bottom: 10px;
+        flex: 0 0 37px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .table {
+        flex-grow: 1;
+    }
+
+    .pagination {
+        flex: 0 0 38px;
+        background-color: #fff;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+        padding-left: 10px;
+    }
+}
