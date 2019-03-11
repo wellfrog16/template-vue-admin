@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import api from '@/api/mock/demo';
+import api from '@/api/mock/table';
 
 export default {
     data() {

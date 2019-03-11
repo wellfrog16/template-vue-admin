@@ -1,13 +1,13 @@
 import { axios } from '@/utils/cdn';
 import { Loading, Notification } from 'element-ui';
 import conf from '@/config';
-import helper from '@/helper/helper';
+// import helper from '@/helper/helper';
 
 function axiosInstance(url) {
     const instance = axios.create({
         baseURL: url || conf.server.api,
         // withCredentials: true,
-        timeout: 5000,
+        timeout: 50000,
         // paramsSerializer(params) {
         //     return Qs.stringFy(setParams(params), { arrayFormat: 'brackets' });
         // },
@@ -17,9 +17,9 @@ function axiosInstance(url) {
 
     // toto 根据项目实际调整
     instance.interceptors.request.use((require) => {
-        const site = helper.site();
+        // const site = helper.site();
         const req = require;
-        req.headers.username = site.username;
+        // req.headers.username = site.username;
 
         // 全屏遮罩，带silence参数则静默处理
         if (!req.params || (req.params && req.params.silence !== 1)) {

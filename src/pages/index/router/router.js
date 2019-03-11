@@ -98,7 +98,7 @@ const router = new Router({
                     children: [
                         {
                             name: '综合',
-                            path: 'package',
+                            path: 'complex',
                             icon,
                             component: () => import('../views/ui/table/Complex.vue'),
                         },
