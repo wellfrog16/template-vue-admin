@@ -5,12 +5,19 @@
             class="table"
             height="500"
             border
+            stripe
             :data="list">
             <el-table-column type="selection" width="42" />
-            <el-table-column fixed prop="name" label="姓名" width="120" align="center" />
-            <el-table-column prop="gender" label="性别" width="50" align="center" />
-            <el-table-column prop="birthday" label="日期" width="150" align="center" />
-            <el-table-column prop="income" label="收入" width="150" align="right" />
+            <el-table-column fixed prop="name" label="姓名" width="120">
+                <template slot-scope="scope">
+                    <i class="fas fa-male fa-lg" v-if="scope.row.gender === '男'"></i>
+                    <i class="fas fa-female fa-lg" v-if="scope.row.gender === '女'"></i>
+                    <span style="margin-left: 10px;">{{ scope.row.name }}</span>
+                </template>
+            </el-table-column>
+            <!-- <el-table-column prop="gender" label="性别" width="50" align="center" /> -->
+            <el-table-column prop="birthday" label="日期" width="150" align="center" sortable />
+            <el-table-column prop="income" label="收入" width="150" align="right" sortable />
             <el-table-column prop="education" label="学历" width="150" align="center" />
             <el-table-column prop="id" label="身份证" width="200" align="center" />
             <el-table-column prop="county" label="区域" width="350" />
