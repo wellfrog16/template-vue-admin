@@ -1,7 +1,7 @@
 import helper from './helper';
 
 function aa(a) {
-    return a + 1;
+    return a + 22;
 }
 
 export {

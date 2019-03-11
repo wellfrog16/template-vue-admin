@@ -7,7 +7,8 @@
     "build": "vue-cli-service build",
     "eslint": "vue-cli-service lint",
     "eslint2": "eslint src/pages/index/components/ui/package/cascader.vue --fix",
-    "stylelint": "stylelint */**/*.{css,less,vue} --fix"
+    "stylelint": "stylelint */**/*.{css,less,vue} --fix",
+    "log": "git log --pretty=oneline"
   },
   "dependencies": {
     "element-ui": "^2.6.1",
