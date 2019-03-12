@@ -2,9 +2,22 @@
     <div>
         <el-form :inline="true" :model="form.fields" size="small">
             <el-form-item>
-                <el-input placeholder="请输入内容" v-model="form.fields.keyword">
-                    <el-button slot="prepend" icon="el-icon-search"></el-button>
-                </el-input>
+                <el-input
+                    placeholder="请输入查询内容"
+                    v-model="form.fields.keyword"
+                    prefix-icon="el-icon-search"
+                    autocomplete="on"
+                />
+            </el-form-item>
+            <el-form-item>
+                <el-select style="width: 120px;" v-model="form.fields.education" clearable placeholder="所有学历" size="small">
+                    <el-option
+                        v-for="item in educations"
+                        :key="item"
+                        :label="item"
+                        :value="item"
+                    />
+                </el-select>
             </el-form-item>
             <el-form-item>
                 <el-button type="primary" icon="el-icon-search">查询</el-button>
@@ -21,9 +34,11 @@
 export default {
     data() {
         return {
+            educations: ['大专', '本科', '硕士研究生', '博士研究生'],
             form: {
                 fields: {
                     keyword: '',
+                    education: '',
                     user: 1,
                     region: 1,
                 },
