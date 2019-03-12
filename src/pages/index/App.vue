@@ -5,6 +5,6 @@
 </template>
 
 <style lang="less">
-@import '../../assets/style/import.less';
 @import '../../assets/style/main.less';
+@import '../../assets/style/usr/app.less';
 </style>

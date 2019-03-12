@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="pagination flex-row-center">
         <el-dropdown split-button type="primary" @click="handleClick" size="small">
             删除
             <el-dropdown-menu slot="dropdown">

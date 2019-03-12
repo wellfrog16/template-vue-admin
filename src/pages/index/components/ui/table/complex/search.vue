@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="search">
         <el-form :inline="true" :model="form.fields" size="small">
             <el-form-item>
                 <el-input
