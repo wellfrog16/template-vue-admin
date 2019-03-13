@@ -31,6 +31,11 @@
 </template>
 
 <script>
+import api from '@/api/mock/table';
+import { createNamespacedHelpers } from 'vuex';
+
+const { mapState, mapActions } = createNamespacedHelpers('complexTable');
+
 export default {
     data() {
         return {
@@ -44,6 +49,34 @@ export default {
                 },
             },
         };
+    },
+    computed: {
+        ...mapState({
+            list: state => state.list,
+        }),
+    },
+    mounted() {
+        this.loadList();
+    },
+    methods: {
+        ...mapActions(['setVal']),
+        async loadList() {
+            const res = await api.list();
+            // console.log(res.list);
+
+            console.log(this.setVal());
+
+            this.setVal(1, { list: res.list });
+
+            // if (res.success) {
+            //     this.list = res.list;
+            // } else {
+            //     console.log(999);
+            // }
+        },
+        handleClick() {
+            console.log(99);
+        },
     },
 };
 </script>

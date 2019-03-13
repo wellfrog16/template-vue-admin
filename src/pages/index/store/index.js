@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 // 站点模块
-import site from '@/store/module/site';
+import complexTable from './modules/complexTable';
 // import demo1 from '@/store/module/index/demo1';
 // import hehe from '@/store/module/index/demo2/hehe';
 // import haha from '@/store/module/index/demo2/haha';
@@ -28,6 +28,6 @@ export default new Vuex.Store({
     getters,
     actions,
     modules: {
-        site,
+        complexTable,
     },
 });
