@@ -34,7 +34,7 @@
 import api from '@/api/mock/table';
 import { createNamespacedHelpers } from 'vuex';
 
-const { mapState, mapMutations } = createNamespacedHelpers('complexTable');
+const { mapState, mapMutations, mapActions } = createNamespacedHelpers('complexTable');
 
 export default {
     data() {
@@ -59,6 +59,7 @@ export default {
     },
     methods: {
         ...mapMutations(['setVal']),
+        ...mapActions(['queryParam']),
         async handleSearch() {
             if (await this.checkParams()) {
                 this.loadList();
@@ -75,7 +76,7 @@ export default {
             return valid;
         },
         async loadList() {
-            const res = await api.list();
+            const res = await api.list(this.queryParam());
 
             this.setVal({
                 list: res.list,

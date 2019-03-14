@@ -4,7 +4,10 @@ import prodConfig from './prod';
 // 基础配置，一些默认设置
 
 const settings = {
-    pagesize: 10,
+    page: {
+        page: 1,
+        pagesize: 20,
+    },
     uploadName: 'avatar',
 };
 

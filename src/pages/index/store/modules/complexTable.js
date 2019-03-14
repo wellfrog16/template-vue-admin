@@ -15,5 +15,10 @@ export default {
         },
     },
     getters: {},
-    actions: {},
+    actions: {
+        queryParam(ctx, payload) {
+            console.log(ctx);
+            console.log(payload);
+        },
+    },
 };
