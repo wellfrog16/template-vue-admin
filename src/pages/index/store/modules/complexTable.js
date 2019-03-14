@@ -1,6 +1,9 @@
+import { config } from '@/helper/lakes';
+
 export default {
     namespaced: true,
     state: {
+        ...config.page,
         list: [],
         fields: null,
         total: 0,
@@ -14,6 +17,17 @@ export default {
             });
         },
     },
-    getters: {},
-    actions: {},
+    getters: {
+        queryParam(state) {
+            const param = {
+                ...state.fields,
+                page: state.page,
+                pagesize: state.pagesize,
+            };
+
+            return param;
+        },
+    },
+    actions: {
+    },
 };

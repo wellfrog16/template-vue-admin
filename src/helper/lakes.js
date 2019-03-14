@@ -1,10 +1,7 @@
 import helper from './helper';
-
-function aa(a) {
-    return a + 22;
-}
+import config from '@/config';
 
 export {
     helper,
-    aa,
+    config,
 };

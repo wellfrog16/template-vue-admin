@@ -7,6 +7,7 @@
                     v-model="form.fields.keyword"
                     prefix-icon="el-icon-search"
                     autocomplete="on"
+                    maxlength="20"
                 />
             </el-form-item>
             <el-form-item>
@@ -34,7 +35,7 @@
 import api from '@/api/mock/table';
 import { createNamespacedHelpers } from 'vuex';
 
-const { mapState, mapMutations } = createNamespacedHelpers('complexTable');
+const { mapState, mapMutations, mapGetters } = createNamespacedHelpers('complexTable');
 
 export default {
     data() {
@@ -44,38 +45,47 @@ export default {
                 fields: {
                     keyword: '',
                     education: '',
-                    user: 1,
-                    region: 1,
                 },
                 rules: {},
             },
         };
     },
     computed: {
-        ...mapState(['list', 'fields']),
+        ...mapState(['list', 'page']),
+        ...mapGetters(['queryParam']),
+    },
+    watch: {
+        page() {
+            this.loadList();
+        },
     },
     mounted() {
-        this.loadList();
+        this.handleSearch();
     },
     methods: {
         ...mapMutations(['setVal']),
+
+        // 查询
         async handleSearch() {
             if (await this.checkParams()) {
                 this.loadList();
             }
         },
+
+        // 检测必填，并保存查询参数
         async checkParams() {
             const valid = await this.$refs.form.validate();
             if (valid) {
-                this.setVal({
-                    fields: this.form.fields,
-                    page: 1,
-                });
+                const params = Object.assign({ page: 1 }, this.form.fields);
+                console.log(params);
+                this.setVal(params);
             }
             return valid;
         },
+
+        // 请求数据
         async loadList() {
-            const res = await api.list();
+            const res = await api.list(this.queryParam);
 
             this.setVal({
                 list: res.list,
@@ -87,9 +97,6 @@ export default {
             // } else {
             //     console.log(999);
             // }
-        },
-        handleClick() {
-            console.log(99);
         },
     },
 };
