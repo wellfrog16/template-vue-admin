@@ -40,11 +40,18 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex';
+
+const { mapState } = createNamespacedHelpers('complexTable');
+
 export default {
     data() {
         return {
             a: '',
         };
+    },
+    computed: {
+        ...mapState(['list']),
     },
     methods: {
 

@@ -10,12 +10,16 @@
         <el-pagination
             background
             layout="total, prev, pager, next"
-            :total="1000">
+            :total="total">
         </el-pagination>
     </div>
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex';
+
+const { mapState } = createNamespacedHelpers('complexTable');
+
 export default {
     data() {
         return {
@@ -27,6 +31,9 @@ export default {
                 },
             },
         };
+    },
+    computed: {
+        ...mapState(['total']),
     },
     methods: {
         handleClick() {

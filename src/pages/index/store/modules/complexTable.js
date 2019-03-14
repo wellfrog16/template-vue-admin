@@ -2,12 +2,15 @@ export default {
     namespaced: true,
     state: {
         list: [],
+        fields: null,
+        total: 0,
+        loading: false,
     },
     mutations: {
         setVal(state, payload) {
-            console.log(99990);
+            console.log(payload);
             Object.keys(payload).forEach((key) => {
-                if (state[key]) { state[key] = payload[key]; }
+                if (state[key] !== undefined) { state[key] = payload[key]; }
             });
         },
     },

@@ -1,6 +1,6 @@
 <template>
     <div class="search">
-        <el-form :inline="true" :model="form.fields" size="small">
+        <el-form ref="form" :inline="true" :model="form.fields" :rules="form.rules" size="small">
             <el-form-item>
                 <el-input
                     placeholder="请输入查询内容"
@@ -20,7 +20,7 @@
                 </el-select>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary" icon="el-icon-search">查询</el-button>
+                <el-button type="primary" icon="el-icon-search" @click="handleSearch">查询</el-button>
             </el-form-item>
         </el-form>
         <div>
@@ -34,7 +34,7 @@
 import api from '@/api/mock/table';
 import { createNamespacedHelpers } from 'vuex';
 
-const { mapState, mapActions } = createNamespacedHelpers('complexTable');
+const { mapState, mapMutations } = createNamespacedHelpers('complexTable');
 
 export default {
     data() {
@@ -47,26 +47,40 @@ export default {
                     user: 1,
                     region: 1,
                 },
+                rules: {},
             },
         };
     },
     computed: {
-        ...mapState({
-            list: state => state.list,
-        }),
+        ...mapState(['list', 'fields']),
     },
     mounted() {
         this.loadList();
     },
     methods: {
-        ...mapActions(['setVal']),
+        ...mapMutations(['setVal']),
+        async handleSearch() {
+            if (await this.checkParams()) {
+                this.loadList();
+            }
+        },
+        async checkParams() {
+            const valid = await this.$refs.form.validate();
+            if (valid) {
+                this.setVal({
+                    fields: this.form.fields,
+                    page: 1,
+                });
+            }
+            return valid;
+        },
         async loadList() {
             const res = await api.list();
-            // console.log(res.list);
 
-            console.log(this.setVal());
-
-            this.setVal(1, { list: res.list });
+            this.setVal({
+                list: res.list,
+                total: res.total,
+            });
 
             // if (res.success) {
             //     this.list = res.list;
