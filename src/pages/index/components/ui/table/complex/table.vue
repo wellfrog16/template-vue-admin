@@ -8,9 +8,9 @@
         <el-table-column type="selection" width="42" />
         <el-table-column fixed prop="name" label="姓名" width="120">
             <template slot-scope="scope">
-                <i class="fas fa-male fa-lg fa-fw" v-if="scope.row.gender === '男'"></i>
-                <i class="fas fa-female fa-lg fa-fw" v-if="scope.row.gender === '女'"></i>
                 <span>{{ scope.row.name }}</span>
+                <i class="fas fa-male fa-lg fa-fw" v-if="scope.row.gender === '男'" :class="$style.male" />
+                <i class="fas fa-female fa-lg fa-fw" v-if="scope.row.gender === '女'" :class="$style.female" />
             </template>
         </el-table-column>
         <!-- <el-table-column prop="gender" label="性别" width="50" align="center" /> -->
@@ -58,3 +58,13 @@ export default {
     },
 };
 </script>
+
+<style lang="less" module>
+.male {
+    color: #47cbff;
+}
+
+.female {
+    color: #ff75da;
+}
+</style>

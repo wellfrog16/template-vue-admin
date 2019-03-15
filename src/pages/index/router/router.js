@@ -39,7 +39,7 @@ const icon = 'menu-fix-icon fas fa-pager fa-lg fa-fw';
 
 // todo 按模块写入单独的文件引用
 const router = new Router({
-    mode: 'history',
+    // mode: 'history',
     scrollBehavior,
     routes: [
         {
@@ -97,7 +97,7 @@ const router = new Router({
                     component: Root,
                     children: [
                         {
-                            name: '综合',
+                            name: '综合表格',
                             path: 'complex',
                             icon,
                             component: () => import('../views/ui/table/Complex.vue'),

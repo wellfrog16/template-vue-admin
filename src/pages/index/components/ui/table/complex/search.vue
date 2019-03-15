@@ -4,9 +4,10 @@
             <el-form-item>
                 <el-input
                     placeholder="请输入查询内容"
-                    v-model="form.fields.keyword"
+                    v-model="form.fields.q"
                     prefix-icon="el-icon-search"
                     autocomplete="on"
+                    maxlength="20"
                 />
             </el-form-item>
             <el-form-item>
@@ -34,7 +35,7 @@
 import api from '@/api/mock/table';
 import { createNamespacedHelpers } from 'vuex';
 
-const { mapState, mapMutations, mapActions } = createNamespacedHelpers('complexTable');
+const { mapState, mapMutations, mapGetters } = createNamespacedHelpers('complexTable');
 
 export default {
     data() {
@@ -42,41 +43,51 @@ export default {
             educations: ['大专', '本科', '硕士研究生', '博士研究生'],
             form: {
                 fields: {
-                    keyword: '',
+                    q: '',
                     education: '',
-                    user: 1,
-                    region: 1,
                 },
                 rules: {},
             },
         };
     },
     computed: {
-        ...mapState(['list', 'fields']),
+        ...mapState(['list', 'page']),
+        ...mapGetters(['queryParam', 'queryPath']),
     },
+    // watch: {
+    //     page() {
+    //         this.loadList();
+    //     },
+    // },
     mounted() {
         this.loadList();
     },
+    beforeRouteUpdate(to, from, next) {
+        console.log(to);
+        console.log(from);
+        console.log(next);
+        next();
+    },
     methods: {
         ...mapMutations(['setVal']),
-        ...mapActions(['queryParam']),
+
+        // 查询
         async handleSearch() {
             if (await this.checkParams()) {
-                this.loadList();
+                this.$router.push(this.queryPath);
             }
         },
+
+        // 检测必填，并保存查询参数，查询永远会按照search组件的p和ps值来更新
         async checkParams() {
             const valid = await this.$refs.form.validate();
-            if (valid) {
-                this.setVal({
-                    fields: this.form.fields,
-                    page: 1,
-                });
-            }
+            valid && this.setVal({ filters: this.form.fields });
             return valid;
         },
+
+        // 请求数据
         async loadList() {
-            const res = await api.list(this.queryParam());
+            const res = await api.list(this.queryParam);
 
             this.setVal({
                 list: res.list,
@@ -88,9 +99,6 @@ export default {
             // } else {
             //     console.log(999);
             // }
-        },
-        handleClick() {
-            console.log(99);
         },
     },
 };

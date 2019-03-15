@@ -1,10 +1,9 @@
 import helper from './helper';
-
-function aa(a) {
-    return a + 22;
-}
+import config from '@/config';
+import cstore from './store';
 
 export {
     helper,
-    aa,
+    config,
+    cstore,
 };

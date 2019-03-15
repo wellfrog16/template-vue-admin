@@ -10,34 +10,30 @@
         <el-pagination
             background
             layout="total, prev, pager, next"
-            :total="total">
-        </el-pagination>
+            :total="total"
+            @current-change="handleCurrentChange"
+        />
     </div>
 </template>
 
 <script>
 import { createNamespacedHelpers } from 'vuex';
 
-const { mapState } = createNamespacedHelpers('complexTable');
+const { mapState, mapMutations, mapGetters } = createNamespacedHelpers('complexTable');
 
 export default {
-    data() {
-        return {
-            form: {
-                fields: {
-                    keyword: '',
-                    user: 1,
-                    region: 1,
-                },
-            },
-        };
-    },
     computed: {
         ...mapState(['total']),
+        ...mapGetters(['queryPath']),
     },
     methods: {
+        ...mapMutations(['setVal']),
         handleClick() {
-            console.log(99);
+            console.log(999);
+        },
+        handleCurrentChange(p) {
+            this.setVal({ p });
+            this.$router.push(this.queryPath);
         },
     },
 };

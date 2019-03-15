@@ -5,8 +5,8 @@ import prodConfig from './prod';
 
 const settings = {
     page: {
-        page: 1,
-        pagesize: 20,
+        p: 1,
+        ps: 30,
     },
     uploadName: 'avatar',
 };
