@@ -11,9 +11,9 @@
                 />
             </el-form-item>
             <el-form-item>
-                <el-select style="width: 120px;" v-model="form.fields.education" clearable placeholder="所有学历" size="small">
+                <el-select style="width: 120px;" v-model="form.fields.edu" clearable placeholder="所有学历" size="small">
                     <el-option
-                        v-for="item in educations"
+                        v-for="item in edus"
                         :key="item"
                         :label="item"
                         :value="item"
@@ -26,6 +26,7 @@
         </el-form>
         <div>
             <el-button type="primary" size="small" icon="el-icon-plus">新增</el-button>
+            <el-button type="primary" size="small" icon="el-icon-refresh" @click="handleRefresh">刷新</el-button>
             <el-button type="primary" size="small" icon="button-fix-icon fas fa-file-export fa-sm">导出</el-button>
         </div>
     </div>
@@ -34,42 +35,54 @@
 <script>
 import api from '@/api/mock/table';
 import { createNamespacedHelpers } from 'vuex';
+import { _ } from '@/utils/cdn';
 
 const { mapState, mapMutations, mapGetters } = createNamespacedHelpers('complexTable');
 
 export default {
     data() {
         return {
-            educations: ['大专', '本科', '硕士研究生', '博士研究生'],
+            edus: ['专科', '本科', '硕士研究生', '博士研究生', '其他'],
             form: {
                 fields: {
                     q: '',
-                    education: '',
+                    edu: '',
                 },
                 rules: {},
             },
         };
     },
     computed: {
-        ...mapState(['list', 'page']),
-        ...mapGetters(['queryParam', 'queryPath']),
+        ...mapState(['list', 'filters']),
+        ...mapGetters(['queryPath']),
+        query: v => v.$route.query,
     },
-    // watch: {
-    //     page() {
-    //         this.loadList();
-    //     },
-    // },
+    watch: {
+        // watch filters，翻页正常捕获filter变化并触发，但直接手动修改地址栏，filters更新，watch不到变化/某些情况下仅触发一次
+        // 测试watch $route.query正常
+        // 先用$route.query解决，但是多了一步computed
+        query: {
+            handler(val) {
+                _.merge(this.form.fields, val);
+                this.loadList();
+            },
+            deep: true,
+        },
+    },
     mounted() {
+        const filters = this.$route.query;
+
+        // query不为空，则保存参数
+        if (!_.isEmpty(filters)) {
+            this.setState({ filters });
+            delete filters.p;
+            delete filters.ps;
+            _.merge(this.form.fields, filters);
+        }
         this.loadList();
     },
-    beforeRouteUpdate(to, from, next) {
-        console.log(to);
-        console.log(from);
-        console.log(next);
-        next();
-    },
     methods: {
-        ...mapMutations(['setVal']),
+        ...mapMutations(['setState']),
 
         // 查询
         async handleSearch() {
@@ -78,27 +91,27 @@ export default {
             }
         },
 
-        // 检测必填，并保存查询参数，查询永远会按照search组件的p和ps值来更新
+        // 刷新
+        async handleRefresh() {
+            this.loadList();
+        },
+
+        // 检测必填，并保存查询参数
         async checkParams() {
             const valid = await this.$refs.form.validate();
-            valid && this.setVal({ filters: this.form.fields });
+            valid && this.setState({ filters: { ...this.form.fields, p: 1 } });
             return valid;
         },
 
         // 请求数据
         async loadList() {
-            const res = await api.list(this.queryParam);
+            this.setState({ loading: true });
+            const res = await api.list(this.filters);
+            this.setState({ list: res.list, total: res.total });
 
-            this.setVal({
-                list: res.list,
-                total: res.total,
+            this.$nextTick(() => {
+                this.setState({ loading: false });
             });
-
-            // if (res.success) {
-            //     this.list = res.list;
-            // } else {
-            //     console.log(999);
-            // }
         },
     },
 };

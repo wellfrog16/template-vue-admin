@@ -1,2 +1,2 @@
-export const PAGE = 'page';
-export const PAGE_SIZE = 'pagesize';
+export const PAGE = 'p';
+export const PAGE_SIZE = 'ps';

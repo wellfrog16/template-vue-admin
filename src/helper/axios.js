@@ -22,7 +22,7 @@ function axiosInstance(url) {
         // req.headers.username = site.username;
 
         // 全屏遮罩，带silence参数则静默处理
-        if (!req.params || (req.params && req.params.silence !== 1)) {
+        if ((!req.params || (req.params && req.params.silence !== 1)) && 1 > 2) {
             loadingInstancce = Loading.service({
                 fullscreen: true,
                 spinner: 'el-icon-loading',

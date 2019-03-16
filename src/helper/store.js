@@ -1,8 +1,15 @@
-import { $ } from '@/utils/cdn';
+import { _ } from '@/utils/cdn';
+
+function customizer(objValue, srcValue) {
+    if (_.isPlainObject(srcValue)) {
+        return _.merge(objValue, srcValue);
+    }
+    return srcValue;
+}
 
 const mutations = {
     setState(state, payload) {
-        $.extend(state, payload);
+        _.mergeWith(state, payload, customizer);
     },
 };
 

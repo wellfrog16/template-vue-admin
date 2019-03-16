@@ -80,7 +80,7 @@ const router = new Router({
         },
         {
             path: '/ui',
-            name: 'UI',
+            name: '组件',
             icon: 'menu-fix-icon fab fa-ethereum fa-lg fa-fw',
             component: Home,
             children: [

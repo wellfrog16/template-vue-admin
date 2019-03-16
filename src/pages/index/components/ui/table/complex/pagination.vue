@@ -11,6 +11,7 @@
             background
             layout="total, prev, pager, next"
             :total="total"
+            :current-page.sync="p"
             @current-change="handleCurrentChange"
         />
     </div>
@@ -22,17 +23,22 @@ import { createNamespacedHelpers } from 'vuex';
 const { mapState, mapMutations, mapGetters } = createNamespacedHelpers('complexTable');
 
 export default {
+    data() {
+        return {
+            p: +this.$route.query.p,
+        };
+    },
     computed: {
         ...mapState(['total']),
         ...mapGetters(['queryPath']),
     },
     methods: {
-        ...mapMutations(['setVal']),
+        ...mapMutations(['setState']),
         handleClick() {
             console.log(999);
         },
         handleCurrentChange(p) {
-            this.setVal({ p });
+            this.setState({ filters: { p } });
             this.$router.push(this.queryPath);
         },
     },

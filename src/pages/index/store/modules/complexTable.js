@@ -3,44 +3,25 @@ import { config, cstore } from '@/helper/lakes';
 export default {
     namespaced: true,
     state: {
-        ...config.page,
         path: '/ui/table/complex',
         list: [],
-        filters: null,
+        filters: { ...config.page },
         total: 0,
         loading: false,
+        activeIndex: -1,
+        previewVisiable: false,
     },
     mutations: {
         setState: (state, payload) => cstore.mutations.setState(state, payload),
-        setVal(state, payload) {
-            // console.log(payload);
-            Object.keys(payload).forEach((key) => {
-                if (state[key] !== undefined) { state[key] = payload[key]; }
-            });
-        },
-        setFilters(state, payload) {
-            // console.log(payload);
-            Object.keys(payload).forEach((key) => {
-                if (state.filters[key] !== undefined) { state.filters[key] = payload[key]; }
-            });
-        },
     },
     getters: {
-        queryParam(state) {
-            const param = {
-                ...state.fields,
-                p: state.p,
-                ps: state.ps,
-            };
-
-            return param;
-        },
-        queryPath(state, getters) {
+        queryPath(state) {
             return {
                 path: state.path,
-                query: getters.queryParam,
+                query: state.filters,
             };
         },
+        activeRow: state => state.list[state.activeIndex] || {},
     },
     actions: {
     },

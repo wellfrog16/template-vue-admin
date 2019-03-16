@@ -5,7 +5,7 @@
         border
         stripe
         :data="list">
-        <el-table-column type="selection" width="42" />
+        <el-table-column type="selection" width="60" align="center" />
         <el-table-column fixed prop="name" label="姓名" width="120">
             <template slot-scope="scope">
                 <span>{{ scope.row.name }}</span>
@@ -14,7 +14,7 @@
             </template>
         </el-table-column>
         <!-- <el-table-column prop="gender" label="性别" width="50" align="center" /> -->
-        <el-table-column prop="birthday" label="日期" width="150" align="center" sortable />
+        <el-table-column prop="birthday" label="生日" width="140" align="center" sortable />
         <el-table-column prop="income" label="收入" width="150" align="right" sortable>
             <template slot-scope="scope">
                 {{ scope.row.income | currency('￥', 2) }}
@@ -29,11 +29,11 @@
         <el-table-column
             fixed="right"
             label="操作"
-            width="175">
+            width="120">
             <template slot-scope="scope">
-                <el-button @click="handleClick(scope.row)" type="success" size="mini" icon="el-icon-view"></el-button>
+                <el-button @click="handlePreview(scope.$index)" type="success" size="mini" icon="el-icon-view"></el-button>
                 <el-button type="primary" size="mini" icon="el-icon-edit"></el-button>
-                <el-button type="warning" size="mini" icon="el-icon-delete"></el-button>
+                <!-- <el-button type="warning" size="mini" icon="el-icon-delete"></el-button> -->
             </template>
         </el-table-column>
     </el-table>
@@ -42,7 +42,7 @@
 <script>
 import { createNamespacedHelpers } from 'vuex';
 
-const { mapState } = createNamespacedHelpers('complexTable');
+const { mapState, mapMutations } = createNamespacedHelpers('complexTable');
 
 export default {
     data() {
@@ -54,7 +54,10 @@ export default {
         ...mapState(['list']),
     },
     methods: {
-
+        ...mapMutations(['setState']),
+        handlePreview(activeIndex) {
+            this.setState({ activeIndex, previewVisiable: true });
+        },
     },
 };
 </script>
