@@ -6,8 +6,12 @@
     >
         <div class="detail">
             <el-row>
-                <el-col :span="12">姓名：{{ activeRow.name }}</el-col>
-                <el-col :span="12"><description-item label="标题" content="内容">11111111111111222222</description-item></el-col>
+                <el-col :span="12"><description-item label="姓名" :content="activeRow.name" /></el-col>
+                <el-col :span="12"><description-item label="学历" :content="activeRow.education" /></el-col>
+            </el-row>
+            <el-row>
+                <el-col :span="12"><description-item label="生日" :content="activeRow.birthday" /></el-col>
+                <el-col :span="12"><description-item label="身份证" :content="activeRow.id" /></el-col>
             </el-row>
         </div>
         <span slot="footer">
