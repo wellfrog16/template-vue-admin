@@ -3,6 +3,8 @@
         title="提示"
         :visible.sync="previewVisiable"
         :before-close="handleClose"
+        width="700px"
+        custom-class="or-dialog"
     >
         <div class="detail">
             <el-row>
