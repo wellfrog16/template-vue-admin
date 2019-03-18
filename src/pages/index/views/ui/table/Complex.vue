@@ -11,6 +11,9 @@
 
         <!-- 预览 -->
         <x-preview />
+
+        <!-- 编辑 -->
+        <x-edit />
     </div>
 </template>
 
@@ -25,10 +28,7 @@ export default {
         XTable: () => import('../../../components/ui/table/complex/table.vue'),
         XPagination: () => import('../../../components/ui/table/complex/pagination.vue'),
         XPreview: () => import('../../../components/ui/table/complex/preview.vue'),
-    },
-    data() {
-        return {
-        };
+        XEdit: () => import('../../../components/ui/table/complex/edit.vue'),
     },
     computed: {
         ...mapState(['loading']),

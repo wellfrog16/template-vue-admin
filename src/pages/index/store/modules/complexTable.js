@@ -10,6 +10,7 @@ export default {
         loading: false,
         activeIndex: -1,
         previewVisiable: false,
+        editVisiable: false,
     },
     mutations: {
         setState: (state, payload) => cstore.mutations.setState(state, payload),
