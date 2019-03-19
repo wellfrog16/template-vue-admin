@@ -1,6 +1,6 @@
 <template>
     <div class="search">
-        <el-form ref="form" :inline="true" :model="form.fields" :rules="form.rules" size="small">
+        <el-form ref="form" :inline="true" :model="form.fields" :rules="form.rules">
             <el-form-item>
                 <el-input
                     placeholder="请输入查询内容"
@@ -11,7 +11,7 @@
                 />
             </el-form-item>
             <el-form-item>
-                <el-select style="width: 120px;" v-model="form.fields.edu" clearable placeholder="所有学历" size="small">
+                <el-select style="width: 120px;" v-model="form.fields.education" clearable placeholder="所有学历">
                     <el-option
                         v-for="item in edus"
                         :key="item"
@@ -25,9 +25,9 @@
             </el-form-item>
         </el-form>
         <div>
-            <el-button type="primary" size="small" icon="el-icon-plus">新增</el-button>
-            <el-button type="primary" size="small" icon="el-icon-refresh" @click="handleRefresh">刷新</el-button>
-            <el-button type="primary" size="small" icon="button-fix-icon fas fa-file-export fa-sm">导出</el-button>
+            <el-button type="primary" icon="el-icon-plus" @click="handleCreate">新增</el-button>
+            <el-button type="primary" icon="el-icon-refresh" @click="handleRefresh">刷新</el-button>
+            <el-button type="primary" icon="button-fix-icon fas fa-file-export fa-sm">导出</el-button>
         </div>
     </div>
 </template>
@@ -46,7 +46,7 @@ export default {
             form: {
                 fields: {
                     q: '',
-                    edu: '',
+                    education: '',
                 },
                 rules: {},
             },
@@ -112,6 +112,11 @@ export default {
             this.$nextTick(() => {
                 this.setState({ loading: false });
             });
+        },
+
+        // 新建
+        handleCreate() {
+            this.setState({ activeIndex: -1, editVisiable: true });
         },
     },
 };

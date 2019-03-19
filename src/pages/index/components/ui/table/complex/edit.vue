@@ -7,11 +7,11 @@
         width="700px"
         top="-5vh"
     >
-        <el-form ref="form" :model="form.fields" :rules="form.rules" label-width="80px" size="small">
+        <el-form ref="form" :model="form.fields" :rules="form.rules" label-width="80px">
             <el-row :gutter="20">
                 <el-col :span="12">
                     <el-form-item prop="name" label="姓名">
-                        <el-input v-model="form.fields.name">
+                        <el-input v-model.trim="form.fields.name">
                             <el-radio-group v-model="form.fields.gender" slot="append" size="mini">
                                 <el-radio-button label="男"></el-radio-button>
                                 <el-radio-button label="女"></el-radio-button>
@@ -21,7 +21,7 @@
                 </el-col>
                 <el-col :span="12">
                     <el-form-item prop="edu" label="学历">
-                        <el-select v-model="form.fields.edu" placeholder="选择学历">
+                        <el-select v-model="form.fields.education" placeholder="选择学历">
                             <el-option
                                 v-for="item in edus"
                                 :key="item"
@@ -39,78 +39,98 @@
                             v-model="form.fields.birthday"
                             type="date"
                             placeholder="选择出生日期"
+                            value-format="yyyy-MM-dd"
                             :clearable="false"
                         />
                     </el-form-item>
                 </el-col>
                 <el-col :span="11">
                     <el-form-item prop="id" label="身份证">
-                        {{ form.fields.id }}
-                        <el-input v-model="form.fields.id" v-show="false" />
+                        <span v-show="form.fields.guid">{{ form.fields.id }}</span>
+                        <el-input v-model="form.fields.id" v-show="!form.fields.guid" />
                     </el-form-item>
                 </el-col>
             </el-row>
             <el-row :gutter="20">
                 <el-col :span="23">
                     <el-form-item prop="county" label="区域">
-                        <el-input v-model="form.fields.county" />
+                        <el-input v-model.trim="form.fields.county" />
                     </el-form-item>
                 </el-col>
             </el-row>
             <el-row :gutter="20">
                 <el-col :span="12">
                     <el-form-item prop="zip" label="邮编">
-                        <el-input v-model="form.fields.zip" />
+                        <el-input v-model.trim="form.fields.zip" />
                     </el-form-item>
                 </el-col>
                 <el-col :span="11">
                     <el-form-item prop="email" label="Email">
-                        <el-input v-model="form.fields.email" />
+                        <el-input v-model.trim="form.fields.email" />
                     </el-form-item>
                 </el-col>
             </el-row>
             <el-row :gutter="20">
-                <el-col :span="23">
+                <el-col :span="12">
                     <el-form-item prop="income" label="收入">
-                        <el-input v-model="form.fields.income" />
+                        <el-input v-model.number="form.fields.income" />
                     </el-form-item>
                 </el-col>
             </el-row>
             <el-row :gutter="20">
                 <el-col :span="23">
                     <el-form-item prop="remark" label="备注">
-                        <el-input v-model="form.fields.remark" />
+                        <el-input v-model.trim="form.fields.remark" />
                     </el-form-item>
                 </el-col>
             </el-row>
         </el-form>
         <span slot="footer">
-            <el-button size="small" @click="handleClose">取消</el-button>
-            <el-button type="primary" size="small" @click="handleSave">保存</el-button>
+            <el-button @click="handleClose">取消</el-button>
+            <el-button type="primary" @click="handleSave" :loading="saveBusy">保存</el-button>
         </span>
     </el-dialog>
 </template>
 
 <script>
-import { rules } from '@/helper/lakes';
+import api from '@/api/mock/table';
+import { rules } from '@/utils/rivers';
 import { createNamespacedHelpers } from 'vuex';
 
 const { mapState, mapMutations, mapGetters } = createNamespacedHelpers('complexTable');
 
+const fields = {
+    guid: '',
+    id: '',
+    name: '',
+    gender: '女',
+    county: '',
+    email: '',
+    zip: '',
+    income: 0,
+    remark: '',
+    education: '',
+    birthday: '',
+};
+
 export default {
     data() {
+        const self = this;
         return {
+            saveBusy: false,
             edus: ['专科', '本科', '硕士研究生', '博士研究生', '其他'],
             form: {
-                fields: {},
+                fields: self.createFields(),
                 rules: {
-                    ...rules.noEmpty({ key: 'name', msg: '姓名不能为空' }),
-                    ...rules.noEmpty({ key: 'edu', msg: '请选择学历' }),
-                    ...rules.noEmpty({ key: 'birthday', msg: '请选择出生日期' }),
-
-                    email: [
-                        { required: true, type: 'email' },
-                    ],
+                    ...rules.check({
+                        key: 'name', message: '姓名为长度在2-10之间的非空字符', min: 2, max: 10,
+                    }),
+                    ...rules.check({ key: 'education', message: '请选择学历' }),
+                    ...rules.check({ key: 'birthday', message: '请选择出生日期' }),
+                    ...rules.check({ key: 'email', message: '请输入正确的email', type: 'email' }),
+                    ...rules.check({
+                        key: 'zip', message: '请输入正确的邮编', type: 'string', len: 6,
+                    }),
                 },
             },
         };
@@ -121,27 +141,58 @@ export default {
         },
     },
     computed: {
-        ...mapState(['editVisiable']),
+        ...mapState(['editVisiable', 'activeIndex']),
         ...mapGetters(['activeRow']),
         title() {
-            return `${this.activeRow.name} 个人信息`;
+            return `${this.form.fields.name} 个人信息`;
         },
     },
     methods: {
-        ...mapMutations(['setState']),
+        ...mapMutations(['setState', 'listUpdate', 'listInsert']),
+
+        // 创建一个空的fileds副本
+        createFields() {
+            return Object.assign({}, fields);
+        },
+
         handleClose() {
             this.setState({ editVisiable: false });
         },
 
         // 打卡dialog时，更新数据
         update() {
-            this.form.fields = { ...this.activeRow };
+            if (this.activeRow.guid) {
+                this.form.fields = { ...this.activeRow };
+            } else {
+                this.form.fields = this.createFields();
+                this.$nextTick(() => this.$refs.form.clearValidate());
+            }
         },
 
         // 保存信息
         handleSave() {
             this.$refs.form.validate((valid) => {
-                if (valid) { this.$message('aaaa'); }
+                valid && this.save();
+            });
+        },
+
+        // 保存动作
+        async save() {
+            this.saveBusy = true;
+
+            // 更新列表（非刷新获取，仅前端根据当前数据更新）
+            if (this.form.fields.guid) {
+                await api.update(this.form.fields);
+                this.listUpdate({ item: this.form.fields });
+            } else {
+                const res = await api.insert(this.form.fields);
+                this.form.fields.guid = res.guid;
+                this.listInsert({ item: this.form.fields });
+            }
+
+            this.$nextTick(() => {
+                this.handleClose();
+                this.saveBusy = false;
             });
         },
     },

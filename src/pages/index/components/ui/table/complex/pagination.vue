@@ -1,6 +1,6 @@
 <template>
     <div class="pagination flex-row-center">
-        <el-dropdown split-button type="primary" @click="handleClick" size="small">
+        <el-dropdown split-button type="primary" @click="handleClick">
             删除
             <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item>通过审核</el-dropdown-item>

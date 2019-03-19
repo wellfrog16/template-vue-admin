@@ -37,20 +37,24 @@ function axiosInstance(url) {
     instance.interceptors.response.use((response) => {
         loadingInstancce && loadingInstancce.close();
         const { data, config } = response;
+
+        const status = [200, 201, 204];
+        const method = ['post', 'put', 'delete'];
+
         // console.log(response);
-        if ((response.status === 200 || response.status === 201 || response.status === 204)
-            && (config.method === 'post' || config.method === 'put' || config.method === 'delete')) {
-            Notification.success({
-                title: '操作成功',
-            });
-        } else if (response.status !== 200 && response.status !== 201 && response.status !== 204) {
-            Notification.error({
-                title: response.statusText,
-            });
+        if (status.includes(response.status) && method.includes(config.method)) {
+            if (data.success) {
+                Notification.success({ title: '操作成功' });
+            } else {
+                Notification.error({ title: data.message });
+            }
+        } else if (!status.includes(response.status)) {
+            Notification.error({ title: response.statusText });
         }
         return data;
     }, (error) => {
         loadingInstancce && loadingInstancce.close();
+        Notification.error({ title: error });
         return error;
     });
 

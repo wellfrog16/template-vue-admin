@@ -32,7 +32,7 @@
             </el-checkbox-group>
         </el-row>
         <el-row>
-            <el-checkbox-group v-model="checkboxGroup3" size="small">
+            <el-checkbox-group v-model="checkboxGroup3">
                 <el-checkbox-button v-for="city in cities" :label="city" :disabled="city === '北京'" :key="city">{{ city }}</el-checkbox-button>
             </el-checkbox-group>
         </el-row>

@@ -43,7 +43,7 @@
             </el-row>
         </div>
         <span slot="footer">
-            <el-button type="primary" size="small" @click="handleClose">确定</el-button>
+            <el-button type="primary" @click="handleClose">确定</el-button>
         </span>
     </el-dialog>
 </template>

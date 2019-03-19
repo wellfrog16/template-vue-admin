@@ -14,6 +14,8 @@ export default {
     },
     mutations: {
         setState: (state, payload) => cstore.mutations.setState(state, payload),
+        listUpdate: (state, payload) => state.list.splice(state.activeIndex, 1, payload.item),
+        listInsert: (state, payload) => state.list.splice(0, 0, payload.item),
     },
     getters: {
         queryPath(state) {

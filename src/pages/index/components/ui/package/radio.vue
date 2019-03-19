@@ -33,7 +33,7 @@
             </el-radio-group>
         </el-row>
         <el-row>
-            <el-radio-group v-model="radio3" size="small">
+            <el-radio-group v-model="radio3">
                 <el-radio-button label="上海" ></el-radio-button>
                 <el-radio-button label="北京"></el-radio-button>
                 <el-radio-button label="广州"></el-radio-button>
@@ -53,7 +53,7 @@
             <el-radio v-model="radio4" label="2" border>备选项2</el-radio>
         </el-row>
         <el-row>
-            <el-radio-group v-model="radio4" size="small">
+            <el-radio-group v-model="radio4">
                 <el-radio label="1" border>备选项1</el-radio>
                 <el-radio label="2" border disabled>备选项2</el-radio>
             </el-radio-group>
