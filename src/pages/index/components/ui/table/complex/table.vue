@@ -14,7 +14,7 @@
             </template>
         </el-table-column>
         <!-- <el-table-column prop="gender" label="性别" width="50" align="center" /> -->
-        <el-table-column prop="birthday" label="生日" width="140" align="center" sortable />
+        <el-table-column prop="birthday" label="出生日期" width="140" align="center" sortable />
         <el-table-column prop="income" label="收入" width="150" align="right" sortable>
             <template slot-scope="scope">
                 {{ scope.row.income | currency('￥', 2) }}
