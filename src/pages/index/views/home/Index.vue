@@ -25,11 +25,11 @@
 </template>
 
 <script>
-// import AsideMenu from '../../components/home/menu.vue';
 import AsideMenu from '../../components/common/menu/index.vue';
 import Functions from '../../components/home/functions/index.vue';
 import menu from '@/helper/menu';
 import { $ } from '@/utils/cdn';
+import { utils } from '@/utils/rivers';
 
 export default {
     components: { AsideMenu, Functions },
@@ -42,19 +42,28 @@ export default {
         };
     },
     mounted() {
+        this.setCollapse(this.getStatus());
     },
     methods: {
         toggle() {
+            this.setCollapse(!this.getStatus());
+        },
+        setCollapse(status) {
             const swit = $(`.${this.$style.switch}`);
             const target = $(`.${this.$style.logo} span`);
-            if (this.collapse) {
+            if (!status) {
                 setTimeout(() => target.show(), 100);
                 swit.removeClass(this.$style['switch-tran']);
+                utils.localStorage.set('sys-collapse', 0);
             } else {
                 target.hide();
                 swit.addClass(this.$style['switch-tran']);
+                utils.localStorage.set('sys-collapse', 1);
             }
-            this.collapse = !this.collapse;
+            this.collapse = status;
+        },
+        getStatus() {
+            return !!(utils.localStorage.get('sys-collapse') || 0);
         },
     },
 };
