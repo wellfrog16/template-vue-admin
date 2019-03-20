@@ -32,17 +32,18 @@
         <el-table-column
             fixed="right"
             label="操作"
-            width="120">
+            width="175">
             <template slot-scope="scope">
                 <el-button @click="handlePreview(scope.$index)" type="success" size="mini" icon="el-icon-view" />
                 <el-button @click="handleEdit(scope.$index)" type="primary" size="mini" icon="el-icon-edit" />
-                <!-- <el-button type="warning" size="mini" icon="el-icon-delete"></el-button> -->
+                <el-button @click="handleDelete(scope.$index, scope.row.guid)" type="warning" size="mini" icon="el-icon-delete" />
             </template>
         </el-table-column>
     </el-table>
 </template>
 
 <script>
+import api from '@/api/mock/table';
 import { createNamespacedHelpers } from 'vuex';
 import style from '@/assets/style/usr/app.module.less';
 
@@ -77,12 +78,30 @@ export default {
         ...mapState(['list']),
     },
     methods: {
-        ...mapMutations(['setState']),
+        ...mapMutations(['setState', 'listRemove']),
         handlePreview(activeIndex) {
             this.setState({ activeIndex, previewVisiable: true });
         },
         handleEdit(activeIndex) {
             this.setState({ activeIndex, editVisiable: true });
+        },
+        handleDelete(activeIndex, guid) {
+            this.$confirm('确认要删除这条数据吗', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning',
+            }).then(() => {
+                this.remove(activeIndex, guid);
+            }).catch(() => {});
+        },
+        async remove(activeIndex, guid) {
+            this.setState({ activeIndex, loading: true });
+            await api.remove({ guid });
+            this.listRemove();
+
+            this.$nextTick(() => {
+                this.setState({ loading: false });
+            });
         },
     },
 };

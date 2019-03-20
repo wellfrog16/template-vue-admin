@@ -106,12 +106,17 @@ export default {
         // 请求数据
         async loadList() {
             this.setState({ loading: true });
-            const res = await api.list(this.filters);
-            this.setState({ list: res.list, total: res.total });
 
-            this.$nextTick(() => {
-                this.setState({ loading: false });
-            });
+            try {
+                const res = await api.list(this.filters);
+                this.setState({ list: res.list, total: res.total });
+            } catch (error) {
+                throw error;
+            } finally {
+                this.$nextTick(() => {
+                    this.setState({ loading: false });
+                });
+            }
         },
 
         // 新建
