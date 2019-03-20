@@ -1,10 +1,10 @@
 <template>
     <div class="pagination flex-row-center">
-        <el-dropdown split-button type="primary" @click="handleClick">
+        <el-dropdown split-button type="primary" @click="handleClick" @command="handleCommand">
             删除
             <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item>通过审核</el-dropdown-item>
-                <el-dropdown-item>标记已读</el-dropdown-item>
+                <el-dropdown-item command="a">转为退休</el-dropdown-item>
+                <el-dropdown-item command="b">转为创业</el-dropdown-item>
             </el-dropdown-menu>
         </el-dropdown>
         <el-pagination
@@ -25,12 +25,18 @@ const { mapState, mapMutations, mapGetters } = createNamespacedHelpers('complexT
 export default {
     data() {
         return {
-            p: +this.$route.query.p,
+            p: 1,
         };
     },
     computed: {
         ...mapState(['total']),
         ...mapGetters(['queryPath']),
+        query: v => v.$route.query,
+    },
+    watch: {
+        query(val) {
+            this.p = +val.p;
+        },
     },
     methods: {
         ...mapMutations(['setState']),
@@ -40,6 +46,9 @@ export default {
         handleCurrentChange(p) {
             this.setState({ filters: { p } });
             this.$router.push(this.queryPath);
+        },
+        handleCommand(command) {
+            this.$message(command);
         },
     },
 };

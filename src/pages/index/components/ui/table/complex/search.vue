@@ -23,6 +23,12 @@
             <el-form-item>
                 <el-button type="primary" icon="el-icon-search" @click="handleSearch">查询</el-button>
             </el-form-item>
+            <el-form-item>
+                <el-checkbox-group v-model="colums" :class="$style.checkbox">
+                    <el-checkbox label="income">收入</el-checkbox>
+                    <el-checkbox label="id">身份证</el-checkbox>
+                </el-checkbox-group>
+            </el-form-item>
         </el-form>
         <div>
             <el-button type="primary" icon="el-icon-plus" @click="handleCreate">新增</el-button>
@@ -36,6 +42,7 @@
 import api from '@/api/mock/table';
 import { createNamespacedHelpers } from 'vuex';
 import { _ } from '@/utils/cdn';
+import { helper } from '@/helper/lakes';
 
 const { mapState, mapMutations, mapGetters } = createNamespacedHelpers('complexTable');
 
@@ -43,6 +50,7 @@ export default {
     data() {
         return {
             edus: ['专科', '本科', '硕士研究生', '博士研究生', '其他'],
+            colums: ['income', 'id'],
             form: {
                 fields: {
                     q: '',
@@ -63,10 +71,14 @@ export default {
         // 先用$route.query解决，但是多了一步computed
         query: {
             handler(val) {
-                _.merge(this.form.fields, val);
+                this.setFilters(val);
+                helper.mergeParam(this.form.fields, val);
                 this.loadList();
             },
             deep: true,
+        },
+        colums(colums) {
+            this.setState({ colums });
         },
     },
     mounted() {
@@ -74,15 +86,18 @@ export default {
 
         // query不为空，则保存参数
         if (!_.isEmpty(filters)) {
-            this.setState({ filters });
+            this.setFilters(filters);
             delete filters.p;
             delete filters.ps;
-            _.merge(this.form.fields, filters);
+            helper.mergeParam(this.form.fields, filters);
+            this.loadList();
+        } else { // 无参数则清空vuex的参数，回到第一页
+            this.setFilters({});
+            this.$router.push(this.queryPath);
         }
-        this.loadList();
     },
     methods: {
-        ...mapMutations(['setState']),
+        ...mapMutations(['setState', 'setFilters']),
 
         // 查询
         async handleSearch() {
@@ -107,16 +122,12 @@ export default {
         async loadList() {
             this.setState({ loading: true });
 
-            try {
-                const res = await api.list(this.filters);
-                this.setState({ list: res.list, total: res.total });
-            } catch (error) {
-                throw error;
-            } finally {
-                this.$nextTick(() => {
-                    this.setState({ loading: false });
-                });
-            }
+            const res = await api.list(this.filters);
+            this.setState({ list: res.list, total: res.total });
+
+            this.$nextTick(() => {
+                this.setState({ loading: false });
+            });
         },
 
         // 新建
@@ -128,5 +139,11 @@ export default {
 </script>
 
 <style lang="less" module>
+.checkbox {
+    margin-left: 20px;
 
+    :global(.el-checkbox+.el-checkbox) {
+        margin-left: 15px;
+    }
+}
 </style>
