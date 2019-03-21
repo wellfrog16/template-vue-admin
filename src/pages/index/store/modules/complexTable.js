@@ -1,4 +1,5 @@
 import { config, cstore } from '@/helper/lakes';
+// import { _ } from '@/utils/cdn';
 
 export default {
     namespaced: true,
@@ -20,6 +21,12 @@ export default {
         listUpdate: (state, payload) => state.list.splice(state.activeIndex, 1, payload.item),
         listInsert: (state, payload) => state.list.splice(0, 0, payload.item),
         listRemove: state => state.list.splice(state.activeIndex, 1),
+        listBatchRemove(state) {
+            state.multipleSelection.forEach((row) => {
+                const index = state.list.findIndex(item => item.guid === row.guid);
+                state.list.splice(index, 1);
+            });
+        },
     },
     getters: {
         queryPath(state) {
@@ -29,6 +36,11 @@ export default {
             };
         },
         activeRow: state => state.list[state.activeIndex] || {},
+        multipleSelectionGuid(state) {
+            const result = [];
+            state.multipleSelection.forEach(item => result.push(item.guid));
+            return result.join(',');
+        },
     },
     actions: {
     },

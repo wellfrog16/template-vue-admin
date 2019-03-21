@@ -113,7 +113,7 @@ export default {
 
         // 批量选择
         handleSelectionChange(val) {
-            console.log(val);
+            this.setState({ multipleSelection: val });
         },
     },
 };
