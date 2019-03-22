@@ -4,6 +4,7 @@ import { config, cstore } from '@/helper/lakes';
 export default {
     namespaced: true,
     state: {
+        components: {},
         path: '/ui/table/complex',
         list: [],
         filters: { ...config.page },
@@ -20,12 +21,17 @@ export default {
         setFilters: (state, payload) => cstore.mutations.setData(state.filters, payload),
         listUpdate: (state, payload) => state.list.splice(state.activeIndex, 1, payload.item),
         listInsert: (state, payload) => state.list.splice(0, 0, payload.item),
-        listRemove: state => state.list.splice(state.activeIndex, 1),
-        listBatchRemove(state) {
-            state.multipleSelection.forEach((row) => {
+        listRemove(state, payload) {
+            payload.multipleSelection.forEach((row) => {
                 const index = state.list.findIndex(item => item.guid === row.guid);
                 state.list.splice(index, 1);
             });
+        },
+        listUpdateStatus(state, payload) {
+            state.multipleSelection.forEach((item) => {
+                item.status = payload.status;
+            });
+            state.multipleSelection = [];
         },
     },
     getters: {

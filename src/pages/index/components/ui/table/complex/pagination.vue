@@ -30,7 +30,7 @@ export default {
         };
     },
     computed: {
-        ...mapState(['total']),
+        ...mapState(['total', 'components', 'multipleSelection']),
         ...mapGetters(['queryPath', 'multipleSelectionGuid']),
         query: v => v.$route.query,
     },
@@ -40,7 +40,7 @@ export default {
         },
     },
     methods: {
-        ...mapMutations(['setState', 'listBatchRemove']),
+        ...mapMutations(['setState', 'listRemove', 'listUpdateStatus']),
 
         // 翻页
         handleCurrentChange(p) {
@@ -64,8 +64,12 @@ export default {
         // 批量删除
         async batchRemove() {
             this.setState({ loading: true });
+
+            // 远程删除
             const res = api.remove({ guid: this.multipleSelectionGuid });
-            res && this.listBatchRemove();
+
+            // 本地删除
+            res && this.listRemove({ multipleSelection: this.multipleSelection });
             this.$nextTick(() => this.setState({ loading: false }));
         },
 
@@ -73,15 +77,34 @@ export default {
         handleCommand(command) {
             const self = this;
             const map = {
-                a: self.changeStatus,
-                b: self.changeStatus,
+                a: () => { self.changeStatus('退休'); },
+                b: () => { self.changeStatus('创业'); },
             };
-            map[command]();
+
+            if (!this.multipleSelectionGuid) { return; }
+
+            this.$confirm('确认要批量修改这些数据吗', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning',
+            }).then(() => {
+                map[command]();
+            }).catch(() => {});
         },
 
         // 批量改变状态
-        changeStatus() {
-            console.log(9999);
+        async changeStatus(status) {
+            this.setState({ loading: true });
+
+            // 远程改变
+            const res = await api.updateStatus({ status });
+
+            // 本地改变
+            res && this.listUpdateStatus({ status });
+
+            // 清除选择
+            this.components.table.clearSelection();
+            this.$nextTick(() => this.setState({ loading: false }));
         },
     },
 };

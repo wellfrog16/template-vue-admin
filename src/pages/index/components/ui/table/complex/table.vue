@@ -1,5 +1,6 @@
 <template>
     <el-table
+        ref="table"
         class="table"
         height="500"
         border
@@ -35,7 +36,7 @@
             <template slot-scope="scope">
                 <el-button @click="handlePreview(scope.$index)" type="success" size="mini" icon="el-icon-view" />
                 <el-button @click="handleEdit(scope.$index)" type="primary" size="mini" icon="el-icon-edit" />
-                <el-button @click="handleDelete(scope.$index, scope.row.guid)" type="warning" size="mini" icon="el-icon-delete" />
+                <el-button @click="handleDelete(scope.$index, scope.row)" type="warning" size="mini" icon="el-icon-delete" />
             </template>
         </el-table-column>
     </el-table>
@@ -76,6 +77,9 @@ export default {
     computed: {
         ...mapState(['list', 'colums']),
     },
+    mounted() {
+        this.setState({ components: { table: this.$refs.table } });
+    },
     methods: {
         ...mapMutations(['setState', 'listRemove']),
 
@@ -90,21 +94,25 @@ export default {
         },
 
         // 删除确认
-        handleDelete(activeIndex, guid) {
+        handleDelete(activeIndex, row) {
             this.$confirm('确认要删除这条数据吗', '提示', {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
                 type: 'warning',
             }).then(() => {
-                this.remove(activeIndex, guid);
+                this.remove(activeIndex, row);
             }).catch(() => {});
         },
 
         // 删除
-        async remove(activeIndex, guid) {
+        async remove(activeIndex, row) {
             this.setState({ activeIndex, loading: true });
-            const res = await api.remove({ guid });
-            res && this.listRemove(); // stata移除
+
+            // 远程删除
+            const res = await api.remove({ guid: row.guid });
+
+            // 本地删除
+            res && this.listRemove({ multipleSelection: [row] });
             this.$nextTick(() => this.setState({ loading: false }));
         },
 

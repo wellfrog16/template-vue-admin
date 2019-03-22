@@ -7,6 +7,7 @@ const base = '/admin';
 const list = params => axios.get(`${base}/user`, { params }).then(res => res.data);
 const insert = params => axios.post(`${base}/user`, params).then(res => res.data);
 const update = params => axios.put(`${base}/user`, params).then(res => res.data);
+const updateStatus = params => axios.put(`${base}/user`, params).then(res => res.data);
 const remove = params => axios.delete(`${base}/user`, { params }).then(res => res.data);
 
 export default {
@@ -14,4 +15,5 @@ export default {
     insert,
     update,
     remove,
+    updateStatus,
 };

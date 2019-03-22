@@ -20,7 +20,7 @@
                     </el-form-item>
                 </el-col>
                 <el-col :span="12">
-                    <el-form-item prop="edu" label="学历">
+                    <el-form-item prop="education" label="学历">
                         <el-select v-model="form.fields.education" placeholder="选择学历">
                             <el-option
                                 v-for="item in edus"
@@ -76,6 +76,18 @@
                         <el-input v-model.number="form.fields.income" />
                     </el-form-item>
                 </el-col>
+                <el-col :span="12">
+                    <el-form-item prop="status" label="状态">
+                        <el-select v-model="form.fields.status" placeholder="状态">
+                            <el-option
+                                v-for="item in sts"
+                                :key="item"
+                                :label="item"
+                                :value="item"
+                            />
+                        </el-select>
+                    </el-form-item>
+                </el-col>
             </el-row>
             <el-row :gutter="20">
                 <el-col :span="23">
@@ -110,6 +122,7 @@ const fields = {
     income: 0,
     remark: '',
     education: '',
+    status: '',
     birthday: '',
 };
 
@@ -119,6 +132,7 @@ export default {
         return {
             saveBusy: false,
             edus: ['专科', '本科', '硕士研究生', '博士研究生', '其他'],
+            sts: ['在职', '待业', '退休', '创业', '游学'],
             form: {
                 fields: self.createFields(),
                 rules: {
@@ -126,6 +140,7 @@ export default {
                         key: 'name', message: '姓名为长度在2-10之间的非空字符', min: 2, max: 10,
                     }),
                     ...rules.check({ key: 'education', message: '请选择学历' }),
+                    ...rules.check({ key: 'status', message: '请选择状态' }),
                     ...rules.check({ key: 'birthday', message: '请选择出生日期' }),
                     ...rules.check({ key: 'email', message: '请输入正确的email', type: 'email' }),
                     ...rules.check({
@@ -167,8 +182,8 @@ export default {
                 this.form.fields = { ...this.activeRow };
             } else {
                 this.form.fields = this.createFields();
-                this.$nextTick(() => this.$refs.form.clearValidate());
             }
+            this.$nextTick(() => this.$refs.form.clearValidate());
         },
 
         // 保存信息
@@ -184,11 +199,16 @@ export default {
 
             // 更新列表（非刷新获取，仅前端根据当前数据更新）
             if (this.form.fields.guid) {
+                // 远程更新
                 const res = await api.update(this.form.fields);
+
+                // 本地更新
                 res && this.listUpdate({ item: this.form.fields });
             } else {
+                // 远程写入
                 const res = await api.insert(this.form.fields);
 
+                // 本地写入
                 if (res) {
                     this.form.fields.guid = res.guid;
                     this.listInsert({ item: this.form.fields });
