@@ -33,7 +33,7 @@
         <div>
             <el-button type="primary" icon="el-icon-plus" @click="handleCreate">新增</el-button>
             <el-button type="primary" icon="el-icon-refresh" @click="handleRefresh">刷新</el-button>
-            <el-button type="primary" icon="button-fix-icon fas fa-file-export fa-sm">导出</el-button>
+            <el-button type="primary" icon="button-fix-icon fas fa-file-export fa-sm" @click="handleDownload">导出</el-button>
         </div>
     </div>
 </template>
@@ -43,6 +43,7 @@ import api from '@/api/mock/table';
 import { createNamespacedHelpers } from 'vuex';
 import { _ } from '@/utils/cdn';
 import { helper } from '@/helper/lakes';
+import file from '@/utils/file';
 
 const { mapState, mapMutations, mapGetters } = createNamespacedHelpers('complexTable');
 
@@ -130,6 +131,16 @@ export default {
         // 新建
         handleCreate() {
             this.setState({ activeIndex: -1, editVisiable: true });
+        },
+
+        // 导出
+        handleDownload() {
+            file.export2excel({
+                data: this.list,
+                headerProp: ['id', 'name', 'gender', 'birthday', 'county', 'education', 'status', 'email', 'zip', 'income', 'remark'],
+                headerName: ['身份证', '姓名', '性别', '出生年月', '城市', '学历', '状态', '电子邮件', '邮编', '收入', '备注'],
+                name: '导出.xlsx',
+            });
         },
     },
 };
