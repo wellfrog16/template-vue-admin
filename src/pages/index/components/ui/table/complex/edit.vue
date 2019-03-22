@@ -7,7 +7,7 @@
         width="700px"
         top="-5vh"
     >
-        <el-form ref="form" :model="form.fields" :rules="form.rules" label-width="80px">
+        <el-form ref="form" :model="form.fields" :rules="form.rules" label-width="80px" v-loading="saveBusy">
             <el-row :gutter="20">
                 <el-col :span="12">
                     <el-form-item prop="name" label="姓名">
@@ -155,8 +155,10 @@ export default {
             return Object.assign({}, fields);
         },
 
+        // 关闭，保存中禁止关闭
         handleClose() {
-            this.setState({ editVisiable: false });
+            !this.saveBusy && this.setState({ editVisiable: false });
+            return !this.saveBusy;
         },
 
         // 打卡dialog时，更新数据
@@ -182,17 +184,20 @@ export default {
 
             // 更新列表（非刷新获取，仅前端根据当前数据更新）
             if (this.form.fields.guid) {
-                await api.update(this.form.fields);
-                this.listUpdate({ item: this.form.fields });
+                const res = await api.update(this.form.fields);
+                res && this.listUpdate({ item: this.form.fields });
             } else {
                 const res = await api.insert(this.form.fields);
-                this.form.fields.guid = res.guid;
-                this.listInsert({ item: this.form.fields });
+
+                if (res) {
+                    this.form.fields.guid = res.guid;
+                    this.listInsert({ item: this.form.fields });
+                }
             }
 
             this.$nextTick(() => {
-                this.handleClose();
                 this.saveBusy = false;
+                this.handleClose();
             });
         },
     },

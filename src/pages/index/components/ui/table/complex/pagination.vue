@@ -64,12 +64,9 @@ export default {
         // 批量删除
         async batchRemove() {
             this.setState({ loading: true });
-            await api.remove({ guid: this.multipleSelectionGuid });
-            this.listBatchRemove();
-
-            this.$nextTick(() => {
-                this.setState({ loading: false });
-            });
+            const res = api.remove({ guid: this.multipleSelectionGuid });
+            res && this.listBatchRemove();
+            this.$nextTick(() => this.setState({ loading: false }));
         },
 
         // 更多菜单操作

@@ -103,12 +103,9 @@ export default {
         // 删除
         async remove(activeIndex, guid) {
             this.setState({ activeIndex, loading: true });
-            await api.remove({ guid });
-            this.listRemove(); // stata移除
-
-            this.$nextTick(() => {
-                this.setState({ loading: false });
-            });
+            const res = await api.remove({ guid });
+            res && this.listRemove(); // stata移除
+            this.$nextTick(() => this.setState({ loading: false }));
         },
 
         // 批量选择

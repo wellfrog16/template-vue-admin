@@ -40,22 +40,27 @@ function axiosInstance(url) {
 
         const status = [200, 201, 204];
         const method = ['post', 'put', 'delete'];
+        const result = data;
 
         // console.log(response);
         if (status.includes(response.status) && method.includes(config.method)) {
             if (data.success) {
                 Notification.success({ title: '操作成功' });
+
+                // 请求成功，如果无data数据，则添加一个空对象来避免undefined，从而来和500 error(data)的undefined区分
+                if (!data.data) { result.data = {}; }
             } else {
                 Notification.error({ title: data.message });
             }
         } else if (!status.includes(response.status)) {
             Notification.error({ title: response.statusText });
         }
-        return data;
+        return result;
     }, (error) => {
         loadingInstancce && loadingInstancce.close();
         Notification.error({ title: error });
         return error;
+        // throw error;
     });
 
     return instance;

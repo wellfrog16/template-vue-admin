@@ -107,7 +107,7 @@ export default {
         },
 
         // 刷新
-        async handleRefresh() {
+        handleRefresh() {
             this.loadList();
         },
 
@@ -123,11 +123,8 @@ export default {
             this.setState({ loading: true });
 
             const res = await api.list(this.filters);
-            this.setState({ list: res.list, total: res.total });
-
-            this.$nextTick(() => {
-                this.setState({ loading: false });
-            });
+            res && this.setState({ list: res.list, total: res.total });
+            this.$nextTick(() => this.setState({ loading: false }));
         },
 
         // 新建
