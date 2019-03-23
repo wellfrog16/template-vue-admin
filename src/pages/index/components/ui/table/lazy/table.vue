@@ -9,14 +9,13 @@
         @selection-change="handleSelectionChange"
     >
         <el-table-column type="selection" width="60" align="center" />
-        <el-table-column fixed prop="name" label="姓名" width="120">
+        <el-table-column prop="name" label="姓名" width="120">
             <template slot-scope="scope">
                 <span>{{ scope.row.name }}</span>
                 <i class="fas fa-lg fa-fw" :class="scope.row.gender | genderFilter" />
             </template>
         </el-table-column>
-        <el-table-column prop="birthday" label="出生日期" width="140" align="center" sortable />
-        <el-table-column prop="income" label="收入" width="150" align="right" sortable v-if="colums.includes('income')">
+        <el-table-column prop="income" label="收入" width="150" align="right" sortable>
             <template slot-scope="scope">
                 {{ scope.row.income | currency('￥', 2) }}
             </template>
@@ -27,18 +26,18 @@
                 <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
             </template>
         </el-table-column>
-        <el-table-column prop="id" label="身份证" width="200" align="center" v-if="colums.includes('id')" />
-        <el-table-column prop="county" label="区域" show-overflow-tooltip width="200" />
-        <el-table-column prop="email" label="邮箱" show-overflow-tooltip width="250" />
-        <el-table-column prop="zip" label="邮编" width="100" align="center" />
-        <el-table-column prop="remark" label="备注" show-overflow-tooltip width="500" />
-        <el-table-column fixed="right" label="操作" width="175">
+        <el-table-column prop="remark" label="备注" show-overflow-tooltip min-width="300" />
+        <el-table-column label="操作" width="64">
             <template slot-scope="scope">
-                <el-button @click="handlePreview(scope.$index)" type="success" size="mini" icon="el-icon-view" />
-                <el-button @click="handleEdit(scope.$index)" type="primary" size="mini" icon="el-icon-edit" />
                 <el-button @click="handleDelete(scope.$index, scope.row)" type="warning" size="mini" icon="el-icon-delete" />
             </template>
         </el-table-column>
+
+        <infinite-loading
+            slot="append"
+            @infinite="infiniteHandler"
+            force-use-infinite-wrapper=".el-table__body-wrapper">
+        </infinite-loading>
     </el-table>
 </template>
 
@@ -47,7 +46,7 @@ import api from '@/api/mock/table';
 import { createNamespacedHelpers } from 'vuex';
 import style from '@/assets/style/usr/app.module.less';
 
-const { mapState, mapMutations } = createNamespacedHelpers('complexTable');
+const { mapState, mapMutations } = createNamespacedHelpers('lazyTable');
 
 export default {
     filters: {
@@ -83,6 +82,11 @@ export default {
     },
     methods: {
         ...mapMutations(['setState', 'listRemove']),
+
+        // lazyload
+        infiniteHandler(infiniteState) {
+            this.setState({ infiniteState, isLoadMore: true });
+        },
 
         // 预览
         handlePreview(activeIndex) {

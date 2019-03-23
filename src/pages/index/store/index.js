@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 
 // 站点模块
 import complexTable from './modules/complexTable';
+import lazyTable from './modules/lazyTable';
 // import demo1 from '@/store/module/index/demo1';
 // import hehe from '@/store/module/index/demo2/hehe';
 // import haha from '@/store/module/index/demo2/haha';
@@ -29,5 +30,6 @@ export default new Vuex.Store({
     actions,
     modules: {
         complexTable,
+        lazyTable,
     },
 });
