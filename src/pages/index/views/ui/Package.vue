@@ -37,6 +37,7 @@
                 :duration="800"
                 bezier-easing-value=".5,0,.35,1"
                 scroll-container-selector=".el-main"
+                :modifyUrl="false"
             >
                 <el-card :class="$style['menu-card']" shadow="never">
                     <a href="#pa-button" class="scrollactive-item">按钮</a>
