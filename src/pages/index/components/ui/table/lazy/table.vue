@@ -88,16 +88,6 @@ export default {
             this.setState({ infiniteState, isLoadMore: true });
         },
 
-        // 预览
-        handlePreview(activeIndex) {
-            this.setState({ activeIndex, previewVisiable: true });
-        },
-
-        // 编辑
-        handleEdit(activeIndex) {
-            this.setState({ activeIndex, editVisiable: true });
-        },
-
         // 删除确认
         handleDelete(activeIndex, row) {
             this.$confirm('确认要删除这条数据吗', '提示', {

@@ -19,7 +19,7 @@ const { mapState, mapMutations, mapGetters } = createNamespacedHelpers('lazyTabl
 export default {
     computed: {
         ...mapState(['components', 'multipleSelection']),
-        ...mapGetters(['queryPath', 'multipleSelectionGuid']),
+        ...mapGetters(['multipleSelectionGuid']),
     },
     methods: {
         ...mapMutations(['setState', 'listRemove', 'listUpdateStatus']),

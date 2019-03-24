@@ -34,11 +34,9 @@
 <script>
 import api from '@/api/mock/table';
 import { createNamespacedHelpers } from 'vuex';
-// import { _ } from '@/utils/cdn';
-// import { helper } from '@/helper/lakes';
 import file from '@/utils/file';
 
-const { mapState, mapMutations, mapGetters } = createNamespacedHelpers('lazyTable');
+const { mapState, mapMutations } = createNamespacedHelpers('lazyTable');
 
 export default {
     data() {
@@ -55,7 +53,6 @@ export default {
     },
     computed: {
         ...mapState(['list', 'filters', 'infiniteState', 'isLoadMore']),
-        ...mapGetters(['queryPath']),
     },
     watch: {
         isLoadMore(val) {
@@ -64,23 +61,21 @@ export default {
     },
     mounted() {
         this.setFilters({});
-        // this.loadList();
     },
     methods: {
-        ...mapMutations(['setState', 'setFilters']),
+        ...mapMutations(['setState', 'setFilters', 'clearList']),
 
         // 查询
         async handleSearch() {
             if (await this.checkParams()) {
                 this.setState({ list: [] });
-                this.loadList();
+                this.infiniteState.reset();
             }
         },
 
         // 刷新
         handleRefresh() {
-            this.setFilters({});
-            this.setState({ list: [] });
+            this.clearList();
             this.infiniteState.reset();
         },
 
@@ -117,8 +112,8 @@ export default {
         handleDownload() {
             file.export2excel({
                 data: this.list,
-                headerProp: ['id', 'name', 'gender', 'birthday', 'county', 'education', 'status', 'email', 'zip', 'income', 'remark'],
-                headerName: ['身份证', '姓名', '性别', '出生年月', '城市', '学历', '状态', '电子邮件', '邮编', '收入', '备注'],
+                headerProp: ['name', 'income', 'education', 'status', 'remark'],
+                headerName: ['姓名', '收入', '学历', '状态', '备注'],
                 name: '导出.xlsx',
             });
         },

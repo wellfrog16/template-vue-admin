@@ -81,17 +81,20 @@ function export2excel(param) {
         option.skipHeader = true;
     }
 
+    // 复制一个，防止改变源数据
+    const data = [...args.data];
+
     // 表头数据不为空，则在第一行增加一条数据
     if (!_.isEmpty(row)) {
-        args.data.splice(0, 0, row);
+        data.splice(0, 0, row);
     }
 
-    const data = [];
-    args.data.forEach((item) => {
-        data.push(_.pick(item, args.headerProp));
+    const list = [];
+    data.forEach((item) => {
+        list.push(_.pick(item, args.headerProp));
     });
 
-    const wb = XLSX.utils.json_to_sheet(data, option);
+    const wb = XLSX.utils.json_to_sheet(list, option);
     const blob = this.sheet2blob(wb);
 
     this.openDownloadDialog(blob, args.name);

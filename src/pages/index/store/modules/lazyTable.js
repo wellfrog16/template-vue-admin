@@ -20,8 +20,9 @@ export default {
     mutations: {
         setState: (state, payload) => cstore.mutations.setState(state, payload),
         setFilters: (state, payload) => cstore.mutations.setData(state.filters, payload),
-        listUpdate: (state, payload) => state.list.splice(state.activeIndex, 1, payload.item),
-        listInsert: (state, payload) => state.list.splice(0, 0, payload.item),
+        clearList() {
+            this.commit('lazyTable/setState', { list: [], filters: { p: config.page.p, ps: config.page.ps } });
+        },
         listRemove(state, payload) {
             payload.multipleSelection.forEach((row) => {
                 const index = state.list.findIndex(item => item.guid === row.guid);
@@ -36,13 +37,6 @@ export default {
         },
     },
     getters: {
-        queryPath(state) {
-            return {
-                path: state.path,
-                query: state.filters,
-            };
-        },
-        activeRow: state => state.list[state.activeIndex] || {},
         multipleSelectionGuid(state) {
             const result = [];
             state.multipleSelection.forEach(item => result.push(item.guid));
