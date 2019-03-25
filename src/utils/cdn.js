@@ -2,6 +2,17 @@
 // 非必要的方式
 // 目前发现某些情况下eslint会报错，如 import { $, echarts } from '@/utils/cdn'
 
+const {
+    $,
+    echarts,
+    moment,
+    axios,
+    Hammer,
+    _,
+    screenfull,
+    ClipboardJS,
+} = window;
+
 export {
     $, // jquery
     $ as jquery, // jquery
