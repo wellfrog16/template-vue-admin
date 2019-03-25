@@ -114,7 +114,7 @@ const router = new Router({
                     name: '富文本框',
                     path: 'editor',
                     icon: 'menu-fix-icon far fa-credit-card fa-lg fa-fw',
-                    component: () => import('../views/icon/ElIcon.vue'),
+                    component: () => import('../views/ui/Editor.vue'),
                 },
             ],
         },

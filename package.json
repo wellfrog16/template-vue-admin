@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "eslint": "vue-cli-service lint",
-    "eslint2": "eslint src/pages/index/components/ui/package/cascader.vue --fix",
+    "eslint2": "stylelint src/components/tinymce/**/* --fix",
     "stylelint": "stylelint */**/*.{css,less,vue} --fix",
     "log": "git log --pretty=oneline"
   },
