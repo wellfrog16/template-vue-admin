@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import editorImage from './components/editorImage.vue';
+// import editorImage from './components/editorImage.vue';
 import plugins from './plugins';
 import toolbar from './toolbar';
 
@@ -57,7 +57,8 @@ export default {
     },
     computed: {
         language() {
-            return this.languageTypeList[this.$store.getters.language];
+            // return this.languageTypeList[this.$store.getters.language];
+            return this.languageTypeList.zh;
         },
     },
     watch: {
@@ -90,6 +91,7 @@ export default {
                 language: this.language,
                 selector: `#${this.tinymceId}`,
                 height: this.height,
+                width: '100%',
                 body_class: 'panel-body ',
                 object_resizing: false,
                 toolbar: this.toolbar.length > 0 ? this.toolbar : toolbar,
@@ -185,6 +187,7 @@ export default {
 .tinymce-container {
     position: relative;
     line-height: normal;
+    width: 100%;
 }
 
 .tinymce-container >>> .mce-fullscreen {
