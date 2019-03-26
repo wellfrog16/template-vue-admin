@@ -9,8 +9,9 @@
 
 <script>
 // import editorImage from './components/editorImage.vue';
-import plugins from './plugins';
-import toolbar from './toolbar';
+// import plugins from './plugins';
+import config from './config';
+// import toolbar from './toolbar';
 
 export default {
     name: 'Tinymce',
@@ -25,6 +26,10 @@ export default {
         value: {
             type: String,
             default: '',
+        },
+        config: {
+            type: String,
+            default: 'mini',
         },
         toolbar: {
             type: Array,
@@ -88,15 +93,17 @@ export default {
         initTinymce() {
             const self = this;
             window.tinymce.init({
+                ...config[this.config],
                 language: this.language,
                 selector: `#${this.tinymceId}`,
                 height: this.height,
                 width: '100%',
                 body_class: 'panel-body ',
                 object_resizing: false,
-                toolbar: this.toolbar.length > 0 ? this.toolbar : toolbar,
-                menubar: this.menubar,
-                plugins,
+                // eslint-disable-next-line
+                // toolbar: 'undo redo | formatselect | bold | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent | forecolor backcolor | removeformat | link image | preview',
+                // menubar: true,
+                // plugins,
                 end_container_on_empty_block: true,
                 powerpaste_word_import: 'clean',
                 code_dialog_height: 450,
@@ -118,8 +125,17 @@ export default {
                     });
                 },
                 setup(editor) {
-                    editor.on('FullscreenStateChanged', (e) => {
-                        self.fullscreen = e.state;
+                    // editor.on('FullscreenStateChanged', (e) => {
+                    //     self.fullscreen = e.state;
+                    // });
+
+                    /* Basic button that just inserts the date */
+                    editor.ui.registry.addButton('basicDateButton', {
+                        text: '上传图片',
+                        tooltip: 'Insert Current Date',
+                        onAction() {
+                            editor.insertContent('123456');
+                        },
                     });
                 },
                 // 整合七牛上传
