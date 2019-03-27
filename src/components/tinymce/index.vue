@@ -99,21 +99,20 @@ export default {
                 height: this.height,
                 width: '100%',
                 body_class: 'panel-body ',
-                object_resizing: false,
+                object_resizing: true,
+                // object_resizing: false,
                 // eslint-disable-next-line
                 // toolbar: 'undo redo | formatselect | bold | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent | forecolor backcolor | removeformat | link image | preview',
                 // menubar: true,
                 // plugins,
                 end_container_on_empty_block: true,
-                powerpaste_word_import: 'clean',
-                code_dialog_height: 450,
-                code_dialog_width: 1000,
-                advlist_bullet_styles: 'square',
-                advlist_number_styles: 'default',
+                powerpaste_word_import: 'clean', // 当从word中复制黏贴时，清理黏贴的内容
+                advlist_bullet_styles: 'square', // 无序列表仅允许原点
+                advlist_number_styles: 'default', // 有序列表仅允许数字
                 imagetools_cors_hosts: ['www.tinymce.com', 'codepen.io'],
-                default_link_target: '_blank',
-                link_title: false,
-                nonbreaking_force_tab: true, // inserting nonbreaking space &nbsp; need Nonbreaking Space Plugin
+                default_link_target: '_blank', // 设置外链默认打开新窗口
+                link_title: false, // 取消链接的title设置，默认不设置，为空
+                nonbreaking_force_tab: true, // 允许用户按下tab键时，插入3个空格
                 init_instance_callback: (editor) => {
                     if (self.value) {
                         editor.setContent(self.value);

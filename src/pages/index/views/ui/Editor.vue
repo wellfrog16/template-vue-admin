@@ -9,6 +9,9 @@
         <el-tab-pane label="标准配置" name="tab3">
             <tinymce v-model="content" :height="300" config="standard" />
         </el-tab-pane>
+        <el-tab-pane label="全部" name="tab4">
+            <tinymce v-model="content" :height="300" config="full" />
+        </el-tab-pane>
     </el-tabs>
 </template>
 
