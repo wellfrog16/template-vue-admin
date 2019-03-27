@@ -105,7 +105,7 @@ export default {
                 // toolbar: 'undo redo | formatselect | bold | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent | forecolor backcolor | removeformat | link image | preview',
                 // menubar: true,
                 // plugins,
-                end_container_on_empty_block: true,
+                end_container_on_empty_block: true, // 例：在空p标签里按回车，会拆分成两个p标签
                 powerpaste_word_import: 'clean', // 当从word中复制黏贴时，清理黏贴的内容
                 advlist_bullet_styles: 'square', // 无序列表仅允许原点
                 advlist_number_styles: 'default', // 有序列表仅允许数字
