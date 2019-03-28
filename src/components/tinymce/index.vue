@@ -4,18 +4,20 @@
         <div class="editor-custom-btn-container">
             <!-- <editorImage color="#1890ff" class="editor-upload-btn" @successCBK="imageSuccessCBK" /> -->
         </div>
+        <uploadImage :visible="uploadImageVisible" @visible="handleUploadImage"/>
     </div>
 </template>
 
 <script>
 // import editorImage from './components/editorImage.vue';
+import uploadImage from './components/uploadImage.vue';
 // import plugins from './plugins';
 import config from './config';
 // import toolbar from './toolbar';
 
 export default {
     name: 'Tinymce',
-    // components: { editorImage },
+    components: { uploadImage },
     props: {
         id: {
             type: String,
@@ -50,6 +52,7 @@ export default {
     },
     data() {
         return {
+            uploadImageVisible: false,
             hasChange: false,
             hasInit: false,
             tinymceId: this.id,
@@ -90,17 +93,19 @@ export default {
         this.destroyTinymce();
     },
     methods: {
+        handleUploadImage(val) {
+            this.uploadImageVisible = val;
+        },
         initTinymce() {
             const self = this;
             window.tinymce.init({
-                ...config[this.config],
-                language: this.language,
-                selector: `#${this.tinymceId}`,
+                ...config[this.config], // 插件、菜单等配置信息
+                language: this.language, // 语言
+                selector: `#${this.tinymceId}`, // 容器
                 height: this.height,
                 width: '100%',
-                body_class: 'panel-body ',
-                object_resizing: true,
-                // object_resizing: false,
+                // body_class: 'panel-body', // 编辑器iframe中body的类名
+                // object_resizing: 'img', // 仅允许图片调整大小
                 // eslint-disable-next-line
                 // toolbar: 'undo redo | formatselect | bold | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent | forecolor backcolor | removeformat | link image | preview',
                 // menubar: true,
@@ -109,7 +114,7 @@ export default {
                 powerpaste_word_import: 'clean', // 当从word中复制黏贴时，清理黏贴的内容
                 advlist_bullet_styles: 'square', // 无序列表仅允许原点
                 advlist_number_styles: 'default', // 有序列表仅允许数字
-                imagetools_cors_hosts: ['www.tinymce.com', 'codepen.io'],
+                // imagetools_cors_hosts: ['www.tinymce.com', 'codepen.io'],
                 default_link_target: '_blank', // 设置外链默认打开新窗口
                 link_title: false, // 取消链接的title设置，默认不设置，为空
                 nonbreaking_force_tab: true, // 允许用户按下tab键时，插入3个空格
@@ -133,6 +138,7 @@ export default {
                         text: '上传图片',
                         tooltip: 'Insert Current Date',
                         onAction() {
+                            self.uploadImageVisible = true;
                             editor.insertContent('123456');
                         },
                     });
