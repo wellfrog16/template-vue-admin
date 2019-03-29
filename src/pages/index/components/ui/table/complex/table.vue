@@ -22,7 +22,15 @@
             </template>
         </el-table-column>
         <el-table-column prop="education" label="学历" width="150" align="center" />
-        <el-table-column prop="status" label="状态" width="80" align="center">
+        <el-table-column
+            prop="status"
+            label="状态"
+            width="80"
+            align="center"
+            filter-placement="bottom-end"
+            :filters="statusData"
+            :filter-method="filterStatus"
+        >
             <template slot-scope="scope">
                 <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
             </template>
@@ -72,6 +80,13 @@ export default {
     data() {
         return {
             style,
+            statusData: [
+                { text: '在职', value: '在职' },
+                { text: '待业', value: '待业' },
+                { text: '退休', value: '退休' },
+                { text: '创业', value: '创业' },
+                { text: '游学', value: '游学' },
+            ],
         };
     },
     computed: {
@@ -120,6 +135,11 @@ export default {
         // 批量选择
         handleSelectionChange(val) {
             this.setState({ multipleSelection: val });
+        },
+
+        // 过滤status
+        filterStatus(val, row) {
+            return row.status === val;
         },
     },
 };
