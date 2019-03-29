@@ -1,20 +1,29 @@
 <template>
-    <el-dialog :visible.sync="dialogVisible" :before-close="handleClose">
+    <el-dialog
+        :visible.sync="dialogVisible"
+        :before-close="handleClose"
+        class="or-dialog"
+        :custom-class="$style.dialog"
+        top="0vh"
+    >
         <el-upload
-            :multiple="true"
+            :multiple="false"
             :file-list="fileList"
             :show-file-list="true"
             :on-remove="handleRemove"
             :on-success="handleSuccess"
             :before-upload="beforeUpload"
+            accept=".jpg,.png"
             class="editor-slide-upload"
             action="https://httpbin.org/post"
             list-type="picture-card"
         >
             <el-button size="small" type="primary">点击上传</el-button>
         </el-upload>
-        <el-button @click="handleClose">取 消</el-button>
-        <el-button type="primary" @click="handleSubmit">确 定</el-button>
+        <span slot="footer" class="dialog-footer">
+            <el-button @click="handleClose">取 消</el-button>
+            <el-button type="primary" @click="handleSubmit">确 定</el-button>
+        </span>
     </el-dialog>
 </template>
 
@@ -97,3 +106,14 @@ export default {
     },
 };
 </script>
+
+<style lang="less" module>
+.dialog {
+    width: 530px;
+
+    :global(.el-dialog__body) {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+}
+</style>
