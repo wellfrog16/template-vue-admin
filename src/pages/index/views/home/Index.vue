@@ -120,5 +120,7 @@ export default {
 
 .main {
     background-color: #f0f2f5;
+    min-width: 920px;
+    box-sizing: border-box;
 }
 </style>
