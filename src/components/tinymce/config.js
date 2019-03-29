@@ -1,12 +1,12 @@
 const mini = {
-    toolbar: 'bold | alignleft aligncenter alignright alignjustify | bullist numlist | forecolor | basicDateButton',
+    toolbar: 'bold | alignleft aligncenter alignright alignjustify | bullist numlist | forecolor',
     menubar: false,
     plugins: 'lists',
 };
 
 const simple = {
     // eslint-disable-next-line
-    toolbar: 'undo redo | formatselect | bold | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent | forecolor backcolor | removeformat | link image | preview',
+    toolbar: 'undo redo | formatselect | bold | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent | forecolor backcolor | removeformat | link image | uploadImage | preview',
     menubar: false,
     plugins: 'lists link image preview imagetools',
 };

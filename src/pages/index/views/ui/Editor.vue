@@ -24,7 +24,7 @@ export default {
     },
     data() {
         return {
-            activeName: 'tab1',
+            activeName: 'tab2',
             content: '',
         };
     },

@@ -1,19 +1,13 @@
 <template>
     <div :class="{fullscreen:fullscreen}" class="tinymce-container editor-container">
         <textarea :id="tinymceId" class="tinymce-textarea" />
-        <div class="editor-custom-btn-container">
-            <!-- <editorImage color="#1890ff" class="editor-upload-btn" @successCBK="imageSuccessCBK" /> -->
-        </div>
-        <uploadImage :visible="uploadImageVisible" @visible="handleUploadImage"/>
+        <uploadImage :visible="uploadImageVisible" @visible="handleUploadImage" @on-success="imageUploadSuccess"/>
     </div>
 </template>
 
 <script>
-// import editorImage from './components/editorImage.vue';
 import uploadImage from './components/uploadImage.vue';
-// import plugins from './plugins';
 import config from './config';
-// import toolbar from './toolbar';
 
 export default {
     name: 'Tinymce',
@@ -32,17 +26,6 @@ export default {
         config: {
             type: String,
             default: 'mini',
-        },
-        toolbar: {
-            type: Array,
-            required: false,
-            default() {
-                return [];
-            },
-        },
-        menubar: {
-            type: String,
-            default: 'file edit insert view format table',
         },
         height: {
             type: Number,
@@ -93,6 +76,7 @@ export default {
         this.destroyTinymce();
     },
     methods: {
+        // 上传图片显示控制
         handleUploadImage(val) {
             this.uploadImageVisible = val;
         },
@@ -105,11 +89,7 @@ export default {
                 height: this.height,
                 width: '100%',
                 // body_class: 'panel-body', // 编辑器iframe中body的类名
-                // object_resizing: 'img', // 仅允许图片调整大小
-                // eslint-disable-next-line
-                // toolbar: 'undo redo | formatselect | bold | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent | forecolor backcolor | removeformat | link image | preview',
-                // menubar: true,
-                // plugins,
+                object_resizing: 'img', // 仅允许图片调整大小
                 end_container_on_empty_block: true, // 例：在空p标签里按回车，会拆分成两个p标签
                 powerpaste_word_import: 'clean', // 当从word中复制黏贴时，清理黏贴的内容
                 advlist_bullet_styles: 'square', // 无序列表仅允许原点
@@ -118,6 +98,7 @@ export default {
                 default_link_target: '_blank', // 设置外链默认打开新窗口
                 link_title: false, // 取消链接的title设置，默认不设置，为空
                 nonbreaking_force_tab: true, // 允许用户按下tab键时，插入3个空格
+
                 init_instance_callback: (editor) => {
                     if (self.value) {
                         editor.setContent(self.value);
@@ -128,18 +109,18 @@ export default {
                         this.$emit('input', editor.getContent());
                     });
                 },
+
                 setup(editor) {
                     // editor.on('FullscreenStateChanged', (e) => {
                     //     self.fullscreen = e.state;
                     // });
 
                     /* Basic button that just inserts the date */
-                    editor.ui.registry.addButton('basicDateButton', {
+                    editor.ui.registry.addButton('uploadImage', {
                         text: '上传图片',
-                        tooltip: 'Insert Current Date',
+                        // tooltip: 'Insert Current Date',
                         onAction() {
                             self.uploadImageVisible = true;
-                            editor.insertContent('123456');
                         },
                     });
                 },
@@ -180,13 +161,8 @@ export default {
         },
         destroyTinymce() {
             const tinymce = window.tinymce.get(this.tinymceId);
-            if (this.fullscreen) {
-                tinymce.execCommand('mceFullScreen');
-            }
-
-            if (tinymce) {
-                tinymce.destroy();
-            }
+            this.fullscreen && tinymce.execCommand('mceFullScreen');
+            tinymce && tinymce.destroy();
         },
         setContent(value) {
             window.tinymce.get(this.tinymceId).setContent(value);
@@ -194,10 +170,10 @@ export default {
         getContent() {
             window.tinymce.get(this.tinymceId).getContent();
         },
-        imageSuccessCBK(arr) {
+        imageUploadSuccess(arr) {
             const self = this;
             arr.forEach((v) => {
-                window.tinymce.get(self.tinymceId).insertContent(`<img class="wscnph" src="${v.url}" >`);
+                window.tinymce.get(self.tinymceId).insertContent(`<img src="${v.url}" >`);
             });
         },
     },
@@ -218,22 +194,5 @@ export default {
 .tinymce-textarea {
     visibility: hidden;
     z-index: -1;
-}
-
-.editor-custom-btn-container {
-    position: absolute;
-    right: 4px;
-    top: 4px;
-
-    /* z-index: 2005; */
-}
-
-.fullscreen .editor-custom-btn-container {
-    z-index: 10000;
-    position: fixed;
-}
-
-.editor-upload-btn {
-    display: inline-block;
 }
 </style>
