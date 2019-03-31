@@ -61,60 +61,86 @@ const router = new Router({
         {
             path: '/icon',
             name: '图标',
-            icon: 'menu-fix-icon fab fa-fonticons fa-lg fa-fw',
             component: Home,
+            meta: {
+                icon: 'menu-fix-icon fab fa-fonticons fa-lg fa-fw',
+            },
             children: [
                 {
                     name: 'element-ui',
                     path: 'element-ui',
-                    icon: 'menu-fix-icon fab fa-fonticons-fi fa-lg fa-fw',
                     component: () => import('../views/icon/ElIcon.vue'),
+                    meta: {
+                        icon: 'menu-fix-icon fab fa-fonticons-fi fa-lg fa-fw',
+                    },
                 },
                 {
                     name: 'font-awesome',
                     path: 'font-awesome',
-                    icon: 'menu-fix-icon fab fa-fonticons-fi fa-lg fa-fw',
                     component: () => import('../views/icon/FontAwesome.vue'),
+                    meta: {
+                        icon: 'menu-fix-icon fab fa-fonticons-fi fa-lg fa-fw',
+                    },
                 },
             ],
         },
         {
             path: '/ui',
             name: '组件',
-            icon: 'menu-fix-icon fab fa-ethereum fa-lg fa-fw',
             component: Home,
+            meta: {
+                icon: 'menu-fix-icon fab fa-ethereum fa-lg fa-fw',
+            },
             children: [
                 {
                     name: '合集',
                     path: 'package',
-                    icon: 'el-icon-goods',
                     component: () => import('../views/ui/Package.vue'),
+                    meta: {
+                        icon: 'el-icon-goods',
+                    },
                 },
                 {
                     name: '表格',
                     path: 'table',
-                    icon: 'menu-fix-icon fas fa-table fa-lg fa-fw',
                     component: Root,
+                    meta: {
+                        icon: 'menu-fix-icon fas fa-table fa-lg fa-fw',
+                    },
                     children: [
                         {
                             name: '综合表格',
                             path: 'complex',
-                            icon,
                             component: () => import('../views/ui/table/Complex.vue'),
+                            meta: {
+                                icon,
+                            },
                         },
                         {
                             name: '滚动加载',
                             path: 'lazy',
-                            icon,
                             component: () => import('../views/ui/table/Lazy.vue'),
+                            meta: {
+                                icon,
+                            },
                         },
                     ],
                 },
                 {
                     name: '富文本框',
                     path: 'editor',
-                    icon: 'menu-fix-icon far fa-credit-card fa-lg fa-fw',
                     component: () => import('../views/ui/Editor.vue'),
+                    meta: {
+                        icon: 'menu-fix-icon far fa-credit-card fa-lg fa-fw',
+                    },
+                },
+                {
+                    name: '小组件',
+                    path: 'editor1',
+                    component: () => import('../views/ui/Editor.vue'),
+                    meta: {
+                        icon: 'menu-fix-icon far fa-credit-card fa-lg fa-fw',
+                    },
                 },
             ],
         },
@@ -122,105 +148,36 @@ const router = new Router({
             path: '/chart',
             name: '图表',
             component: Home,
-            icon: 'menu-fix-icon far fa-chart-bar fa-lg fa-fw',
+            meta: {
+                icon: 'menu-fix-icon far fa-chart-bar fa-lg fa-fw',
+            },
             children: [
                 {
                     name: '合集1',
                     path: 'package',
-                    icon: 'el-icon-goods',
                     component: () => import('../views/ui/Package.vue'),
-                },
-                {
-                    name: '表格1',
-                    path: 'table',
-                    icon: 'menu-fix-icon fas fa-table fa-lg fa-fw',
-                    component: () => import('../views/icon/FontAwesome.vue'),
-                },
-                {
-                    name: '富文本框1',
-                    path: 'editor',
-                    icon: 'menu-fix-icon far fa-credit-card fa-lg fa-fw',
-                    component: () => import('../views/icon/ElIcon.vue'),
+                    meta: {
+                        icon: 'el-icon-goods',
+                    },
                 },
             ],
         },
         {
             path: '/home',
-            name: '一级菜单',
+            name: '权限',
             component: Home,
             redirect: { name: 'Demo' },
-            icon: 'el-icon-setting',
+            meta: {
+                icon: 'el-icon-setting',
+            },
             children: [
                 {
                     name: 'Demo',
                     path: 'demo',
-                    icon: 'el-icon-tickets',
                     component: resolve => require(['../views/demo/Index.vue'], resolve),
-                },
-                {
-                    path: 'log', name: '二级菜单2', icon: 'el-icon-document', component: Root,
-                },
-                {
-                    path: 'file', name: '二级菜单3', icon: 'menu-fix-icon fas fa-angry fa-lg', component: Root,
-                },
-                {
-                    path: 'config',
-                    name: '二级菜单4',
-                    component: Root,
-                    icon: 'el-icon-setting',
-                    children: [
-                        {
-                            path: 'dictionary1', name: '三级菜单1', icon: 'el-icon-document', component: Root,
-                        },
-                        {
-                            path: 'dictionary2', name: '三级菜单2', icon: 'el-icon-document', component: Root,
-                        },
-                        {
-                            path: 'config',
-                            name: '二级菜单909',
-                            component: Root,
-                            icon: 'el-icon-setting',
-                            children: [
-                                {
-                                    path: 'dictionary3', name: '三级菜单111', icon: 'el-icon-document', component: Root,
-                                },
-                                {
-                                    path: 'dictionary4', name: '三级菜单211', icon: 'el-icon-document', component: Root,
-                                },
-                            ],
-                        },
-                    ],
-                },
-            ],
-        },
-        {
-            path: '',
-            name: '系统',
-            component: Home,
-            icon: 'menu-fix-icon fas fa-sun fa-lg',
-            children: [
-                {
-                    path: 'database', name: '数据库', icon: 'el-icon-tickets', component: Root,
-                },
-                {
-                    path: 'log1', name: '日志', icon: 'el-icon-document', component: Root,
-                },
-                {
-                    path: 'file1', name: '文件管理', icon: 'menu-fix-icon fas fa-sun fa-lg', component: Root,
-                },
-                {
-                    path: 'config1',
-                    name: '设置',
-                    component: Root,
-                    icon: 'el-icon-setting',
-                    children: [
-                        {
-                            path: 'dictionary21', name: '常规', icon: 'el-icon-document', component: Root,
-                        },
-                        {
-                            path: 'dictionary31', name: '字典', icon: 'el-icon-document', component: Root,
-                        },
-                    ],
+                    meta: {
+                        icon: 'el-icon-tickets',
+                    },
                 },
             ],
         },

@@ -6,6 +6,7 @@ const pages = require('./build/pages');
 module.exports = {
     publicPath: '/',
     assetsDir: 'src/assets',
+    productionSourceMap: false, // 不生成map
 
     devServer: {
         host: '0.0.0.0',

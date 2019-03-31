@@ -26,6 +26,7 @@
     "@vue/cli-service": "^3.5.3",
     "@vue/eslint-config-airbnb": "^4.0.0",
     "babel-eslint": "^10.0.1",
+    "babel-plugin-component": "^1.1.1",
     "eslint": "^5.15.3",
     "eslint-plugin-vue": "^5.2.2",
     "less": "^3.0.4",

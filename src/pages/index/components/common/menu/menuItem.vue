@@ -3,7 +3,7 @@
         :index="item.path"
         :key="item.path"
     >
-        <i :class="item.icon"></i>
+        <i :class="item.meta && item.meta.icon"></i>
         <span slot="title">{{ item.name }}</span>
     </el-menu-item>
 </template>

@@ -4,7 +4,7 @@
         :key="item.path"
     >
         <template slot="title">
-            <i :class="item.icon"></i>
+            <i :class="item.meta && item.meta.icon"></i>
             <span>{{ item.name }}</span>
         </template>
         <template v-for="item1 in item.children">

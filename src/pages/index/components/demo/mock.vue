@@ -33,7 +33,7 @@ export default {
             const res = await api.list(this.listParams);
 
             if (res.err) {
-                console.log(res.err);
+                // console.log(res.err);
             } else {
                 const { list, total } = res;
 
