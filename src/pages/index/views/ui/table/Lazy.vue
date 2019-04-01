@@ -13,16 +13,17 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex';
-import XSearch from '../../../components/ui/table/lazy/search.vue';
+import XSearch from '#index/components/ui/table/lazy/search.vue';
+import XTable from '#index/components/ui/table/lazy/table.vue';
+import XPagination from '#index/components/ui/table/lazy/pagination.vue';
 
 const { mapState, mapMutations } = createNamespacedHelpers('lazyTable');
 
 export default {
     components: {
-        // XSearch: () => import('../../../components/ui/table/lazy/search.vue'),
-        XSearch, // 直接加载，提前进入watch
-        XTable: () => import('../../../components/ui/table/lazy/table.vue'),
-        XPagination: () => import('../../../components/ui/table/lazy/pagination.vue'),
+        XSearch,
+        XTable,
+        XPagination,
     },
     computed: {
         ...mapState(['loading']),

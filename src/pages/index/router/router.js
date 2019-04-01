@@ -4,6 +4,7 @@ import Home from '../views/home/Index.vue';
 import Root from '../../../components/Root.vue';
 import Login from '../views/login/Index.vue';
 import { helper } from '@/helper/lakes';
+import { NProgress } from '@/utils/cdn';
 
 Vue.use(Router);
 
@@ -184,8 +185,12 @@ const router = new Router({
     ],
 });
 
+NProgress.configure({ showSpinner: false });
+
 // todo
 router.beforeEach((to, from, next) => {
+    NProgress.start();
+
     const normal = ['/login'];
     const site = helper.site();
 
@@ -196,6 +201,10 @@ router.beforeEach((to, from, next) => {
     } else {
         next();
     }
+});
+
+router.afterEach(() => {
+    NProgress.done();
 });
 
 export default router;

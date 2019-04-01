@@ -25,8 +25,8 @@
 </template>
 
 <script>
-import AsideMenu from '../../components/common/menu/index.vue';
-import Functions from '../../components/home/functions/index.vue';
+import AsideMenu from '#index/components/common/menu/index.vue';
+import Functions from '#index/components/home/functions/index.vue';
 import menu from '@/helper/menu';
 import { $ } from '@/utils/cdn';
 import { utils } from '@/utils/rivers';

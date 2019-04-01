@@ -19,16 +19,21 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex';
+import XSearch from '#index/components/ui/table/complex/search.vue';
+import XTable from '#index/components/ui/table/complex/table.vue';
+import XPagination from '#index/components/ui/table/complex/pagination.vue';
+import XPreview from '#index/components/ui/table/complex/preview.vue';
+import XEdit from '#index/components/ui/table/complex/edit.vue';
 
 const { mapState, mapMutations } = createNamespacedHelpers('complexTable');
 
 export default {
     components: {
-        XSearch: () => import('../../../components/ui/table/complex/search.vue'),
-        XTable: () => import('../../../components/ui/table/complex/table.vue'),
-        XPagination: () => import('../../../components/ui/table/complex/pagination.vue'),
-        XPreview: () => import('../../../components/ui/table/complex/preview.vue'),
-        XEdit: () => import('../../../components/ui/table/complex/edit.vue'),
+        XSearch,
+        XTable,
+        XPagination,
+        XPreview,
+        XEdit,
     },
     computed: {
         ...mapState(['loading']),

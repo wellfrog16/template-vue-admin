@@ -11,6 +11,7 @@ const {
     _,
     screenfull,
     ClipboardJS,
+    NProgress,
 } = window;
 
 export {
@@ -23,4 +24,5 @@ export {
     _, // lodash函数库
     screenfull, // 全屏
     ClipboardJS, // 复制
+    NProgress, // 进度条
 };

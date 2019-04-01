@@ -59,7 +59,7 @@ module.exports = {
     chainWebpack: (config) => {
         config.resolve.alias
             .set('@', resolve('src'))
-            .set('@index', resolve('src/pages/index'));
+            .set('#index', resolve('src/pages/index'));
 
         config.module
             .rule('eslint')

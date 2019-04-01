@@ -161,7 +161,7 @@ export default {
 }
 
 .input-code {
-    width: 230px;
+    width: 230px !important;
 }
 
 .canvas {

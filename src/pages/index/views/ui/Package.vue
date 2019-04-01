@@ -55,16 +55,25 @@
 </template>
 
 <script>
+import XButton from '#index/components/ui/package/button.vue';
+import XRadio from '#index/components/ui/package/radio.vue';
+import XCheckbox from '#index/components/ui/package/checkbox.vue';
+import XInput from '#index/components/ui/package/input.vue';
+import XSelect from '#index/components/ui/package/select.vue';
+import XCascader from '#index/components/ui/package/cascader.vue';
+import XSlider from '#index/components/ui/package/slider.vue';
+import XTransfer from '#index/components/ui/package/transfer.vue';
+
 export default {
     components: {
-        XButton: () => import('../../components/ui/package/button.vue'),
-        XRadio: () => import('../../components/ui/package/radio.vue'),
-        XCheckbox: () => import('../../components/ui/package/checkbox.vue'),
-        XInput: () => import('../../components/ui/package/input.vue'),
-        XSelect: () => import('../../components/ui/package/select.vue'),
-        XCascader: () => import('../../components/ui/package/cascader.vue'),
-        XSlider: () => import('../../components/ui/package/slider.vue'),
-        XTransfer: () => import('../../components/ui/package/transfer.vue'),
+        XButton,
+        XRadio,
+        XCheckbox,
+        XInput,
+        XSelect,
+        XCascader,
+        XSlider,
+        XTransfer,
     },
 };
 </script>

@@ -17,9 +17,9 @@
 </template>
 
 <script>
-import echarts from '../../components/demo/echarts.vue';
-import mock from '../../components/demo/mock.vue';
-import touch from '../../components/demo/touch.vue';
+import echarts from '#index/components/demo/echarts.vue';
+import mock from '#index/components/demo/mock.vue';
+import touch from '#index/components/demo/touch.vue';
 
 export default {
     components: { echarts, mock, touch },
