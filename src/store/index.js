@@ -9,21 +9,14 @@ import site from '@/store/module/site';
 
 Vue.use(Vuex);
 
-const states = {
-    count: 0,
-};
-
-const mutations = {
-    plus(state, num) {
-        state.count += num;
-    },
-};
+const state = {};
+const mutations = {};
 const getters = {};
 const actions = {};
 
 // 返回 store 实例
 export default new Vuex.Store({
-    state: states,
+    state,
     mutations,
     getters,
     actions,
