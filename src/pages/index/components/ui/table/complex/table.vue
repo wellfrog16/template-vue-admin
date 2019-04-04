@@ -101,12 +101,12 @@ export default {
 
         // 预览
         handlePreview(activeIndex) {
-            this.setState({ activeIndex, previewVisiable: true });
+            this.setState({ activeIndex, previewVisible: true });
         },
 
         // 编辑
         handleEdit(activeIndex) {
-            this.setState({ activeIndex, editVisiable: true });
+            this.setState({ activeIndex, editVisible: true });
         },
 
         // 删除确认

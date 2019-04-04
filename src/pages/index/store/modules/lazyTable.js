@@ -4,15 +4,14 @@ import { config, cstore } from '@/helper/lakes';
 export default {
     namespaced: true,
     state: {
-        components: {},
-        path: '/ui/table/lazy',
+        components: {}, // 目前存放table对象，以便其他组件里操作el-table的方法
         list: [],
         filters: { ...config.page },
         total: 0,
         loading: false,
         activeIndex: -1,
-        previewVisiable: false,
-        editVisiable: false,
+        previewVisible: false,
+        editVisible: false,
         multipleSelection: [],
         infiniteState: null,
         isLoadMore: false,

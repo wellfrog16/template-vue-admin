@@ -1,7 +1,7 @@
 <template>
     <el-dialog
         :title="title"
-        :visible.sync="editVisiable"
+        :visible.sync="editVisible"
         :before-close="handleClose"
         class="or-dialog"
         width="700px"
@@ -151,12 +151,12 @@ export default {
         };
     },
     watch: {
-        editVisiable(val) {
+        editVisible(val) {
             val && this.update();
         },
     },
     computed: {
-        ...mapState(['editVisiable', 'activeIndex']),
+        ...mapState(['editVisible', 'activeIndex']),
         ...mapGetters(['activeRow']),
         title() {
             return `${this.form.fields.name} 个人信息`;
@@ -172,7 +172,7 @@ export default {
 
         // 关闭，保存中禁止关闭
         handleClose() {
-            !this.saveBusy && this.setState({ editVisiable: false });
+            !this.saveBusy && this.setState({ editVisible: false });
             return !this.saveBusy;
         },
 

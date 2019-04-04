@@ -1,7 +1,7 @@
 <template>
     <el-dialog
         :title="title"
-        :visible.sync="previewVisiable"
+        :visible.sync="previewVisible"
         :before-close="handleClose"
         class="or-dialog"
         width="700px"
@@ -63,7 +63,7 @@ export default {
         };
     },
     computed: {
-        ...mapState(['previewVisiable']),
+        ...mapState(['previewVisible']),
         ...mapGetters(['activeRow']),
         title() {
             return `${this.activeRow.name} 个人信息`;
@@ -72,7 +72,7 @@ export default {
     methods: {
         ...mapMutations(['setState']),
         handleClose() {
-            this.setState({ previewVisiable: false });
+            this.setState({ previewVisible: false });
         },
     },
 };
