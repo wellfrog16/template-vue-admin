@@ -14,9 +14,8 @@ export default {
     },
     actions: {
         login({ commit }, userInfo) {
-            const username = userInfo.username.trim();
             return new Promise((resolve, reject) => {
-                api.login(username, userInfo.password).then((response) => {
+                api.login(userInfo).then((response) => {
                     // const data = response.data
                     commit('setState', { token: response.token });
                     // setToken(response.data.token)

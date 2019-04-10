@@ -58,6 +58,15 @@ const router = new Router({
                 hidden: true,
             },
         },
+        {
+            path: '/home',
+            name: '主页',
+            component: Home,
+            redirect: { name: 'element-ui' },
+            meta: {
+                hidden: true,
+            },
+        },
         // icon
         {
             path: '/icon',
@@ -164,7 +173,7 @@ const router = new Router({
             ],
         },
         {
-            path: '/home',
+            path: '/test',
             name: '权限',
             component: Home,
             redirect: { name: 'Demo' },

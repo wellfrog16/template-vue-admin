@@ -53,7 +53,10 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex';
 import utils from '@/utils/utils';
+
+const { mapActions } = createNamespacedHelpers('user');
 
 export default {
     data() {
@@ -94,6 +97,7 @@ export default {
         window.vue = this;
     },
     methods: {
+        ...mapActions(['login']),
         refreshCode() {
             const domCanvas = this.$refs.canvas;
             const code = utils.createCode(domCanvas);
@@ -105,18 +109,19 @@ export default {
                 // 先校验验证码
                 if (this.preset.code.toLowerCase() !== this.form.fields.code.toLowerCase()) { return; }
 
-                // 比对数据，实际应用时是发送请求
-                if (this.form.fields.username === this.preset.username
-                    && this.form.fields.password === this.preset.password
-                ) {
-                    this.saveLoginInfo();
-
-                    // 返回原先的路径
+                this.login(this.form.fields).then(() => {
+                    console.log(111);
                     const path = this.$route.query.from || '/home';
+                    console.log(path);
                     this.$router.push({ path });
-                } else {
+                    this.saveLoginInfo();
+                }).catch(() => {
                     this.$message.error('登陆失败');
-                }
+                });
+
+                // 返回原先的路径
+                const path = this.$route.query.from || '/home';
+                this.$router.push({ path });
             }).catch(() => {});
         },
         // 保存登陆信息
