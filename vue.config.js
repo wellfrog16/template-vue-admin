@@ -22,22 +22,30 @@ module.exports = {
         ...pages(process.env.NODE_ENV),
     },
 
-    configureWebpack: {
-        // externals: {
-        //     jquery: 'jQuery',
-        //     echarts: 'echarts',
-        //     moment: 'moment',
-        //     underscore: '_',
-        //     axios: 'axios',
-        //     hammer: 'Hammer',
-        // },
-        plugins: [
-            new StyleLintPlugin({
-                context: 'src',
-                files: ['**/*.less', '**/*.s?(a|c)ss', '**/*.vue'],
-            }),
-        ],
+    configureWebpack: (config) => {
+        if (process.env.NODE_ENV === 'production') {
+            config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true; // eslint-disable-line
+        } else {
+            config.plugins.push( // eslint-disable-line
+                new StyleLintPlugin({
+                    context: 'src',
+                    files: ['**/*.less', '**/*.s?(a|c)ss', '**/*.vue'],
+                }),
+            );
+        }
     },
+
+    // configureWebpack: {
+    //     // externals: {
+    //     //     jquery: 'jQuery',
+    //     // },
+    //     plugins: [
+    //         new StyleLintPlugin({
+    //             context: 'src',
+    //             files: ['**/*.less', '**/*.s?(a|c)ss', '**/*.vue'],
+    //         }),
+    //     ],
+    // },
 
     lintOnSave: true,
 
