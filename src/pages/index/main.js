@@ -13,7 +13,7 @@ import App from './App.vue';
 import '@/utils/filters';
 
 // 自定义指令
-import '@/utils/directive';
+import '@/directive';
 
 // 按需加载element-ui
 import '@/plugins/element-ui';
