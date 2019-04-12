@@ -109,19 +109,14 @@ export default {
                 // 先校验验证码
                 if (this.preset.code.toLowerCase() !== this.form.fields.code.toLowerCase()) { return; }
 
-                this.login(this.form.fields).then(() => {
-                    console.log(111);
+                this.login(this.form.fields).then((data) => {
+                    console.log(data);
                     const path = this.$route.query.from || '/home';
-                    console.log(path);
-                    this.$router.push({ path });
+                    this.$nextTick(() => this.$router.push({ path }));
                     this.saveLoginInfo();
                 }).catch(() => {
                     this.$message.error('登陆失败');
                 });
-
-                // 返回原先的路径
-                const path = this.$route.query.from || '/home';
-                this.$router.push({ path });
             }).catch(() => {});
         },
         // 保存登陆信息

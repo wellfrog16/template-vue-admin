@@ -61,7 +61,6 @@ const router = new Router({
         {
             path: '/home',
             name: '主页',
-            component: Home,
             redirect: { name: 'element-ui' },
             meta: {
                 hidden: true,

@@ -42,7 +42,6 @@ function axiosInstance(url) {
         const method = ['post', 'put', 'delete'];
         const result = data;
 
-        console.log(response);
         if (status.includes(response.status) && method.includes(config.method)) {
             if (data.success) {
                 Notification.success({ title: '操作成功' });

@@ -19,7 +19,7 @@ export default {
                     // const data = response.data
                     commit('setState', { token: response.token });
                     // setToken(response.data.token)
-                    resolve();
+                    resolve(response);
                 }).catch((error) => {
                     reject(error);
                 });
