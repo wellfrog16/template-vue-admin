@@ -3,9 +3,11 @@ import { Loading, Notification } from 'element-ui';
 import conf from '@/config';
 // import helper from '@/helper/helper';
 
-function axiosInstance(url) {
+function axiosInstance(args) {
+    const defaultOptions = { notification: true, loading: false };
+    const options = Object.assign({}, defaultOptions, args);
     const instance = axios.create({
-        baseURL: url || conf.server.api,
+        baseURL: options.url || conf.server.api,
         // withCredentials: true,
         timeout: 50000,
         // paramsSerializer(params) {
@@ -22,7 +24,7 @@ function axiosInstance(url) {
         // req.headers.username = site.username;
 
         // 全屏遮罩，带silence参数则静默处理
-        if ((!req.params || (req.params && req.params.silence !== 1)) && 1 > 2) {
+        if ((!req.params || (req.params && req.params.silence !== 1)) && options.loading) {
             loadingInstancce = Loading.service({
                 fullscreen: true,
                 spinner: 'el-icon-loading',
@@ -42,23 +44,23 @@ function axiosInstance(url) {
         const method = ['post', 'put', 'delete'];
         const result = data;
 
-        console.log(response);
+        // console.log(response);
         if (status.includes(response.status) && method.includes(config.method)) {
             if (data.success) {
-                Notification.success({ title: '操作成功' });
+                options.notification && Notification.success({ title: '操作成功' });
 
                 // 请求成功，如果无data数据，则添加一个空对象来避免undefined，从而来和500 error(data)的undefined区分
                 if (!data.data) { result.data = {}; }
             } else {
-                Notification.error({ title: data.message });
+                options.notification && Notification.error({ title: data.message });
             }
         } else if (!status.includes(response.status)) {
-            Notification.error({ title: response.statusText });
+            options.notification && Notification.error({ title: response.statusText });
         }
         return result;
     }, (error) => {
         loadingInstancce && loadingInstancce.close();
-        Notification.error({ title: error });
+        options.notification && Notification.error({ title: error });
         return error;
         // throw error;
     });
