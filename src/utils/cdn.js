@@ -24,5 +24,6 @@ export {
     _, // lodash函数库
     screenfull, // 全屏
     ClipboardJS, // 复制
+    ClipboardJS as Clipboard, // 复制
     NProgress, // 进度条
 };

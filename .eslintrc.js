@@ -16,7 +16,7 @@ module.exports = {
         'global-require': 0, // 关闭require必须在顶部（vue懒加载组件用）
         'import/no-dynamic-require': 0, //关闭require格式校验（vue懒加载组件用）
         'no-unused-expressions': [2, { 'allowShortCircuit': true, 'allowTernary': true }], // ? 允许 a && a()写法
-        'no-param-reassign': [2, { 'props': true, 'ignorePropertyModificationsFor': ['state', 'item'] }], // 允许vuex里的state，备用一个item
+        'no-param-reassign': [2, { 'props': true, 'ignorePropertyModificationsFor': ['state', 'item', 'el'] }], // 允许vuex里的state，备用item, el
         'vue/html-indent': ['error', 4, {
             attribute: 1,
             closeBracket: 0,

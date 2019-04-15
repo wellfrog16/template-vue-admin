@@ -145,10 +145,10 @@ const router = new Router({
                 },
                 {
                     name: '小组件',
-                    path: 'editor1',
-                    component: () => import('../views/ui/Editor.vue'),
+                    path: 'part',
+                    component: () => import('../views/ui/Part.vue'),
                     meta: {
-                        icon: 'menu-fix-icon far fa-credit-card fa-lg fa-fw',
+                        icon: 'menu-fix-icon fas fa-cogs fa-lg fa-fw',
                     },
                 },
             ],

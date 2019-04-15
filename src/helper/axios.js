@@ -44,10 +44,6 @@ function axiosInstance(args) {
         const method = ['post', 'put', 'delete'];
         const result = data;
 
-<<<<<<< HEAD
-=======
-        // console.log(response);
->>>>>>> 5520e98e97e91235d592ca2d343bd65f00937d5d
         if (status.includes(response.status) && method.includes(config.method)) {
             if (data.success) {
                 options.notification && Notification.success({ title: '操作成功' });
