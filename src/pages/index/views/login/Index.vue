@@ -109,13 +109,17 @@ export default {
                 // 先校验验证码
                 if (this.preset.code.toLowerCase() !== this.form.fields.code.toLowerCase()) { return; }
 
-                this.login(this.form.fields).then((data) => {
-                    console.log(data);
-                    const path = this.$route.query.from || '/home';
-                    this.$nextTick(() => this.$router.push({ path }));
-                    this.saveLoginInfo();
-                }).catch(() => {
-                    this.$message.error('登陆失败');
+                this.login(this.form.fields).then((success) => {
+                    if (success) {
+                        const path = this.$route.query.from || '/home';
+                        this.$nextTick(() => this.$router.push({ path }));
+                        this.saveLoginInfo();
+                    } else {
+                        this.refreshCode();
+                        this.$message.error('登陆失败，账号或密码错误');
+                    }
+                }).catch((err) => {
+                    this.$message.error(err);
                 });
             }).catch(() => {});
         },

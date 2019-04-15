@@ -15,11 +15,13 @@ export default {
     actions: {
         login({ commit }, userInfo) {
             return new Promise((resolve, reject) => {
-                api.login(userInfo).then((response) => {
+                api.login(userInfo).then((res) => {
                     // const data = response.data
-                    commit('setState', { token: response.token });
+                    if (res.success) {
+                        commit('setState', { token: res.data.token });
+                    }
                     // setToken(response.data.token)
-                    resolve(response);
+                    resolve(res.success);
                 }).catch((error) => {
                     reject(error);
                 });
