@@ -13,7 +13,14 @@ Vue.use(Vuex);
 
 const state = {};
 const mutations = {};
-const getters = {};
+const getters = {
+    test(ss, sss, root) {
+        console.log(111111111111111111);
+        console.log(ss);
+        console.log(sss);
+        console.log(root);
+    },
+};
 const actions = {};
 
 // 返回 store 实例

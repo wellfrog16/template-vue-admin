@@ -6,6 +6,7 @@ export default {
     namespaced: true,
     state: {
         token: '',
+        roles: [],
     },
     mutations: {
         setState: (state, payload) => cstore.mutations.setState(state, payload),
@@ -16,9 +17,9 @@ export default {
         login({ commit }, userInfo) {
             return new Promise((resolve, reject) => {
                 api.login(userInfo).then((res) => {
-                    // const data = response.data
+                    const { data } = res;
                     if (res.success) {
-                        commit('setState', { token: res.data.token });
+                        commit('setState', { token: data.token, rules: data.roles });
                     }
                     // setToken(response.data.token)
                     resolve(res.success);

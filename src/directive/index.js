@@ -6,3 +6,6 @@ import './touch';
 
 // 复制
 import './clipboard';
+
+// 权限验证
+import './permission';
