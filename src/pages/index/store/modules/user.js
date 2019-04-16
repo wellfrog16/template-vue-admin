@@ -19,7 +19,7 @@ export default {
                 api.login(userInfo).then((res) => {
                     const { data } = res;
                     if (res.success) {
-                        commit('setState', { token: data.token, rules: data.roles });
+                        commit('setState', { token: data.token, roles: data.roles });
                     }
                     // setToken(response.data.token)
                     resolve(res.success);

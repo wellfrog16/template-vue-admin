@@ -1,4 +1,6 @@
-import { $, moment, _ } from '@/utils/cdn';
+import {
+    $, moment, _, CryptoJS,
+} from '@/utils/cdn';
 
 
 /**
@@ -19,10 +21,12 @@ const localStorageZ = {
      * @param {string} key
      * @param {string} val
      * @param {date | number(秒)} expires
+     * @param {boolean} encrypt
      */
-    set(key, val, expires) {
+    set(key, value, { expires, encrypt }) {
         const type = $.type(expires);
         const createAt = moment().format('YYYY-MM-DD HH:mm:ss');
+        const val = encrypt ? CryptoJS.AES.encrypt(value, 'frog').toString() : value;
         const item = { val, type, createAt };
         const handle = {
             date() { item.expires = moment(expires).format('YYYY-MM-DD HH:mm:ss'); },
@@ -38,7 +42,7 @@ const localStorageZ = {
      * @param {string} key
      * @returns
      */
-    get(key) {
+    get(key, encrypt) {
         const val = localStorage.getItem(key);
         if (isEmpty(val)) { return ''; }
 
@@ -69,6 +73,7 @@ const localStorageZ = {
         };
 
         handle[item.type] && handle[item.type]();
+        result = encrypt ? CryptoJS.AES.decrypt(result, 'frog').toString(CryptoJS.enc.Utf8) : result;
         return result;
     },
     /**

@@ -14,11 +14,8 @@ Vue.use(Vuex);
 const state = {};
 const mutations = {};
 const getters = {
-    test(ss, sss, root) {
-        console.log(111111111111111111);
-        console.log(ss);
-        console.log(sss);
-        console.log(root);
+    roles(statex, gettersx, root) {
+        return root.user.roles;
     },
 };
 const actions = {};

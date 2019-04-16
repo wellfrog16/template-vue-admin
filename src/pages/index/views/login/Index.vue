@@ -94,7 +94,6 @@ export default {
     },
     mounted() {
         this.refreshCode();
-        window.vue = this;
     },
     methods: {
         ...mapActions(['login']),

@@ -12,6 +12,7 @@ const {
     screenfull,
     ClipboardJS,
     NProgress,
+    CryptoJS,
 } = window;
 
 export {
@@ -26,4 +27,5 @@ export {
     ClipboardJS, // 复制
     ClipboardJS as Clipboard, // 复制
     NProgress, // 进度条
+    CryptoJS, // 加密
 };
