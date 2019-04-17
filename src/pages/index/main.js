@@ -6,8 +6,11 @@ import VueScrollactive from '@/plugins/vue-scrollactive'; // 单页定位
 import Affix from 'vue-affix'; // 固定元素
 // import filters from '@/utils/filters';
 import store from './store';
-import router from './router/router';
+import router from './router';
 import App from './App.vue';
+
+// 路由权限
+import './helper/router';
 
 // 过滤器
 import '@/utils/filters';

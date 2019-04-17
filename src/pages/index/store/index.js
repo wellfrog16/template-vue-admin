@@ -5,6 +5,7 @@ import Vuex from 'vuex';
 import complexTable from './modules/complexTable';
 import lazyTable from './modules/lazyTable';
 import user from './modules/user';
+import permission from './modules/permission';
 // import demo1 from '@/store/module/index/demo1';
 // import hehe from '@/store/module/index/demo2/hehe';
 // import haha from '@/store/module/index/demo2/haha';
@@ -30,5 +31,6 @@ export default new Vuex.Store({
         complexTable,
         lazyTable,
         user,
+        permission,
     },
 });

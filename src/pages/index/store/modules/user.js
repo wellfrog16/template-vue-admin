@@ -21,7 +21,6 @@ export default {
                     if (res.success) {
                         commit('setState', { token: data.token, roles: data.roles });
                     }
-                    // setToken(response.data.token)
                     resolve(res.success);
                 }).catch((error) => {
                     reject(error);

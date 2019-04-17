@@ -23,7 +23,7 @@ const localStorageZ = {
      * @param {date | number(秒)} expires
      * @param {boolean} encrypt
      */
-    set(key, value, { expires, encrypt }) {
+    set(key, value, { expires, encrypt } = {}) {
         const type = $.type(expires);
         const createAt = moment().format('YYYY-MM-DD HH:mm:ss');
         const val = encrypt ? CryptoJS.AES.encrypt(value, 'frog').toString() : value;

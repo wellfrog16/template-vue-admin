@@ -11,9 +11,7 @@ export default {
             el.module = value;
         } else {
             const module = el.module || 'index';
-            // console.log(store);
-            console.log(store[module].getters.roles);
-            const roles = store[module].state.user.roles || [];
+            const roles = store[module].getters.roles || [];
             console.log(roles);
 
             if (value && value instanceof Array && value.length > 0) {
