@@ -44,7 +44,7 @@ function axiosInstance(args) {
         const method = ['post', 'put', 'delete'];
         const result = data;
 
-        if (status.includes(response.status) && method.includes(config.method)) {
+        if (status.includes(response.status) && method.includes(config.method)) { // 正常响应预设 status 状态
             if (data.success) {
                 options.notification && Notification.success({ title: '操作成功' });
 
@@ -53,14 +53,15 @@ function axiosInstance(args) {
             } else {
                 options.notification && Notification.error({ title: data.message });
             }
-        } else if (!status.includes(response.status)) {
+        } else if (!status.includes(response.status)) { // 非预设 status 状态，需要看具体返回类型决定如果处理
             options.notification && Notification.error({ title: response.statusText });
         }
         return result;
-    }, (error) => {
+    }, (error) => { // 5xx, 4xx
         loadingInstancce && loadingInstancce.close();
         options.notification && Notification.error({ title: error });
-        return error;
+        return Promise.reject(error);
+        // return error;
         // throw error;
     });
 
