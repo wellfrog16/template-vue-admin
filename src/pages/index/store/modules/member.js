@@ -1,5 +1,5 @@
 import { cstore } from '@/helper/lakes';
-import api from '@/api/mock/user';
+import api from '@/api/mock/member';
 // import { _ } from '@/utils/cdn';
 
 export default {

@@ -4,7 +4,7 @@ import Vuex from 'vuex';
 // 站点模块
 import complexTable from './modules/complexTable';
 import lazyTable from './modules/lazyTable';
-import user from './modules/user';
+import member from './modules/member';
 import permission from './modules/permission';
 // import demo1 from '@/store/module/index/demo1';
 // import hehe from '@/store/module/index/demo2/hehe';
@@ -16,7 +16,7 @@ const state = {};
 const mutations = {};
 const getters = {
     roles(statex, gettersx, root) {
-        return root.user.roles;
+        return root.member.roles;
     },
 };
 const actions = {};
@@ -30,7 +30,7 @@ export default new Vuex.Store({
     modules: {
         complexTable,
         lazyTable,
-        user,
+        member,
         permission,
     },
 });
