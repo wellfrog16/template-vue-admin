@@ -63,6 +63,7 @@ const asyncRoutes = [
                 path: 'font-awesome',
                 component: () => import('../views/icon/FontAwesome.vue'),
                 meta: {
+                    roles: ['editor'],
                     icon: 'menu-fix-icon fab fa-fonticons-fi fa-lg fa-fw',
                 },
             },

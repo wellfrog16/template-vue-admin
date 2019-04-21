@@ -12,7 +12,6 @@ export default {
         } else {
             const module = el.module || 'index';
             const roles = store[module].getters.roles || [];
-            console.log(roles);
 
             if (value && value instanceof Array && value.length > 0) {
                 const permissionRoles = value;

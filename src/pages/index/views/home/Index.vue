@@ -27,9 +27,9 @@
 <script>
 import AsideMenu from '#index/components/common/menu/index.vue';
 import Functions from '#index/components/home/functions/index.vue';
-import menu from '@/helper/menu';
+// import menu from '@/helper/menu';
 import { $ } from '@/utils/cdn';
-import { utils } from '@/utils/rivers';
+import { storage } from '@/utils/rivers';
 
 export default {
     components: { AsideMenu, Functions },
@@ -37,7 +37,7 @@ export default {
         return {
             width: 'auto',
             collapse: false,
-            menuData: menu.filter(this.$router.options.routes),
+            menuData: this.$store.state.permission.routes,
             test: [1, 2, 3],
         };
     },
@@ -54,16 +54,16 @@ export default {
             if (!status) {
                 setTimeout(() => target.show(), 100);
                 swit.removeClass(this.$style['switch-tran']);
-                utils.localStorage.set('sys-collapse', 0);
+                storage.set('sys-collapse', 0);
             } else {
                 target.hide();
                 swit.addClass(this.$style['switch-tran']);
-                utils.localStorage.set('sys-collapse', 1);
+                storage.set('sys-collapse', 1);
             }
             this.collapse = status;
         },
         getStatus() {
-            return !!(utils.localStorage.get('sys-collapse') || 0);
+            return !!(storage.get('sys-collapse') || 0);
         },
     },
 };

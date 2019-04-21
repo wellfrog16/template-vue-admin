@@ -13,6 +13,7 @@ const {
     ClipboardJS,
     NProgress,
     CryptoJS,
+    Cookies,
 } = window;
 
 export {
@@ -28,4 +29,5 @@ export {
     ClipboardJS as Clipboard, // 复制
     NProgress, // 进度条
     CryptoJS, // 加密
+    Cookies, // cookie
 };

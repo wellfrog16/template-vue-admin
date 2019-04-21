@@ -52,9 +52,11 @@ function axiosInstance(args) {
                 if (!data.data) { result.data = {}; }
             } else {
                 options.notification && Notification.error({ title: data.message });
+                return Promise.reject(data.message || '服务器返回错误');
             }
         } else if (!status.includes(response.status)) { // 非预设 status 状态，需要看具体返回类型决定如果处理
             options.notification && Notification.error({ title: response.statusText });
+            return Promise.reject(response.statusText || '未知的错误');
         }
         return result;
     }, (error) => { // 5xx, 4xx

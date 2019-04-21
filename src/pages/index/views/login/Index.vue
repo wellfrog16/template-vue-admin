@@ -56,7 +56,7 @@
 import { createNamespacedHelpers } from 'vuex';
 import utils from '@/utils/utils';
 
-const { mapActions } = createNamespacedHelpers('user');
+const { mapActions } = createNamespacedHelpers('member');
 
 export default {
     data() {
@@ -93,6 +93,7 @@ export default {
         };
     },
     mounted() {
+        window.v = this;
         this.refreshCode();
     },
     methods: {
@@ -112,7 +113,6 @@ export default {
                     if (success) {
                         const path = this.$route.query.from || '/home';
                         this.$nextTick(() => this.$router.push({ path }));
-                        this.saveLoginInfo();
                     } else {
                         this.refreshCode();
                         this.$message.error('登陆失败，账号或密码错误');
@@ -121,11 +121,6 @@ export default {
                     this.$message.error(err);
                 });
             }).catch(() => {});
-        },
-        // 保存登陆信息
-        saveLoginInfo() {
-            utils.localStorage.set('username', this.form.fields.username, 60 * 60 * 2);
-            // this.$store.commit('site/setVal', { username: this.form.fields.username });
         },
     },
     computed: {

@@ -8,7 +8,7 @@
                 type="primary"
                 v-clipboard:success="handleClipboardSuccess"
                 v-clipboard:copy="content"
-                v-permission="['test']"
+                v-permission="['editor']"
             >复制文本框信息</el-button>
         </el-form-item>
     </el-form>

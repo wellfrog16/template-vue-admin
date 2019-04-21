@@ -22,10 +22,9 @@ function hasPermission(route, roles) {
  */
 function filterAsyncRoutes(routers, roles) {
     const result = [];
-
     routers.forEach((router) => {
         const tmp = { ...router };
-        if (hasPermission(roles, tmp)) {
+        if (hasPermission(tmp, roles)) {
             if (tmp.children) {
                 tmp.children = filterAsyncRoutes(tmp.children, roles);
             }

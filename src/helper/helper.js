@@ -1,4 +1,4 @@
-import utils from '@/utils/utils';
+import { utils, storage } from '@/utils/rivers';
 import config from '@/config';
 import { _ } from '@/utils/cdn';
 
@@ -9,9 +9,9 @@ import { _ } from '@/utils/cdn';
  */
 function site() {
     return {
-        username: utils.localStorage.get('username'),
+        username: storage.get('username'),
         destory() {
-            utils.localStorage.clear('username');
+            storage.remove('username');
         },
         isActive() {
             return !utils.isEmpty(this.username);
