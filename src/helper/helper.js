@@ -1,4 +1,4 @@
-import { utils, storage } from '@/utils/rivers';
+import { storage } from '@/utils/rivers';
 import config from '@/config';
 import { _ } from '@/utils/cdn';
 
@@ -12,9 +12,6 @@ function site() {
         username: storage.get('username'),
         destory() {
             storage.remove('username');
-        },
-        isActive() {
-            return !utils.isEmpty(this.username);
         },
     };
 }

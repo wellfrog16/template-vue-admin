@@ -30,6 +30,14 @@ const staticRoutes = [
             hidden: true,
         },
     },
+    {
+        path: '/401',
+        name: '401',
+        component: () => import('../views/error/401.vue'),
+        meta: {
+            hidden: true,
+        },
+    },
 ];
 
 const asyncRoutes = [

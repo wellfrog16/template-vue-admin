@@ -14,6 +14,20 @@ function hasPermission(route, roles) {
 }
 
 /**
+ * 指令v-permission的手动校验
+ *
+ * @param {Array} 一般获取自store里的用户角色信息
+ * @param {Array} 需要校验的权限
+ * @returns
+ */
+function checkPermission(storeRoles, roles) {
+    if (roles && roles instanceof Array && roles.length > 0) {
+        return storeRoles.some(role => roles.includes(role));
+    }
+    return false;
+}
+
+/**
  * 递归过滤异步路由表，返回符合用户角色权限的路由表
  *
  * @param {Array} routers asyncRoutes
@@ -35,4 +49,5 @@ function filterAsyncRoutes(routers, roles) {
     return result;
 }
 
+export { hasPermission, checkPermission };
 export default filterAsyncRoutes;

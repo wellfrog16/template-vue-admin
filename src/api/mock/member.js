@@ -8,9 +8,11 @@ const axios = instance({
 const base = '/admin';
 
 const login = params => axios.post(`${base}/login`, params).then(res => res);
+const logout = params => axios.get(`${base}/logout`, params).then(res => res);
 const info = params => axios.get(`${base}/member`, { params }).then(res => res.data);
 
 export default {
     login,
+    logout,
     info,
 };

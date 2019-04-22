@@ -1,5 +1,5 @@
-import { cstore } from '@/helper/lakes';
-import { auth } from '@/utils/rivers';
+import { cstore, helper } from '@/helper/lakes';
+import { auth, storage } from '@/utils/rivers';
 import api from '@/api/mock/member';
 // import { _ } from '@/utils/cdn';
 
@@ -17,6 +17,7 @@ export default {
     },
     getters: {
     },
+    // todo 登陆信息保存至localStorage封装
     actions: {
         login({ commit }, userInfo) {
             return new Promise((resolve, reject) => {
@@ -25,6 +26,7 @@ export default {
                     if (res.success) {
                         commit('setState', { token: data.token });
                         auth.set(data.token);
+                        storage.set('username', userInfo.username);
                     }
                     resolve(res.success);
                 }).catch((error) => {
@@ -41,6 +43,16 @@ export default {
                     } else {
                         reject(new Error('角色信息为空'));
                     }
+                }).catch(err => reject(err));
+            });
+        },
+        logout({ commit }) {
+            return new Promise((resolve, reject) => {
+                api.logout().then((res) => {
+                    commit('setState', { token: '', roles: res.roles });
+                    auth.remove();
+                    helper.site().destory();
+                    resolve();
                 }).catch(err => reject(err));
             });
         },
