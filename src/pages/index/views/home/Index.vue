@@ -12,8 +12,15 @@
         </el-aside>
         <el-container>
             <el-header :class="$style.header">
-                <div>
+                <div :class="$style.left">
                     <i :class="[$style.switch, 'fas fa-bars fa-lg']" @click="toggle" />
+                    <el-breadcrumb separator="/" :class="$style.breadcrumb">
+                        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+                        <el-breadcrumb-item
+                            v-for="item in $route.matched"
+                            :key="item.path"
+                        >{{ item.name }}</el-breadcrumb-item>
+                    </el-breadcrumb>
                 </div>
                 <functions />
             </el-header>
@@ -38,7 +45,6 @@ export default {
             width: 'auto',
             collapse: false,
             menuData: this.$store.state.permission.routes,
-            test: [1, 2, 3],
         };
     },
     mounted() {
@@ -106,6 +112,11 @@ export default {
     border-bottom: 1px solid @g-color-border4;
     display: flex;
     justify-content: space-between;
+
+    .left {
+        display: flex;
+        align-items: center;
+    }
 }
 
 .switch {
@@ -122,5 +133,10 @@ export default {
     background-color: #f0f2f5;
     min-width: 1000px;
     box-sizing: border-box;
+}
+
+.breadcrumb {
+    display: inline-block;
+    margin-left: 20px;
 }
 </style>
