@@ -86,7 +86,7 @@ const asyncRoutes = [
         },
         children: [
             {
-                name: '合集',
+                name: '组件合集',
                 path: 'package',
                 component: () => import('../views/ui/Package.vue'),
                 meta: {
@@ -138,7 +138,7 @@ const asyncRoutes = [
         ],
     },
     {
-        path: '/chart',
+        path: '/charts',
         name: '图表',
         component: Home,
         meta: {
@@ -146,9 +146,9 @@ const asyncRoutes = [
         },
         children: [
             {
-                name: '合集1',
+                name: '图表合集',
                 path: 'package',
-                component: () => import('../views/ui/Package.vue'),
+                component: () => import('../views/charts/Package.vue'),
                 meta: {
                     icon: 'el-icon-goods',
                 },
