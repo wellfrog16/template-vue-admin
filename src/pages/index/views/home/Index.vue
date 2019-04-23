@@ -24,7 +24,7 @@
                 </div>
                 <functions />
             </el-header>
-            <el-main :class="$style.main">
+            <el-main :class="$style.main" id="main12">
                 <router-view />
             </el-main>
         </el-container>
@@ -131,7 +131,7 @@ export default {
 
 .main {
     background-color: #f0f2f5;
-    min-width: 1000px;
+    // min-width: 1000px;
     box-sizing: border-box;
 }
 

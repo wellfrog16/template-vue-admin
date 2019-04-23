@@ -51,6 +51,7 @@
                 </el-card>
             </scrollactive>
         </div>
+        <x-backtotop element="#main12"></x-backtotop>
     </div>
 </template>
 
@@ -63,6 +64,7 @@ import XSelect from '#index/components/ui/package/select.vue';
 import XCascader from '#index/components/ui/package/cascader.vue';
 import XSlider from '#index/components/ui/package/slider.vue';
 import XTransfer from '#index/components/ui/package/transfer.vue';
+import XBacktotop from '@/components/backtotop/index.vue';
 
 export default {
     components: {
@@ -74,6 +76,7 @@ export default {
         XCascader,
         XSlider,
         XTransfer,
+        XBacktotop,
     },
 };
 </script>
