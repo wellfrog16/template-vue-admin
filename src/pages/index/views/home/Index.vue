@@ -24,7 +24,7 @@
                 </div>
                 <functions />
             </el-header>
-            <el-main :class="$style.main" id="main12">
+            <el-main :class="$style.main" id="elMain">
                 <router-view />
             </el-main>
         </el-container>

@@ -49,6 +49,22 @@ const asyncRoutes = [
             hidden: true,
         },
     },
+    {
+        path: '/document',
+        name: '说明文档',
+        redirect: { name: 'element-ui' },
+        meta: {
+            icon: 'el-icon-document',
+        },
+    },
+    {
+        path: '/guide',
+        name: '引导页',
+        redirect: { name: 'element-ui' },
+        meta: {
+            icon: 'menu-fix-icon fas fa-paper-plane fa-lg fa-fw',
+        },
+    },
     // icon
     {
         path: '/icon',

@@ -7,16 +7,20 @@
             <el-tab-pane label="手势" name="tab-b">
                 <touch />
             </el-tab-pane>
+            <el-tab-pane label="返回顶部" name="tab-c">
+                <backtotop />
+            </el-tab-pane>
         </el-tabs>
     </div>
 </template>
 
 <script>
 import clipboard from '#index/components/ui/part/clipboard.vue';
-import touch from '#index/components/ui/part/touch.vue';
+import Touch from '#index/components/ui/part/touch.vue';
+import Backtotop from '#index/components/ui/part/backtotop.vue';
 
 export default {
-    components: { clipboard, touch },
+    components: { clipboard, Touch, Backtotop },
     data() {
         return {
             activeName: 'tab-a',
