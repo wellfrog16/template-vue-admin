@@ -1,5 +1,5 @@
 <template>
-    <transition :name="transitionName">
+    <transition name="el-fade-in-linear">
         <div v-show="visible" :class="[$style.main, 'flex-center']" @click="backToTop">
             <i class="el-icon-upload2" />
         </div>
