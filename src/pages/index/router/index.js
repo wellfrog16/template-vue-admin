@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from '../views/home/Index.vue';
+import Layout from '../views/layout/Index.vue';
 import Root from '../../../components/Root.vue';
 import Login from '../views/login/Index.vue';
 
@@ -44,15 +44,26 @@ const asyncRoutes = [
     {
         path: '/home',
         name: '主页',
-        redirect: { name: 'element-ui' },
+        component: Layout,
+        redirect: { path: '/home/index' },
         meta: {
-            hidden: true,
+            icon: 'menu-fix-icon fas fa-home fa-lg fa-fw',
         },
+        children: [
+            {
+                path: 'index',
+                name: '主页详细',
+                component: () => import('../views/home/Index.vue'),
+                meta: {
+                    hidden: true,
+                },
+            },
+        ],
     },
     {
         path: '/document',
         name: '说明文档',
-        component: Home,
+        component: Layout,
         redirect: { path: '/document/index' },
         meta: {
             icon: 'el-icon-document',
@@ -60,7 +71,7 @@ const asyncRoutes = [
         children: [
             {
                 path: 'index',
-                name: '说明文档描述',
+                name: '说明文档首页',
                 component: () => import('../views/document/Index.vue'),
                 meta: {
                     hidden: true,
@@ -71,7 +82,7 @@ const asyncRoutes = [
     {
         path: '/guide',
         name: '引导页',
-        component: Home,
+        component: Layout,
         redirect: { path: '/guide/index' },
         meta: {
             icon: 'menu-fix-icon fas fa-paper-plane fa-lg fa-fw',
@@ -79,7 +90,7 @@ const asyncRoutes = [
         children: [
             {
                 path: 'index',
-                name: '引导页丽质',
+                name: '引导页首页',
                 component: () => import('../views/guide/Index.vue'),
                 meta: {
                     hidden: true,
@@ -91,7 +102,7 @@ const asyncRoutes = [
     {
         path: '/icon',
         name: '图标',
-        component: Home,
+        component: Layout,
         meta: {
             icon: 'menu-fix-icon fab fa-fonticons fa-lg fa-fw',
         },
@@ -118,7 +129,7 @@ const asyncRoutes = [
     {
         path: '/ui',
         name: '组件',
-        component: Home,
+        component: Layout,
         meta: {
             icon: 'menu-fix-icon fab fa-ethereum fa-lg fa-fw',
         },
@@ -178,7 +189,7 @@ const asyncRoutes = [
     {
         path: '/charts',
         name: '图表',
-        component: Home,
+        component: Layout,
         meta: {
             icon: 'menu-fix-icon far fa-chart-bar fa-lg fa-fw',
         },
@@ -196,7 +207,7 @@ const asyncRoutes = [
     {
         path: '/test',
         name: '权限',
-        component: Home,
+        component: Layout,
         redirect: { name: 'Demo' },
         meta: {
             icon: 'el-icon-setting',

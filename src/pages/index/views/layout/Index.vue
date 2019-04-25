@@ -1,0 +1,153 @@
+<template>
+    <el-container :class="$style.container">
+        <el-aside :class="$style.aside" :width="width">
+            <h1 :class="$style.logo"><span>管理系统logo</span></h1>
+            <aside-menu
+                class="aside-menu"
+                :data="menuData"
+                :collapse="collapse"
+                background-color="#1f2d3d"
+                text-color="#fff"
+                active-text-color="#ffa"
+                :default-active="defaultActive"
+            />
+        </el-aside>
+        <el-container>
+            <el-header :class="$style.header">
+                <div :class="$style.left">
+                    <i :class="[$style.switch, 'fas fa-bars fa-lg']" @click="toggle" />
+                    <el-breadcrumb separator="/" :class="$style.breadcrumb">
+                        <el-breadcrumb-item :to="{ path: '/home' }">主页</el-breadcrumb-item>
+                        <el-breadcrumb-item
+                            v-for="item in routeMatched"
+                            :key="item.path"
+                        >{{ item.name }}</el-breadcrumb-item>
+                    </el-breadcrumb>
+                </div>
+                <functions />
+            </el-header>
+            <el-main :class="$style.main" id="elMain">
+                <router-view />
+            </el-main>
+        </el-container>
+    </el-container>
+</template>
+
+<script>
+import AsideMenu from '#index/components/common/menu/index.vue';
+import Functions from '#index/components/layout/functions/index.vue';
+// import menu from '@/helper/menu';
+import { $ } from '@/utils/cdn';
+import { storage } from '@/utils/rivers';
+
+export default {
+    components: { AsideMenu, Functions },
+    data() {
+        return {
+            width: 'auto',
+            collapse: false,
+            menuData: this.$store.state.permission.routes,
+        };
+    },
+    computed: {
+        routeMatched() {
+            return this.$route.matched.filter(item => !(item.meta && item.meta.hidden) && item.name !== '主页');
+        },
+        defaultActive() {
+            const matched = [...this.$route.matched];
+            return matched.reverse().find(item => !(item.meta && item.meta.hidden)).path;
+        },
+    },
+    mounted() {
+        this.setCollapse(this.getStatus());
+    },
+    methods: {
+        toggle() {
+            this.setCollapse(!this.getStatus());
+        },
+        setCollapse(status) {
+            const swit = $(`.${this.$style.switch}`);
+            const target = $(`.${this.$style.logo} span`);
+            if (!status) {
+                setTimeout(() => target.show(), 100);
+                swit.removeClass(this.$style['switch-tran']);
+                storage.set('sys-collapse', 0);
+            } else {
+                target.hide();
+                swit.addClass(this.$style['switch-tran']);
+                storage.set('sys-collapse', 1);
+            }
+            this.collapse = status;
+        },
+        getStatus() {
+            return !!(storage.get('sys-collapse') || 0);
+        },
+    },
+};
+</script>
+
+<style lang="less" module>
+@import '../../../../assets/style/config.less';
+
+@height: 60px;
+
+.logo {
+    height: @height;
+    line-height: @height;
+    margin: 0;
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+}
+
+.container {
+    height: 100vh;
+
+    :global(.aside-menu:not(.el-menu--collapse)) {
+        width: 250px;
+    }
+}
+
+.aside {
+    width: 200px;
+    background-color: @g-color-primary;
+
+    > ul {
+        border-right: 0;
+    }
+}
+
+.header {
+    height: @height;
+    line-height: @height;
+    border-bottom: 1px solid @g-color-border4;
+    display: flex;
+    justify-content: space-between;
+
+    .left {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.switch {
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.switch-tran {
+    transform: rotate(90deg);
+    transition: all 0.2s;
+}
+
+.main {
+    background-color: #f0f2f5;
+    // min-width: 1000px;
+    box-sizing: border-box;
+}
+
+.breadcrumb {
+    display: inline-block;
+    margin-left: 20px;
+}
+</style>
