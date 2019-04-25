@@ -8,7 +8,9 @@
                 :collapse="collapse"
                 background-color="#1f2d3d"
                 text-color="#fff"
-                active-text-color="#ffa" />
+                active-text-color="#ffa"
+                :default-active="defaultActive"
+            />
         </el-aside>
         <el-container>
             <el-header :class="$style.header">
@@ -17,7 +19,7 @@
                     <el-breadcrumb separator="/" :class="$style.breadcrumb">
                         <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
                         <el-breadcrumb-item
-                            v-for="item in $route.matched"
+                            v-for="item in routeMatched"
                             :key="item.path"
                         >{{ item.name }}</el-breadcrumb-item>
                     </el-breadcrumb>
@@ -46,6 +48,15 @@ export default {
             collapse: false,
             menuData: this.$store.state.permission.routes,
         };
+    },
+    computed: {
+        routeMatched() {
+            return this.$route.matched.filter(item => !(item.meta && item.meta.hidden));
+        },
+        defaultActive() {
+            const matched = [...this.$route.matched];
+            return matched.reverse().find(item => !(item.meta && item.meta.hidden)).path;
+        },
     },
     mounted() {
         this.setCollapse(this.getStatus());

@@ -52,18 +52,40 @@ const asyncRoutes = [
     {
         path: '/document',
         name: '说明文档',
-        redirect: { name: 'element-ui' },
+        component: Home,
+        redirect: { path: '/document/index' },
         meta: {
             icon: 'el-icon-document',
         },
+        children: [
+            {
+                path: 'index',
+                name: '说明文档描述',
+                component: () => import('../views/document/Index.vue'),
+                meta: {
+                    hidden: true,
+                },
+            },
+        ],
     },
     {
         path: '/guide',
         name: '引导页',
-        redirect: { name: 'element-ui' },
+        component: Home,
+        redirect: { path: '/guide/index' },
         meta: {
             icon: 'menu-fix-icon fas fa-paper-plane fa-lg fa-fw',
         },
+        children: [
+            {
+                path: 'index',
+                name: '引导页丽质',
+                component: () => import('../views/guide/Index.vue'),
+                meta: {
+                    hidden: true,
+                },
+            },
+        ],
     },
     // icon
     {
