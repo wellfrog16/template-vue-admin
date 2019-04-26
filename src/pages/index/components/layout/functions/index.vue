@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="functions">
         <!-- 全屏 -->
         <screenfull :effect="tooltip.effect" :placement="tooltip.placement" :class="$style.item" />
 

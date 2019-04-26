@@ -15,8 +15,8 @@
         <el-container>
             <el-header :class="$style.header">
                 <div :class="$style.left">
-                    <i :class="[$style.switch, 'fas fa-bars fa-lg']" @click="toggle" />
-                    <el-breadcrumb separator="/" :class="$style.breadcrumb">
+                    <i :class="[$style.switch, 'fas fa-bars fa-lg']" @click="toggle" id="asideToggle" />
+                    <el-breadcrumb separator="/" :class="$style.breadcrumb" id="breadcrumb">
                         <el-breadcrumb-item :to="{ path: '/home' }">主页</el-breadcrumb-item>
                         <el-breadcrumb-item
                             v-for="item in routeMatched"

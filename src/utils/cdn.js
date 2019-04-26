@@ -14,6 +14,7 @@ const {
     NProgress,
     CryptoJS,
     Cookies,
+    Driver,
 } = window;
 
 export {
@@ -30,4 +31,5 @@ export {
     NProgress, // 进度条
     CryptoJS, // 加密
     Cookies, // cookie
+    Driver, // 指引
 };
