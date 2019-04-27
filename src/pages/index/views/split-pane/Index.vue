@@ -1,21 +1,5 @@
 <template>
     <div :class="$style.main">
-        <!-- <div :class="$style.wrapper">
-            <el-card shadow="never" :class="$style.side">
-                111111
-            </el-card>
-            <el-card shadow="never" :class="$style.content">
-                22222222
-            </el-card>
-            <div :class="$style.side" id="aa">11</div>
-            <div :class="$style.content" id="bb">222</div>
-        </div> -->
-        <!-- <el-card shadow="never" :class="$style.side">
-            111111
-        </el-card>
-        <el-card shadow="never" :class="$style.content">
-            22222222
-        </el-card> -->
         <div :class="$style.side">
             <el-card shadow="never">
                 111111
