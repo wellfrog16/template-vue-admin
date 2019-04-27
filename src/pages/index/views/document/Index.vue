@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <el-card shadow="never">
         文档
-    </div>
+    </el-card>
 </template>
 
 <script>

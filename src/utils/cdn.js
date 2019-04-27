@@ -15,6 +15,7 @@ const {
     CryptoJS,
     Cookies,
     Driver,
+    Split,
 } = window;
 
 export {
@@ -32,4 +33,5 @@ export {
     CryptoJS, // 加密
     Cookies, // cookie
     Driver, // 指引
+    Split, // 分割布局
 };

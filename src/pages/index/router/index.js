@@ -253,7 +253,7 @@ const asyncRoutes = [
             {
                 path: 'index',
                 name: '页面分割例子',
-                component: () => import('../views/document/Index.vue'),
+                component: () => import('../views/split-pane/Index.vue'),
                 meta: {
                     hidden: true,
                 },

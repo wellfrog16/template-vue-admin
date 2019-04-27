@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <el-card shadow="never">
         <el-tabs v-model="activeName" @tab-click="handleClick">
             <el-tab-pane label="复制" name="tab-a">
                 <clipboard />
@@ -11,7 +11,7 @@
                 <backtotop />
             </el-tab-pane>
         </el-tabs>
-    </div>
+    </el-card>
 </template>
 
 <script>
