@@ -131,7 +131,7 @@ const asyncRoutes = [
         name: '组件',
         component: Layout,
         meta: {
-            icon: 'menu-fix-icon fab fa-ethereum fa-lg fa-fw',
+            icon: 'menu-fix-icon fas fa-puzzle-piece fa-lg fa-fw',
         },
         children: [
             {
@@ -181,7 +181,7 @@ const asyncRoutes = [
                 path: 'part',
                 component: () => import('../views/ui/Part.vue'),
                 meta: {
-                    icon: 'menu-fix-icon fas fa-cogs fa-lg fa-fw',
+                    icon: 'menu-fix-icon fas fa-puzzle-piece fa-lg fa-fw',
                 },
             },
         ],
@@ -205,20 +205,57 @@ const asyncRoutes = [
         ],
     },
     {
-        path: '/test',
+        path: '/permission',
         name: '权限',
         component: Layout,
         redirect: { name: 'Demo' },
         meta: {
-            icon: 'el-icon-setting',
+            icon: 'menu-fix-icon fas fa-user-shield fa-lg fa-fw',
         },
         children: [
             {
-                name: 'Demo',
-                path: 'demo',
-                component: resolve => require(['../views/demo/Index.vue'], resolve),
+                name: '权限控制',
+                path: 'directive',
+                component: () => import('../views/permission/Directive.vue'),
                 meta: {
-                    icon: 'el-icon-tickets',
+                    icon: 'menu-fix-icon fab fa-ethereum fa-lg fa-fw',
+                },
+            },
+            // {
+            //     name: 'admin可见',
+            //     path: 'admin',
+            //     component: resolve => require(['../views/demo/Index.vue'], resolve),
+            //     meta: {
+            //         icon: 'menu-fix-icon fas fa-user-circle fa-lg fa-fw',
+            //         roles: ['admin'],
+            //     },
+            // },
+            // {
+            //     name: 'admin和edit可见',
+            //     path: 'edit',
+            //     component: resolve => require(['../views/demo/Index.vue'], resolve),
+            //     meta: {
+            //         icon: 'menu-fix-icon far fa-user-circle fa-lg fa-fw',
+            //         roles: ['admin', 'editor'],
+            //     },
+            // },
+        ],
+    },
+    {
+        path: '/split-pane',
+        name: '页面分割',
+        component: Layout,
+        redirect: { path: '/split-pane/index' },
+        meta: {
+            icon: 'menu-fix-icon fas fa-th-large fa-lg fa-fw',
+        },
+        children: [
+            {
+                path: 'index',
+                name: '页面分割例子',
+                component: () => import('../views/document/Index.vue'),
+                meta: {
+                    hidden: true,
                 },
             },
         ],

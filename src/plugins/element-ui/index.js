@@ -70,6 +70,7 @@ import {
     Message,
     Notification,
     Scrollbar,
+    Divider,
 } from 'element-ui';
 
 Vue.prototype.$ELEMENT = { size: 'small' };
@@ -140,6 +141,7 @@ Vue.use(Aside);
 Vue.use(Main);
 Vue.use(Footer);
 Vue.use(Scrollbar);
+Vue.use(Divider);
 
 Vue.use(Loading.directive);
 

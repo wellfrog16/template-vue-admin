@@ -15,6 +15,7 @@ function isEmpty(val) {
 
 /**
  * 浏览器query数据json化
+ * 未考虑带hash的情况
  *
  * @param {string} url
  */
