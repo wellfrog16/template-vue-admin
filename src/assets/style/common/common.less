@@ -67,3 +67,22 @@ body {
 .show {
     display: block;
 }
+
+.gutter() {
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.gutter.gutter-vertical {
+    .gutter();
+
+    cursor: row-resize;
+    background-image: url('../../img/common/icon/split/horizontal.png');
+}
+
+.gutter.gutter-horizontal {
+    .gutter();
+
+    cursor: col-resize;
+    background-image: url('../../img/common/icon/split/vertical.png');
+}

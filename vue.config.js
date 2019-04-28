@@ -33,6 +33,7 @@ module.exports = {
                 }),
             );
         }
+        config.devtool = 'source-map'; // eslint-disable-line
     },
 
     // configureWebpack: {

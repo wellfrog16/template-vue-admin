@@ -5,10 +5,17 @@
                 111111
             </el-card>
         </div>
-        <div :class="$style.content">
-            <el-card shadow="never">
-                2222222
-            </el-card>
+        <div :class="$style.wrapper">
+            <div :class="$style.header">
+                <el-card shadow="never">
+                    22222222
+                </el-card>
+            </div>
+            <div :class="$style.content">
+                <el-card shadow="never">
+                    333333333
+                </el-card>
+            </div>
         </div>
     </div>
 </template>
@@ -18,10 +25,16 @@ import { Split } from '@/utils/cdn';
 
 export default {
     mounted() {
-        Split([`.${this.$style.side}`, `.${this.$style.content}`], {
+        Split([`.${this.$style.side}`, `.${this.$style.wrapper}`], {
             sizes: [25, 75],
             minSize: [250, 500],
             expandToMin: true,
+        });
+        Split([`.${this.$style.header}`, `.${this.$style.content}`], {
+            sizes: [25, 75],
+            minSize: [100, 300],
+            // expandToMin: true,
+            direction: 'vertical',
         });
     },
 };
@@ -33,19 +46,14 @@ export default {
     box-sizing: border-box;
     display: flex;
 
-    > div > :global(.el-card) {
+    :global(.el-card) {
         height: 100%;
         box-sizing: border-box;
     }
 
-    > :global(.gutter.gutter-horizontal) {
-        cursor: col-resize;
-        background-color: #f5f5f5;
-        border-radius: 5px;
-
-        &:hover {
-            background-color: #ccc;
-        }
+    :global(.el-card__body) {
+        height: 100%;
+        box-sizing: border-box;
     }
 }
 
@@ -53,7 +61,11 @@ export default {
     background-color: #fff;
 }
 
-.content {
+.wrapper {
+    line-height: 1;
+}
+
+.header, .content {
     background-color: #fff;
 }
 </style>
