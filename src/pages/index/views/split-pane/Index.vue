@@ -41,6 +41,7 @@ export default {
     > :global(.gutter.gutter-horizontal) {
         cursor: col-resize;
         background-color: #f5f5f5;
+        border-radius: 5px;
 
         &:hover {
             background-color: #ccc;

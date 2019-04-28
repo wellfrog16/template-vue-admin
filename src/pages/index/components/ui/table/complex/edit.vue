@@ -3,9 +3,10 @@
         :title="title"
         :visible.sync="editVisible"
         :before-close="handleClose"
+        :close-on-click-modal="false"
         class="or-dialog"
         width="700px"
-        top="-5vh"
+        top="50px"
     >
         <el-form ref="form" :model="form.fields" :rules="form.rules" label-width="80px" v-loading="saveBusy">
             <el-row :gutter="20">
