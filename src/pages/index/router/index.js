@@ -187,7 +187,7 @@ const asyncRoutes = [
         ],
     },
     {
-        path: '/charts',
+        path: '/echarts',
         name: '图表',
         component: Layout,
         meta: {
@@ -197,7 +197,7 @@ const asyncRoutes = [
             {
                 name: '图表合集',
                 path: 'package',
-                component: () => import('../views/charts/Package.vue'),
+                component: () => import('../views/echarts/Package.vue'),
                 meta: {
                     icon: 'el-icon-goods',
                 },
