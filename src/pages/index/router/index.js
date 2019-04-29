@@ -202,6 +202,22 @@ const asyncRoutes = [
                     icon: 'el-icon-goods',
                 },
             },
+            // {
+            //     name: '迁徙',
+            //     path: 'migration',
+            //     component: () => import('../views/echarts/Migration.vue'),
+            //     meta: {
+            //         icon: 'menu-fix-icon fas fa-dove fa-lg fa-fw',
+            //     },
+            // },
+            {
+                name: '飞机航线图',
+                path: 'migration',
+                component: () => import('../views/echarts/Migration.vue'),
+                meta: {
+                    icon: 'menu-fix-icon fas fa-dove fa-lg fa-fw',
+                },
+            },
         ],
     },
     {
