@@ -48,8 +48,8 @@ export default {
         },
         logout({ commit }) {
             return new Promise((resolve, reject) => {
-                api.logout().then((res) => {
-                    commit('setState', { token: '', roles: res.roles });
+                api.logout().then(() => {
+                    commit('setState', { token: '', roles: [] });
                     auth.remove();
                     helper.site().destory();
                     resolve();
