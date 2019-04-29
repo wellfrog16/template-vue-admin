@@ -1,5 +1,5 @@
 // auth2相关
-import { storage } from '@/utils/rivers';
+import storage from './storage';
 
 const key = 'token';
 

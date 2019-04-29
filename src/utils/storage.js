@@ -3,7 +3,7 @@ import {
     moment,
     CryptoJS,
 } from '@/utils/cdn';
-import { utils } from '@/utils/rivers';
+import utils from './utils';
 
 // 带有效期的localStorage
 
