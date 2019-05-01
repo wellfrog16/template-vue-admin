@@ -6,7 +6,7 @@
             </el-card>
         </div>
         <div :class="$style.wrapper">
-            <div :class="$style.header">
+            <div :class="$style.header" v-resize:delay="200" v-resize="handleResize">
                 <el-card shadow="never">
                     22222222
                 </el-card>
@@ -36,6 +36,11 @@ export default {
             // expandToMin: true,
             direction: 'vertical',
         });
+    },
+    methods: {
+        handleResize(a, b) {
+            console.log(a, b);
+        },
     },
 };
 </script>

@@ -9,3 +9,6 @@ import './clipboard';
 
 // 权限验证
 import './permission';
+
+// dom resize
+import './resize';

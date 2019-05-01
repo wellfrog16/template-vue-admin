@@ -1,4 +1,4 @@
 import Vue from 'vue';
-import clipboard from './permission';
+import permission from './permission';
 
-Vue.directive('permission', clipboard);
+Vue.directive('permission', permission);

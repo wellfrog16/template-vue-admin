@@ -15,15 +15,15 @@
 </template>
 
 <script>
-import Basic from '#index/components/echarts/basic.vue';
+import Basic from '#index/components/echarts/package/basic.vue';
 // import Advanced from '#index/components/echarts/advanced.vue';
 // import Senior from '#index/components/echarts/senior.vue';
 
 export default {
     components: {
         Basic,
-        Advanced: () => import('#index/components/echarts/advanced.vue'),
-        Senior: () => import('#index/components/echarts/senior.vue'),
+        Advanced: () => import('#index/components/echarts/package/advanced.vue'),
+        Senior: () => import('#index/components/echarts/package/senior.vue'),
     },
     data() {
         return {

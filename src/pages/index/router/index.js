@@ -224,7 +224,6 @@ const asyncRoutes = [
         path: '/permission',
         name: '权限',
         component: Layout,
-        redirect: { name: 'Demo' },
         meta: {
             icon: 'menu-fix-icon fas fa-user-shield fa-lg fa-fw',
         },
