@@ -12,3 +12,6 @@ import './permission';
 
 // dom resize
 import './resize';
+
+// outside click
+import './outsideClick';
