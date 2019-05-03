@@ -275,6 +275,14 @@ const asyncRoutes = [
             },
         ],
     },
+    {
+        path: 'https://github.com/wellfrog16/template-vue-admin',
+        name: '外链',
+        meta: {
+            link: true,
+            icon: 'menu-fix-icon fas fa-th-large fa-lg fa-fw',
+        },
+    },
 ];
 
 const scrollBehavior = (to, from, savedPosition) => {
