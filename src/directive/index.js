@@ -14,4 +14,4 @@ import './permission';
 import './resize';
 
 // outside click
-import './outsideClick';
+import './outside-click';
