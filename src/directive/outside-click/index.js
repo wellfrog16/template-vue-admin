@@ -1,4 +1,4 @@
 import Vue from 'vue';
-import outsideClick from './outsideClick';
+import outsideClick from './outside-click';
 
 Vue.directive('outside-click', outsideClick);
