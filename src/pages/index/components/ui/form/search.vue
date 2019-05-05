@@ -8,6 +8,7 @@
                     prefix-icon="el-icon-search"
                     autocomplete="on"
                     maxlength="20"
+                    clearable
                 />
             </el-form-item>
             <el-form-item>
@@ -25,8 +26,8 @@
             </el-form-item>
         </el-form>
         <div>
-            <el-button type="primary" icon="el-icon-refresh" @click="handleRefresh">刷新</el-button>
-            <el-button type="primary" icon="button-fix-icon fas fa-file-export fa-sm" @click="handleDownload">导出</el-button>
+            <el-button type="primary" icon="el-icon-plus" @click="handleCreate">新增</el-button>
+            <el-button type="primary" icon="el-icon-refresh" @click="refresh">刷新</el-button>
         </div>
     </div>
 </template>
@@ -34,9 +35,8 @@
 <script>
 import api from '@/api/mock/table';
 import { createNamespacedHelpers } from 'vuex';
-import file from '@/utils/file';
 
-const { mapState, mapMutations } = createNamespacedHelpers('lazyTable');
+const { mapState, mapMutations } = createNamespacedHelpers('baseForm');
 
 export default {
     data() {
@@ -52,30 +52,34 @@ export default {
         };
     },
     computed: {
-        ...mapState(['list', 'filters', 'infiniteState', 'isLoadMore']),
+        ...mapState(['filters', 'overdue']),
     },
     watch: {
-        isLoadMore(val) {
-            val && this.loadList();
+        // 检测保存的查询参数副本变化，一变化就更新查询
+        filters: {
+            handler() {
+                this.loadList();
+            },
+            deep: true,
+        },
+        overdue(val) {
+            val && this.refresh();
         },
     },
     mounted() {
+        this.refresh();
     },
     methods: {
-        ...mapMutations(['setState', 'clearList']),
+        ...mapMutations(['setState']),
 
         // 查询
         async handleSearch() {
-            if (await this.checkParams()) {
-                this.setState({ list: [] });
-                this.infiniteState.reset();
-            }
+            await this.checkParams() && this.loadList();
         },
 
         // 刷新
-        handleRefresh() {
-            this.clearList();
-            this.infiniteState.reset();
+        refresh() {
+            this.loadList();
         },
 
         // 检测必填，并保存查询参数
@@ -87,45 +91,17 @@ export default {
 
         // 请求数据
         async loadList() {
+            this.setState({ loading: true });
+
             const res = await api.list(this.filters);
-            if (res) {
-                // 根据返回数量是否大于0，来决定是加载完成还是加载中止
-                let list = [...this.list];
-                if (res.list.length > 0) {
-                    list = [...this.list, ...res.list];
-                    this.setState({ filters: { p: +this.filters.p + 1 } });
-                }
-                this.setState({ list, total: res.total, isLoadMore: false });
-                this.$nextTick(() => {
-                    res.list.length > 0 ? this.infiniteState.loaded() : this.infiniteState.complete();
-                });
-            }
+            res && this.setState({ list: res.list, total: res.total });
+            this.$nextTick(() => this.setState({ loading: false, overdue: false }));
         },
 
         // 新建
         handleCreate() {
             this.setState({ activeIndex: -1, editVisible: true });
         },
-
-        // 导出
-        handleDownload() {
-            file.export2excel({
-                data: this.list,
-                headerProp: ['name', 'income', 'education', 'status', 'remark'],
-                headerName: ['姓名', '收入', '学历', '状态', '备注'],
-                name: '导出.xlsx',
-            });
-        },
     },
 };
 </script>
-
-<style lang="less" module>
-.checkbox {
-    margin-left: 20px;
-
-    :global(.el-checkbox+.el-checkbox) {
-        margin-left: 15px;
-    }
-}
-</style>

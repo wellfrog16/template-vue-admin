@@ -1,7 +1,7 @@
 <template>
     <div class="pagination flex-row-center">
-        <el-dropdown split-button type="primary" @click="handleClick" @command="handleCommand" icon="el-icon-circle-close-outline">
-            删除
+        <el-dropdown split-button type="primary" @click="handleClick" @command="handleCommand">
+            <i class="el-icon-delete" /> 删除选中
             <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item command="a">转为退休</el-dropdown-item>
                 <el-dropdown-item command="b">转为创业</el-dropdown-item>
@@ -42,7 +42,7 @@ export default {
             this.setState({ loading: true });
 
             // 远程删除
-            const res = api.remove({ guid: this.multipleSelectionGuid });
+            const res = await api.remove({ guid: this.multipleSelectionGuid });
 
             // 本地删除
             res && this.listRemove({ multipleSelection: this.multipleSelection });

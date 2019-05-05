@@ -3,7 +3,7 @@
         <i class="fas fa-search fa-lg fa-fw" @click="toggleInput"></i>
         <el-select
             v-model.trim="keywords"
-            placeholder="请输入查询页面"
+            placeholder="请输入关键字"
             :class="[$style.search, inputStyle]"
             default-first-option
             filterable

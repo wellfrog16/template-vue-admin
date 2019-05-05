@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 // 站点模块
+import baseForm from './modules/base-form';
 import complexTable from './modules/complex-table';
 import lazyTable from './modules/lazy-table';
 import member from './modules/member';
@@ -31,6 +32,7 @@ export default new Vuex.Store({
     getters,
     actions,
     modules: {
+        baseForm,
         complexTable,
         lazyTable,
         member,

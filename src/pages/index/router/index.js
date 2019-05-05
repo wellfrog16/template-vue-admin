@@ -172,6 +172,14 @@ const asyncRoutes = [
                 ],
             },
             {
+                name: '基础表单',
+                path: 'form',
+                component: () => import('../views/ui/Form.vue'),
+                meta: {
+                    icon: 'menu-fix-icon fab fa-wpforms fa-lg fa-fw',
+                },
+            },
+            {
                 name: '富文本框',
                 path: 'editor',
                 component: () => import('../views/ui/Editor.vue'),

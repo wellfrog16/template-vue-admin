@@ -20,6 +20,7 @@
                         <el-breadcrumb-item :to="{ path: '/home' }">主页</el-breadcrumb-item>
                         <el-breadcrumb-item
                             v-for="item in routeMatched"
+                            :to="{ path: item.path }"
                             :key="item.path"
                         >{{ item.name }}</el-breadcrumb-item>
                     </el-breadcrumb>
