@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import MenuItem from './menuItem.vue';
+import MenuItem from './menu-item.vue';
 
 export default {
     name: 'submenuItem',

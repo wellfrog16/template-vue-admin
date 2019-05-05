@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import MenuItem from './menuItem.vue';
-import SubmenuItem from './submenuItem.vue';
+import MenuItem from './menu-item.vue';
+import SubmenuItem from './submenu-item.vue';
 
 // todo: 三级菜单通用组件化
 export default {

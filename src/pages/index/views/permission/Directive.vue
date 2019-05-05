@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import SwitchRoles from '#index/components/permission/switchRoles.vue';
+import SwitchRoles from '#index/components/permission/switch-roles.vue';
 import { checkPermission } from '@/helper/permission';
 
 export default {
