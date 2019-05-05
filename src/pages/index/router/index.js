@@ -103,6 +103,7 @@ const asyncRoutes = [
         path: '/icon',
         name: '图标',
         component: Layout,
+        redirect: { path: '/icon/element-ui' },
         meta: {
             icon: 'menu-fix-icon fab fa-fonticons fa-lg fa-fw',
         },
@@ -130,6 +131,7 @@ const asyncRoutes = [
         path: '/ui',
         name: '组件',
         component: Layout,
+        redirect: { path: '/ui/package' },
         meta: {
             icon: 'menu-fix-icon fas fa-puzzle-piece fa-lg fa-fw',
         },
@@ -146,6 +148,7 @@ const asyncRoutes = [
                 name: '表格',
                 path: 'table',
                 component: Root,
+                redirect: { path: '/ui/table/complex' },
                 meta: {
                     icon: 'menu-fix-icon fas fa-table fa-lg fa-fw',
                 },
@@ -190,6 +193,7 @@ const asyncRoutes = [
         path: '/echarts',
         name: '图表',
         component: Layout,
+        redirect: { path: '/echarts/package' },
         meta: {
             icon: 'menu-fix-icon far fa-chart-bar fa-lg fa-fw',
         },
@@ -224,6 +228,7 @@ const asyncRoutes = [
         path: '/permission',
         name: '权限',
         component: Layout,
+        redirect: { path: '/permission/directive' },
         meta: {
             icon: 'menu-fix-icon fas fa-user-shield fa-lg fa-fw',
         },
@@ -280,7 +285,7 @@ const asyncRoutes = [
         name: '外链',
         meta: {
             link: true,
-            icon: 'menu-fix-icon fas fa-th-large fa-lg fa-fw',
+            icon: 'el-icon-link',
         },
     },
 ];
