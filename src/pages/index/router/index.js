@@ -172,7 +172,7 @@ const asyncRoutes = [
                 ],
             },
             {
-                name: '基础表单',
+                name: '基础表格+表单',
                 path: 'form',
                 component: () => import('../views/ui/Form.vue'),
                 meta: {
