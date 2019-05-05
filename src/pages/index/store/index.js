@@ -18,6 +18,9 @@ const getters = {
     roles(statex, gettersx, root) {
         return root.member.roles;
     },
+    routes(statex, gettersx, root) {
+        return root.permission.routes;
+    },
 };
 const actions = {};
 

@@ -1,10 +1,13 @@
 <template>
-    <div id="functions">
+    <div id="functions" :class="$style.main">
+        <!-- 路由搜索 -->
+        <x-search />
+
         <!-- 全屏 -->
-        <screenfull :effect="tooltip.effect" :placement="tooltip.placement" :class="$style.item" />
+        <screenfull :effect="tooltip.effect" :placement="tooltip.placement" />
 
         <!-- 通知 -->
-        <notification :effect="tooltip.effect" :placement="tooltip.placement" :class="$style.item" />
+        <notification :effect="tooltip.effect" :placement="tooltip.placement" />
 
         <!-- 用户功能 -->
         <user />
@@ -12,12 +15,18 @@
 </template>
 
 <script>
+import XSearch from './search.vue';
 import Screenfull from './screenfull.vue';
 import Notification from './notification.vue';
 import User from './user.vue';
 
 export default {
-    components: { Screenfull, Notification, User },
+    components: {
+        XSearch,
+        Screenfull,
+        Notification,
+        User,
+    },
     data() {
         return {
             tooltip: {
@@ -30,7 +39,9 @@ export default {
 </script>
 
 <style lang="less" module>
-.item {
-    margin-right: 30px;
+.main {
+    > * + * {
+        margin-left: 30px;
+    }
 }
 </style>

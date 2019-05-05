@@ -25,10 +25,9 @@ router.beforeEach((to, from, next) => {
         const { roles } = store.getters;
         if (roles.length === 0) { // 没有角色信息
             store.dispatch('member/info').then((res) => {
-                const routers = filterAsyncRoutes(asyncRoutes, res.roles);
-                store.commit('permission/setState', { routes: staticRoutes.concat(routers) });
-                router.addRoutes(routers); // 动态添加可访问路由表
-                // next({ ...to, replace: true }); // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
+                const routes = filterAsyncRoutes(asyncRoutes, res.roles);
+                store.commit('permission/setState', { routes: staticRoutes.concat(routes) });
+                router.addRoutes(routes); // 动态添加可访问路由表
                 next({ ...to });
             }).catch(() => {
                 store.commit('member/logout');
