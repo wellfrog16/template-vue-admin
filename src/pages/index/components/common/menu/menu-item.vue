@@ -24,7 +24,7 @@ export default {
             return props;
         },
         isLink() {
-            return this.item.meta && this.item.meta.link;
+            return this.item.meta && this.item.meta.type === 'link';
         },
     },
     methods: {

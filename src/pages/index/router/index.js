@@ -292,9 +292,31 @@ const asyncRoutes = [
         path: 'https://github.com/wellfrog16/template-vue-admin',
         name: '外链',
         meta: {
-            link: true,
+            type: 'link',
             icon: 'el-icon-link',
         },
+    },
+    {
+        path: '/iframe',
+        name: 'iframe',
+        component: Layout,
+        redirect: { path: '/iframe/index' },
+        meta: {
+            icon: 'menu-fix-icon fas fa-dungeon fa-lg fa-fw',
+        },
+        children: [
+            {
+                path: 'index',
+                name: 'iframe例子',
+                component: () => import('../views/iframe/Index.vue'),
+                meta: {
+                    type: 'iframe',
+                    url: 'https://cn.vuejs.org/index.html',
+                    icon: 'el-icon-link',
+                    hidden: true,
+                },
+            },
+        ],
     },
 ];
 
