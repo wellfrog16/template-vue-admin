@@ -4,7 +4,7 @@
         @click="link"
     >
         <i :class="item.meta && item.meta.icon"></i>
-        <span slot="title">{{ item.name }}</span>
+        <span slot="title">{{ item.meta && item.meta.title }}</span>
     </el-menu-item>
 </template>
 
