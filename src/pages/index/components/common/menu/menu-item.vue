@@ -4,7 +4,7 @@
         @click="link"
     >
         <i :class="item.meta && item.meta.icon"></i>
-        <span slot="title">{{ item.name }}</span>
+        <span slot="title">{{ item.meta && item.meta.title }}</span>
     </el-menu-item>
 </template>
 
@@ -24,7 +24,7 @@ export default {
             return props;
         },
         isLink() {
-            return this.item.meta && this.item.meta.link;
+            return this.item.meta && this.item.meta.type === 'link';
         },
     },
     methods: {

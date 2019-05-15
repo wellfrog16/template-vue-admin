@@ -17,12 +17,12 @@
                 <div :class="$style.left">
                     <i :class="[$style.switch, 'fas fa-bars fa-lg']" @click="toggle" id="asideToggle" />
                     <el-breadcrumb separator="/" :class="$style.breadcrumb" id="breadcrumb">
-                        <el-breadcrumb-item :to="{ path: '/home' }">主页</el-breadcrumb-item>
+                        <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
                         <el-breadcrumb-item
                             v-for="item in routeMatched"
                             :to="{ path: item.path }"
                             :key="item.path"
-                        >{{ item.name }}</el-breadcrumb-item>
+                        >{{ item.meta && item.meta.title }}</el-breadcrumb-item>
                     </el-breadcrumb>
                 </div>
                 <functions />
@@ -52,7 +52,7 @@ export default {
     },
     computed: {
         routeMatched() {
-            return this.$route.matched.filter(item => !(item.meta && item.meta.hidden) && item.name !== '主页');
+            return this.$route.matched.filter(item => !(item.meta && item.meta.hidden) && (item.meta && item.meta.title !== '首页'));
         },
         defaultActive() {
             const matched = [...this.$route.matched];
@@ -124,6 +124,8 @@ export default {
     border-bottom: 1px solid @g-color-border4;
     display: flex;
     justify-content: space-between;
+    position: relative;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
 
     .left {
         display: flex;

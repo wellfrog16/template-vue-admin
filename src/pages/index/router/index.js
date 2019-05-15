@@ -17,24 +17,24 @@ const icon = 'menu-fix-icon fas fa-pager fa-lg fa-fw';
 const staticRoutes = [
     {
         path: '',
-        redirect: { name: '登入界面' },
+        redirect: { path: '/login' },
         meta: {
             hidden: true,
         },
     },
     {
         path: '/login',
-        name: '登入界面',
         component: Login,
         meta: {
+            title: '登入界面',
             hidden: true,
         },
     },
     {
         path: '/401',
-        name: '401',
         component: () => import('../views/error/401.vue'),
         meta: {
+            title: '401',
             hidden: true,
         },
     },
@@ -43,37 +43,37 @@ const staticRoutes = [
 const asyncRoutes = [
     {
         path: '/home',
-        name: '主页',
         component: Layout,
         redirect: { path: '/home/index' },
         meta: {
             icon: 'menu-fix-icon fas fa-home fa-lg fa-fw',
+            title: '首页',
         },
         children: [
             {
                 path: 'index',
-                name: '主页详细',
                 component: () => import('../views/home/Index.vue'),
                 meta: {
                     hidden: true,
+                    title: '首页详细',
                 },
             },
         ],
     },
     {
         path: '/document',
-        name: '说明文档',
         component: Layout,
         redirect: { path: '/document/index' },
         meta: {
+            title: '说明文档',
             icon: 'el-icon-document',
         },
         children: [
             {
                 path: 'index',
-                name: '说明文档首页',
                 component: () => import('../views/document/Index.vue'),
                 meta: {
+                    title: '说明文档首页',
                     hidden: true,
                 },
             },
@@ -81,18 +81,18 @@ const asyncRoutes = [
     },
     {
         path: '/guide',
-        name: '引导页',
         component: Layout,
         redirect: { path: '/guide/index' },
         meta: {
+            title: '引导页',
             icon: 'menu-fix-icon fas fa-paper-plane fa-lg fa-fw',
         },
         children: [
             {
                 path: 'index',
-                name: '引导页首页',
                 component: () => import('../views/guide/Index.vue'),
                 meta: {
+                    title: '引导页首页',
                     hidden: true,
                 },
             },
@@ -101,26 +101,26 @@ const asyncRoutes = [
     // icon
     {
         path: '/icon',
-        name: '图标',
         component: Layout,
         redirect: { path: '/icon/element-ui' },
         meta: {
+            title: '图标',
             icon: 'menu-fix-icon fab fa-fonticons fa-lg fa-fw',
         },
         children: [
             {
-                name: 'element-ui',
                 path: 'element-ui',
                 component: () => import('../views/icon/ElIcon.vue'),
                 meta: {
+                    title: 'element-ui',
                     icon: 'menu-fix-icon fab fa-fonticons-fi fa-lg fa-fw',
                 },
             },
             {
-                name: 'font-awesome',
                 path: 'font-awesome',
                 component: () => import('../views/icon/FontAwesome.vue'),
                 meta: {
+                    title: 'font-awesome',
                     roles: ['editor'],
                     icon: 'menu-fix-icon fab fa-fonticons-fi fa-lg fa-fw',
                 },
@@ -129,69 +129,69 @@ const asyncRoutes = [
     },
     {
         path: '/ui',
-        name: '组件',
         component: Layout,
         redirect: { path: '/ui/package' },
         meta: {
+            title: '组件',
             icon: 'menu-fix-icon fas fa-puzzle-piece fa-lg fa-fw',
         },
         children: [
             {
-                name: '组件合集',
                 path: 'package',
                 component: () => import('../views/ui/Package.vue'),
                 meta: {
+                    title: '组件合集',
                     icon: 'el-icon-goods',
                 },
             },
             {
-                name: '表格',
                 path: 'table',
                 component: Root,
                 redirect: { path: '/ui/table/complex' },
                 meta: {
+                    title: '表格',
                     icon: 'menu-fix-icon fas fa-table fa-lg fa-fw',
                 },
                 children: [
                     {
-                        name: '综合表格',
                         path: 'complex',
                         component: () => import('../views/ui/table/Complex.vue'),
                         meta: {
+                            title: '综合表格',
                             icon,
                         },
                     },
                     {
-                        name: '滚动加载',
                         path: 'lazy',
                         component: () => import('../views/ui/table/Lazy.vue'),
                         meta: {
+                            title: '滚动加载',
                             icon,
                         },
                     },
                 ],
             },
             {
-                name: '基础表格和表单',
                 path: 'form',
                 component: () => import('../views/ui/Form.vue'),
                 meta: {
+                    title: '基础表格和表单',
                     icon: 'menu-fix-icon fab fa-wpforms fa-lg fa-fw',
                 },
             },
             {
-                name: '富文本框',
                 path: 'editor',
                 component: () => import('../views/ui/Editor.vue'),
                 meta: {
+                    title: '富文本框',
                     icon: 'menu-fix-icon far fa-credit-card fa-lg fa-fw',
                 },
             },
             {
-                name: '小组件',
                 path: 'part',
                 component: () => import('../views/ui/Part.vue'),
                 meta: {
+                    title: '小组件',
                     icon: 'menu-fix-icon fas fa-puzzle-piece fa-lg fa-fw',
                 },
             },
@@ -199,18 +199,18 @@ const asyncRoutes = [
     },
     {
         path: '/echarts',
-        name: '图表',
         component: Layout,
         redirect: { path: '/echarts/package' },
         meta: {
+            title: '图表',
             icon: 'menu-fix-icon far fa-chart-bar fa-lg fa-fw',
         },
         children: [
             {
-                name: '图表合集',
                 path: 'package',
                 component: () => import('../views/echarts/Package.vue'),
                 meta: {
+                    title: '图表合集',
                     icon: 'el-icon-goods',
                 },
             },
@@ -223,10 +223,10 @@ const asyncRoutes = [
             //     },
             // },
             {
-                name: '飞机航线图',
                 path: 'migration',
                 component: () => import('../views/echarts/Migration.vue'),
                 meta: {
+                    title: '飞机航线图',
                     icon: 'menu-fix-icon fas fa-dove fa-lg fa-fw',
                 },
             },
@@ -234,18 +234,18 @@ const asyncRoutes = [
     },
     {
         path: '/permission',
-        name: '权限',
         component: Layout,
         redirect: { path: '/permission/directive' },
         meta: {
+            title: '权限',
             icon: 'menu-fix-icon fas fa-user-shield fa-lg fa-fw',
         },
         children: [
             {
-                name: '权限控制',
                 path: 'directive',
                 component: () => import('../views/permission/Directive.vue'),
                 meta: {
+                    title: '权限控制',
                     icon: 'menu-fix-icon fab fa-ethereum fa-lg fa-fw',
                 },
             },
@@ -271,18 +271,18 @@ const asyncRoutes = [
     },
     {
         path: '/split-pane',
-        name: '页面分割',
         component: Layout,
         redirect: { path: '/split-pane/index' },
         meta: {
+            title: '页面分割',
             icon: 'menu-fix-icon fas fa-th-large fa-lg fa-fw',
         },
         children: [
             {
                 path: 'index',
-                name: '页面分割例子',
                 component: () => import('../views/split-pane/Index.vue'),
                 meta: {
+                    title: '页面分割例子',
                     hidden: true,
                 },
             },
@@ -290,11 +290,33 @@ const asyncRoutes = [
     },
     {
         path: 'https://github.com/wellfrog16/template-vue-admin',
-        name: '外链',
         meta: {
-            link: true,
+            title: '外链',
+            type: 'link',
             icon: 'el-icon-link',
         },
+    },
+    {
+        path: '/iframe',
+        component: Layout,
+        redirect: { path: '/iframe/index' },
+        meta: {
+            title: 'iframe',
+            icon: 'menu-fix-icon fas fa-dungeon fa-lg fa-fw',
+        },
+        children: [
+            {
+                path: 'index',
+                component: () => import('../views/iframe/Index.vue'),
+                meta: {
+                    title: 'iframe例子',
+                    type: 'iframe',
+                    url: 'https://cn.vuejs.org/index.html',
+                    icon: 'el-icon-link',
+                    hidden: true,
+                },
+            },
+        ],
     },
 ];
 
