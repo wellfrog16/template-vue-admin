@@ -4,6 +4,7 @@ import InfiniteLoading from 'vue-infinite-loading'; // 滚动加载
 // import VueScrollactive from 'vue-scrollactive'; // 单页定位
 import VueScrollactive from './vue-scrollactive'; // 单页定位
 import Affix from 'vue-affix'; // 固定元素
+import CountTo from './vue-count-to/index'; // 数字动画
 
 // 按需加载element-ui
 import './element-ui';
@@ -13,3 +14,4 @@ import './element-ui';
 Vue.use(InfiniteLoading);
 Vue.use(Affix);
 Vue.use(VueScrollactive);
+Vue.use(CountTo);

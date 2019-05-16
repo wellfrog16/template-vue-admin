@@ -30,7 +30,7 @@
             <x-transfer id="pa-transfer" />
         </div>
         <div :class="$style.nav">
-            <scrollactive
+            <vue-scrollactive
                 :class="$style['sidebar-menu']"
                 active-class="active"
                 :offset="20"
@@ -49,7 +49,7 @@
                     <a href="#pa-slider" class="scrollactive-item">滑块</a>
                     <a href="#pa-transfer" class="scrollactive-item">穿梭框</a>
                 </el-card>
-            </scrollactive>
+            </vue-scrollactive>
         </div>
         <x-backtotop element="#elMain" />
     </div>

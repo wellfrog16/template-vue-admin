@@ -10,17 +10,26 @@
             <el-tab-pane label="返回顶部" name="tab-c">
                 <backtotop />
             </el-tab-pane>
+            <el-tab-pane label="数字动画" name="tab-d">
+                <count-to />
+            </el-tab-pane>
         </el-tabs>
     </el-card>
 </template>
 
 <script>
-import clipboard from '#index/components/ui/part/clipboard.vue';
+import Clipboard from '#index/components/ui/part/clipboard.vue';
 import Touch from '#index/components/ui/part/touch.vue';
 import Backtotop from '#index/components/ui/part/backtotop.vue';
+import CountTo from '#index/components/ui/part/count-to.vue';
 
 export default {
-    components: { clipboard, Touch, Backtotop },
+    components: {
+        Clipboard,
+        Touch,
+        Backtotop,
+        CountTo,
+    },
     data() {
         return {
             activeName: 'tab-a',
