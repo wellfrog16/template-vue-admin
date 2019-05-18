@@ -5,7 +5,6 @@
         <el-alert type="success" :closable="false">
             <div :class="$style.wrapper" slot="title">
                 <vue-count-to
-                    slot="title"
                     ref="myCount"
                     :startVal="0"
                     :endVal="2019"

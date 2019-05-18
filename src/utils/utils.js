@@ -132,10 +132,16 @@ function currency(vals, units = '', decimals) {
         + floatx;
 }
 
+function getRandomColor() {
+    return '#'+('00000'+(Math.random()*0x1000000<<0).toString(16)).slice(-6); // eslint-disable-line
+    // return `hsl(${Math.random()}, 50%, 50%)`;
+}
+
 export default {
     isEmpty,
     getUrlParam,
     autoRootSize,
     createCode,
     currency,
+    getRandomColor,
 };
