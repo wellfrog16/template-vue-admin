@@ -5,6 +5,11 @@
 </template>
 
 <script>
+import cdnPath from '@/utils/cdn';
+
 export default {
+    mounted() {
+        console.log(cdnPath);
+    },
 };
 </script>

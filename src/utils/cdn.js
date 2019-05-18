@@ -18,6 +18,13 @@ const {
     Split,
 } = window;
 
+const baseCdn = 'https://cdn.jsdelivr.net';
+
+export default {
+    tinymce: `${baseCdn}/npm/tinymce@5.0.5/tinymce.min.js`,
+    jqueryTinymce: `${baseCdn}/npm/tinymce@5.0.5/jquery.tinymce.min.js`,
+};
+
 export {
     $, // jquery
     $ as jquery, // jquery

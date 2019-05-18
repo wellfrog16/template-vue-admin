@@ -42,14 +42,14 @@ export default {
             fullscreen: false,
             languageTypeList: {
                 en: 'en',
-                zh: 'zh_CN',
+                // zh: 'zh_CN',
             },
         };
     },
     computed: {
         language() {
             // return this.languageTypeList[this.$store.getters.language];
-            return this.languageTypeList.zh;
+            return this.languageTypeList.en;
         },
     },
     watch: {
