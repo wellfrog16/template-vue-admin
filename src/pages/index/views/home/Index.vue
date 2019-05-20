@@ -16,10 +16,10 @@
         </el-row>
         <el-row :gutter="10">
             <el-col :span="18">
-                <echart-line :height="300" />
+                <echart-line height="300px" />
             </el-col>
             <el-col :span="6">
-                <el-card shadow="never">11</el-card>
+                <x-progress height="300px" />
             </el-col>
         </el-row>
         <el-row :gutter="10">
@@ -39,11 +39,13 @@
 <script>
 import InfoBox from '#index/components/common/info-box/index.vue';
 import EchartLine from '#index/components/home/echart-line/index.vue';
+import XProgress from '#index/components/home/progress.vue';
 
 export default {
     components: {
         InfoBox,
         EchartLine,
+        XProgress,
     },
 };
 </script>

@@ -45,7 +45,7 @@ import {
     Row,
     Col,
     Upload,
-    // Progress,
+    Progress,
     Badge,
     Card,
     // Rate,
@@ -120,7 +120,7 @@ Vue.use(Icon);
 Vue.use(Row);
 Vue.use(Col);
 Vue.use(Upload);
-// Vue.use(Progress);
+Vue.use(Progress);
 Vue.use(Badge);
 Vue.use(Card);
 // Vue.use(Rate);

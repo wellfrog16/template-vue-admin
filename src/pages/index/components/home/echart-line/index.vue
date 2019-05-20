@@ -10,7 +10,7 @@ import options from './options';
 
 export default {
     props: {
-        height: { type: Number, required: true },
+        height: { type: String, required: true },
     },
     data() {
         return {
@@ -20,7 +20,8 @@ export default {
     computed: {
         style() {
             return {
-                height: `${this.height}px`,
+                height: this.height,
+                width: '100%',
             };
         },
     },
