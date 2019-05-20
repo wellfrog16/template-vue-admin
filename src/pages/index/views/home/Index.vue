@@ -16,7 +16,7 @@
         </el-row>
         <el-row :gutter="10">
             <el-col :span="18">
-                <el-card shadow="never">11</el-card>
+                <echart-line :height="300" />
             </el-col>
             <el-col :span="6">
                 <el-card shadow="never">11</el-card>
@@ -38,10 +38,12 @@
 
 <script>
 import InfoBox from '#index/components/common/info-box/index.vue';
+import EchartLine from '#index/components/home/echart-line/index.vue';
 
 export default {
     components: {
         InfoBox,
+        EchartLine,
     },
 };
 </script>
