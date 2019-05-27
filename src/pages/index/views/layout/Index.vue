@@ -28,7 +28,9 @@
                 <functions />
             </el-header>
             <el-main :class="$style.main" id="elMain">
-                <router-view />
+                <transition name="component-fade" mode="out-in">
+                    <router-view />
+                </transition>
             </el-main>
         </el-container>
     </el-container>

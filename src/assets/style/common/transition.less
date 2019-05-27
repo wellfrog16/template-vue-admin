@@ -1,1 +1,12 @@
 @import '../config.less';
+
+.component-fade-enter-active,
+.component-fade-leave-active {
+    transition: all 0.3s ease;
+}
+
+.component-fade-enter,
+.component-fade-leave-to,
+.component-fade-leave-active {
+    opacity: 0;
+}
