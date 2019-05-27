@@ -59,9 +59,9 @@ export default {
             routes.forEach((route) => {
                 if (route.meta && !route.meta.hidden) {
                     const data = {};
-                    data.title = [...title, route.name];
+                    data.title = [...title, route.meta.title];
                     data.meta = route.meta || {};
-                    data.meta.path = this.formatPath(path, route.path);
+                    data.meta.path = this.combinePath(path, route.path);
                     result.push(data);
 
                     if (route.children && route.children.length > 0) {
@@ -71,12 +71,12 @@ export default {
             });
             return result;
         },
-        formatPath(path1, path2) {
+        combinePath(path1, path2) {
             if (path1 === '') { return path2; }
             return `${path1}/${path2}`;
         },
         handleRedirct(meta) {
-            if (meta.link) {
+            if (meta.type === 'link') {
                 window.open(meta.path);
             } else if (meta.path) {
                 this.$router.push({ path: meta.path });
