@@ -111,7 +111,7 @@ export default {
     height: 100%;
 
     :global(.el-card__header) {
-        flex: 0 0 100px;
+        flex: 0 0 70px;
     }
 
     :global(.el-card__body) {
