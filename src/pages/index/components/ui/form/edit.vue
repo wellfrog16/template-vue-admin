@@ -79,11 +79,11 @@ export default {
             form: {
                 fields: self.createFields(),
                 rules: {
-                    ...rules.check({
-                        key: 'name', message: '姓名为长度在2-10之间的非空字符', min: 2, max: 10,
+                    ...rules.check('name', {
+                        message: '姓名为长度在2-10之间的非空字符', min: 2, max: 10,
                     }),
-                    ...rules.check({ key: 'education', message: '请选择学历' }),
-                    ...rules.check({ key: 'status', message: '请选择状态' }),
+                    ...rules.noEmpty('education', { message: '请选择学历' }),
+                    ...rules.noEmpty('status', { message: '请选择状态' }),
                 },
             },
         };
