@@ -32,7 +32,7 @@ export default {
 
         // 翻页
         handleCurrentChange(p) {
-            this.setState({ filters: { p } });
+            this.setState({ filters: { p }, overdue: true });
         },
 
         // 确认批量删除

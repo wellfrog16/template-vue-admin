@@ -55,13 +55,6 @@ export default {
         ...mapState(['filters', 'overdue']),
     },
     watch: {
-        // 检测保存的查询参数副本变化，一变化就更新查询
-        filters: {
-            handler() {
-                this.loadList();
-            },
-            deep: true,
-        },
         overdue(val) {
             val && this.refresh();
         },
