@@ -13,8 +13,7 @@ module.exports = {
     rules: {
         indent: [2, 4], // 缩进风格
         'max-len': [2, { 'code': 150 }],
-        'global-require': 0, // 关闭require必须在顶部（vue懒加载组件用）
-        'import/no-dynamic-require': 0, //关闭require格式校验（vue懒加载组件用）
+        'no-underscore-dangle': [2, { 'allow': ['_id'] }], // nedb专用
         'no-unused-expressions': [2, { 'allowShortCircuit': true, 'allowTernary': true }], // ? 允许 a && a()写法
         'no-param-reassign': [2, { 'props': true, 'ignorePropertyModificationsFor': ['state', 'item', 'el'] }], // 允许vuex里的state，备用item, el
         'vue/html-indent': ['error', 4, {
