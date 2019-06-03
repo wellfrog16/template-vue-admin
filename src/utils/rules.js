@@ -40,7 +40,7 @@ const rules = {
         const params = Object.assign({ allowEmpty: true }, options);
         const r = {};
         const rule = [
-            { pattern: /^1\d{9}$/, message: '请输入正确的手机号', trigger: 'change' },
+            { pattern: /^1\d{10}$/, message: '请输入正确的手机号', trigger: 'change' },
         ];
 
         // 是否允许为空
