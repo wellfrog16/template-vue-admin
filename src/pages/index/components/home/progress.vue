@@ -41,9 +41,9 @@ export default {
     },
     methods: {
         checkStatus(num) {
-            if (num === 100) { return 'success'; }
             if (num <= 50) { return 'exception'; }
-            return 'text';
+            if (num > 50 && num <= 99) { return 'warning'; }
+            return 'success';
         },
     },
 };

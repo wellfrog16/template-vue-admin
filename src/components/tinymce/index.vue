@@ -19,19 +19,9 @@ export default {
                 return `vue-tinymce-${+new Date()}${(Math.random() * 1000).toFixed(0)}`;
             },
         },
-        value: {
-            type: String,
-            default: '',
-        },
-        config: {
-            type: String,
-            default: 'mini',
-        },
-        height: {
-            type: Number,
-            required: false,
-            default: 360,
-        },
+        value: { type: String, default: '' },
+        config: { type: String, default: 'mini' },
+        height: { type: Number, required: false, default: 360 },
     },
     data() {
         return {

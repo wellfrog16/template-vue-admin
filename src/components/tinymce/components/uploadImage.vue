@@ -4,17 +4,18 @@
         :before-close="handleClose"
         class="or-dialog"
         :custom-class="$style.dialog"
-        top="0vh"
+        top="0"
     >
         <el-upload
+            name="avatar"
             :multiple="false"
             :file-list="fileList"
             :show-file-list="true"
             :on-remove="handleRemove"
             :on-success="handleSuccess"
             :before-upload="beforeUpload"
-            accept=".jpg,.png"
-            action="https://httpbin.org/post"
+            accept=".jpg,.jpeg,.png"
+            :action="action"
             list-type="picture-card"
         >
             <el-button type="primary">点击上传</el-button>
@@ -27,6 +28,8 @@
 </template>
 
 <script>
+import config from '@/config';
+
 export default {
     props: {
         visible: { type: Boolean, default: false },
@@ -43,6 +46,9 @@ export default {
     computed: {
         allReady() {
             return !Object.keys(this.imgList).every(item => this.imgList[item].isSuccess);
+        },
+        action() {
+            return config.server.upload || 'https://httpbin.org/post';
         },
     },
     watch: {
@@ -100,7 +106,9 @@ export default {
             Object.keys(this.imgList).forEach((key) => {
                 const item = this.imgList[key];
                 if (item.uid === file.uid) {
-                    item.url = response.files.file;
+                    // 根据上传服务器回传修改
+                    item.url = (response.files && response.files.file)
+                        || (`${config.server.image}/${response.data.file}`);
                     item.isSuccess = true;
                     this.count += 1;
                 }
