@@ -9,7 +9,7 @@ function customizer(objValue, srcValue) {
 }
 
 const mutations = {
-    setData(state, payload) {
+    setFilters(state, payload) {
         helper.mergeParam(state, payload);
     },
     setState(state, payload) {

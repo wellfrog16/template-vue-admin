@@ -20,7 +20,7 @@ export default {
         setState: (state, payload) => cstore.mutations.setState(state, payload),
 
         // 浏览器地址带参数用
-        setFilters: (state, payload) => cstore.mutations.setData(state.filters, payload),
+        setFilters: (state, payload) => cstore.mutations.setFilters(state.filters, payload),
 
         // 本地列表更新
         listUpdate: (state, payload) => state.list.splice(state.activeIndex, 1, payload.item),
