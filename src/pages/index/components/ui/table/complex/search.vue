@@ -1,6 +1,6 @@
 <template>
     <div class="search">
-        <el-form ref="form" :inline="true" :model="form.fields" :rules="form.rules">
+        <el-form ref="form" :inline="true" :model="form.fields" :rules="form.rules" @submit.native.prevent>
             <el-form-item>
                 <el-input
                     placeholder="请输入查询内容"
