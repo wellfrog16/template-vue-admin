@@ -8,6 +8,15 @@ import utils from './utils';
 // 带有效期的localStorage
 
 /**
+ * 删除指定的localStorge
+ *
+ * @param {string} key
+ */
+function remove(key) {
+    localStorage.removeItem(key);
+}
+
+/**
  * 设置localStorge
  *
  * @param {string} key
@@ -40,14 +49,12 @@ function get(key, encrypt) {
     if (utils.isEmpty(val)) { return ''; }
 
     const item = JSON.parse(val);
-    const self = this;
-
     let result = '';
 
     const handle = {
         date() {
             if (new Date() > new Date(item.expires)) {
-                self.clear(key);
+                remove(key);
             } else {
                 result = item.val;
             }
@@ -55,7 +62,7 @@ function get(key, encrypt) {
         number() {
             const ss = (new Date().getTime() - new Date(item.createAt).getTime()) / 1000;
             if (ss > +item.expires) {
-                self.clear(key);
+                remove(key);
             } else {
                 result = item.val;
             }
@@ -68,15 +75,6 @@ function get(key, encrypt) {
     handle[item.type] && handle[item.type]();
     result = encrypt ? CryptoJS.AES.decrypt(result, 'frog').toString(CryptoJS.enc.Utf8) : result;
     return result;
-}
-
-/**
- * 删除指定的localStorge
- *
- * @param {string} key
- */
-function remove(key) {
-    localStorage.removeItem(key);
 }
 
 export default {
