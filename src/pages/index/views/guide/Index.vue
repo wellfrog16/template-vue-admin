@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="main-wrapper">
         <el-button type="primary" @click.prevent.stop="handleDriver">开始引导</el-button>
     </div>
 </template>

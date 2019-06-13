@@ -1,8 +1,10 @@
 <template>
-    <el-card shadow="never" :class="$style.main">
-        <!-- 飞行航线图 -->
-        <migration />
-    </el-card>
+    <div :class="[$style.main, 'main-wrapper']">
+        <el-card shadow="never" :class="$style.card">
+            <!-- 飞行航线图 -->
+            <migration />
+        </el-card>
+    </div>
 </template>
 
 <script>
@@ -17,6 +19,10 @@ export default {
 
 <style lang="less" module>
 .main {
+    height: 100%;
+}
+
+.card {
     height: 100%;
     box-sizing: border-box;
     display: flex;

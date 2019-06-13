@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="main-wrapper">
         <el-row :gutter="10">
             <el-col :span="6">
                 <info-box icon="fas fa-dog fa-lg" title="新增数据量" :number="998" />

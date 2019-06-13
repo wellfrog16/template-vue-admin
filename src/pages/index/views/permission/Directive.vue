@@ -1,5 +1,5 @@
 <template>
-    <div :class="$style.main">
+    <div :class="[$style.main, 'main-wrapper']">
         <el-card shadow="never">
             <el-form :key="key" label-width="170px" label-position="left">
                 <el-form-item label="临时修改当前用户角色">

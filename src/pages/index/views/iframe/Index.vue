@@ -14,7 +14,6 @@ export default {
     beforeRouteEnter(to, from, next) {
         if (to.meta.type === 'iframe' && to.meta.url) {
             next((state) => {
-                $('#elMain').addClass('el-main-iframe');
                 $(`${state.$style.main}`).show();
                 state.url = to.meta.url;
             });
@@ -23,7 +22,6 @@ export default {
     },
     beforeRouteLeave(to, from, next) {
         $(`.${this.$style.main}`).hide(() => {
-            $('#elMain').removeClass('el-main-iframe');
             next();
         });
     },

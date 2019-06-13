@@ -1,5 +1,5 @@
 <template>
-    <div :class="$style.main">
+    <div :class="[$style.main, 'main-wrapper']">
         <div :class="$style.side">
             <el-card shadow="never">
                 111111

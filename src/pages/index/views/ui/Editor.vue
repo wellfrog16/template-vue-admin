@@ -1,18 +1,20 @@
 <template>
-    <el-tabs v-model="activeName">
-        <el-tab-pane label="Mini配置" name="tab1">
-            <tinymce v-model="content" :height="300" />
-        </el-tab-pane>
-        <el-tab-pane label="简单配置" name="tab2">
-            <tinymce v-model="content" :height="300" config="simple" />
-        </el-tab-pane>
-        <el-tab-pane label="标准配置" name="tab3">
-            <tinymce v-model="content" :height="300" config="standard" />
-        </el-tab-pane>
-        <el-tab-pane label="全部" name="tab4">
-            <tinymce v-model="content" :height="300" config="full" />
-        </el-tab-pane>
-    </el-tabs>
+    <div class="main-wrapper">
+        <el-tabs v-model="activeName">
+            <el-tab-pane label="Mini配置" name="tab1">
+                <tinymce v-model="content" :height="300" />
+            </el-tab-pane>
+            <el-tab-pane label="简单配置" name="tab2">
+                <tinymce v-model="content" :height="300" config="simple" />
+            </el-tab-pane>
+            <el-tab-pane label="标准配置" name="tab3">
+                <tinymce v-model="content" :height="300" config="standard" />
+            </el-tab-pane>
+            <el-tab-pane label="全部" name="tab4">
+                <tinymce v-model="content" :height="300" config="full" />
+            </el-tab-pane>
+        </el-tabs>
+    </div>
 </template>
 
 <script>

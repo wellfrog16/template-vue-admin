@@ -1,5 +1,5 @@
 <template>
-    <div class="container-complex-table" v-loading="loading">
+    <div class="container-complex-table main-wrapper" v-loading="loading">
         <!-- 搜索框 -->
         <x-search />
 
