@@ -4,7 +4,8 @@
         :visible.sync="editVisible"
         :before-close="handleClose"
         :close-on-click-modal="false"
-        class="or-dialog"
+        class="or-dialog-wrapper"
+        custom-class="or-dialog"
         width="700px"
         top="50px"
     >

@@ -1,0 +1,18 @@
+@import '../../config.less';
+
+.or-dialog-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: auto; // bug，flex下滚动条未按预期出现，无效
+}
+
+.or-dialog {
+    .el-dialog__header {
+        border-bottom: 1px solid @g-color-border1;
+    }
+
+    .el-dialog__body {
+        padding: 20px;
+    }
+}
