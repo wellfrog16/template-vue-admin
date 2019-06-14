@@ -1,6 +1,13 @@
 <template>
     <div class="search">
-        <el-form ref="form" :inline="true" :model="form.fields" :rules="form.rules" @submit.native.prevent>
+        <el-form
+            ref="form"
+            inline
+            :model="form.fields"
+            :rules="form.rules"
+            @submit.native.prevent
+            @keyup.native.enter="handleSearch"
+        >
             <el-form-item>
                 <el-input
                     placeholder="请输入查询内容"
@@ -34,6 +41,7 @@
 
 <script>
 import api from '@/api/mock/table';
+import { PAGE, RES_LIST, RES_TOTAL } from '@/helper/constant';
 import { createNamespacedHelpers } from 'vuex';
 
 const { mapState, mapMutations } = createNamespacedHelpers('baseForm');
@@ -78,7 +86,7 @@ export default {
         // 检测必填，并保存查询参数
         async checkParams() {
             const valid = await this.$refs.form.validate();
-            valid && this.setState({ filters: { ...this.form.fields, p: 1 } });
+            valid && this.setState({ filters: { ...this.form.fields, [PAGE]: 1 } });
             return valid;
         },
 
@@ -87,8 +95,11 @@ export default {
             this.setState({ loading: true });
 
             const res = await api.list(this.filters);
-            res && this.setState({ list: res.list, total: res.total });
-            this.$nextTick(() => this.setState({ loading: false, overdue: false }));
+            res && this.setState({ list: res[RES_LIST], total: res[RES_TOTAL] });
+            this.$nextTick(() => {
+                this.setState({ loading: false, overdue: false });
+                document.querySelector('.el-table__body-wrapper').scrollTop = 0;
+            });
         },
 
         // 新建

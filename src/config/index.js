@@ -1,12 +1,13 @@
-import { $ } from '@/utils/cdn';
+import { PAGE, PAGE_SIZE } from '@/helper/constant';
 import devConfig from './dev';
 import prodConfig from './prod';
+import { $ } from '@/utils/cdn';
 // 基础配置，一些默认设置
 
 const settings = {
     page: {
-        p: 1,
-        ps: 30,
+        [PAGE]: 1,
+        [PAGE_SIZE]: 30,
     },
     uploadName: 'avatar',
 };

@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import { PAGE } from '@/helper/constant';
 import api from '@/api/mock/table';
 import { createNamespacedHelpers } from 'vuex';
 
@@ -32,7 +33,7 @@ export default {
 
         // 翻页
         handleCurrentChange(p) {
-            this.setState({ filters: { p }, overdue: true });
+            this.setState({ filters: { [PAGE]: p }, overdue: true });
         },
 
         // 确认批量删除
