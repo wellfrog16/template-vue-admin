@@ -20,6 +20,7 @@
 <script>
 import api from '@/api/mock/table';
 import { createNamespacedHelpers } from 'vuex';
+import { PAGE } from '@/helper/constant';
 
 const { mapState, mapMutations, mapGetters } = createNamespacedHelpers('complexTable');
 
@@ -36,7 +37,7 @@ export default {
     },
     watch: {
         query(val) {
-            this.p = +val.p;
+            this.p = +val[PAGE];
         },
     },
     methods: {
@@ -44,7 +45,7 @@ export default {
 
         // 翻页
         handleCurrentChange(p) {
-            this.setState({ filters: { p } });
+            this.setState({ filters: { [PAGE]: p } });
             this.$router.push(this.queryPath);
         },
 

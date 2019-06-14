@@ -40,10 +40,16 @@
 
 <script>
 import api from '@/api/mock/table';
+import file from '@/utils/file';
 import { createNamespacedHelpers } from 'vuex';
 import { _ } from '@/utils/cdn';
 import { helper } from '@/helper/lakes';
-import file from '@/utils/file';
+import {
+    PAGE,
+    PAGE_SIZE,
+    RES_LIST,
+    RES_TOTAL,
+} from '@/helper/constant';
 
 const { mapState, mapMutations, mapGetters } = createNamespacedHelpers('complexTable');
 
@@ -88,8 +94,8 @@ export default {
         // query不为空，则保存参数
         if (!_.isEmpty(filters)) {
             this.setFilters(filters);
-            delete filters.p;
-            delete filters.ps;
+            delete filters[PAGE];
+            delete filters[PAGE_SIZE];
             helper.mergeParam(this.form.fields, filters);
             this.loadList();
         } else { // 无参数则清空vuex的参数，回到第一页
@@ -116,7 +122,7 @@ export default {
         // 检测必填，并保存查询参数
         async checkParams() {
             const valid = await this.$refs.form.validate();
-            valid && this.setState({ filters: { ...this.form.fields, p: 1 } });
+            valid && this.setState({ filters: { ...this.form.fields, [PAGE]: 1 } });
             return valid;
         },
 
@@ -125,7 +131,7 @@ export default {
             this.setState({ loading: true });
 
             const res = await api.list(this.filters);
-            res && this.setState({ list: res.list, total: res.total });
+            res && this.setState({ list: res[RES_LIST], total: res[RES_TOTAL] });
             this.$nextTick(() => this.setState({ loading: false }));
         },
 

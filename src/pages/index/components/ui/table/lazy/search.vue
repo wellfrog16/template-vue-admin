@@ -33,6 +33,7 @@
 
 <script>
 import api from '@/api/mock/table';
+import { PAGE, RES_LIST, RES_TOTAL } from '@/helper/constant';
 import { createNamespacedHelpers } from 'vuex';
 import file from '@/utils/file';
 
@@ -81,7 +82,7 @@ export default {
         // 检测必填，并保存查询参数
         async checkParams() {
             const valid = await this.$refs.form.validate();
-            valid && this.setState({ filters: { ...this.form.fields, p: 1 } });
+            valid && this.setState({ filters: { ...this.form.fields, [PAGE]: 1 } });
             return valid;
         },
 
@@ -91,13 +92,13 @@ export default {
             if (res) {
                 // 根据返回数量是否大于0，来决定是加载完成还是加载中止
                 let list = [...this.list];
-                if (res.list.length > 0) {
-                    list = [...this.list, ...res.list];
-                    this.setState({ filters: { p: +this.filters.p + 1 } });
+                if (res[RES_LIST].length > 0) {
+                    list = [...this.list, ...res[RES_LIST]];
+                    this.setState({ filters: { [PAGE]: +this.filters[PAGE] + 1 } });
                 }
-                this.setState({ list, total: res.total, isLoadMore: false });
+                this.setState({ list, total: res[RES_TOTAL], isLoadMore: false });
                 this.$nextTick(() => {
-                    res.list.length > 0 ? this.infiniteState.loaded() : this.infiniteState.complete();
+                    res[RES_LIST].length > 0 ? this.infiniteState.loaded() : this.infiniteState.complete();
                 });
             }
         },

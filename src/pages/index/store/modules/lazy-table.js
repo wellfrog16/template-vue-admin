@@ -21,7 +21,7 @@ export default {
 
         // 清空数据并返回原始状态
         clearList() {
-            this.commit('lazyTable/setState', { list: [], filters: { p: config.page.p, ps: config.page.ps } });
+            this.commit('lazyTable/setState', { list: [], filters: { ...config.page } });
         },
         listRemove(state, payload) {
             payload.multipleSelection.forEach((row) => {
