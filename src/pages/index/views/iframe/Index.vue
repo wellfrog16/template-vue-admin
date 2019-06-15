@@ -1,5 +1,7 @@
 <template>
-    <iframe :src='url' frameborder="0" :class="$style.main"></iframe>
+    <div :class="$style.main">
+        <iframe :src='url' frameborder="0" :class="$style.iframe"></iframe>
+    </div>
 </template>
 
 <script>
@@ -30,6 +32,11 @@ export default {
 
 <style lang="less" module>
 .main {
+    position: relative;
+    height: 100%;
+}
+
+.iframe {
     position: absolute;
     top: 0;
     left: 0;
