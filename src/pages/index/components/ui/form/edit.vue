@@ -54,6 +54,7 @@
 
 <script>
 import api from '@/api/mock/table';
+import { UID } from '@/helper/constant';
 import { rules } from '@/utils/rivers';
 import { createNamespacedHelpers } from 'vuex';
 
@@ -95,7 +96,7 @@ export default {
         },
     },
     computed: {
-        ...mapState(['editVisible', 'activeIndex']),
+        ...mapState(['editVisible', 'activeUid']),
         ...mapGetters(['activeRow']),
         title() {
             return `${this.form.fields.name} 个人信息`;
@@ -117,7 +118,7 @@ export default {
 
         // 打卡dialog时，更新数据
         async update() {
-            if (this.activeRow.guid) {
+            if (this.activeUid) {
                 // 这里实际开发需要去请求数据并更新，现在用行数据临时更新
                 await api.detail();
                 this.form.fields = { ...this.activeRow };
@@ -139,7 +140,7 @@ export default {
             this.saveBusy = true;
 
             // 更新列表（非刷新获取，仅前端根据当前数据更新）
-            if (this.form.fields.guid) {
+            if (this.form.fields[UID]) {
                 // 远程更新
                 await api.update(this.form.fields);
             } else {

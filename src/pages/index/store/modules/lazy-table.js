@@ -1,5 +1,5 @@
 import { config, cstore } from '@/helper/lakes';
-// import { _ } from '@/utils/cdn';
+import { UID } from '@/helper/constant';
 
 export default {
     namespaced: true,
@@ -20,12 +20,14 @@ export default {
         setState: (state, payload) => cstore.mutations.setState(state, payload),
 
         // 清空数据并返回原始状态
-        clearList() {
-            this.commit('lazyTable/setState', { list: [], filters: { ...config.page } });
+        reset(state) {
+            state.list = [];
+            state.filters = { ...config.page };
         },
+
         listRemove(state, payload) {
             payload.multipleSelection.forEach((row) => {
-                const index = state.list.findIndex(item => item.guid === row.guid);
+                const index = state.list.findIndex(item => item[UID] === row[UID]);
                 state.list.splice(index, 1);
             });
         },
@@ -37,7 +39,7 @@ export default {
         },
     },
     getters: {
-        multipleSelectionGuid(state) {
+        multipleSelectionUid(state) {
             const result = [];
             state.multipleSelection.forEach(item => result.push(item.guid));
             return result.join(',');

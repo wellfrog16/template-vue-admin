@@ -43,7 +43,7 @@ import api from '@/api/mock/table';
 import file from '@/utils/file';
 import { createNamespacedHelpers } from 'vuex';
 import { _ } from '@/utils/cdn';
-import { helper } from '@/helper/lakes';
+// import { helper } from '@/helper/lakes';
 import {
     PAGE,
     PAGE_SIZE,
@@ -73,13 +73,9 @@ export default {
         query: v => v.$route.query,
     },
     watch: {
-        // watch filters，翻页正常捕获filter变化并触发，但直接手动修改地址栏，filters更新，watch不到变化/某些情况下仅触发一次
-        // 测试watch $route.query正常
-        // 先用$route.query解决，但是多了一步computed
         query: {
             handler(val) {
-                this.setFilters(val);
-                helper.mergeParam(this.form.fields, val);
+                this.saveQuery(val);
                 this.loadList();
             },
             deep: true,
@@ -89,23 +85,31 @@ export default {
         },
     },
     mounted() {
-        const filters = this.$route.query;
-
-        // query不为空，则保存参数
-        if (!_.isEmpty(filters)) {
-            this.setFilters(filters);
-            delete filters[PAGE];
-            delete filters[PAGE_SIZE];
-            helper.mergeParam(this.form.fields, filters);
-            this.loadList();
-        } else { // 无参数则清空vuex的参数，回到第一页
-            this.setFilters({});
-            this.loadList();
-            // this.$router.push(this.queryPath);
-        }
+        this.init();
     },
     methods: {
-        ...mapMutations(['setState', 'setFilters']),
+        ...mapMutations(['setState', 'fixPage']),
+
+        // 查询初始化
+        async init() {
+            const { query } = this.$route;
+            if (!_.isEmpty(query)) {
+                this.saveQuery(query);
+            } else { // 无参数则清空vuex的参数，回到第一页
+                this.setState({ filters: {} });
+            }
+            await this.loadList();
+            this.fixPage();
+        },
+
+        // 保存地址栏查询参数
+        saveQuery(query) {
+            const filters = { ...query };
+            this.setState({ filters });
+            delete filters[PAGE];
+            delete filters[PAGE_SIZE];
+            _.merge(this.form.fields, filters);
+        },
 
         // 查询
         async handleSearch() {
@@ -137,7 +141,7 @@ export default {
 
         // 新建
         handleCreate() {
-            this.setState({ activeIndex: -1, editVisible: true });
+            this.setState({ activeUid: 0, editVisible: true });
         },
 
         // 导出

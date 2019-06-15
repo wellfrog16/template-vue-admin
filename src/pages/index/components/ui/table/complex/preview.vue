@@ -3,43 +3,44 @@
         :title="title"
         :visible.sync="previewVisible"
         :before-close="handleClose"
-        class="or-dialog"
+        class="or-dialog-wrapper"
+        custom-class="or-dialog"
         width="700px"
-        top="-5vh"
+        top="0"
     >
         <div class="detail-preview">
             <el-row>
                 <el-col :span="12">
                     <description-item label="姓名">
                         <template>
-                            <span>{{ activeRow.name }}</span>
-                            <i class="fas fa-male fa-lg fa-fw" v-if="activeRow.gender === '男'" :class="style['c-male']" />
-                            <i class="fas fa-female fa-lg fa-fw" v-if="activeRow.gender === '女'" :class="style['c-female']" />
+                            <span>{{ data.name }}</span>
+                            <i class="fas fa-male fa-lg fa-fw" v-if="data.gender === '男'" :class="style['c-male']" />
+                            <i class="fas fa-female fa-lg fa-fw" v-if="data.gender === '女'" :class="style['c-female']" />
                         </template>
                     </description-item>
                 </el-col>
-                <el-col :span="12"><description-item label="学历" :content="activeRow.education" /></el-col>
+                <el-col :span="12"><description-item label="学历" :content="data.education" /></el-col>
             </el-row>
             <el-row>
-                <el-col :span="12"><description-item label="生日" :content="activeRow.birthday" /></el-col>
-                <el-col :span="12"><description-item label="身份证" :content="activeRow.id" /></el-col>
+                <el-col :span="12"><description-item label="生日" :content="data.birthday" /></el-col>
+                <el-col :span="12"><description-item label="身份证" :content="data.id" /></el-col>
             </el-row>
             <el-row>
-                <el-col :span="24"><description-item label="区域" :content="activeRow.county" /></el-col>
+                <el-col :span="24"><description-item label="区域" :content="data.county" /></el-col>
             </el-row>
             <el-row>
-                <el-col :span="12"><description-item label="邮编" :content="activeRow.zip" /></el-col>
-                <el-col :span="12"><description-item label="Email" :content="activeRow.email" /></el-col>
+                <el-col :span="12"><description-item label="邮编" :content="data.zip" /></el-col>
+                <el-col :span="12"><description-item label="Email" :content="data.email" /></el-col>
             </el-row>
             <el-row>
                 <el-col :span="12">
                     <description-item label="收入">
-                        <template>{{ activeRow.income | currency('￥', 2) }}</template>
+                        <template>{{ data.income | currency('￥', 2) }}</template>
                     </description-item>
                 </el-col>
             </el-row>
             <el-row>
-                <el-col :span="24"><description-item label="备注" :content="activeRow.remark" /></el-col>
+                <el-col :span="24"><description-item label="备注" :content="data.remark" /></el-col>
             </el-row>
         </div>
         <span slot="footer">
@@ -65,8 +66,11 @@ export default {
     computed: {
         ...mapState(['previewVisible']),
         ...mapGetters(['activeRow']),
+        data() {
+            return this.activeRow || {};
+        },
         title() {
-            return `${this.activeRow.name} 个人信息`;
+            return `${this.data.name} 个人信息`;
         },
     },
     methods: {

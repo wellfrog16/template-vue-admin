@@ -29,8 +29,8 @@
         <el-table-column prop="remark" label="备注" show-overflow-tooltip min-width="300" />
         <el-table-column fixed="right" label="操作" width="120">
             <template slot-scope="scope">
-                <el-button @click="handleEdit(scope.$index)" type="primary" size="mini" icon="el-icon-edit" />
-                <el-button @click="handleDelete(scope.$index, scope.row)" type="warning" size="mini" icon="el-icon-delete" />
+                <el-button @click="handleEdit(scope.row)" type="primary" size="mini" icon="el-icon-edit" />
+                <el-button @click="handleDelete(scope.row)" type="warning" size="mini" icon="el-icon-delete" />
             </template>
         </el-table-column>
     </el-table>
@@ -38,6 +38,7 @@
 
 <script>
 import api from '@/api/mock/table';
+import { UID } from '@/helper/constant';
 import { createNamespacedHelpers } from 'vuex';
 import style from '@/assets/style/usr/app.module.less';
 
@@ -84,27 +85,27 @@ export default {
         ...mapMutations(['setState']),
 
         // 编辑
-        handleEdit(activeIndex) {
-            this.setState({ activeIndex, editVisible: true });
+        handleEdit(row) {
+            this.setState({ activeUid: row[UID], editVisible: true });
         },
 
         // 删除确认
-        handleDelete(activeIndex, row) {
+        handleDelete(row) {
             this.$confirm('确认要删除这条数据吗', '提示', {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
                 type: 'warning',
             }).then(() => {
-                this.remove(activeIndex, row);
+                this.remove(row);
             }).catch(() => {});
         },
 
         // 删除
-        async remove(activeIndex, row) {
-            this.setState({ activeIndex, loading: true });
+        async remove(row) {
+            this.setState({ activeUid: row[UID], loading: true });
 
             // 远程删除
-            await api.remove({ guid: row.guid });
+            await api.remove({ [UID]: row[UID] });
 
             this.$nextTick(() => this.setState({ loading: false, overdue: true }));
         },

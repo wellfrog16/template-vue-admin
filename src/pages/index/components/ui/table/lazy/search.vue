@@ -63,7 +63,7 @@ export default {
     mounted() {
     },
     methods: {
-        ...mapMutations(['setState', 'clearList']),
+        ...mapMutations(['setState', 'reset']),
 
         // 查询
         async handleSearch() {
@@ -75,7 +75,7 @@ export default {
 
         // 刷新
         handleRefresh() {
-            this.clearList();
+            this.reset();
             this.infiniteState.reset();
         },
 
@@ -105,7 +105,7 @@ export default {
 
         // 新建
         handleCreate() {
-            this.setState({ activeIndex: -1, editVisible: true });
+            this.setState({ activeUid: 0, editVisible: true });
         },
 
         // 导出

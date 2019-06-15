@@ -42,9 +42,9 @@
         <el-table-column prop="remark" label="备注" show-overflow-tooltip width="500" />
         <el-table-column fixed="right" label="操作" width="175">
             <template slot-scope="scope">
-                <el-button @click="handlePreview(scope.$index)" type="success" size="mini" icon="el-icon-view" />
-                <el-button @click="handleEdit(scope.$index)" type="primary" size="mini" icon="el-icon-edit" />
-                <el-button @click="handleDelete(scope.$index, scope.row)" type="warning" size="mini" icon="el-icon-delete" />
+                <el-button @click="handlePreview(scope.row)" type="success" size="mini" icon="el-icon-view" />
+                <el-button @click="handleEdit(scope.row)" type="primary" size="mini" icon="el-icon-edit" />
+                <el-button @click="handleDelete(scope.row)" type="warning" size="mini" icon="el-icon-delete" />
             </template>
         </el-table-column>
     </el-table>
@@ -53,6 +53,7 @@
 <script>
 import api from '@/api/mock/table';
 import { createNamespacedHelpers } from 'vuex';
+import { UID } from '@/helper/constant';
 import style from '@/assets/style/usr/app.module.less';
 
 const { mapState, mapMutations } = createNamespacedHelpers('complexTable');
@@ -100,32 +101,32 @@ export default {
         ...mapMutations(['setState', 'listRemove']),
 
         // 预览
-        handlePreview(activeIndex) {
-            this.setState({ activeIndex, previewVisible: true });
+        handlePreview(row) {
+            this.setState({ activeUid: row[UID], previewVisible: true });
         },
 
         // 编辑
-        handleEdit(activeIndex) {
-            this.setState({ activeIndex, editVisible: true });
+        handleEdit(row) {
+            this.setState({ activeUid: row[UID], editVisible: true });
         },
 
         // 删除确认
-        handleDelete(activeIndex, row) {
+        handleDelete(row) {
             this.$confirm('确认要删除这条数据吗', '提示', {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
                 type: 'warning',
             }).then(() => {
-                this.remove(activeIndex, row);
+                this.remove(row);
             }).catch(() => {});
         },
 
         // 删除
-        async remove(activeIndex, row) {
-            this.setState({ activeIndex, loading: true });
+        async remove(row) {
+            this.setState({ [UID]: row[UID], loading: true });
 
             // 远程删除
-            const res = await api.remove({ guid: row.guid });
+            const res = await api.remove({ [UID]: row[UID] });
 
             // 本地删除
             res && this.listRemove({ multipleSelection: [row] });

@@ -7,7 +7,7 @@
         class="or-dialog-wrapper"
         custom-class="or-dialog"
         width="700px"
-        top="50px"
+        top="0"
     >
         <el-form ref="form" :model="form.fields" :rules="form.rules" label-width="80px" v-loading="saveBusy">
             <el-row :gutter="20">
@@ -108,6 +108,7 @@
 
 <script>
 import api from '@/api/mock/table';
+import { UID } from '@/helper/constant';
 import { rules } from '@/utils/rivers';
 import { createNamespacedHelpers } from 'vuex';
 
@@ -156,7 +157,7 @@ export default {
         },
     },
     computed: {
-        ...mapState(['editVisible', 'activeIndex']),
+        ...mapState(['editVisible', 'activeUid']),
         ...mapGetters(['activeRow']),
         title() {
             return `${this.form.fields.name} 个人信息`;
@@ -178,7 +179,7 @@ export default {
 
         // 打卡dialog时，更新数据
         update() {
-            if (this.activeRow.guid) {
+            if (this.activeUid) {
                 this.form.fields = { ...this.activeRow };
             } else {
                 this.form.fields = this.createFields();
@@ -198,7 +199,7 @@ export default {
             this.saveBusy = true;
 
             // 更新列表（非刷新获取，仅前端根据当前数据更新）
-            if (this.form.fields.guid) {
+            if (this.form.fields[UID]) {
                 // 远程更新
                 const res = await api.update(this.form.fields);
 
@@ -210,7 +211,7 @@ export default {
 
                 // 本地写入
                 if (res) {
-                    this.form.fields.guid = res.guid;
+                    this.form.fields[UID] = res[UID];
                     this.listInsert({ item: this.form.fields });
                 }
             }

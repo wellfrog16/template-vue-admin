@@ -29,7 +29,7 @@
         <el-table-column prop="remark" label="备注" show-overflow-tooltip min-width="300" />
         <el-table-column label="操作" width="64">
             <template slot-scope="scope">
-                <el-button @click="handleDelete(scope.$index, scope.row)" type="warning" size="mini" icon="el-icon-delete" />
+                <el-button @click="handleDelete(scope.row)" type="warning" size="mini" icon="el-icon-delete" />
             </template>
         </el-table-column>
 
@@ -43,6 +43,7 @@
 
 <script>
 import api from '@/api/mock/table';
+import { UID } from '@/helper/constant';
 import { createNamespacedHelpers } from 'vuex';
 import style from '@/assets/style/usr/app.module.less';
 
@@ -100,11 +101,11 @@ export default {
         },
 
         // 删除
-        async remove(activeIndex, row) {
-            this.setState({ activeIndex, loading: true });
+        async remove(row) {
+            this.setState({ activeUid: row[UID], loading: true });
 
             // 远程删除
-            const res = await api.remove({ guid: row.guid });
+            const res = await api.remove({ [UID]: row[UID] });
 
             // 本地删除
             res && this.listRemove({ multipleSelection: [row] });

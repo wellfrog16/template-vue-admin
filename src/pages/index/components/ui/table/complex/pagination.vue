@@ -20,38 +20,34 @@
 <script>
 import api from '@/api/mock/table';
 import { createNamespacedHelpers } from 'vuex';
-import { PAGE } from '@/helper/constant';
+import { PAGE, UID } from '@/helper/constant';
 
 const { mapState, mapMutations, mapGetters } = createNamespacedHelpers('complexTable');
 
 export default {
-    data() {
-        return {
-            p: 1,
-        };
-    },
     computed: {
-        ...mapState(['total', 'components', 'multipleSelection']),
-        ...mapGetters(['queryPath', 'multipleSelectionGuid']),
-        query: v => v.$route.query,
-    },
-    watch: {
-        query(val) {
-            this.p = +val[PAGE];
+        ...mapState(['total', 'components', 'multipleSelection', 'filters']),
+        ...mapGetters(['queryPath', 'multipleSelectionUid']),
+        p: {
+            get() {
+                return +this.filters[PAGE];
+            },
+            set(val) {
+                this.setState({ filters: { [PAGE]: val } });
+            },
         },
     },
     methods: {
         ...mapMutations(['setState', 'listRemove', 'listUpdateStatus']),
 
         // 翻页
-        handleCurrentChange(p) {
-            this.setState({ filters: { [PAGE]: p } });
+        handleCurrentChange() {
             this.$router.push(this.queryPath);
         },
 
         // 确认批量删除
         handleClick() {
-            if (!this.multipleSelectionGuid) { return; }
+            if (!this.multipleSelectionUid) { return; }
 
             this.$confirm('确认要删除这些数据吗', '提示', {
                 confirmButtonText: '确定',
@@ -67,7 +63,7 @@ export default {
             this.setState({ loading: true });
 
             // 远程删除
-            const res = await api.remove({ guid: this.multipleSelectionGuid });
+            const res = await api.remove({ [UID]: this.multipleSelectionUid });
 
             // 本地删除
             res && this.listRemove({ multipleSelection: this.multipleSelection });
@@ -82,7 +78,7 @@ export default {
                 b: () => { self.changeStatus('创业'); },
             };
 
-            if (!this.multipleSelectionGuid) { return; }
+            if (!this.multipleSelectionUid) { return; }
 
             this.$confirm('确认要批量修改这些数据吗', '提示', {
                 confirmButtonText: '确定',

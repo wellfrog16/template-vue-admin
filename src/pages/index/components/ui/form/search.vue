@@ -104,7 +104,7 @@ export default {
 
         // 新建
         handleCreate() {
-            this.setState({ activeIndex: -1, editVisible: true });
+            this.setState({ activeUid: 0, editVisible: true });
         },
     },
 };
