@@ -180,6 +180,14 @@ const asyncRoutes = [
                 },
             },
             {
+                path: 'camera-upload',
+                component: () => import('../views/ui/CameraUpload.vue'),
+                meta: {
+                    title: '拍照上传',
+                    icon: 'menu-fix-icon fas fa-camera fa-lg fa-fw',
+                },
+            },
+            {
                 path: 'editor',
                 component: () => import('../views/ui/Editor.vue'),
                 meta: {

@@ -1,15 +1,10 @@
 <template>
     <el-card shadow="never">
-        文档
+        对话框引用
     </el-card>
 </template>
 
 <script>
-import cdnPath from '@/utils/cdn';
-
 export default {
-    mounted() {
-        console.log(cdnPath);
-    },
 };
 </script>
