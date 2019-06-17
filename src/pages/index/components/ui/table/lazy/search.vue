@@ -8,10 +8,13 @@
                     prefix-icon="el-icon-search"
                     autocomplete="on"
                     maxlength="20"
+                    clearable
+                    @keyup.native.enter="handleSearch"
+                    @clear="handleSearch"
                 />
             </el-form-item>
             <el-form-item>
-                <el-select style="width: 120px;" v-model="form.fields.education" clearable placeholder="所有学历">
+                <el-select style="width: 120px;" v-model="form.fields.education" clearable @clear="handleSearch" placeholder="所有学历">
                     <el-option
                         v-for="item in edus"
                         :key="item"
@@ -33,7 +36,13 @@
 
 <script>
 import api from '@/api/mock/table';
-import { PAGE, RES_LIST, RES_TOTAL } from '@/helper/constant';
+import config from '@/config';
+import {
+    PAGE,
+    PAGE_SIZE,
+    RES_LIST,
+    RES_TOTAL,
+} from '@/helper/constant';
 import { createNamespacedHelpers } from 'vuex';
 import file from '@/utils/file';
 
@@ -61,9 +70,18 @@ export default {
         },
     },
     mounted() {
+        this.init();
     },
     methods: {
-        ...mapMutations(['setState', 'reset']),
+        ...mapMutations(['setState']),
+
+        // 初始化，回填查询条件
+        init() {
+            const filters = { ...this.filters };
+            delete filters[PAGE];
+            delete filters[PAGE_SIZE];
+            this.form.fields = Object.assign(this.form.fields, filters);
+        },
 
         // 查询
         async handleSearch() {
@@ -75,7 +93,7 @@ export default {
 
         // 刷新
         handleRefresh() {
-            this.reset();
+            this.setState({ list: [], filters: { ...config.page } });
             this.infiniteState.reset();
         },
 

@@ -8,10 +8,13 @@
                     prefix-icon="el-icon-search"
                     autocomplete="on"
                     maxlength="20"
+                    clearable
+                    @keyup.native.enter="handleSearch"
+                    @clear="handleSearch"
                 />
             </el-form-item>
             <el-form-item>
-                <el-select style="width: 120px;" v-model="form.fields.education" clearable placeholder="所有学历">
+                <el-select style="width: 120px;" v-model="form.fields.education" clearable @clear="handleSearch" placeholder="所有学历">
                     <el-option
                         v-for="item in edus"
                         :key="item"
@@ -88,7 +91,7 @@ export default {
         this.init();
     },
     methods: {
-        ...mapMutations(['setState', 'fixPage']),
+        ...mapMutations(['setState', 'fixPage', 'reset']),
 
         // 查询初始化
         async init() {
@@ -96,7 +99,7 @@ export default {
             if (!_.isEmpty(query)) {
                 this.saveQuery(query);
             } else { // 无参数则清空vuex的参数，回到第一页
-                this.setState({ filters: {} });
+                this.reset();
             }
             await this.loadList();
             this.fixPage();

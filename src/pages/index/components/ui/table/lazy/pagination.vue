@@ -13,6 +13,7 @@
 <script>
 import api from '@/api/mock/table';
 import { createNamespacedHelpers } from 'vuex';
+import { UID } from '@/helper/constant';
 
 const { mapState, mapMutations, mapGetters } = createNamespacedHelpers('lazyTable');
 
@@ -42,7 +43,7 @@ export default {
             this.setState({ loading: true });
 
             // 远程删除
-            const res = await api.remove({ guid: this.multipleSelectionUid });
+            const res = await api.remove({ [UID]: this.multipleSelectionUid });
 
             // 本地删除
             res && this.listRemove({ multipleSelection: this.multipleSelection });
@@ -85,7 +86,3 @@ export default {
     },
 };
 </script>
-
-<style lang="less" module>
-
-</style>

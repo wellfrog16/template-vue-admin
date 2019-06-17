@@ -6,7 +6,6 @@
             :model="form.fields"
             :rules="form.rules"
             @submit.native.prevent
-            @keyup.native.enter="handleSearch"
         >
             <el-form-item>
                 <el-input
@@ -16,10 +15,12 @@
                     autocomplete="on"
                     maxlength="20"
                     clearable
+                    @clear="handleSearch"
+                    @keyup.native.enter="handleSearch"
                 />
             </el-form-item>
             <el-form-item>
-                <el-select style="width: 120px;" v-model="form.fields.education" clearable placeholder="所有学历">
+                <el-select style="width: 120px;" v-model="form.fields.education" clearable @clear="handleSearch" placeholder="所有学历">
                     <el-option
                         v-for="item in edus"
                         :key="item"
