@@ -1,4 +1,4 @@
-import { cstore } from '@/helper/lakes';
+import { utils } from '@/utils/rivers';
 
 export default {
     namespaced: true,
@@ -6,7 +6,7 @@ export default {
         routes: [],
     },
     mutations: {
-        setState: (state, payload) => cstore.mutations.setState(state, payload),
+        setState: (state, payload) => utils.deepMerge(state, payload),
     },
     getters: {
     },

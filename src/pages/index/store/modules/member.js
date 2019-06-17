@@ -1,5 +1,5 @@
-import { cstore, helper } from '@/helper/lakes';
-import { auth, storage } from '@/utils/rivers';
+import { helper } from '@/helper/lakes';
+import { utils, auth, storage } from '@/utils/rivers';
 import api from '@/api/mock/member';
 // import { _ } from '@/utils/cdn';
 
@@ -10,7 +10,7 @@ export default {
         roles: [],
     },
     mutations: {
-        setState: (state, payload) => cstore.mutations.setState(state, payload),
+        setState: (state, payload) => utils.deepMerge(state, payload),
         logout() {
             this.commit('member/setState', { token: '', roles: [] });
         },
