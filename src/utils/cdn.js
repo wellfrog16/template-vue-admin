@@ -21,6 +21,7 @@ const {
 const baseCdn = 'https://cdn.jsdelivr.net';
 
 export default {
+    jquerys: `${baseCdn}/npm/jquery@3.3.1`,
     tinymce: `${baseCdn}/npm/tinymce@5.0.5/tinymce.min.js`,
     jqueryTinymce: `${baseCdn}/npm/tinymce@5.0.5/jquery.tinymce.min.js`,
 };
