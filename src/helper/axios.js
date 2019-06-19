@@ -57,17 +57,17 @@ function axiosInstance(args) {
                 // 请求成功，如果无data数据，则添加一个空对象来避免undefined，从而来和500 error(data)的undefined区分
                 if (!data.data) { result.data = {}; }
             } else {
-                Notification.error({ title: data.message });
+                Notification.error({ title: '错误', message: data.message });
                 return Promise.reject(data.message || '服务器返回错误');
             }
         } else if (!status.includes(response.status)) { // 非预设 status 状态，需要看具体返回类型决定如果处理
-            Notification.error({ title: response.statusText });
+            Notification.error({ title: '错误', message: response.statusText });
             return Promise.reject(response.statusText || '未知的错误');
         }
         return result;
     }, (error) => { // 5xx, 4xx
         loadingInstancce && loadingInstancce.close();
-        Notification.error({ title: error });
+        Notification.error({ title: '错误', message: error });
         return Promise.reject(error);
         // return error;
         // throw error;
