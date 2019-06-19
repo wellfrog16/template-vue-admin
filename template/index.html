@@ -1,89 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <!-- <link rel="icon" href="<%= BASE_URL %>src/favicon.ico"> -->
-    <title><%= htmlWebpackPlugin.options.title %></title>
-    <!-- css reset -->
-    <link href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1" rel="stylesheet">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <!-- <link rel="icon" href="<%= BASE_URL %>src/favicon.ico"> -->
+        <title><%= htmlWebpackPlugin.options.title %></title>
+        <!-- css reset -->
+        <link href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1" rel="stylesheet">
 
-    <!-- fontawesome -->
-    <!-- <link href="<%= BASE_URL %>src/assets/css/fontawesome/5.5.0/css/fontawesome-all.min.css" rel="stylesheet"> -->
-    <link href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.7.2/css/all.min.css" rel="stylesheet">
+        <!-- fontawesome -->
+        <!-- <link href="<%= BASE_URL %>src/assets/css/fontawesome/5.5.0/css/fontawesome-all.min.css" rel="stylesheet"> -->
+        <link href="https://cdn.jsdelivr.net/gh/FortAwesome/Font-Awesome@5.7.2/css/all.min.css" rel="stylesheet">
 
-    <!-- nprogress -->
-    <link href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0"></script>
+        <!-- nprogress -->
+        <link href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0"></script>
 
-    <!-- elementUI样式 -->
-    <link href="<%= BASE_URL %>src/plugins/element-ui/2.9.1/0b4c8f/style.css" rel="stylesheet">
-    
-    <!-- axios -->
-    <script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
-    
-    <!-- jquery -->
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1"></script>
-    <!-- jQuery-One-Page-Nav -->
-    <script src="https://cdn.jsdelivr.net/gh/davist11/jQuery-One-Page-Nav/jquery.nav.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
-    <!-- tinymce -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/tinymce@5.0.5/tinymce.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/tinymce@5.0.5/jquery.tinymce.min.js"></script> -->
-    <!-- <script src="<%= BASE_URL %>src/plugins/tinymce/5.0.3/tinymce.min.js"></script>
-    <script src="<%= BASE_URL %>src/plugins/tinymce/5.0.3/jquery.tinymce.min.js"></script> -->
+        <!-- elementUI样式 -->
+        <link href="<%= BASE_URL %>src/plugins/element-ui/2.9.1/0b4c8f/style.css" rel="stylesheet">
+        
+        <!-- axios -->
+        <script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"></script>
+        
+        <!-- jquery -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1"></script>
+        <!-- jQuery-One-Page-Nav -->
+        <script src="https://cdn.jsdelivr.net/gh/davist11/jQuery-One-Page-Nav/jquery.nav.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery.scrollto@2.1.2/jquery.scrollTo.min.js"></script>
+        <!-- tinymce -->
+        <!-- <script src="https://cdn.jsdelivr.net/npm/tinymce@5.0.5/tinymce.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/tinymce@5.0.5/jquery.tinymce.min.js"></script> -->
+        <!-- <script src="<%= BASE_URL %>src/plugins/tinymce/5.0.3/tinymce.min.js"></script>
+        <script src="<%= BASE_URL %>src/plugins/tinymce/5.0.3/jquery.tinymce.min.js"></script> -->
 
-    <!-- echarts -->
-    <script src="https://cdn.jsdelivr.net/npm/echarts@4.2.1/dist/echarts.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/echarts-gl@1.1.1"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/echarts@4.2.1/map/js/china.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/echarts@4.2.1/map/js/world.js"></script>
+        <!-- echarts -->
+        <script src="https://cdn.jsdelivr.net/npm/echarts@4.2.1/dist/echarts.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/echarts-gl@1.1.1"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/echarts@4.2.1/map/js/china.js"></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/echarts@4.2.1/map/js/world.js"></script>
 
-    <!-- 插件 -->
-    <!-- <script src="<%= BASE_URL %>src/plugins/echarts/4.1.0-release/echarts-wordcloud.min.js"></script> -->
-    <!-- 需要压缩 -->
-    <script src="https://cdn.jsdelivr.net/npm/echarts@4.2.1/theme/macarons.js"></script>
+        <!-- 插件 -->
+        <!-- <script src="<%= BASE_URL %>src/plugins/echarts/4.1.0-release/echarts-wordcloud.min.js"></script> -->
+        <!-- 需要压缩 -->
+        <script src="https://cdn.jsdelivr.net/npm/echarts@4.2.1/theme/macarons.js"></script>
 
-    <!-- d3 -->
-    <!-- <script src="<%= BASE_URL %>src/plugins/d3/5.7.0/d3.min.js"></script> -->
+        <!-- d3 -->
+        <!-- <script src="<%= BASE_URL %>src/plugins/d3/5.7.0/d3.min.js"></script> -->
 
-    <!-- moment -->
-    <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0"></script>
+        <!-- moment -->
+        <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0"></script>
 
-    <!-- underscore -->
-    <!-- <script src="<%= BASE_URL %>src/plugins/underscore/1.9.1/underscore.min.js"></script> -->
+        <!-- underscore -->
+        <!-- <script src="<%= BASE_URL %>src/plugins/underscore/1.9.1/underscore.min.js"></script> -->
 
-    <!-- lodash -->
-    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11"></script>
+        <!-- lodash -->
+        <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.11"></script>
 
-    <!-- 手势 -->
-    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
+        <!-- 手势 -->
+        <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
 
-    <!-- screenfull -->
-    <script src="https://cdn.jsdelivr.net/npm/screenfull@4.0.1"></script>
+        <!-- screenfull -->
+        <script src="https://cdn.jsdelivr.net/npm/screenfull@4.0.1"></script>
 
-    <!-- 复制 -->
-    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4"></script>
+        <!-- 复制 -->
+        <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4"></script>
 
-    <!-- 加密 -->
-    <script src="https://cdn.jsdelivr.net/npm/crypto-js@3.1.9-1/crypto-js.js"></script>
+        <!-- 加密 -->
+        <script src="https://cdn.jsdelivr.net/npm/crypto-js@3.1.9-1/crypto-js.js"></script>
 
-    <!-- cookie -->
-    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+        <!-- cookie -->
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 
-    <!-- 提示帮助指引 -->
-    <link href="https://cdn.jsdelivr.net/npm/driver.js@0.9.5/dist/driver.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/driver.js@0.9.5"></script>
+        <!-- 提示帮助指引 -->
+        <link href="https://cdn.jsdelivr.net/npm/driver.js@0.9.5/dist/driver.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/driver.js@0.9.5"></script>
 
-    <!-- 分割布局 -->
-    <script src="https://cdn.jsdelivr.net/npm/split.js@1.5.10"></script>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but template-admin doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+        <!-- 分割布局 -->
+        <script src="https://cdn.jsdelivr.net/npm/split.js@1.5.10"></script>
+
+        <!-- 百度地图API -->
+        <script type="text/javascript" src="http://api.map.baidu.com/api?v=3.0&ak=rrK5thxGKxN45pnaH2Gd0ZxyFkr8MaTl"></script>
+    </head>
+    <body>
+        <noscript>
+            <strong>We're sorry but template-admin doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+        </noscript>
+        <div id="app"></div>
+        <!-- built files will be auto injected -->
+    </body>
 </html>
