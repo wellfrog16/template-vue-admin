@@ -46,7 +46,13 @@ function axiosInstance(args) {
 
         if (status.includes(response.status) && method.includes(config.method)) { // 正常响应预设 status 状态
             if (data.success) {
-                options.notification && Notification.success({ title: '操作成功' });
+                const messages = {
+                    post: '添加成功',
+                    put: '修改成功',
+                    delete: '删除成功',
+                };
+                const message = messages[config.method] || '';
+                options.notification && Notification.success({ title: '成功', message });
 
                 // 请求成功，如果无data数据，则添加一个空对象来避免undefined，从而来和500 error(data)的undefined区分
                 if (!data.data) { result.data = {}; }
