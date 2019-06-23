@@ -1,5 +1,5 @@
 <template>
-    <el-card :class="[$style.card, 'main-wrapper']" shadow="never">
+    <el-card :class="$style.card" shadow="never">
         <div slot="header" class="clearfix">
             <el-input placeholder="请输入查询关键字" v-model="key">
 

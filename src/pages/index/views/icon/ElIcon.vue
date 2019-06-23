@@ -1,5 +1,5 @@
 <template>
-    <el-card :class="[$style.card, 'main-wrapper']" shadow="never">
+    <el-card :class="$style.card" shadow="never">
         <el-row :class="$style.list">
             <el-col
                 v-for="item in list"
