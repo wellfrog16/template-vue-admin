@@ -31,7 +31,7 @@
 
             <!-- 拍照/上传操作选择区 -->
             <div :class="$style['button-select']">
-                <el-button :loading="loading" :disabled="loading" @click="handleOpenCamera" type="primary">打开摄像头</el-button>
+                <el-button :loading="loading" :disabled="loading" @click="handleOpenCamera" type="primary">拍照</el-button>
                 <el-upload
                     :class="$style.upload"
                     :name="name"
@@ -45,7 +45,7 @@
                     :show-file-list="false"
                     :auto-upload="false"
                 >
-                    <el-button :loading="loading" :disabled="uploadDisabled" slot="trigger" type="primary">选取文件</el-button>
+                    <el-button :loading="loading" :disabled="uploadDisabled" slot="trigger" type="primary">上传图片</el-button>
                 </el-upload>
             </div>
 
