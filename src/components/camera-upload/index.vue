@@ -11,9 +11,9 @@
             top="0"
         >
             <!-- 主窗口区域 -->
-            <div :class="$style.windows" :style="windowStyle" v-loading="loading">
+            <el-card :class="$style.windows" :style="windowStyle" v-loading="loading">
                 <!-- <div :class="[$style.tips, $style['main-size']]"></div> -->
-                <el-image v-show="imageVisible" :src="imageUrl" fit="cover" />
+                <el-image v-show="imageVisible" :src="fixedImageUrl" fit="cover" />
                 <video v-show="videoVisible" :width="width" :height="height" />
                 <canvas v-show="canvasVisible" :width="width" :height="height" />
                 <div v-show="placeholderVisible" :class="$style.placeholder">
@@ -27,7 +27,7 @@
                         <el-alert v-show="alertErrorVisible" title="提示" type="error" center show-icon :closable="false" description="打开摄像头失败" />
                     </transition>
                 </div>
-            </div>
+            </el-card>
 
             <!-- 拍照/上传操作选择区 -->
             <div :class="$style['button-select']">
@@ -45,7 +45,7 @@
                     :show-file-list="false"
                     :auto-upload="false"
                 >
-                    <el-button :loading="loading" :disabled="loading" slot="trigger" type="primary">选取文件</el-button>
+                    <el-button :loading="loading" :disabled="uploadDisabled" slot="trigger" type="primary">选取文件</el-button>
                 </el-upload>
             </div>
 
@@ -88,6 +88,7 @@ export default {
         onError: { type: Function }, // 上传失败的钩子
         onSubmit: { type: Function }, // 保存时不上传，则执行submit
         submitText: { type: String, default: '保存' },
+        src: { type: String },
     },
     data() {
         return {
@@ -108,7 +109,8 @@ export default {
         // 对话框宽度
         dialogWidth() {
             const paddingWidth = 40;
-            return `${this.width + paddingWidth}px`;
+            const borderWidth = 2;
+            return `${this.width + paddingWidth + borderWidth}px`;
         },
 
         // 窗口样式
@@ -158,9 +160,20 @@ export default {
         cancelVisible() {
             return !this.videoVisible;
         },
+
+        // 传入图片地址和上传图片地址选择
+        fixedImageUrl() {
+            return this.imageUrl || this.src;
+        },
+
         // 是否已经选择待上传的图片
         isImageSelected() {
             return this.imageUrl !== '';
+        },
+
+        // 上传按钮是否可操作
+        uploadDisabled() {
+            return this.loading || this.currentWindow === WINDOW_VIDEO;
         },
     },
     watch: {
@@ -171,12 +184,17 @@ export default {
     methods: {
         // 打开对话框时，更新需要显示的窗口，初始化数据
         initWindow() {
-            this.lastWindow = WINDOW_PLACEHOLDER;
             this.currentWindow = '';
             this.isShoted = false;
             this.imageUrl = '';
             this.fileList = [];
+            this.lastWindow = WINDOW_PLACEHOLDER;
             this.toggleWindow(WINDOW_PLACEHOLDER);
+
+            if (this.src) {
+                this.lastWindow = WINDOW_IMAGE;
+                this.toggleWindow(WINDOW_IMAGE);
+            }
         },
 
         // 关闭对话框
@@ -254,6 +272,7 @@ export default {
 
         // 返回数据窗口>提示窗口
         handleBack() {
+            this.closeCamera();
             this.showLastWindow();
             this.currentWindow === WINDOW_VIDEO && this.closeCamera();
         },
@@ -350,30 +369,34 @@ export default {
 
 <style lang="less" module>
 .windows {
-    position: relative;
+    :global(.el-card__body) {
+        padding: 0;
+        height: 100%;
+        position: relative;
+    }
 
-    > div, video, canvas {
+    :global(.el-card__body) > div, video, canvas {
         position: absolute;
         width: 100%;
         height: 100%;
         top: 0;
         left: 0;
     }
+
+    div.alert {
+        position: absolute;
+        z-index: 3;
+        width: 200px;
+        height: initial;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 }
 
 .placeholder {
     display: flex;
     justify-content: center;
-}
-
-div.alert {
-    position: absolute;
-    z-index: 3;
-    width: 200px;
-    height: initial;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
 .upload {

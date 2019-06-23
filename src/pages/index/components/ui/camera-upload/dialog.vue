@@ -8,6 +8,7 @@
             action="http://127.0.0.1:8001/service/file/upload"
             :onSubmit="handleSubmit"
             :upload="true"
+            src="https://element.eleme.cn/static/component.bd3411b.png"
         />
     </div>
 </template>
