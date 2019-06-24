@@ -20,6 +20,14 @@ export default {
     // todo 登陆信息保存至localStorage封装
     actions: {
         login({ commit }, userInfo) {
+            return new Promise((resolve) => {
+                commit('setState', { token: '1' });
+                auth.set('1');
+                storage.set('username', userInfo.username);
+                resolve(true);
+            });
+        },
+        login2({ commit }, userInfo) {
             return new Promise((resolve, reject) => {
                 api.login(userInfo).then((res) => {
                     const { data } = res;
@@ -35,6 +43,13 @@ export default {
             });
         },
         info({ commit }) {
+            return new Promise((resolve) => {
+                const res = { roles: ['admin'] };
+                commit('setState', { roles: res.roles });
+                resolve(res);
+            });
+        },
+        info2({ commit }) {
             return new Promise((resolve, reject) => {
                 api.info().then((res) => {
                     if (res.roles && res.roles.length > 0) {
