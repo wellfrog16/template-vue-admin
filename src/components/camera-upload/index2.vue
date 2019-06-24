@@ -27,41 +27,13 @@
                         <el-alert v-show="alertErrorVisible" title="提示" type="error" center show-icon :closable="false" description="打开摄像头失败" />
                     </transition>
                 </div>
-                <div :class="$style.mask">
-                    <div
-                        class="flex-center"
-                        v-loading="loading"
-                        :disabled="loading"
-                        v-show="cameraVisible"
-                        @click="handleOpenCamera"
-                    >
-                        <i class="fas fa-camera fa-5x" />
-                    </div>
-                    <div class="flex-center" v-show="uploadVisible">
-                        <el-upload
-                            class="fullsize"
-                            :class="$style.upload"
-                            :name="name"
-                            ref="upload"
-                            :action="action"
-                            :headers="headers"
-                            :on-change="handleUploadChange"
-                            :on-success="handleUploadSuccess"
-                            :on-error="handleUploadError"
-                            :file-list="fileList"
-                            :show-file-list="false"
-                            :auto-upload="false"
-                        >
-                            <div class="flex-center abs-fullsize" slot="trigger"><i class="fas fa-upload fa-5x" /></div>
-                        </el-upload>
-                    </div>
-                </div>
             </el-card>
 
             <!-- 拍照/上传操作选择区 -->
             <div :class="$style['button-select']">
                 <el-button :loading="loading" :disabled="loading" v-show="cameraVisible" @click="handleOpenCamera" type="primary">拍照</el-button>
                 <el-upload
+                    :class="$style.upload"
                     :name="name"
                     ref="upload"
                     accept=".jpg,.png,.jpeg"
@@ -431,11 +403,6 @@ export default {
         left: 50%;
         transform: translate(-50%, -50%);
     }
-
-    &:hover .mask {
-        display: flex;
-        opacity: 1;
-    }
 }
 
 .placeholder {
@@ -446,43 +413,6 @@ export default {
 .upload {
     display: inline-block;
     margin-left: 8px;
-}
-
-.mask-transition() {
-    transition: 0.3s all linear;
-}
-
-.mask {
-    display: flex;
-    opacity: 0;
-    background-color: rgba(255, 255, 255, 0.8);
-    z-index: 10;
-    .mask-transition();
-
-    > div {
-        .mask-transition();
-
-        position: relative;
-        // flex-grow: 1;
-        flex: 1 0 50%;
-        color: rgba(0, 0, 0, 0.2);
-        cursor: pointer;
-
-        i {
-            .mask-transition();
-
-            font-size: 72px;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        &:hover {
-            background-color: rgba(0, 0, 0, 0.4);
-
-            i {
-                transform: scale(1.2);
-            }
-        }
-    }
 }
 
 .button-select {

@@ -22,7 +22,6 @@ const route = {
             component: () => import('#index/views/icon/FontAwesome.vue'),
             meta: {
                 title: 'font-awesome',
-                roles: ['editor'],
                 icon: 'menu-fix-icon fab fa-fonticons-fi fa-lg fa-fw',
             },
         },
