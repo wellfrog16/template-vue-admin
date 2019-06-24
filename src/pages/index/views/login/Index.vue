@@ -85,7 +85,7 @@ export default {
                     ...rules.checkString('password', { name: '密码' }),
                     code: [
                         { required: true, message: '请输入验证码', trigger: 'change' },
-                        { validator: validateCode, trigger: 'change' },
+                        { validator: validateCode, trigger: 'blur' },
                     ],
                 },
             },
