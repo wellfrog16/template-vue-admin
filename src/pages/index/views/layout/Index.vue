@@ -124,6 +124,7 @@ export default {
     height: @height;
     line-height: @height;
     border-bottom: 1px solid @g-color-border4;
+    background-color: #fff;
     display: flex;
     justify-content: space-between;
     position: relative;
