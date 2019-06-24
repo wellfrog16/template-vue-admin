@@ -21,7 +21,7 @@
                         prefix-icon="fas fa-lock fa-lg fa-fw"
                         placeholder="密码"
                         auto-complete="on"
-                        :type="form.passwordType"
+                        type="password"
                         show-password
                     >
                     </el-input>
@@ -54,7 +54,7 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex';
-import utils from '@/utils/utils';
+import { utils, rules } from '@/utils/rivers';
 
 const { mapActions } = createNamespacedHelpers('member');
 
@@ -75,18 +75,17 @@ export default {
                 code: '',
             },
             form: {
-                passwordType: 'password',
                 fields: {
                     username: 'admin',
                     password: 'admin888',
                     code: '',
                 },
                 rules: {
-                    username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
-                    password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
+                    ...rules.checkString('username', { name: '用户名' }),
+                    ...rules.checkString('password', { name: '密码' }),
                     code: [
-                        { required: true, message: '请输入验证码', trigger: 'blur' },
-                        { validator: validateCode, trigger: 'blur' },
+                        { required: true, message: '请输入验证码', trigger: 'change' },
+                        { validator: validateCode, trigger: 'change' },
                     ],
                 },
             },
@@ -123,17 +122,6 @@ export default {
             }).catch(() => {});
         },
     },
-    computed: {
-        isPassword() {
-            return this.form.passwordType === 'password';
-        },
-        clsEye() {
-            return {
-                'fa-eye-slash': this.isPassword,
-                'fa-eye': !this.isPassword,
-            };
-        },
-    },
 };
 </script>
 
@@ -154,12 +142,8 @@ export default {
     }
 }
 
-.icon-eye {
-    cursor: pointer;
-}
-
 .input-code {
-    width: 230px !important;
+    width: 220px !important;
 }
 
 .canvas {

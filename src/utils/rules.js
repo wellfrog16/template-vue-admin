@@ -33,23 +33,28 @@ const rules = {
      * 校验字符串
      *
      * @param {*} key
-     * @param {*} [options={}] { ?allowEmpty: 允许为空(true), ?allowSpecial: 允许特殊字符(true) }
+     * @param {*} [options={}] { ?allowEmpty: 允许为空(false), ?allowSpecial: 允许特殊字符(true) }
      * @returns
      */
     checkString(key, options = {}) {
-        const params = Object.assign({ name: '', allowEmpty: true, allowSpecial: true }, options);
-        const { name, emptyMessage } = params;
+        const params = Object.assign({
+            name: '此项',
+            allowEmpty: false,
+            allowSpecial: true,
+            trigger: 'change',
+        }, options);
+        const { name, emptyMessage, trigger } = params;
         const r = {};
         const rule = [];
 
         // 是否允许特殊字符，待扩展
         if (!params.allowSpecial) {
-            rule.push({ pattern: /^[\u4e00-\u9fa5|a-z|A-Z]+$/, message: `${name}只可中文/英文/拼音，不可特殊符号，数字`, trigger: 'change' });
+            rule.push({ pattern: /^[\u4e00-\u9fa5|a-z|A-Z]+$/, message: `${name}只可中文/英文/拼音，不可特殊符号，数字`, trigger });
         }
 
         // 是否允许为空
         if (!params.allowEmpty) {
-            rule.push({ required: true, message: (emptyMessage || `请输入${name}`), trigger: 'change' });
+            rule.push({ required: true, message: (emptyMessage || `请输入${name}`), trigger });
         }
 
         r[key] = rule;
