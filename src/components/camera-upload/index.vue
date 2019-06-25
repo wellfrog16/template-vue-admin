@@ -39,17 +39,15 @@
                         <el-upload
                             class="fullsize"
                             :class="$style.upload"
-                            :name="name"
+                            action=""
                             ref="upload"
-                            :action="action"
-                            :headers="headers"
                             :on-change="handleUploadChange"
                             :on-success="handleUploadSuccess"
                             :on-error="handleUploadError"
                             :file-list="fileList"
                             :show-file-list="false"
                             :auto-upload="false"
-                            :http-request="test"
+                            :http-request="customUpload"
                         >
                             <div class="flex-center abs-fullsize" slot="trigger"><i class="fas fa-upload fa-5x" /></div>
                         </el-upload>
@@ -70,7 +68,7 @@
 
 <script>
 // 需要axios支持，可以考虑解耦
-import { axios } from '@/utils/cdn';
+// import { axios } from '@/utils/cdn';
 import Camera from '@/utils/camera';
 
 // 常量
@@ -84,7 +82,7 @@ const WINDOW_PLACEHOLDER = 'placeholder';
 export default {
     props: {
         name: { type: String, default: 'avatar' }, // 上传的文件字段名
-        action: { type: String }, // 上传地址
+        // action: { type: String }, // 上传地址
         headers: { type: Object }, // 设置上传的请求头部
         visible: { type: Boolean, default: false }, // 组件显示
         title: { type: String, default: '拍照上传' },
@@ -97,7 +95,8 @@ export default {
         onSubmit: { type: Function }, // 保存时不上传，则执行submit
         submitText: { type: String, default: '保存' },
         src: { type: String },
-        httpRequest: { type: Function }, // 上传用接口
+        httpRequest: { type: Function }, // 上传用接口，返回promise对象
+        beforeUpload: { type: Function }, // 上传前钩子，若返回 false 或者返回 Promise 且被 reject，则停止上传。todo
     },
     data() {
         return {
@@ -351,6 +350,7 @@ export default {
             setTimeout(() => { this[`alert${type}Visible`] = false; }, 1500);
         },
 
+        // el-upload执行上传
         uploadImage() {
             this.loading = false;
             this.$refs.upload.submit();
@@ -358,21 +358,30 @@ export default {
 
         // 用blob上传拍摄的照片
         uploadShot(blob) {
-            this.loading = true;
+            this.myUpload(blob);
+            // this.loading = true;
 
-            const formData = new FormData();
-            formData.append(this.name, blob);
+            // const formData = new FormData();
+            // formData.append(this.name, blob);
 
-            axios({
-                method: 'post',
-                url: this.action,
-                data: formData,
-                headers: this.header,
-            }).then((res) => {
-                this.handleUploadSuccess(res, blob);
-            }).catch((err) => {
-                this.handleUploadError(err, blob);
-            });
+            // axios({
+            //     method: 'post',
+            //     url: this.action,
+            //     data: formData,
+            //     headers: this.header,
+            // }).then((res) => {
+            //     this.handleUploadSuccess(res, blob);
+            // }).catch((err) => {
+            //     this.handleUploadError(err, blob);
+            // });
+        },
+
+        customUpload(param) {
+            this.myUpload(param.file);
+        },
+
+        myUpload(file) {
+            console.log(file);
         },
 
         // blob上传或者el-upload上传成功时
