@@ -6,8 +6,8 @@
         <!-- 拍照上传 -->
         <camera-upload
             :visible.sync="cameraUploadVisible"
-            action="http://127.0.0.1:8001/service/file/upload"
             :onSubmit="handleSubmit"
+            :http-request="api"
         />
 
         <!-- 拍照上传 -->
@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import api from '@/api/sys/upload';
 import CameraUpload from '@/components/camera-upload/index.vue';
 import CameraUpload2 from '@/components/camera-upload/index2.vue';
 
@@ -30,6 +31,7 @@ export default {
     },
     data() {
         return {
+            api,
             cameraUploadVisible: false,
             cameraUploadVisible2: false,
         };

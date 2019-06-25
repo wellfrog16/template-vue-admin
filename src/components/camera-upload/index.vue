@@ -12,13 +12,9 @@
         >
             <!-- 主窗口区域 -->
             <el-card :class="$style.windows" :style="windowStyle" v-loading="loading">
-                <!-- <div :class="[$style.tips, $style['main-size']]"></div> -->
                 <el-image v-show="imageVisible" :src="fixedImageUrl" fit="cover" />
                 <video v-show="videoVisible" :width="width" :height="height" />
                 <canvas v-show="canvasVisible" :width="width" :height="height" />
-                <!-- <div v-show="placeholderVisible" :class="$style.placeholder">
-                    <el-alert title="提示" type="info" center show-icon :closable="false" description="请选择拍照或者上传图片"></el-alert>
-                </div> -->
                 <div v-show="alertVisible" :class="$style.alert">
                     <transition name="el-fade-in-linear">
                         <el-alert v-show="alertSuccessVisible" title="提示" type="success" center show-icon :closable="false" description="照片拍摄成功" />
@@ -27,6 +23,8 @@
                         <el-alert v-show="alertErrorVisible" title="提示" type="error" center show-icon :closable="false" description="打开摄像头失败" />
                     </transition>
                 </div>
+
+                <!-- 拍照/上传操作选择区 -->
                 <div v-show="placeholderVisible" :class="[{ [$style['placeholder-opacity']]: placeholderOpacity }, $style.placeholder]">
                     <div
                         class="flex-center"
@@ -51,32 +49,13 @@
                             :file-list="fileList"
                             :show-file-list="false"
                             :auto-upload="false"
+                            :http-request="test"
                         >
                             <div class="flex-center abs-fullsize" slot="trigger"><i class="fas fa-upload fa-5x" /></div>
                         </el-upload>
                     </div>
                 </div>
             </el-card>
-
-            <!-- 拍照/上传操作选择区 -->
-            <!-- <div :class="$style['button-select']">
-                <el-button :loading="loading" :disabled="loading" v-show="cameraVisible" @click="handleOpenCamera" type="primary">拍照</el-button>
-                <el-upload
-                    :name="name"
-                    ref="upload"
-                    accept=".jpg,.png,.jpeg"
-                    :action="action"
-                    :headers="headers"
-                    :on-change="handleUploadChange"
-                    :on-success="handleUploadSuccess"
-                    :on-error="handleUploadError"
-                    :file-list="fileList"
-                    :show-file-list="false"
-                    :auto-upload="false"
-                >
-                    <el-button :loading="loading" :disabled="uploadDisabled" v-show="uploadVisible" slot="trigger" type="primary">上传图片</el-button>
-                </el-upload>
-            </div> -->
 
             <!-- 操作区 -->
             <span slot="footer">
@@ -118,6 +97,7 @@ export default {
         onSubmit: { type: Function }, // 保存时不上传，则执行submit
         submitText: { type: String, default: '保存' },
         src: { type: String },
+        httpRequest: { type: Function }, // 上传用接口
     },
     data() {
         return {

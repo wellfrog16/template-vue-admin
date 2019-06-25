@@ -8,7 +8,7 @@ const upload = (blob) => {
 
     const config = {
         // method: 'post',
-        // data: fd,
+        data: fd,
         headers: {
             'Content-Type': 'multipart/form-data',
         },
