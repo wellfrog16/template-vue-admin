@@ -16,9 +16,9 @@
                 <el-image v-show="imageVisible" :src="fixedImageUrl" fit="cover" />
                 <video v-show="videoVisible" :width="width" :height="height" />
                 <canvas v-show="canvasVisible" :width="width" :height="height" />
-                <div v-show="placeholderVisible" :class="$style.placeholder">
+                <!-- <div v-show="placeholderVisible" :class="$style.placeholder">
                     <el-alert title="提示" type="info" center show-icon :closable="false" description="请选择拍照或者上传图片"></el-alert>
-                </div>
+                </div> -->
                 <div v-show="alertVisible" :class="$style.alert">
                     <transition name="el-fade-in-linear">
                         <el-alert v-show="alertSuccessVisible" title="提示" type="success" center show-icon :closable="false" description="照片拍摄成功" />
@@ -27,7 +27,7 @@
                         <el-alert v-show="alertErrorVisible" title="提示" type="error" center show-icon :closable="false" description="打开摄像头失败" />
                     </transition>
                 </div>
-                <div :class="$style.mask">
+                <div v-show="placeholderVisible" :class="[{ [$style['placeholder-opacity']]: placeholderOpacity }, $style.placeholder]">
                     <div
                         class="flex-center"
                         v-loading="loading"
@@ -59,7 +59,7 @@
             </el-card>
 
             <!-- 拍照/上传操作选择区 -->
-            <div :class="$style['button-select']">
+            <!-- <div :class="$style['button-select']">
                 <el-button :loading="loading" :disabled="loading" v-show="cameraVisible" @click="handleOpenCamera" type="primary">拍照</el-button>
                 <el-upload
                     :name="name"
@@ -76,7 +76,7 @@
                 >
                     <el-button :loading="loading" :disabled="uploadDisabled" v-show="uploadVisible" slot="trigger" type="primary">上传图片</el-button>
                 </el-upload>
-            </div>
+            </div> -->
 
             <!-- 操作区 -->
             <span slot="footer">
@@ -175,9 +175,14 @@ export default {
             return this.currentWindow === WINDOW_CANVAS;
         },
 
-        // 提示文字窗口可见
-        placeholderVisible() {
+        // 提示操作窗口透明的设置
+        placeholderOpacity() {
             return this.currentWindow === WINDOW_PLACEHOLDER;
+        },
+
+        // 提示操作窗口可见
+        placeholderVisible() {
+            return this.currentWindow === WINDOW_PLACEHOLDER || this.imageVisible || this.canvasVisible;
         },
 
         // 返回按钮可见
@@ -432,16 +437,15 @@ export default {
         transform: translate(-50%, -50%);
     }
 
-    &:hover .mask {
-        display: flex;
+    &:hover .placeholder {
         opacity: 1;
     }
 }
 
-.placeholder {
-    display: flex;
-    justify-content: center;
-}
+// .placeholder {
+//     display: flex;
+//     justify-content: center;
+// }
 
 .upload {
     display: inline-block;
@@ -452,11 +456,11 @@ export default {
     transition: 0.3s all linear;
 }
 
-.mask {
+.placeholder {
     display: flex;
-    opacity: 0;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(0, 0, 0, 0.2);
     z-index: 10;
+    opacity: 0;
     .mask-transition();
 
     > div {
@@ -483,6 +487,10 @@ export default {
             }
         }
     }
+}
+
+.placeholder-opacity {
+    opacity: 1;
 }
 
 .button-select {
