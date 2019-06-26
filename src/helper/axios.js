@@ -45,9 +45,9 @@ function axiosInstance(args) {
         const result = data;
 
         if (status.includes(response.status) && method.includes(config.method)) { // 正常响应预设 status 状态
-            if (data.success) {
+            if (data.success || data.code === 200) {
                 const messages = {
-                    post: '添加成功',
+                    post: '保存成功',
                     put: '修改成功',
                     delete: '删除成功',
                 };

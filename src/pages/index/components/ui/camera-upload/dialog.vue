@@ -7,6 +7,7 @@
         <camera-upload
             :visible.sync="cameraUploadVisible"
             :onSubmit="handleSubmit"
+            :upload="true"
             :http-request="api.upload"
         />
 
@@ -44,6 +45,7 @@ export default {
             this.cameraUploadVisible2 = true;
         },
         handleSubmit(res) {
+            console.log(1111111);
             console.log(res);
         },
     },

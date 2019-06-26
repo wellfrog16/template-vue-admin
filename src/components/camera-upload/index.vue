@@ -38,8 +38,9 @@
                     <div class="flex-center" v-show="uploadVisible">
                         <el-upload
                             class="fullsize"
-                            :class="$style.upload"
                             action=""
+                            :class="$style.upload"
+                            accept=".jpg,.png,.jpeg"
                             ref="upload"
                             :on-change="handleUploadChange"
                             :on-success="handleUploadSuccess"
@@ -82,8 +83,6 @@ const WINDOW_PLACEHOLDER = 'placeholder';
 export default {
     props: {
         name: { type: String, default: 'avatar' }, // 上传的文件字段名
-        // action: { type: String }, // 上传地址
-        headers: { type: Object }, // 设置上传的请求头部
         visible: { type: Boolean, default: false }, // 组件显示
         title: { type: String, default: '拍照上传' },
         type: { type: Array, default: () => [TYPE_UPLOAD, TYPE_CAMERA] }, // 功能默认包含 上传和拍照
@@ -94,9 +93,9 @@ export default {
         onError: { type: Function }, // 上传失败的钩子
         onSubmit: { type: Function }, // 保存时不上传，则执行submit
         submitText: { type: String, default: '保存' },
-        src: { type: String },
+        src: { type: String }, // 默认显示的图片路径
         httpRequest: { type: Function }, // 上传用接口，返回promise对象
-        beforeUpload: { type: Function }, // 上传前钩子，若返回 false 或者返回 Promise 且被 reject，则停止上传。todo
+        beforeUpload: { type: Function, default: () => true }, // 上传前钩子，若返回 false 或者返回 Promise 且被 reject，则停止上传。todo Promise
     },
     data() {
         return {
@@ -186,7 +185,7 @@ export default {
 
         // 传入图片地址和上传图片地址选择
         fixedImageUrl() {
-            return this.imageUrl || this.src;
+            return this.imageUrl || this.src || '';
         },
 
         // 是否已经选择待上传的图片
@@ -352,42 +351,35 @@ export default {
 
         // el-upload执行上传
         uploadImage() {
-            this.loading = false;
+            // this.loading = false;
             this.$refs.upload.submit();
         },
 
-        // 用blob上传拍摄的照片
+        // 用blob上传拍摄的照片，调用公共上传
         uploadShot(blob) {
             this.myUpload(blob);
-            // this.loading = true;
-
-            // const formData = new FormData();
-            // formData.append(this.name, blob);
-
-            // axios({
-            //     method: 'post',
-            //     url: this.action,
-            //     data: formData,
-            //     headers: this.header,
-            // }).then((res) => {
-            //     this.handleUploadSuccess(res, blob);
-            // }).catch((err) => {
-            //     this.handleUploadError(err, blob);
-            // });
         },
 
+        // el-upload 自定义上传，提取参数，并调用公共上传
         customUpload(param) {
             this.myUpload(param.file);
         },
 
+        // 执行上传，并判断beforeUpload
         myUpload(file) {
-            console.log(file);
+            const allowUpload = this.beforeUpload(file);
+            if (allowUpload === true) {
+                this.loading = true;
+                this.httpRequest(file)
+                    .then(res => this.handleUploadSuccess(res, file))
+                    .catch(err => this.handleUploadError(err, file));
+            }
         },
 
         // blob上传或者el-upload上传成功时
         handleUploadSuccess(res, file) {
             this.loading = false;
-            this.onSubmit && this.onSubmit(res, file);
+            this.onSuccess && this.onSuccess(res, file);
             this.handleClose();
         },
 
