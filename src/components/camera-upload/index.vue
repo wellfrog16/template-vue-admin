@@ -17,10 +17,25 @@
                 <canvas v-show="canvasVisible" :width="width" :height="height" />
                 <div v-show="alertVisible" :class="$style.alert">
                     <transition name="el-fade-in-linear">
-                        <el-alert v-show="alertSuccessVisible" title="提示" type="success" center show-icon :closable="false" description="照片拍摄成功" />
+                        <el-alert
+                            v-show="alertSuccessVisible"
+                            title="提示"
+                            type="success"
+                            center show-icon
+                            :closable="false"
+                            :description="description"
+                        />
                     </transition>
                     <transition name="el-fade-in-linear">
-                        <el-alert v-show="alertErrorVisible" title="提示" type="error" center show-icon :closable="false" description="打开摄像头失败" />
+                        <el-alert
+                            v-show="alertErrorVisible"
+                            title="提示"
+                            type="error"
+                            center
+                            show-icon
+                            :closable="false"
+                            :description="description"
+                        />
                     </transition>
                 </div>
 
@@ -79,6 +94,8 @@ const WINDOW_IMAGE = 'image';
 const WINDOW_VIDEO = 'vidoe';
 const WINDOW_CANVAS = 'canvas';
 const WINDOW_PLACEHOLDER = 'placeholder';
+const TIPS_SHOT_SUCCESS = '照片拍摄成功';
+const TIPS_START_CAMERA_FAILED = '打开摄像头失败';
 
 export default {
     props: {
@@ -110,6 +127,7 @@ export default {
             alertSuccessVisible: false, // 拍照成功信息
             alertErrorVisible: false, // 打开摄像头错误
             canvas: null, // 拍照canvas对象
+            description: '', // tips描述
         };
     },
     computed: {
@@ -267,6 +285,7 @@ export default {
             try {
                 this.camera.start();
             } catch {
+                this.description = TIPS_START_CAMERA_FAILED;
                 this.showAlert('Error');
             }
         },
@@ -289,6 +308,7 @@ export default {
             this.lastWindow = WINDOW_CANVAS;
 
             // 提示
+            this.description = TIPS_SHOT_SUCCESS;
             this.showAlert('Success');
         },
 
