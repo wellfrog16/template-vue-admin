@@ -48,14 +48,6 @@ const route = {
             ],
         },
         {
-            path: 'form',
-            component: () => import('#index/views/ui/Form.vue'),
-            meta: {
-                title: '基础表格和表单',
-                icon: 'menu-fix-icon fab fa-wpforms fa-lg fa-fw',
-            },
-        },
-        {
             path: 'camera-upload',
             component: () => import('#index/views/ui/CameraUpload.vue'),
             meta: {

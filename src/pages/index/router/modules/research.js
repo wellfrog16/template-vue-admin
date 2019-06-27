@@ -18,6 +18,14 @@ const route = {
                 icon: 'el-icon-goods',
             },
         },
+        {
+            path: 'form',
+            component: () => import('#index/views/research/Form.vue'),
+            meta: {
+                title: '基础表格和表单',
+                icon: 'menu-fix-icon fab fa-wpforms fa-lg fa-fw',
+            },
+        },
     ],
 };
 
