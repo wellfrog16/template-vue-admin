@@ -7,7 +7,7 @@ const route = {
     redirect: { path: '/echarts/package' },
     meta: {
         title: '研究示例',
-        icon: 'menu-fix-icon far fa-chart-bar fa-lg fa-fw',
+        icon: 'menu-fix-icon fas fa-democrat fa-lg fa-fw',
     },
     children: [
         {

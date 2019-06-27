@@ -38,7 +38,6 @@
 
 <script>
 import api from '@/api/mock/table';
-import { UID } from '@/helper/constant';
 import { createNamespacedHelpers } from 'vuex';
 import style from '@/assets/style/usr/app.module.less';
 
@@ -86,7 +85,7 @@ export default {
 
         // 编辑
         handleEdit(row) {
-            this.setState({ activeUid: row[UID], editVisible: true });
+            this.setState({ activeUid: row.id, editVisible: true });
         },
 
         // 删除确认
@@ -102,10 +101,10 @@ export default {
 
         // 删除
         async remove(row) {
-            this.setState({ activeUid: row[UID], loading: true });
+            this.setState({ activeUid: row.id, loading: true });
 
             // 远程删除
-            await api.remove({ [UID]: row[UID] });
+            await api.remove({ id: row.id });
 
             this.$nextTick(() => this.setState({ loading: false, overdue: true }));
         },

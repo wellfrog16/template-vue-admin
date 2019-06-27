@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { PAGE, UID } from '@/helper/constant';
+import { PAGE } from '@/helper/constant';
 import api from '@/api/mock/table';
 import { createNamespacedHelpers } from 'vuex';
 
@@ -54,7 +54,7 @@ export default {
             this.setState({ loading: true });
 
             // 远程删除
-            await api.remove({ [UID]: this.multipleSelectionUid });
+            await api.remove({ id: this.multipleSelectionUid });
 
             this.$nextTick(() => this.setState({ loading: false, overdue: true }));
         },

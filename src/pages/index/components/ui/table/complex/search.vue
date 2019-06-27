@@ -47,12 +47,7 @@ import file from '@/utils/file';
 import { createNamespacedHelpers } from 'vuex';
 import { _ } from '@/utils/cdn';
 // import { helper } from '@/helper/lakes';
-import {
-    PAGE,
-    PAGE_SIZE,
-    RES_LIST,
-    RES_TOTAL,
-} from '@/helper/constant';
+import { PAGE, PAGE_SIZE } from '@/helper/constant';
 
 const { mapState, mapMutations, mapGetters } = createNamespacedHelpers('complexTable');
 
@@ -138,7 +133,7 @@ export default {
             this.setState({ loading: true });
 
             const res = await api.list(this.filters);
-            res && this.setState({ list: res[RES_LIST], total: res[RES_TOTAL] });
+            res && this.setState({ list: res.list, total: res.total });
             this.$nextTick(() => this.setState({ loading: false }));
         },
 

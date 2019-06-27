@@ -54,7 +54,6 @@
 
 <script>
 import api from '@/api/mock/table';
-import { UID } from '@/helper/constant';
 import { rules } from '@/utils/rivers';
 import { createNamespacedHelpers } from 'vuex';
 
@@ -140,7 +139,7 @@ export default {
             this.saveBusy = true;
 
             // 更新列表（非刷新获取，仅前端根据当前数据更新）
-            if (this.form.fields[UID]) {
+            if (this.form.fields.id) {
                 // 远程更新
                 await api.update(this.form.fields);
             } else {

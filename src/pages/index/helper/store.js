@@ -1,5 +1,4 @@
 import { config } from '@/helper/lakes';
-import { UID } from '@/helper/constant';
 import { utils } from '@/utils/rivers';
 import { _ } from '@/utils/cdn';
 
@@ -38,7 +37,7 @@ export function createBaseStore() {
         getters: {
             // 当前编辑行
             activeRow(state) {
-                return state.list.find(item => item[UID] === state.activeUid);
+                return state.list.find(item => item.id === state.activeUid);
             },
         },
     };

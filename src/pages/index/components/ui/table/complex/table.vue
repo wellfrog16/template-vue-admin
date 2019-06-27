@@ -53,7 +53,6 @@
 <script>
 import api from '@/api/mock/table';
 import { createNamespacedHelpers } from 'vuex';
-import { UID } from '@/helper/constant';
 import style from '@/assets/style/usr/app.module.less';
 
 const { mapState, mapMutations } = createNamespacedHelpers('complexTable');
@@ -102,12 +101,12 @@ export default {
 
         // 预览
         handlePreview(row) {
-            this.setState({ activeUid: row[UID], previewVisible: true });
+            this.setState({ activeUid: row.id, previewVisible: true });
         },
 
         // 编辑
         handleEdit(row) {
-            this.setState({ activeUid: row[UID], editVisible: true });
+            this.setState({ activeUid: row.id, editVisible: true });
         },
 
         // 删除确认
@@ -123,10 +122,10 @@ export default {
 
         // 删除
         async remove(row) {
-            this.setState({ [UID]: row[UID], loading: true });
+            this.setState({ id: row.id, loading: true });
 
             // 远程删除
-            const res = await api.remove({ [UID]: row[UID] });
+            const res = await api.remove({ id: row.id });
 
             // 本地删除
             res && this.listRemove({ multipleSelection: [row] });

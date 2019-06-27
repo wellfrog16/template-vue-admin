@@ -1,4 +1,4 @@
-import { UID } from '@/helper/constant';
+
 import { createBaseStore } from '#index/helper/store';
 import { utils } from '@/utils/rivers';
 
@@ -19,7 +19,7 @@ const extraStore = {
 
         listRemove(state, payload) {
             payload.multipleSelection.forEach((row) => {
-                const index = state.list.findIndex(item => item[UID] === row[UID]);
+                const index = state.list.findIndex(item => item.id === row.id);
                 state.list.splice(index, 1);
             });
         },
@@ -33,7 +33,7 @@ const extraStore = {
     getters: {
         // 选中行的uid
         multipleSelectionUid(state) {
-            return state.multipleSelection.map(item => item[UID]).join(',');
+            return state.multipleSelection.map(item => item.id).join(',');
         },
     },
 };

@@ -1,5 +1,4 @@
 import { createBaseStore } from '#index/helper/store';
-import { UID } from '@/helper/constant';
 import { utils } from '@/utils/rivers';
 
 const store = createBaseStore();
@@ -10,7 +9,7 @@ const extraStore = {
     getters: {
         // 选中行的uid
         multipleSelectionUid(state) {
-            return state.multipleSelection.map(item => item[UID]).join(',');
+            return state.multipleSelection.map(item => item.id).join(',');
         },
     },
 };

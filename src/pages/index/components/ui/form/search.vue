@@ -42,7 +42,7 @@
 
 <script>
 import api from '@/api/mock/table';
-import { PAGE, RES_LIST, RES_TOTAL } from '@/helper/constant';
+import { PAGE } from '@/helper/constant';
 import { createNamespacedHelpers } from 'vuex';
 
 const { mapState, mapMutations } = createNamespacedHelpers('baseForm');
@@ -96,7 +96,7 @@ export default {
             this.setState({ loading: true });
 
             const res = await api.list(this.filters);
-            res && this.setState({ list: res[RES_LIST], total: res[RES_TOTAL] });
+            res && this.setState({ list: res.list, total: res.total });
             this.$nextTick(() => {
                 this.setState({ loading: false, overdue: false });
                 document.querySelector('.el-table__body-wrapper').scrollTop = 0;

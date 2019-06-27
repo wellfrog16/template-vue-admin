@@ -37,12 +37,7 @@
 <script>
 import api from '@/api/mock/table';
 import config from '@/config';
-import {
-    PAGE,
-    PAGE_SIZE,
-    RES_LIST,
-    RES_TOTAL,
-} from '@/helper/constant';
+import { PAGE, PAGE_SIZE } from '@/helper/constant';
 import { createNamespacedHelpers } from 'vuex';
 import file from '@/utils/file';
 
@@ -110,13 +105,13 @@ export default {
             if (res) {
                 // 根据返回数量是否大于0，来决定是加载完成还是加载中止
                 let list = [...this.list];
-                if (res[RES_LIST].length > 0) {
-                    list = [...this.list, ...res[RES_LIST]];
+                if (res.list.length > 0) {
+                    list = [...this.list, ...res.list];
                     this.setState({ filters: { [PAGE]: +this.filters[PAGE] + 1 } });
                 }
-                this.setState({ list, total: res[RES_TOTAL], isLoadMore: false });
+                this.setState({ list, total: res.total, isLoadMore: false });
                 this.$nextTick(() => {
-                    res[RES_LIST].length > 0 ? this.infiniteState.loaded() : this.infiniteState.complete();
+                    res.list.length > 0 ? this.infiniteState.loaded() : this.infiniteState.complete();
                 });
             }
         },

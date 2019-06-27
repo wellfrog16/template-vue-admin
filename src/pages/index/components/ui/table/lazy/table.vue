@@ -43,7 +43,6 @@
 
 <script>
 import api from '@/api/mock/table';
-import { UID } from '@/helper/constant';
 import { createNamespacedHelpers } from 'vuex';
 import style from '@/assets/style/usr/app.module.less';
 
@@ -102,10 +101,10 @@ export default {
 
         // 删除
         async remove(row) {
-            this.setState({ activeUid: row[UID], loading: true });
+            this.setState({ activeUid: row.id, loading: true });
 
             // 远程删除
-            const res = await api.remove({ [UID]: row[UID] });
+            const res = await api.remove({ id: row.id });
 
             // 本地删除
             res && this.listRemove({ multipleSelection: [row] });
