@@ -1,9 +1,13 @@
 <template>
     <div :class="[$style.main, 'main-wrapper']">
         <div :class="$style.wrapper">
-            <div class="app-tips" style="margin: 1px 0 10px 0;">
-                <p>这里仅列出 Element-UI 的部分组件和功能以作右侧导航展示，更多组件及用法请参考<a href="http://element.eleme.io" target="_blank">官网</a></p>
-            </div>
+            <el-alert
+                style="margin-bottom: 8px;"
+                effect="dark"
+                title="说明"
+                type="success">
+                这里仅列出 Element-UI 的部分组件和功能以作右侧导航展示，更多组件及用法请参考<a href="http://element.eleme.io" target="_blank">官网</a>
+            </el-alert>
 
             <!-- 按钮 -->
             <x-button id="pa-button" />

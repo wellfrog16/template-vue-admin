@@ -5,7 +5,7 @@
         </div>
         <el-row>
             <el-cascader
-                expand-trigger="hover"
+                :props="{ expandTrigger: 'hover' }"
                 :options="options"
                 filterable
                 v-model="selectedOptions1"

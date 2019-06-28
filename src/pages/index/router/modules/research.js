@@ -4,7 +4,7 @@ import Layout from '#index/views/layout/Index.vue';
 const route = {
     path: '/research',
     component: Layout,
-    redirect: { path: '/echarts/package' },
+    redirect: { path: '/research/extend' },
     meta: {
         title: '研究示例',
         icon: 'menu-fix-icon fas fa-democrat fa-lg fa-fw',
