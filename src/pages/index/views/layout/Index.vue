@@ -10,6 +10,7 @@
                 text-color="#d0ddec"
                 active-text-color="#deff00"
                 :default-active="defaultActive"
+                :popper-class="$style['my-popper']"
             />
         </el-aside>
         <el-container>
@@ -117,6 +118,10 @@ export default {
     :global(.el-menu-item.is-active) i {
         color: #deff00;
     }
+}
+
+.my-popper i {
+    color: #d0ddec;
 }
 
 .aside {

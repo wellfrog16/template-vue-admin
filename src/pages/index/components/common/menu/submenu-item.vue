@@ -2,6 +2,7 @@
     <el-submenu
         :index="item.path"
         :key="item.path"
+        :popper-class="popperClass"
     >
         <template slot="title">
             <i :class="item.meta && item.meta.icon"></i>
@@ -16,7 +17,7 @@
 
             <!-- 有子菜单 -->
             <template v-if="!isHidden(item1) && (item1.children && !isHiddenChildren(item1))">
-                <submenu-item :item="myItem(item1)" :key="myItem(item1).path" />
+                <submenu-item :item="myItem(item1)" :key="myItem(item1).path" :popper-class="popperClass" />
             </template>
         </template>
     </el-submenu>
@@ -30,6 +31,7 @@ export default {
     components: { MenuItem },
     props: {
         item: { type: Object, default: () => {} },
+        'popper-class': { type: String, default: '' },
     },
     methods: {
         myItem(item) {
