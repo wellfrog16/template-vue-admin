@@ -6,9 +6,9 @@
                 class="aside-menu"
                 :data="menuData"
                 :collapse="collapse"
-                background-color="#1f2d3d"
-                text-color="#fff"
-                active-text-color="#ffa"
+                background-color="#316cb1"
+                text-color="#d0ddec"
+                active-text-color="#deff00"
                 :default-active="defaultActive"
             />
         </el-aside>
@@ -108,6 +108,14 @@ export default {
 
     :global(.aside-menu:not(.el-menu--collapse)) {
         width: 250px;
+    }
+
+    :global(.aside-menu) i {
+        color: #d0ddec;
+    }
+
+    :global(.el-menu-item.is-active) i {
+        color: #deff00;
     }
 }
 

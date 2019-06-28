@@ -96,7 +96,7 @@ export default {
 
         &:hover, &:global(.active) {
             padding: 0 14px;
-            background-color: @g-theme-color;
+            background-color: @g-color-primary;
             color: #fff;
             transition: all 0.3s ease-in;
         }
