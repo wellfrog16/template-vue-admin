@@ -1,5 +1,5 @@
 <template>
-    <div class="pagination flex-row-center">
+    <div>
         <slot><span></span></slot>
         <el-pagination
             :background="background"
@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import { PAGE } from '@/helper/constant';
+
 export default {
     data() {
         return {
@@ -22,8 +24,13 @@ export default {
         };
     },
     methods: {
+        setState() { console.warn('请实现setState方法'); },
+
         // 翻页时执行
-        handleCurrentChange(p) {},
+        handleCurrentChange(p) {
+            const filters = { [PAGE]: p };
+            this.setState({ filters, overdue: true });
+        },
     },
 };
 </script>
