@@ -11,10 +11,9 @@ export default {
         };
     },
     computed: {
-        ...mapState(['editVisible', 'activeUid']),
-        ...mapGetters(['activeRow']),
-        title() {
-            return `${this.form.fields.name} 个人信息`;
+        editVisible() {
+            console.warn('请实现editVisible计算属性');
+            return true;
         },
     },
     watch: {
@@ -38,15 +37,8 @@ export default {
         },
 
         // 打卡dialog时，更新数据
-        async update() {
-            if (this.activeUid) {
-                // 这里实际开发需要去请求数据并更新，现在用行数据临时更新
-                await api.detail();
-                this.form.fields = { ...this.activeRow };
-            } else {
-                this.form.fields = this.createFields();
-            }
-            this.$nextTick(() => this.$refs.form.clearValidate());
+        update() {
+            console.warn('请实现update方法');
         },
 
         // 保存信息

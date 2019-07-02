@@ -17,7 +17,16 @@ function myState() {
     };
 }
 
-export default function baseStore() {
+export default function baseStore(options) {
+    // 接口必要的方法
+    const api = Object.assign({
+        list: () => { console.warn('请实现list接口方法'); },
+        insert: () => { console.warn('请实现insert接口方法'); },
+        update: () => { console.warn('请实现update接口方法'); },
+        remove: () => { console.warn('请实现remove接口方法'); },
+        detail: () => { console.warn('请实现detail接口方法'); },
+    }, options);
+
     return {
         namespaced: true,
         state: myState(),
@@ -31,6 +40,11 @@ export default function baseStore() {
             // 当前编辑行
             activeRow(state) {
                 return state.list.find(item => item.id === state.activeUid);
+            },
+        },
+        actions: {
+            loadList() {
+                console.log(api);
             },
         },
     };
