@@ -1,5 +1,5 @@
 import { helper } from '@/helper/lakes';
-import { utils, auth, storage } from '@/utils/rivers';
+import { utils, oauth, storage } from '@/utils/rivers';
 import api from '@/api/mock/member';
 // import { _ } from '@/utils/cdn';
 
@@ -22,7 +22,7 @@ export default {
         login({ commit }, userInfo) {
             return new Promise((resolve) => {
                 commit('setState', { token: '1' });
-                auth.set('1');
+                oauth.set('1');
                 storage.set('username', userInfo.username);
                 resolve(true);
             });
@@ -33,7 +33,7 @@ export default {
                     const { data } = res;
                     if (res.success) {
                         commit('setState', { token: data.token });
-                        auth.set(data.token);
+                        oauth.set(data.token);
                         storage.set('username', userInfo.username);
                     }
                     resolve(res.success);
@@ -65,7 +65,7 @@ export default {
             return new Promise((resolve, reject) => {
                 api.logout().then(() => {
                     commit('setState', { token: '', roles: [] });
-                    auth.remove();
+                    oauth.remove();
                     helper.site().destory();
                     resolve();
                 }).catch(err => reject(err));

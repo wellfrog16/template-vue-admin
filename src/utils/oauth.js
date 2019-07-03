@@ -1,4 +1,4 @@
-// auth2相关
+// oauth2相关
 import storage from './storage';
 
 const key = 'token';

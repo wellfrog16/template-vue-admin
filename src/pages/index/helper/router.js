@@ -1,7 +1,7 @@
 import router, { staticRoutes, asyncRoutes } from '../router';
 import store from '#index/store';
 import filterAsyncRoutes, { hasPermission } from '@/helper/permission';
-import { auth } from '@/utils/rivers';
+import { oauth } from '@/utils/rivers';
 import { NProgress } from '@/utils/cdn';
 
 // function hasPermission(roles, permissionRoles) {
@@ -21,7 +21,7 @@ router.beforeEach((to, from, next) => {
 
     if (whiteList.includes(to.path)) { // 白名单直接放行
         next();
-    } else if (auth.get()) { // 有token，已经登陆
+    } else if (oauth.get()) { // 有token，已经登陆
         const { roles } = store.getters;
         if (roles.length === 0) { // 没有角色信息
             store.dispatch('member/info').then((res) => {
