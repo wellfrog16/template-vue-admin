@@ -5,6 +5,8 @@ import {
 } from '@/utils/cdn';
 import utils from './utils';
 
+const SECRET_KEY = 'frog';
+
 // 带有效期的localStorage
 
 /**
@@ -27,7 +29,7 @@ function remove(key) {
 function set(key, value, { expires, encrypt } = {}) {
     const type = $.type(expires);
     const createAt = moment().format('YYYY-MM-DD HH:mm:ss');
-    const val = encrypt ? CryptoJS.AES.encrypt(value, 'frog').toString() : value;
+    const val = encrypt ? CryptoJS.AES.encrypt(value, SECRET_KEY).toString() : value;
     const item = { val, type, createAt };
     const handle = {
         date() { item.expires = moment(expires).format('YYYY-MM-DD HH:mm:ss'); },
@@ -73,7 +75,7 @@ function get(key, encrypt) {
     };
 
     handle[item.type] && handle[item.type]();
-    result = encrypt ? CryptoJS.AES.decrypt(result, 'frog').toString(CryptoJS.enc.Utf8) : result;
+    result = encrypt ? CryptoJS.AES.decrypt(result, SECRET_KEY).toString(CryptoJS.enc.Utf8) : result;
     return result;
 }
 
