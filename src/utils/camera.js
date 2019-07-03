@@ -74,7 +74,7 @@ class Camera {
         }
     }
 
-    shot() {
+    shoot() {
         const { canvas, video, constraints } = this;
         const { width, height } = constraints.video;
         const context = canvas.getContext('2d');

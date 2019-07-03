@@ -76,7 +76,7 @@
                 <el-button :loading="loading" :disabled="loading" v-show="cancelVisible" @click="handleClose">取消</el-button>
                 <el-button :loading="loading" :disabled="loading" v-show="saveVisible" type="primary" @click="handleSave">{{ submitText }}</el-button>
                 <el-button :loading="loading" :disabled="loading" v-show="backVisible" @click="handleBack">返回</el-button>
-                <el-button :loading="loading" :disabled="loading" v-show="videoVisible" type="primary" @click="handleShot">拍摄</el-button>
+                <el-button :loading="loading" :disabled="loading" v-show="videoVisible" type="primary" @click="handleShoot">拍摄</el-button>
             </span>
         </el-dialog>
     </div>
@@ -94,7 +94,7 @@ const WINDOW_IMAGE = 'image';
 const WINDOW_VIDEO = 'vidoe';
 const WINDOW_CANVAS = 'canvas';
 const WINDOW_PLACEHOLDER = 'placeholder';
-const TIPS_SHOT_SUCCESS = '照片拍摄成功';
+const TIPS_SHOOT_SUCCESS = '照片拍摄成功';
 const TIPS_START_CAMERA_FAILED = '打开摄像头失败';
 
 export default {
@@ -122,7 +122,7 @@ export default {
             imageUrl: '',
             fileList: [], // 上传的已选择的文件列表，只保留一个
             camera: null, // 摄像头初始化
-            isShoted: false, // 是否拍摄过
+            isShooted: false, // 是否拍摄过
             alertVisible: false, // 提示信息是否显示
             alertSuccessVisible: false, // 拍照成功信息
             alertErrorVisible: false, // 打开摄像头错误
@@ -188,7 +188,7 @@ export default {
         // 保存按钮可见
         saveVisible() {
             // 已经获得待上传图片或者拍摄过
-            const haveSource = this.isImageSelected || this.isShoted;
+            const haveSource = this.isImageSelected || this.isShooted;
 
             // 在资源窗口
             const myWindow = [WINDOW_CANVAS, WINDOW_IMAGE].includes(this.currentWindow);
@@ -225,7 +225,7 @@ export default {
         // 打开对话框时，更新需要显示的窗口，初始化数据
         initWindow() {
             this.currentWindow = '';
-            this.isShoted = false;
+            this.isShooted = false;
             this.imageUrl = '';
             this.fileList = [];
             this.lastWindow = WINDOW_PLACEHOLDER;
@@ -253,8 +253,8 @@ export default {
             }
 
             // 拍照
-            if (this.isShoted && this.lastWindow === WINDOW_CANVAS) {
-                this.upload && this.canvas.toBlob(blob => this.uploadShot(blob));
+            if (this.isShooted && this.lastWindow === WINDOW_CANVAS) {
+                this.upload && this.canvas.toBlob(blob => this.uploadShoot(blob));
                 !this.upload && this.canvas.toBlob(blob => this.onSubmit(blob));
             }
         },
@@ -296,19 +296,19 @@ export default {
         },
 
         // 拍摄动作
-        handleShot() {
-            this.camera.shot();
+        handleShoot() {
+            this.camera.shoot();
             this.closeCamera();
 
             // 设置已拍摄
-            this.isShoted = true;
+            this.isShooted = true;
 
             // 切换是拍摄结果窗口
             this.toggleWindow(WINDOW_CANVAS);
             this.lastWindow = WINDOW_CANVAS;
 
             // 提示
-            this.description = TIPS_SHOT_SUCCESS;
+            this.description = TIPS_SHOOT_SUCCESS;
             this.showAlert('Success');
         },
 
@@ -376,7 +376,7 @@ export default {
         },
 
         // 用blob上传拍摄的照片，调用公共上传
-        uploadShot(blob) {
+        uploadShoot(blob) {
             this.myUpload(blob);
         },
 
