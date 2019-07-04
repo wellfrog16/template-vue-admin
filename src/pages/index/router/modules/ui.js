@@ -16,8 +16,8 @@ const route = {
             path: 'package',
             component: () => import('#index/views/ui/Package.vue'),
             meta: {
-                title: '组件合集',
-                icon: 'el-icon-goods',
+                title: 'ElementUI',
+                icon: 'el-icon-platform-eleme',
             },
         },
         {
@@ -61,6 +61,14 @@ const route = {
             meta: {
                 title: '富文本框',
                 icon: 'menu-fix-icon far fa-credit-card fa-lg fa-fw',
+            },
+        },
+        {
+            path: 'dialog',
+            component: () => import('#index/views/ui/Dialog.vue'),
+            meta: {
+                title: '对话框组件',
+                icon: 'menu-fix-icon far fa-window-maximize fa-lg fa-fw',
             },
         },
         {
