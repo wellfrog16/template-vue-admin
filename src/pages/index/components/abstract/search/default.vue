@@ -60,12 +60,12 @@ export default {
 
         // 查询
         async search() {
-            await this.checkParams() && this.loadList();
+            await this.checkParams() && this.loadList({ vm: this });
         },
 
         // 刷新
         refresh() {
-            this.loadList();
+            this.loadList({ vm: this });
         },
 
         // 检测必填，并保存查询参数

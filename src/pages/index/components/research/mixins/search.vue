@@ -1,5 +1,5 @@
 <template>
-    <div class="search">
+    <div>
         <el-form
             ref="form"
             inline
@@ -15,12 +15,12 @@
                     autocomplete="on"
                     maxlength="20"
                     clearable
-                    @clear="handleSearch"
-                    @keyup.native.enter="handleSearch"
+                    @clear="search"
+                    @keyup.native.enter="search"
                 />
             </el-form-item>
             <el-form-item>
-                <el-select style="width: 120px;" v-model="form.fields.education" clearable @clear="handleSearch" placeholder="所有学历">
+                <el-select style="width: 120px;" v-model="form.fields.education" clearable @clear="search" placeholder="所有学历">
                     <el-option
                         v-for="item in edus"
                         :key="item"
@@ -30,7 +30,7 @@
                 </el-select>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary" icon="el-icon-search" @click="handleSearch">查询</el-button>
+                <el-button type="primary" icon="el-icon-search" @click="search">查询</el-button>
             </el-form-item>
         </el-form>
         <div>
@@ -41,13 +41,13 @@
 </template>
 
 <script>
-import api from '@/api/mock/table';
-import { PAGE } from '@/helper/constant';
 import { createNamespacedHelpers } from 'vuex';
+import AbsSearch from '#index/components/abstract/search/default.vue';
 
-const { mapState, mapMutations } = createNamespacedHelpers('baseForm');
+const { mapState, mapMutations, mapActions } = createNamespacedHelpers('mixins');
 
 export default {
+    mixins: [AbsSearch],
     data() {
         return {
             edus: ['专科', '本科', '硕士研究生', '博士研究生', '其他'],
@@ -63,46 +63,12 @@ export default {
     computed: {
         ...mapState(['filters', 'overdue']),
     },
-    watch: {
-        overdue(val) {
-            val && this.refresh();
-        },
-    },
     mounted() {
         this.refresh();
     },
     methods: {
         ...mapMutations(['setState']),
-
-        // 查询
-        async handleSearch() {
-            await this.checkParams() && this.loadList();
-        },
-
-        // 刷新
-        refresh() {
-            this.loadList();
-        },
-
-        // 检测必填，并保存查询参数
-        async checkParams() {
-            const valid = await this.$refs.form.validate();
-            valid && this.setState({ filters: { ...this.form.fields, [PAGE]: 1 } });
-            return valid;
-        },
-
-        // 请求数据
-        async loadList() {
-            this.setState({ loading: true });
-
-            const res = await api.list(this.filters);
-            const { data } = res;
-            res && this.setState({ list: data.list, total: data.total });
-            this.$nextTick(() => {
-                this.setState({ loading: false, overdue: false });
-                document.querySelector('.el-table__body-wrapper').scrollTop = 0;
-            });
-        },
+        ...mapActions(['loadList']),
 
         // 新建
         handleCreate() {

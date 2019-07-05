@@ -1,13 +1,13 @@
 <template>
     <div class="container-complex-table main-wrapper" v-loading="loading">
         <!-- 搜索框 -->
-        <x-search />
+        <x-search class="search" />
 
         <!-- 数据 -->
         <x-table />
 
         <!-- 分页 -->
-        <x-pagination />
+        <x-pagination class="pagination flex-row-center" />
 
         <!-- 编辑 -->
         <x-edit />
@@ -20,7 +20,7 @@ import XSearch from '#index/components/research/form/search.vue';
 import XTable from '#index/components/research/form/table.vue';
 import XPagination from '#index/components/research/form/pagination.vue';
 
-const { mapState, mapMutations } = createNamespacedHelpers('baseForm');
+const { mapState } = createNamespacedHelpers('baseForm');
 
 export default {
     components: {
@@ -34,13 +34,6 @@ export default {
     },
     mounted() {
         this.$alert('这个页面用来演示基础的增删改查<br>具体操作请查看代码', { dangerouslyUseHTMLString: true });
-    },
-    beforeRouteUpdate(to, from, next) {
-        this.setState({ filters: to.query });
-        next();
-    },
-    methods: {
-        ...mapMutations(['setState', 'test']),
     },
 };
 </script>

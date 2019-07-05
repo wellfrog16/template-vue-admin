@@ -1,6 +1,12 @@
 import { config } from '@/helper/lakes';
 import { utils } from '@/utils/rivers';
 import { _ } from '@/utils/cdn';
+import {
+    RES_DATA,
+    RES_TOTAL,
+    RES_LIST,
+    UID,
+} from '@/helper/constant';
 
 // 产生基础state的副本
 function myState() {
@@ -17,14 +23,14 @@ function myState() {
     };
 }
 
-export default function baseStore(options) {
+export default function (options) {
     // 接口必要的方法
     const api = Object.assign({
         list: () => { console.warn('请实现list接口方法'); },
         insert: () => { console.warn('请实现insert接口方法'); },
         update: () => { console.warn('请实现update接口方法'); },
         remove: () => { console.warn('请实现remove接口方法'); },
-        detail: () => { console.warn('请实现detail接口方法'); },
+        // detail: () => { console.warn('请实现detail接口方法'); },
     }, options);
 
     return {
@@ -43,8 +49,55 @@ export default function baseStore(options) {
             },
         },
         actions: {
-            loadList() {
-                console.log(api);
+            // 加载列表
+            loadList({ commit, state }, { vm }) {
+                commit('setState', { loading: true });
+
+                return new Promise((resolve, reject) => {
+                    api.list(state.filters)
+                        .then((res) => {
+                            const data = res[RES_DATA];
+                            commit('setState', { list: data[RES_LIST], total: data[RES_TOTAL] });
+                            vm.$nextTick(() => {
+                                commit('setState', { loading: false, overdue: false });
+                                resolve(true);
+                            });
+                        })
+                        .catch(err => reject(err));
+                });
+            },
+
+            // 删除
+            remove({ commit, state }, { vm }) {
+                commit('setState', { loading: true });
+
+                return new Promise((resolve, reject) => {
+                    // 远程删除
+                    api.remove({ id: state.activeUid })
+                        .then((res) => {
+                            vm.$nextTick(() => {
+                                commit('setState', { loading: false, overdue: true });
+                                resolve(res);
+                            });
+                        })
+                        .catch(err => reject(err));
+                });
+            },
+
+            // 保存
+            save({ commit }, { vm, fields }) {
+                return new Promise((resolve, reject) => {
+                    const save = fields[UID] ? api.update : api.insert;
+
+                    save({ ...fields })
+                        .then((res) => {
+                            vm.$nextTick(() => {
+                                commit('setState', { overdue: true });
+                                resolve(res);
+                            });
+                        })
+                        .catch(err => reject(err));
+                });
             },
         },
     };

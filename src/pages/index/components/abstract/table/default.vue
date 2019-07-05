@@ -4,7 +4,7 @@ export default {
         setState() { console.warn('请实现setState方法'); },
 
         // 编辑
-        edit(row) {
+        showEdit(row) {
             this.setState({ activeUid: row.id, editVisible: true });
         },
 
@@ -15,12 +15,12 @@ export default {
                 cancelButtonText: '取消',
                 type: 'warning',
             }).then(() => {
-                this.remove(row);
+                this.remove({ vm: this, row });
             }).catch(() => {});
         },
 
         // 删除
-        remove(row) {
+        remove() {
             console.warn('请实现remove方法');
         },
     },

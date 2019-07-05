@@ -15,6 +15,16 @@ export default {
             console.warn('请实现editVisible计算属性');
             return true;
         },
+
+        activeRow() {
+            console.warn('请实现activeRow计算属性');
+            return true;
+        },
+
+        activeUid() {
+            console.warn('请实现activeUid计算属性');
+            return true;
+        },
     },
     watch: {
         editVisible(val) {
@@ -38,14 +48,34 @@ export default {
 
         // 打卡dialog时，更新数据
         update() {
-            console.warn('请实现update方法');
+            if (this.activeUid) {
+                this.form.fields = { ...this.activeRow };
+            } else {
+                this.form.fields = this.createFields();
+            }
+            this.$nextTick(() => this.$refs.form.clearValidate());
         },
 
         // 保存信息
         handleSave() {
             this.$refs.form.validate((valid) => {
-                valid && this.save();
+                valid && this.runSave();
             });
+        },
+
+        // 保存动作
+        runSave() {
+            this.saveBusy = true;
+
+            this.save({ vm: this, fields: this.form.fields })
+                .then(() => {
+                    this.$nextTick(() => {
+                        this.saveBusy = false;
+                        this.handleClose();
+                    });
+                }).catch(() => {
+                    this.saveBusy = false;
+                });
         },
 
         // 保存动作

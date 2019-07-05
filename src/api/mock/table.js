@@ -4,12 +4,12 @@ const axios = instance({ url: 'https://easy-mock.com/mock/5c7b997cd764b271d20aca
 
 const base = '/admin/user';
 
-const list = params => axios.get(base, { params }).then(res => res.data);
-const detail = params => axios.get(base, { params }).then(res => res.data);
-const insert = params => axios.post(base, params).then(res => res.data);
-const update = params => axios.put(base, params).then(res => res.data);
-const updateStatus = params => axios.put(base, params).then(res => res.data);
-const remove = params => axios.delete(base, { params }).then(res => res.data);
+const list = params => axios.get(base, { params });
+const detail = params => axios.get(base, { params });
+const insert = params => axios.post(base, params);
+const update = params => axios.put(base, params);
+const updateStatus = params => axios.put(base, params);
+const remove = params => axios.delete(base, { params });
 
 export default {
     list,
