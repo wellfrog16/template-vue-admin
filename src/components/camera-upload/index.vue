@@ -5,6 +5,7 @@
             :visible.sync="visible"
             :before-close="handleClose"
             :close-on-click-modal="false"
+            :append-to-body="true"
             class="or-dialog-wrapper"
             custom-class="or-dialog"
             :width="dialogWidth"
@@ -120,6 +121,7 @@ export default {
             currentWindow: '', // 当前window的显示状态
             lastWindow: WINDOW_PLACEHOLDER, // 返回时显示的窗口，默认cavas > image > placeholder
             imageUrl: '',
+            currentFile: null, // elementUI当前选择的文件
             fileList: [], // 上传的已选择的文件列表，只保留一个
             camera: null, // 摄像头初始化
             isShooted: false, // 是否拍摄过
@@ -249,7 +251,7 @@ export default {
             // 图片
             if (this.isImageSelected && this.lastWindow === WINDOW_IMAGE) {
                 this.upload && this.uploadImage();
-                !this.upload && this.onSubmit(this.imageUrl);
+                !this.upload && this.onSubmit(this.currentFile);
             }
 
             // 拍照
@@ -352,14 +354,14 @@ export default {
             fileList.length > 1 && fileList.splice(0, 1);
 
             const { event } = window;
-            const currentFile = event.target.files[0];
+            [this.currentFile] = event.target.files;
             const reader = new FileReader();
 
             // 转base64
             reader.onload = (e) => {
                 this.imageUrl = e.target.result;
             };
-            reader.readAsDataURL(currentFile);
+            reader.readAsDataURL(this.currentFile);
         },
 
         // 提示显示

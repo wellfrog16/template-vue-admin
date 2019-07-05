@@ -6,7 +6,7 @@
         <camera-upload
             :visible.sync="cameraUploadVisible"
             :onSubmit="handleSubmit"
-            :upload="true"
+            :upload="false"
             :http-request="api.upload"
         />
     </div>
