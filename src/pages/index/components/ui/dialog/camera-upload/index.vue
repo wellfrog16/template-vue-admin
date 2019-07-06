@@ -3,16 +3,45 @@
         title="拍照上传"
         icon="fas fa-camera fa-lg fa-fw"
     >
-        1123123
+        <el-alert title="用于拍照上传或者上传图片" type="info" :closable="false" />
+        <el-divider><i class="fas fa-camera fa-lg fa-fw" /></el-divider>
+        <el-button type="primary" @click="handleOpen">人像上传</el-button>
+
+        <!-- 拍照上传 -->
+        <camera-upload
+            :visible.sync="cameraUploadVisible"
+            :onSubmit="handleSubmit"
+            :upload="false"
+            :http-request="httpRequest"
+        />
     </x-col>
 </template>
 
 <script>
+import upload from '@/api/sys/upload';
 import XCol from '#index/components/ui/dialog/col.vue';
+import CameraUpload from '@/components/camera-upload/index.vue';
 
 export default {
     components: {
         XCol,
+        CameraUpload,
+    },
+    data() {
+        return {
+            httpRequest: upload,
+            cameraUploadVisible: false,
+        };
+    },
+    methods: {
+        handleOpen() {
+            this.cameraUploadVisible = true;
+        },
+        handleSubmit(res) {
+            console.log(res);
+            const test = new FormData();
+            upload(test);
+        },
     },
 };
 </script>

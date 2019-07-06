@@ -10,7 +10,7 @@
         :before-close="handleBeforeClose"
         top='0'
     >
-        <div id="baiduMapContainer" :style="containerStyle"></div>
+        <div :class="$style.container" :style="containerStyle"></div>
         <div :class="$style.search">
             <el-input placeholder="请输入查询地址" clearable v-model="key" @keyup.native.enter="handleSearch">
                 <el-button slot="append" icon="el-icon-search" @click="handleSearch"></el-button>
@@ -29,7 +29,7 @@ import { BMap } from '@/utils/cdn';
 export default {
     props: {
         // value: { type: Object, default: () => ({ lng: 121.481114, lat: 31.240128 }) },
-        value: { type: Object, default: () => ({ lng: -1, lat: -1 }) },
+        value: { type: Object, default: () => ({ lng: null, lat: null }) },
         city: { type: String, default: '上海' },
         visible: { type: Boolean, default: false },
     },
@@ -37,8 +37,8 @@ export default {
         return {
             point: '',
             key: '',
-            local: null,
-            map: null,
+            local: null, // 地图的local对象
+            map: null, // 地图对象
         };
     },
     computed: {
@@ -62,12 +62,12 @@ export default {
     },
     methods: {
         init() {
-            this.map = new BMap.Map('baiduMapContainer', { enableMapClick: false });
+            this.map = new BMap.Map(document.querySelector(`.${this.$style.container}`), { enableMapClick: false });
             const { map } = this;
             // const point = new BMap.Point(this.value.lng, this.value.lat);
             // let marker = new BMap.Marker(point);
             let marker = null;
-            if (this.value.lng !== -1) {
+            if (this.value.lng !== null) {
                 const point = new BMap.Point(this.value.lng, this.value.lat);
                 marker = new BMap.Marker(point);
                 map.addOverlay(marker); // 定点坐标红点覆盖
@@ -77,10 +77,13 @@ export default {
             }
             map.enableScrollWheelZoom(); // 允许鼠标缩放
             map.addControl(new BMap.NavigationControl()); // 缩放平移控件
-            map.addControl(new BMap.ScaleControl()); // 比例尺
-            map.addControl(new BMap.OverviewMapControl());
+            // map.addControl(new BMap.OverviewMapControl()); // 缩略图
+            setTimeout(() => {
+                map.addControl(new BMap.ScaleControl()); // 比例尺，延迟加载，否则会有黑色闪烁
+            }, 1000);
             // map.addControl(new BMap.MapTypeControl());
 
+            // 地图搜索
             this.local = new BMap.LocalSearch(map, {
                 renderOptions: { map },
             });
@@ -129,6 +132,10 @@ export default {
     :global(.el-dialog__body) {
         position: relative;
     }
+}
+
+.container {
+    padding: 0;
 }
 
 .search {

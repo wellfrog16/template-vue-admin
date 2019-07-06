@@ -16,6 +16,7 @@ const {
     Cookies,
     Driver,
     Split,
+    BMap,
 } = window;
 
 const baseCdn = 'https://cdn.jsdelivr.net';
@@ -42,4 +43,5 @@ export {
     Cookies, // cookie
     Driver, // 指引
     Split, // 分割布局
+    BMap, // 百度地图
 };
