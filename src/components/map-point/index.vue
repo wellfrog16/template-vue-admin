@@ -75,6 +75,7 @@ export default {
             } else {
                 map.centerAndZoom(this.city, 14); // 定位中心和缩放
             }
+            // map.setCurrentCity(this.city);
             map.enableScrollWheelZoom(); // 允许鼠标缩放
             map.addControl(new BMap.NavigationControl()); // 缩放平移控件
             // map.addControl(new BMap.OverviewMapControl()); // 缩略图
