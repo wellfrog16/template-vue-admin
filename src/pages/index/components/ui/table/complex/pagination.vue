@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import api from '@/api/mock/table';
 import { createNamespacedHelpers } from 'vuex';
+import api from '@/api/mock/table';
 import { PAGE } from '@/helper/constant';
 
 const { mapState, mapMutations, mapGetters } = createNamespacedHelpers('complexTable');

@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import api from '@/api/mock/table';
 import { createNamespacedHelpers } from 'vuex';
+import api from '@/api/mock/table';
 
 const { mapState, mapMutations, mapGetters } = createNamespacedHelpers('lazyTable');
 

@@ -53,9 +53,9 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex';
 import api from '@/api/mock/table';
 import { rules } from '@/utils/rivers';
-import { createNamespacedHelpers } from 'vuex';
 
 const { mapState, mapMutations, mapGetters } = createNamespacedHelpers('baseForm');
 

@@ -42,9 +42,9 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex';
 import api from '@/api/mock/table';
 import file from '@/utils/file';
-import { createNamespacedHelpers } from 'vuex';
 import { _ } from '@/utils/cdn';
 // import { helper } from '@/helper/lakes';
 import { PAGE, PAGE_SIZE } from '@/helper/constant';

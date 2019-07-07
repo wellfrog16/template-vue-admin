@@ -35,10 +35,10 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from 'vuex';
 import api from '@/api/mock/table';
 import config from '@/config';
 import { PAGE, PAGE_SIZE } from '@/helper/constant';
-import { createNamespacedHelpers } from 'vuex';
 import file from '@/utils/file';
 
 const { mapState, mapMutations } = createNamespacedHelpers('lazyTable');
