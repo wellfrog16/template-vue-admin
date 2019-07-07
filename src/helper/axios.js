@@ -7,6 +7,44 @@ import { helper } from '@/helper/lakes';
 const TITLE_SUCESS = '成功';
 const TITLE_ERROR = '错误';
 
+/**
+ * 格式化返回，根据实际情况调整
+ *
+ * @param {*} param
+ * @returns
+ */
+function formatResponse(params) {
+    let { data } = params;
+
+    if (typeof data === 'string') {
+        data = JSON.parse(data);
+    }
+
+    // 如果没有code，增加code属性
+    if (!data.code) {
+        data.code = data.success ? 200 : 500;
+    }
+
+    // 如果没有data，增加data属性
+    if (!data.data) {
+        data.data = data.resData || {};
+    }
+
+    params.data = data;
+
+    return params;
+}
+
+/**
+ * 格式化发送，根据实际情况调整
+ *
+ * @param {*} param
+ * @returns
+ */
+function formatRequest(params) {
+    return params;
+}
+
 function axiosInstance(args) {
     const defaultOptions = { notification: true, loading: false };
     const options = Object.assign({}, defaultOptions, args);
@@ -22,9 +60,9 @@ function axiosInstance(args) {
     let loadingInstancce = null;
 
     // toto 根据项目实际调整
-    instance.interceptors.request.use((require) => {
+    instance.interceptors.request.use((request) => {
         // const site = helper.site();
-        const req = require;
+        const req = formatRequest(request);
         // req.headers.username = site.username;
 
         // 全屏遮罩，带silence参数则静默处理
@@ -38,18 +76,17 @@ function axiosInstance(args) {
         return req;
     }, error => Promise.reject(error));
 
-    // instance.interceptors.request.use(async require => require);
+    // instance.interceptors.request.use(async request => request);
 
     instance.interceptors.response.use((response) => {
         loadingInstancce && loadingInstancce.close();
-        const { data, config } = response;
+        const { data, config } = formatResponse(response);
 
         const status = [200, 201, 204];
         const method = ['post', 'put', 'delete', 'patch'];
-        const result = data;
 
         if (status.includes(response.status) && method.includes(config.method)) { // 正常响应预设 status 状态
-            if (data.success || data.code === 200) {
+            if (data.code === 200) {
                 const messages = {
                     post: '保存成功',
                     put: '修改成功',
@@ -57,9 +94,6 @@ function axiosInstance(args) {
                 };
                 const message = messages[config.method] || '';
                 options.notification && Notification.success({ title: TITLE_SUCESS, message });
-
-                // 请求成功，如果无data数据，则添加一个空对象来避免undefined，从而来和500 error(data)的undefined区分
-                if (!data.data) { result.data = {}; }
             } else {
                 let { message } = data;
                 message = message || '服务器返回错误';
@@ -71,7 +105,7 @@ function axiosInstance(args) {
             Notification.error({ title: TITLE_ERROR, message });
             return Promise.reject(new Error(message));
         }
-        return result;
+        return data.data;
     }, (error) => { // 5xx, 4xx
         const { $router } = helper.vue;
         let { message } = error;

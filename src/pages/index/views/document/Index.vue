@@ -17,7 +17,11 @@ export default {
     // },
     methods: {
         send() {
-            api();
+            const res = api();
+            res.then((qq) => {
+                console.log(111);
+                console.log(qq);
+            });
         },
         // async test() {
         //     try {
