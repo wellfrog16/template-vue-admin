@@ -1,4 +1,4 @@
-import helper from './helper';
+import helper from './index';
 import config from '@/config';
 import permission from './permission';
 

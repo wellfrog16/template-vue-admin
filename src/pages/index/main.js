@@ -2,7 +2,7 @@ import Vue from 'vue';
 import store from './store';
 import router from './router';
 import App from './App.vue';
-import helper from '@/helper/helper';
+import { helper } from '@/helper/lakes';
 
 // 路由权限
 import './helper/router';

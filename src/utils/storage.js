@@ -3,7 +3,7 @@ import {
     moment,
     CryptoJS,
 } from '@/utils/cdn';
-import utils from './utils';
+import utils from './index';
 
 const SECRET_KEY = 'frog';
 

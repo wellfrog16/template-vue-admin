@@ -1,4 +1,4 @@
-import utils from './utils';
+import utils from './index';
 import rules from './rules';
 import storage from './storage';
 import oauth from './oauth';
