@@ -1,7 +1,11 @@
 import { Loading, Notification } from 'element-ui';
 import { axios } from '@/utils/cdn';
 import conf from '@/config';
-// import helper from '@/helper/helper';
+// import store from '#index/router';
+import helper from '@/helper/helper';
+
+const TITLE_SUCESS = '成功';
+const TITLE_ERROR = '错误';
 
 function axiosInstance(args) {
     const defaultOptions = { notification: true, loading: false };
@@ -32,7 +36,7 @@ function axiosInstance(args) {
             });
         }
         return req;
-    });
+    }, error => Promise.reject(error));
 
     // instance.interceptors.request.use(async require => require);
 
@@ -41,7 +45,7 @@ function axiosInstance(args) {
         const { data, config } = response;
 
         const status = [200, 201, 204];
-        const method = ['post', 'put', 'delete'];
+        const method = ['post', 'put', 'delete', 'patch'];
         const result = data;
 
         if (status.includes(response.status) && method.includes(config.method)) { // 正常响应预设 status 状态
@@ -52,25 +56,37 @@ function axiosInstance(args) {
                     delete: '删除成功',
                 };
                 const message = messages[config.method] || '';
-                options.notification && Notification.success({ title: '成功', message });
+                options.notification && Notification.success({ title: TITLE_SUCESS, message });
 
                 // 请求成功，如果无data数据，则添加一个空对象来避免undefined，从而来和500 error(data)的undefined区分
                 if (!data.data) { result.data = {}; }
             } else {
-                Notification.error({ title: '错误', message: data.message });
-                return Promise.reject(data.message || '服务器返回错误');
+                let { message } = data;
+                message = message || '服务器返回错误';
+                Notification.error({ title: TITLE_ERROR, message });
+                return Promise.reject(new Error(message));
             }
         } else if (!status.includes(response.status)) { // 非预设 status 状态，需要看具体返回类型决定如果处理
-            Notification.error({ title: '错误', message: response.statusText });
-            return Promise.reject(response.statusText || '未知的错误');
+            const message = response.statusText;
+            Notification.error({ title: TITLE_ERROR, message });
+            return Promise.reject(new Error(message));
         }
         return result;
     }, (error) => { // 5xx, 4xx
+        const { $router } = helper.vue;
+        let { message } = error;
+        message.match(/.+code\s(\d{3})$/g);
+        const code = +RegExp.$1;
+
+        // 无权限
+        if (code === 401) {
+            message = '登陆超时';
+            $router.push({ path: '/login' });
+        }
+
         loadingInstancce && loadingInstancce.close();
-        Notification.error({ title: '错误', message: error });
+        Notification.error({ title: TITLE_ERROR, message });
         return Promise.reject(error);
-        // return error;
-        // throw error;
     });
 
     return instance;

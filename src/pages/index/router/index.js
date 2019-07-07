@@ -1,7 +1,5 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-// import Layout from '#index/views/layout/Index.vue';
-// import Root from '../../../components/Root.vue';
 import Login from '#index/views/login/Index.vue';
 
 // 路由模块

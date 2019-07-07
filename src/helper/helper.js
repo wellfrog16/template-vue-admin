@@ -1,5 +1,8 @@
 import { storage } from '@/utils/rivers';
 
+// vue实例
+const vue = {};
+
 /**
  * 存放header等信息
  *
@@ -15,5 +18,6 @@ function site() {
 }
 
 export default {
+    vue,
     site,
 };
