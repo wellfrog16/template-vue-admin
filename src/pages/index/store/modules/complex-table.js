@@ -1,4 +1,4 @@
-import { createBaseStore } from '#index/helper/store';
+import createBaseStore from '#index/store/common/baseStore';
 import { PAGE } from '@/helper/constant';
 import { utils } from '@/utils/rivers';
 
