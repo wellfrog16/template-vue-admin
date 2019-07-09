@@ -1,1 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0b3402"],{2828:function(n,e,t){"use strict";t.r(e);var r=function(){var n=this,e=n.$createElement,t=n._self._c||e;return t("el-card",{attrs:{shadow:"never"}},[n._v("\n    直接引用\n")])},a=[],c={},l=c,s=t("2877"),u=Object(s["a"])(l,r,a,!1,null,null,null);e["default"]=u.exports}}]);

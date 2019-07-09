@@ -1,1 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d0df1be"],{8907:function(n,e,t){"use strict";t.r(e);var r=function(){var n=this,e=n.$createElement,t=n._self._c||e;return t("el-card",{attrs:{shadow:"never"}},[n._v("\n    研究示例\n")])},a=[],c={},l=c,s=t("2877"),u=Object(s["a"])(l,r,a,!1,null,null,null);e["default"]=u.exports}}]);
