@@ -1,9 +1,16 @@
 <template>
-    <el-card shadow="never">
-        文档
-    </el-card>
+    <div class="main-wrapper">
+        <!-- 编辑权限 -->
+        <x-edit />
+    </div>
 </template>
 
 <script>
-export default {};
+import XEdit from '#index/components/permission/edit.vue';
+
+export default {
+    components: {
+        XEdit,
+    },
+};
 </script>

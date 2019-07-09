@@ -1,4 +1,4 @@
-import router, { staticRoutes, asyncRoutes } from '../router';
+import router, { staticRoutes, asyncRoutes } from '#index/router';
 import store from '#index/store';
 import filterAsyncRoutes, { hasPermission } from '@/helper/permission';
 import { oauth } from '@/utils/rivers';
@@ -37,10 +37,9 @@ router.beforeEach((to, from, next) => {
             // 这里额外判断to.meta.title，因为正常情况，没有权限的路由已经被过滤掉了
             // 手动输入没有权限的地址进行访问会找不到路由显示白屏
             // 没有路由就不能依靠meta来判断，否则会和没有设置meta的路由一样认为有权限
-            // 因此这里增加to.meta.title判断（每个路由都需要设置title），如果没有name表示没有这个路由，也就代表没有权限
+            // 因此这里增加to.meta.title判断（每个路由都需要设置title），如果没有title表示没有这个路由，也就代表没有权限
             next();
         } else {
-            console.log(to);
             // console.log('没有权限，带去没有权限的页面');
             next({ path: '/401' });
         }

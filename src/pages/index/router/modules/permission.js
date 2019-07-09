@@ -18,6 +18,14 @@ const route = {
                 icon: 'menu-fix-icon fab fa-ethereum fa-lg fa-fw',
             },
         },
+        {
+            path: 'set',
+            component: () => import('#index/views/permission/Set.vue'),
+            meta: {
+                title: '权限设置',
+                icon: 'menu-fix-icon fas fa-user-cog fa-lg fa-fw',
+            },
+        },
         // {
         //     name: 'admin可见',
         //     path: 'admin',

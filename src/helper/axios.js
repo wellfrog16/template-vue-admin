@@ -1,7 +1,6 @@
 import { Loading, Notification } from 'element-ui';
 import { axios } from '@/utils/cdn';
 import conf from '@/config';
-// import store from '#index/router';
 import { helper } from '@/helper/lakes';
 
 const TITLE_SUCESS = '成功';
