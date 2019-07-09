@@ -53,7 +53,6 @@ const route = {
             meta: {
                 title: '富文本框',
                 icon: 'menu-fix-icon far fa-credit-card fa-lg fa-fw',
-                hidden: true,
             },
         },
         {
