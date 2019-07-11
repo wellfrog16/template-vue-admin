@@ -1,5 +1,9 @@
 <template>
     <div :class="$style.main">
+        <el-tooltip placement="top">
+            <div slot="content"><slot></slot></div>
+            <div :class="$style.ellipsis"><slot></slot></div>
+        </el-tooltip>
         <div :class="$style.ellipsis"><slot></slot></div>
     </div>
 </template>
