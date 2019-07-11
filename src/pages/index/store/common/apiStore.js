@@ -2,7 +2,6 @@ import { config } from '@/helper/lakes';
 import { utils } from '@/utils/rivers';
 import { _ } from '@/utils/cdn';
 import {
-    RES_DATA,
     RES_TOTAL,
     RES_LIST,
     UID,
@@ -56,8 +55,7 @@ export default function (options) {
                 return new Promise((resolve, reject) => {
                     api.list(state.filters)
                         .then((res) => {
-                            const data = res[RES_DATA];
-                            commit('setState', { list: data[RES_LIST], total: data[RES_TOTAL] });
+                            commit('setState', { list: res[RES_LIST], total: res[RES_TOTAL] });
                             vm.$nextTick(() => {
                                 commit('setState', { loading: false, overdue: false });
                                 resolve(true);

@@ -96,8 +96,7 @@ export default {
             this.setState({ loading: true });
 
             const res = await api.list(this.filters);
-            const { data } = res;
-            res && this.setState({ list: data.list, total: data.total });
+            res && this.setState({ list: res.list, total: res.total });
             this.$nextTick(() => {
                 this.setState({ loading: false, overdue: false });
                 document.querySelector('.el-table__body-wrapper').scrollTop = 0;

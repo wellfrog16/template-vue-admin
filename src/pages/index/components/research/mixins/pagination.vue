@@ -7,7 +7,7 @@ const { mapState, mapMutations } = createNamespacedHelpers('mixins');
 export default {
     mixins: [AbsPagination],
     computed: {
-        ...mapState(['total']),
+        ...mapState(['total', 'filters']),
     },
     methods: {
         ...mapMutations(['setState']),
