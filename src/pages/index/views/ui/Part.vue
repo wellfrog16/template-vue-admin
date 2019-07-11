@@ -14,6 +14,9 @@
                 <el-tab-pane label="数字动画" name="tab-d">
                     <count-to />
                 </el-tab-pane>
+                <el-tab-pane label="省略号" name="tab-e">
+                    <text-ellipsis />
+                </el-tab-pane>
             </el-tabs>
         </el-card>
     </div>
@@ -24,6 +27,7 @@ import Clipboard from '#index/components/ui/part/clipboard.vue';
 import Touch from '#index/components/ui/part/touch.vue';
 import Backtotop from '#index/components/ui/part/backtotop.vue';
 import CountTo from '#index/components/ui/part/count-to.vue';
+import TextEllipsis from '#index/components/ui/part/text-ellipsis.vue';
 
 export default {
     components: {
@@ -31,6 +35,7 @@ export default {
         Touch,
         Backtotop,
         CountTo,
+        TextEllipsis,
     },
     data() {
         return {
