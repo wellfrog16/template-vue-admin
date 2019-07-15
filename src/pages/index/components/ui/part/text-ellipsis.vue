@@ -1,7 +1,7 @@
 <template>
-    <div :class="$style.main">
-        <el-row>
-            <el-col :span="4" v-for="item in list" :key="item.id">
+    <div>
+        <el-row v-for="item in list" :key="item.id">
+            <el-col :span="3">
                 <h-text-ellipsis :content="item.title">{{ item.title }}</h-text-ellipsis>
             </el-col>
         </el-row>
@@ -15,17 +15,11 @@ export default {
             list: [
                 { id: 1, title: 'asdsadewrerew' },
                 { id: 2, title: '35464578689090909042342342' },
-                { id: 3, title: 'zxdfgfjuybngjhhrh' },
+                { id: 3, title: 'zxdfgfjuybngjhhrhxcvdf' },
                 { id: 4, title: 'asdsdfdg' },
-                { id: 5, title: '235gfdgfh6565537' },
+                { id: 5, title: '235gfdgfh6565537zdsd' },
             ],
         };
     },
 };
 </script>
-
-<style lang="less" module>
-.main {
-    display: inline-block;
-}
-</style>
