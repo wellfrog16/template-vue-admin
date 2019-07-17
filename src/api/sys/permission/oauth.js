@@ -10,10 +10,16 @@ const insert = params => axios.post(base, params);
 const update = params => axios.put(base, params);
 const remove = params => axios.delete(base, { params });
 
+function login(params) {
+    // 真实环境
+    return axios.post(base, params);
+}
+
 export default {
     list,
     detail,
     insert,
     update,
     remove,
+    login,
 };
