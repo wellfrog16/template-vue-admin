@@ -59,7 +59,8 @@ export default {
         },
         defaultActive() {
             const matched = [...this.$route.matched];
-            return matched.reverse().find(item => !(item.meta && item.meta.hidden)).path;
+            const route = matched.reverse().find(item => (item.meta && item.meta.belong) || !(item.meta && item.meta.hidden));
+            return (route.meta && route.meta.belong) || route.path;
         },
     },
     mounted() {
