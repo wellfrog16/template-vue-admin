@@ -1,6 +1,8 @@
 import instance from '@/helper/axios';
+import config from '@/config';
 
-const axios = instance();
+const axios = instance({ url: config.server.easyMock });
+const silence = instance({ url: config.server.easyMock, notification: false });
 
 const base = '/oauth';
 
@@ -10,10 +12,7 @@ const insert = params => axios.post(base, params);
 const update = params => axios.put(base, params);
 const remove = params => axios.delete(base, { params });
 
-function login(params) {
-    // 真实环境
-    return axios.post(base, params);
-}
+const token = params => silence.post(`${base}/token`, params);
 
 export default {
     list,
@@ -21,5 +20,5 @@ export default {
     insert,
     update,
     remove,
-    login,
+    token,
 };

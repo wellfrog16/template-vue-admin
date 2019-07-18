@@ -57,22 +57,24 @@ function axiosInstance(args) {
     });
 
     let loadingInstancce = null;
+    let myReq = null;
 
     // toto 根据项目实际调整
     instance.interceptors.request.use((request) => {
         // const site = helper.site();
-        const req = formatRequest(request);
+        myReq = formatRequest(request);
         // req.headers.username = site.username;
+        console.log(myReq);
 
-        // 全屏遮罩，带silence参数则静默处理
-        if ((!req.params || (req.params && req.params.silence !== 1)) && options.loading) {
+        // 全屏遮罩，loading参数为0则无loading
+        if ((!myReq.params || (myReq.params && myReq.params.loading !== 0)) && options.loading) {
             loadingInstancce = Loading.service({
                 fullscreen: true,
                 spinner: 'el-icon-loading',
                 text: '加载中',
             });
         }
-        return req;
+        return myReq;
     }, error => Promise.reject(error));
 
     // instance.interceptors.request.use(async request => request);
@@ -92,7 +94,14 @@ function axiosInstance(args) {
                     delete: '删除成功',
                 };
                 const message = messages[config.method] || '';
-                options.notification && Notification.success({ title: TITLE_SUCESS, message });
+
+                // 操作成功提示是否显示
+                let silence = !options.notification;
+                if (myReq.params && myReq.params.silence !== undefined) {
+                    silence = !!myReq.params.silence;
+                    console.log(silence);
+                }
+                !silence && Notification.success({ title: TITLE_SUCESS, message });
             } else {
                 let { message } = data;
                 message = message || '服务器返回错误';

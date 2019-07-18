@@ -19,6 +19,8 @@ router.beforeEach((to, from, next) => {
     // 白名单，不需要登陆的路由数组
     const whiteList = ['/login'];
 
+    console.log('wwww12ww');
+
     if (whiteList.includes(to.path)) { // 白名单直接放行
         next();
     } else if (oauth.get()) { // 有token，已经登陆

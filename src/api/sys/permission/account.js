@@ -1,11 +1,16 @@
 import instance from '@/helper/axios';
+import config from '@/config';
 
-const axios = instance();
+const axios = instance({ url: config.server.easyMock });
 
-const base = '/member';
+const base = '/account';
 
 const list = params => axios.get(base, { params });
-const detail = params => axios.get(base, { params });
+const detail = (params) => {
+    const { name } = params;
+    delete params.name;
+    return axios.get(`${base}/${name}`, { params });
+};
 const insert = params => axios.post(base, params);
 const update = params => axios.put(base, params);
 const remove = params => axios.delete(base, { params });

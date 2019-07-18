@@ -1,6 +1,7 @@
 import instance from '@/helper/axios';
+import config from '@/config';
 
-const axios = instance();
+const axios = instance({ url: config.server.easyMock });
 
 const base = '/role';
 
