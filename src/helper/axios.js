@@ -85,6 +85,14 @@ function axiosInstance(args) {
         const status = [200, 201, 204];
         const method = ['post', 'put', 'delete', 'patch'];
 
+        // 操作完成提示是否显示
+        // 仅控制响应返回成功和自定义错误
+        // 非预期返回和服务错误，一定提示Notification
+        let silence = !options.notification;
+        if (myReq.params && myReq.params.silence !== undefined) {
+            silence = !!myReq.params.silence;
+        }
+
         if (status.includes(response.status) && method.includes(config.method)) { // 正常响应预设 status 状态
             if (data.code === 200) {
                 const messages = {
@@ -93,19 +101,12 @@ function axiosInstance(args) {
                     delete: '删除成功',
                 };
                 const message = messages[config.method] || '';
-
-                // 操作成功提示是否显示
-                let silence = !options.notification;
-                if (myReq.params && myReq.params.silence !== undefined) {
-                    silence = !!myReq.params.silence;
-                    console.log(silence);
-                }
                 !silence && Notification.success({ title: TITLE_SUCESS, message });
             } else {
                 let { message } = data;
                 message = message || '服务器返回错误';
-                Notification.error({ title: TITLE_ERROR, message });
-                return Promise.reject(new Error(message));
+                !silence && Notification.error({ title: TITLE_ERROR, message });
+                return Promise.reject(new Error(`${message} code ${data.code}`));
             }
         } else if (!status.includes(response.status)) { // 非预设 status 状态，需要看具体返回类型决定如果处理
             const message = response.statusText;
