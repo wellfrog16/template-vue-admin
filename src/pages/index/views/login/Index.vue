@@ -97,6 +97,7 @@ export default {
             const code = utils.createCode(domCanvas);
 
             this.preset.code = code;
+            this.form.fields.code = code;
         },
         handleLogin() {
             this.$refs.form.validate().then(() => {

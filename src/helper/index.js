@@ -1,4 +1,5 @@
 import { storage } from '@/utils/rivers';
+import { STORAGE_SITE } from '@/helper/constant';
 
 // vue实例
 const vue = {};
@@ -9,10 +10,17 @@ const vue = {};
  * @returns json
  */
 function site() {
+    const mySite = storage.get(STORAGE_SITE, { encrypt: true }) || {};
     return {
-        username: storage.get('username'),
+        // 属性等
+        ...mySite,
+        headers: {
+            authorization: mySite.accessToken,
+        },
+
+        // 方法
         destory() {
-            storage.remove('username');
+            storage.remove(STORAGE_SITE);
         },
     };
 }

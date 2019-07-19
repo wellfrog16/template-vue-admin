@@ -61,10 +61,9 @@ function axiosInstance(args) {
 
     // toto 根据项目实际调整
     instance.interceptors.request.use((request) => {
-        // const site = helper.site();
+        const site = helper.site();
         myReq = formatRequest(request);
-        // req.headers.username = site.username;
-        console.log(myReq);
+        myReq.headers = site.headers;
 
         // 全屏遮罩，loading参数为0则无loading
         if ((!myReq.params || (myReq.params && myReq.params.loading !== 0)) && options.loading) {

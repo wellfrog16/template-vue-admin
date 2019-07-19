@@ -1,7 +1,7 @@
 import router, { staticRoutes, asyncRoutes } from '#index/router';
 import store from '#index/store';
 import filterAsyncRoutes, { hasPermission } from '@/helper/permission';
-import { oauth } from '@/utils/rivers';
+import { helper } from '@/helper/lakes';
 import { NProgress } from '@/utils/cdn';
 
 // function hasPermission(roles, permissionRoles) {
@@ -18,14 +18,13 @@ router.beforeEach((to, from, next) => {
 
     // 白名单，不需要登陆的路由数组
     const whiteList = ['/login'];
-
-    console.log('wwww12ww');
+    const site = helper.site();
 
     if (whiteList.includes(to.path)) { // 白名单直接放行
         next();
-    } else if (oauth.get()) { // 有token，已经登陆
-        const { roles } = store.getters;
-        if (roles.length === 0) { // 没有角色信息
+    } else if (site.accessToken) { // 有token，已经登陆
+        const { roleList } = store.getters;
+        if (roleList.length === 0) { // 没有角色列表信息
             store.dispatch('member/info').then((res) => {
                 const routes = filterAsyncRoutes(asyncRoutes, res.roles);
                 store.commit('permission/setState', { routes: staticRoutes.concat(routes) });
@@ -35,7 +34,7 @@ router.beforeEach((to, from, next) => {
                 store.commit('member/logout');
                 next({ path: '/login', query: { from: to.path } });
             });
-        } else if (hasPermission(to, roles) && to.meta && to.meta.title) {
+        } else if (hasPermission(to, site.roles) && to.meta && to.meta.title) {
             // 这里额外判断to.meta.title，因为正常情况，没有权限的路由已经被过滤掉了
             // 手动输入没有权限的地址进行访问会找不到路由显示白屏
             // 没有路由就不能依靠meta来判断，否则会和没有设置meta的路由一样认为有权限

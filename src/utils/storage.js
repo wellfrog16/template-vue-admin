@@ -23,19 +23,17 @@ function remove(key) {
  *
  * @param {string} key
  * @param {string} val
- * @param {date | number(秒)} expires
- * @param {boolean} encrypt
+ * @param {{date | number(秒), boolean}} [{ expires, encrypt }={}]
  */
 function set(key, value, { expires, encrypt } = {}) {
     const type = $.type(expires);
     const createAt = moment().format('YYYY-MM-DD HH:mm:ss');
-    const val = encrypt ? CryptoJS.AES.encrypt(value, SECRET_KEY).toString() : value;
+    const val = encrypt ? CryptoJS.AES.encrypt(JSON.stringify(value), SECRET_KEY).toString() : value;
     const item = { val, type, createAt };
     const handle = {
         date() { item.expires = moment(expires).format('YYYY-MM-DD HH:mm:ss'); },
         number() { item.expires = expires; },
     };
-
     handle[type] && handle[type]();
     localStorage.setItem(key, JSON.stringify(item));
 }
@@ -44,9 +42,10 @@ function set(key, value, { expires, encrypt } = {}) {
  * 获取localStorge
  *
  * @param {string} key
+ * @param {{ boolean }} { encrypt }
  * @returns
  */
-function get(key, encrypt) {
+function get(key, { encrypt } = {}) {
     const val = localStorage.getItem(key);
     if (utils.isEmpty(val)) { return ''; }
 
@@ -75,7 +74,7 @@ function get(key, encrypt) {
     };
 
     handle[item.type] && handle[item.type]();
-    result = encrypt ? CryptoJS.AES.decrypt(result, SECRET_KEY).toString(CryptoJS.enc.Utf8) : result;
+    result = encrypt ? JSON.parse(CryptoJS.AES.decrypt(result, SECRET_KEY).toString(CryptoJS.enc.Utf8)) : result;
     return result;
 }
 
