@@ -73,8 +73,8 @@ export default {
             },
             form: {
                 fields: {
-                    name: 'admin',
-                    password: 'admin888',
+                    name: 'editor',
+                    password: 'editor888',
                     code: '',
                 },
                 rules: {
@@ -105,11 +105,14 @@ export default {
                 if (this.preset.code.toLowerCase() !== this.form.fields.code.toLowerCase()) { return; }
 
                 // 登陆
-                this.$store.dispatch('permission/account/login', this.form.fields).then(() => {
+                this.$store.dispatch('security/account/login', this.form.fields).then(() => {
                     const path = this.$route.query.from || '/home';
                     this.$router.push({ path });
                 }).catch((err) => {
-                    this.$message.error(err);
+                    let { message } = err;
+                    message.match(/^(.+)code/g);
+                    message = RegExp.$1;
+                    this.$message.error(message);
                 });
             }).catch(() => {});
         },

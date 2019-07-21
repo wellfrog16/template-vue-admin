@@ -50,7 +50,7 @@ export default {
         return {
             width: 'auto',
             collapse: false,
-            menuData: this.$store.state.permission.routes,
+            menuData: this.$store.getters.routes,
         };
     },
     computed: {

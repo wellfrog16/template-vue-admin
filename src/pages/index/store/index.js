@@ -6,7 +6,7 @@ import baseForm from './modules/base-form';
 import complexTable from './modules/complex-table';
 import lazyTable from './modules/lazy-table';
 import member from './modules/member';
-import permission from './modules/permission';
+import security from './modules/security';
 import mixins from './modules/mixins';
 
 Vue.use(Vuex);
@@ -14,11 +14,17 @@ Vue.use(Vuex);
 // 返回 store 实例
 export default new Vuex.Store({
     getters: {
-        roleList(statex, gettersx, root) {
-            return root.permission.account.roleList;
+        // 账户拥有的路由权限
+        permissions(state, getters, rootState, rootGetter) {
+            return rootGetter['security/role/permissions'];
         },
-        routes(statex, gettersx, root) {
-            return root.permission.routes;
+        // 账户拥有的角色
+        roles(state, getters, rootState) {
+            return rootState.security.account.roles;
+        },
+        // 账户拥有的路由
+        routes(state, getters, rootState) {
+            return rootState.security.account.routes;
         },
     },
     modules: {
@@ -26,7 +32,7 @@ export default new Vuex.Store({
         complexTable,
         lazyTable,
         member,
-        permission,
+        security,
         mixins,
     },
 });

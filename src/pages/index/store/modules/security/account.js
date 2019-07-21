@@ -1,7 +1,7 @@
 import apiStore from '#index/store/common/apiStore';
 import { utils, storage } from '@/utils/rivers';
-import oauthApi from '@/api/sys/permission/oauth';
-import accountApi from '@/api/sys/permission/account';
+import oauthApi from '@/api/sys/security/oauth';
+import accountApi from '@/api/sys/security/account';
 import { _ } from '@/utils/cdn';
 import { STORAGE_SITE } from '@/helper/constant';
 
@@ -13,7 +13,7 @@ const extraStore = {
         id: 0,
         name: '', // 账户名称
         roles: [], // 账户角色
-        roleList: [], // 账户角色的角色信息（待权限）列表
+        routes: [], // 账户路由
     },
     actions: {
         // 登陆
