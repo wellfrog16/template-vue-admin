@@ -54,7 +54,6 @@ router.beforeEach((to, from, next) => {
                 router.addRoutes(routes); // 动态添加可访问路由表
                 next({ ...to });
             }).catch(() => {
-                store.commit('member/logout');
                 next({ path: '/login', query: { from: to.path } });
             });
         } else if (Permission.hasPermission(to, site.roles) && to.meta && to.meta.title) {
