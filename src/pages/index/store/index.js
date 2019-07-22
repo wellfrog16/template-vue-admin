@@ -13,6 +13,17 @@ Vue.use(Vuex);
 
 // 返回 store 实例
 export default new Vuex.Store({
+    state: {
+        errorMessage: '', // 全局错误检测
+    },
+    mutations: {
+        setErrorMessage(state, message) {
+            state.errorMessage = message;
+        },
+        clearErrorMessage(state) {
+            state.errorMessage = '';
+        },
+    },
     getters: {
         // 账户拥有的路由权限
         permissions(state, getters, rootState, rootGetter) {

@@ -8,8 +8,8 @@ import { STORAGE_SITE } from '@/helper/constant';
 const extraState = {
     accessToken: '',
     refreshToken: '',
-    id: 0,
-    name: '', // 账户名称
+    accountId: 0,
+    accountName: '', // 账户名称
     roles: [], // 账户角色
     routes: [], // 账户路由
 };
@@ -20,8 +20,11 @@ const extraStore = {
     },
     actions: {
         // 登陆
-        async login({ commit }, account) {
+        async login({ commit, dispatch }, account) {
             try {
+                // 先清理数据残留
+                dispatch('clear');
+
                 // 获取token
                 const oauthRes = await oauthApi.token(account);
                 const token = {
@@ -37,15 +40,11 @@ const extraStore = {
                 // 获取账户信息
                 const accountRes = await accountApi.detail({ name: account.name, silence: 1 });
                 const acc = {
-                    id: accountRes.id,
-                    name: accountRes.name,
+                    accountId: accountRes.id,
+                    accountName: accountRes.name,
                     roles: accountRes.roles,
                 };
-                commit('setState', {
-                    id: accountRes.id,
-                    name: accountRes.name,
-                    roles: accountRes.roles,
-                });
+                commit('setState', acc);
 
                 // 保存至localStorage
                 site = _.assign(site, acc);
@@ -58,12 +57,13 @@ const extraStore = {
 
         // 登出
         async logout({ state, dispatch }) {
-            dispatch('clear');
             try {
                 await oauthApi.destroy(state.accessToken);
                 return true;
             } catch (err) {
                 throw err;
+            } finally {
+                dispatch('clear');
             }
         },
 

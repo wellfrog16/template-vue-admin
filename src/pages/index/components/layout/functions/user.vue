@@ -41,8 +41,8 @@ export default {
         // 注销
         logout() {
             this.$store.dispatch('security/account/logout').then(() => {
-                // this.$router.push({ path: '/login' });
-            }).catch(err => this.$message.error(err.$message));
+                this.$router.push({ path: '/login' });
+            });
         },
     },
 };
