@@ -21,7 +21,7 @@ router.beforeEach((to, from, next) => {
     NProgress.start();
 
     // 白名单，不需要登陆的路由数组
-    const whiteList = ['/login'];
+    const whiteList = ['/login', '/401'];
     const site = helper.site();
 
     if (whiteList.includes(to.path)) { // 白名单直接放行
@@ -56,14 +56,10 @@ router.beforeEach((to, from, next) => {
             }).catch(() => {
                 next({ path: '/login', query: { from: to.path } });
             });
-        } else if (Permission.hasPermission(to, site.roles) && to.meta && to.meta.title) {
-            // 这里额外判断to.meta.title，因为正常情况，没有权限的路由已经被过滤掉了
-            // 手动输入没有权限的地址进行访问会找不到路由显示白屏
-            // 没有路由就不能依靠meta来判断，否则会和没有设置meta的路由一样认为有权限
-            // 因此这里增加to.meta.title判断（每个路由都需要设置title），如果没有title表示没有这个路由，也就代表没有权限
+        } else if (Permission.hasPermission(to, site.roles)) {
             next();
         } else {
-            // console.log('没有权限，带去没有权限的页面');
+            console.log('没有权限，带去没有权限的页面');
             next({ path: '/401' });
         }
     } else { // 无token，转到登陆页面

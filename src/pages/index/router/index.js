@@ -40,7 +40,7 @@ const staticRoutes = [
     },
     {
         path: '/401',
-        component: () => import('../views/error/401.vue'),
+        component: () => import('#index/views/error/401.vue'),
         meta: {
             title: '401',
             hidden: true,
