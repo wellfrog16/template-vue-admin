@@ -13,6 +13,7 @@ const update = params => axios.put(base, params);
 const remove = params => axios.delete(base, { params });
 
 const token = params => silence.post(`${base}/token`, params);
+const destroy = accessToken => silence.delete(`${base}/token/${accessToken}`);
 
 export default {
     list,
@@ -21,4 +22,5 @@ export default {
     update,
     remove,
     token,
+    destroy,
 };

@@ -5,15 +5,18 @@ import accountApi from '@/api/sys/security/account';
 import { _ } from '@/utils/cdn';
 import { STORAGE_SITE } from '@/helper/constant';
 
+const extraState = {
+    accessToken: '',
+    refreshToken: '',
+    id: 0,
+    name: '', // 账户名称
+    roles: [], // 账户角色
+    routes: [], // 账户路由
+};
 const store = apiStore(accountApi);
 const extraStore = {
     state: {
-        accessToken: '',
-        refreshToken: '',
-        id: 0,
-        name: '', // 账户名称
-        roles: [], // 账户角色
-        routes: [], // 账户路由
+        ...extraState,
     },
     actions: {
         // 登陆
@@ -51,6 +54,23 @@ const extraStore = {
             } catch (err) {
                 throw err;
             }
+        },
+
+        // 登出
+        async logout({ state, dispatch }) {
+            dispatch('clear');
+            try {
+                await oauthApi.destroy(state.accessToken);
+                return true;
+            } catch (err) {
+                throw err;
+            }
+        },
+
+        // 清除vuex和localStorage中的登录信息
+        clear({ commit }) {
+            commit('setState', { ...extraState });
+            commit('security/role/setState', { accountRoleList: [] }, { root: true });
         },
     },
 };

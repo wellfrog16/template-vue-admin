@@ -40,9 +40,9 @@ export default {
         },
         // 注销
         logout() {
-            this.$store.dispatch('member/logout').then(() => {
-                this.$router.push({ path: '/login' });
-            }).catch(err => this.$message.error(err));
+            this.$store.dispatch('security/account/logout').then(() => {
+                // this.$router.push({ path: '/login' });
+            }).catch(err => this.$message.error(err.$message));
         },
     },
 };
