@@ -34,19 +34,22 @@
                 </transition>
             </el-main>
         </el-container>
+
+        <!-- 通知系统 -->
+        <notification />
     </el-container>
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex';
 import AsideMenu from '#index/components/common/menu/index.vue';
 import Functions from '#index/components/layout/functions/index.vue';
+import Notification from '#index/components/layout/notification/index.vue';
 // import menu from '@/helper/menu';
 import { $ } from '@/utils/cdn';
 import { storage } from '@/utils/rivers';
 
 export default {
-    components: { AsideMenu, Functions },
+    components: { AsideMenu, Functions, Notification },
     data() {
         return {
             width: 'auto',
@@ -55,8 +58,6 @@ export default {
         };
     },
     computed: {
-        ...mapState(['errorMessage']),
-
         routeMatched() {
             return this.$route.matched.filter(item => !(item.meta && item.meta.hidden) && (item.meta && item.meta.title !== '首页'));
         },
@@ -66,23 +67,10 @@ export default {
             return (route.meta && route.meta.belong) || route.path;
         },
     },
-    watch: {
-        // 全局自定义错误提示
-        errorMessage(val) {
-            val && this.showErrorMessage(val);
-        },
-    },
     mounted() {
         this.setCollapse(this.getStatus());
     },
     methods: {
-        ...mapMutations(['clearErrorMessage']),
-
-        // 显示错误提示
-        showErrorMessage(message) {
-            this.$message.error(message);
-            this.clearErrorMessage();
-        },
         toggle() {
             this.setCollapse(!this.getStatus());
         },
