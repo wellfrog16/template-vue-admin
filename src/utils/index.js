@@ -132,6 +132,19 @@ function currency(vals, units = '', decimals) {
         + floatx;
 }
 
+/**
+ * 隐藏手机号当中四位
+ *
+ * @param {String|Number} num 手机号码
+ * @returns
+ */
+function secretPhoneNum(num) {
+    if (!num) { return ''; }
+    const val = num.toString();
+    if (!num || val.length !== 11) { return ''; }
+    return `${val.substr(0, 3)}****${val.substr(7)}`;
+}
+
 function getRandomColor() {
     return '#'+('00000'+(Math.random()*0x1000000<<0).toString(16)).slice(-6); // eslint-disable-line
     // return `hsl(${Math.random()}, 50%, 50%)`;
@@ -155,6 +168,7 @@ export default {
     autoRootSize,
     createCode,
     currency,
+    secretPhoneNum,
     getRandomColor,
     deepMerge,
 };
