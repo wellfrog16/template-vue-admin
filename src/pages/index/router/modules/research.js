@@ -1,5 +1,4 @@
 import Layout from '#index/views/layout/Index.vue';
-// import Root from '../../../components/Root.vue';
 
 const route = {
     path: '/research',

@@ -56,6 +56,7 @@ router.beforeEach((to, from, next) => {
             }).catch(() => {
                 next({ path: '/login', query: { from: to.path } });
             });
+        // } else if (Permission.hasPermission(to, site.roles)) {
         } else if (Permission.hasPermission(to, site.roles)) {
             next();
         } else {

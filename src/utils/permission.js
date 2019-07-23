@@ -132,13 +132,13 @@ class Permission {
      */
     static filterAsyncRoutes(routers, roles) {
         const result = [];
-        routers.forEach((router) => {
-            const routerCopy = _.cloneDeep(router);
-            if (this.hasPermission(routerCopy, roles)) {
-                if (routerCopy.children) {
-                    routerCopy.children = this.filterAsyncRoutes(routerCopy.children, roles);
+        routers.forEach((item) => {
+            // const routerCopy = _.cloneDeep(router);
+            if (this.hasPermission(item, roles)) {
+                if (item.children) {
+                    item.children = this.filterAsyncRoutes(item.children, roles);
                 }
-                result.push(routerCopy);
+                result.push(item);
             }
         });
 
