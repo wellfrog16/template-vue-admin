@@ -1,3 +1,6 @@
+<template>
+    <span :class="$style.main"></span>
+</template>
 <script>
 import { mapState, mapMutations } from 'vuex';
 
@@ -6,19 +9,32 @@ export default {
         ...mapState(['message', 'notification']),
     },
     watch: {
-        // 全局自定义错误提示
-        errorMessage(val) {
+        message(val) {
             val && this.showMessage(val);
+        },
+
+        notification(val) {
+            val && this.showNotification(val);
         },
     },
     methods: {
         ...mapMutations(['clearMessage', 'clearNotification']),
 
-        // 显示错误提示
         showMessage(message) {
             this.$message.error(message);
             this.clearErrorMessage();
         },
+
+        showNotification(message) {
+            this.$message.error(message);
+            this.clearNotification();
+        },
     },
 };
 </script>
+
+<style lang="less" module>
+.main {
+    display: none;
+}
+</style>

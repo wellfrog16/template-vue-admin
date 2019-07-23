@@ -73,8 +73,8 @@ export default {
             },
             form: {
                 fields: {
-                    name: 'editor',
-                    password: 'editor888',
+                    name: 'admin',
+                    password: 'admin888',
                     code: '',
                 },
                 rules: {
