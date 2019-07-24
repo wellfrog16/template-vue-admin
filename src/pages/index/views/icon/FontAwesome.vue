@@ -47,6 +47,7 @@ export default {
             pagesize: 100,
             list: [],
             infiniteState: null,
+            clipboard: null,
         };
     },
     computed: {
@@ -57,16 +58,19 @@ export default {
         },
     },
     mounted() {
-        const clipboard = new ClipboardJS(`.${this.$style.list}>div>div`, {
+        this.clipboard = new ClipboardJS(`.${this.$style.list}>div>div`, {
             text(trigger) {
                 return `${trigger.querySelector('i').className.replace('fa-3x', 'fa-lg')}`;
             },
         });
 
-        clipboard.on('success', (e) => {
+        this.clipboard.on('success', (e) => {
             this.$message.success('复制成功');
             e.clearSelection();
         });
+    },
+    destroyed() {
+        this.clipboard.destroy();
     },
     methods: {
         sliceItems() {

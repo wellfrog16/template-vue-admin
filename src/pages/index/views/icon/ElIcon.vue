@@ -27,19 +27,23 @@ export default {
     data() {
         return {
             list: elIcons,
+            clipboard: null,
         };
     },
     mounted() {
-        const clipboard = new ClipboardJS(`.${this.$style.list}>div>div`, {
+        this.clipboard = new ClipboardJS(`.${this.$style.list}>div>div`, {
             text(trigger) {
                 return trigger.querySelector('i').className;
             },
         });
 
-        clipboard.on('success', (e) => {
+        this.clipboard.on('success', (e) => {
             this.$message.success('复制成功');
             e.clearSelection();
         });
+    },
+    destroyed() {
+        this.clipboard.destroy();
     },
 };
 </script>
