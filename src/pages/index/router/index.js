@@ -13,6 +13,7 @@ import routeIframe from './modules/iframe';
 import routeGuide from './modules/guide';
 import routeDocument from './modules/document';
 import routeHome from './modules/home';
+import routeLog from './modules/log';
 
 Vue.use(Router);
 
@@ -57,6 +58,7 @@ const asyncRoutes = [
     ...routeResearch,
     ...routeEcharts,
     ...routeAccount,
+    ...routeLog,
     ...routeSplitPane,
     {
         path: 'https://github.com/wellfrog16/template-vue-admin',

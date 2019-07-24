@@ -14,7 +14,7 @@ const route = {
             component: () => import('#index/views/icon/ElIcon.vue'),
             meta: {
                 title: 'element-ui',
-                icon: 'menu-fix-icon fab fa-fonticons-fi fa-lg fa-fw',
+                icon: 'el-icon-platform-eleme',
             },
         },
         {
@@ -22,7 +22,7 @@ const route = {
             component: () => import('#index/views/icon/FontAwesome.vue'),
             meta: {
                 title: 'font-awesome',
-                icon: 'menu-fix-icon fab fa-fonticons-fi fa-lg fa-fw',
+                icon: 'menu-fix-icon fab fa-font-awesome fa-lg fa-fw',
             },
         },
     ],
