@@ -161,7 +161,6 @@ export default {
 
 .switch-tran {
     transform: rotate(90deg);
-    transition: all 0.2s;
 }
 
 .main {
