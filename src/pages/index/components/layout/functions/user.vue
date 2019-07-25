@@ -40,7 +40,14 @@ export default {
         },
         // 注销
         logout() {
+            let loading = this.$loading({
+                lock: true,
+                text: '正在退出系统',
+                spinner: 'el-icon-loading',
+            });
             this.$store.dispatch('security/account/logout').then(() => {
+                loading.close();
+                loading = null;
                 this.$router.push({ path: '/login' });
             });
         },

@@ -46,7 +46,7 @@
                     ></canvas>
                 </el-form-item>
 
-                <el-button :class="$style.login" type="primary" @click="handleLogin">登 入</el-button>
+                <el-button :class="$style.login" type="primary" @click="handleLogin" :loading="loading">登 入</el-button>
             </el-form>
         </el-card>
     </div>
@@ -66,6 +66,7 @@ export default {
         };
 
         return {
+            loading: false,
             preset: {
                 name: 'admin',
                 password: 'admin888',
@@ -104,11 +105,14 @@ export default {
                 // 先校验验证码
                 if (this.preset.code.toLowerCase() !== this.form.fields.code.toLowerCase()) { return; }
 
+                this.loading = true;
+
                 // 登陆
                 this.$store.dispatch('security/account/login', this.form.fields).then(() => {
                     const path = this.$route.query.from || '/home';
                     this.$router.push({ path });
                 }).catch((err) => {
+                    this.loading = false;
                     let { message } = err;
                     message.match(/^(.+)code/g);
                     message = RegExp.$1;
