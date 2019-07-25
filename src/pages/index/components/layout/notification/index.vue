@@ -5,6 +5,11 @@
 import { mapState, mapMutations } from 'vuex';
 
 export default {
+    data() {
+        return {
+            a: '',
+        };
+    },
     computed: {
         ...mapState(['message', 'notification']),
     },
@@ -20,13 +25,13 @@ export default {
     methods: {
         ...mapMutations(['clearMessage', 'clearNotification']),
 
-        showMessage(message) {
-            this.$message.error(message);
+        showMessage(options) {
+            this.$message(options);
             this.clearErrorMessage();
         },
 
-        showNotification(message) {
-            this.$message.error(message);
+        showNotification(options) {
+            this.$notify(options);
             this.clearNotification();
         },
     },
