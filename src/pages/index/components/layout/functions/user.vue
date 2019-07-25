@@ -49,6 +49,9 @@ export default {
                 loading.close();
                 loading = null;
                 this.$router.push({ path: '/login' });
+            }).catch(() => {
+                loading.close();
+                loading = null;
             });
         },
     },
