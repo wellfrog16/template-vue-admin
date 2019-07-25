@@ -108,6 +108,20 @@ class Permission {
     }
 
     /**
+     * 指令v-permission的手动校验
+     *
+     * @param {Array} 一般获取自store里的用户角色信息
+     * @param {Array} 需要校验的权限
+     * @returns
+     */
+    static checkPermission(storeRoles, roles) {
+        if (roles && roles instanceof Array && roles.length > 0) {
+            return storeRoles.some(role => roles.includes(role));
+        }
+        return false;
+    }
+
+    /**
      * 通过meta.roles判断是否与当前用户权限匹配
      *
      * @param {vue.$route} route

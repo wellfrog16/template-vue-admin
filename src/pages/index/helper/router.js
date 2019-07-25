@@ -1,18 +1,9 @@
-// import router, { staticRoutes, asyncRoutes } from '#index/router';
+
 import createRouter, { asyncRoutes } from '#index/router';
-// import router from '#index/router';
 import store from '#index/store';
-// import filterAsyncRoutes, { hasPermission } from '@/helper/permission';
-// import { hasPermission } from '@/helper/permission';
 import { helper } from '@/helper/lakes';
 import { NProgress } from '@/utils/cdn';
 import { Permission } from '@/utils/rivers';
-
-// function hasPermission(roles, permissionRoles) {
-//     if (roles.includes('admin')) return true // admin permission passed directly
-//     if (!permissionRoles) return true
-//     return roles.some(role => permissionRoles.indexOf(role) >= 0)
-// }
 
 NProgress.configure({ showSpinner: false });
 

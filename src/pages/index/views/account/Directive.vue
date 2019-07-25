@@ -48,7 +48,7 @@
 
 <script>
 import SwitchRoles from '#index/components/account/switch-roles.vue';
-import { checkPermission } from '@/helper/permission';
+import { Permission } from '@/utils/rivers';
 
 export default {
     components: {
@@ -62,7 +62,7 @@ export default {
     },
     methods: {
         checkPermission(val) {
-            return checkPermission(this.$store.getters.roles, val);
+            return Permission.checkPermission(this.$store.getters.roles, val);
         },
         handleRolesChange() {
             this.key += 1;
