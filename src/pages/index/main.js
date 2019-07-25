@@ -1,11 +1,8 @@
 import Vue from 'vue';
 import store from './store';
-import router from './router';
+import router from './helper/router';
 import App from './App.vue';
 import { helper } from '@/helper/lakes';
-
-// 路由权限
-import './helper/router';
 
 // 过滤器
 import '@/utils/filters';

@@ -95,7 +95,7 @@ const scrollBehavior = (to, from, savedPosition) => {
 };
 
 // todo 按模块写入单独的文件引用
-const router = new Router({
+const createRouter = () => new Router({
     // mode: 'history',
     scrollBehavior,
     routes: staticRoutes,
@@ -106,4 +106,4 @@ export {
     asyncRoutes,
 };
 
-export default router;
+export default createRouter;

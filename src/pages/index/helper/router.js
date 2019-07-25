@@ -1,5 +1,5 @@
 // import router, { staticRoutes, asyncRoutes } from '#index/router';
-import router, { asyncRoutes } from '#index/router';
+import createRouter, { asyncRoutes } from '#index/router';
 // import router from '#index/router';
 import store from '#index/store';
 // import filterAsyncRoutes, { hasPermission } from '@/helper/permission';
@@ -16,7 +16,7 @@ import { Permission } from '@/utils/rivers';
 
 NProgress.configure({ showSpinner: false });
 
-// todo
+const router = createRouter();
 router.beforeEach((to, from, next) => {
     NProgress.start();
 
@@ -51,6 +51,8 @@ router.beforeEach((to, from, next) => {
 
                 // 保存自己的路由
                 store.commit('security/account/setState', { routes });
+
+                router.matcher = createRouter().matcher;
                 router.addRoutes(routes); // 动态添加可访问路由表
                 next({ ...to });
             }).catch(() => {
@@ -71,3 +73,5 @@ router.beforeEach((to, from, next) => {
 router.afterEach(() => {
     NProgress.done();
 });
+
+export default router;
