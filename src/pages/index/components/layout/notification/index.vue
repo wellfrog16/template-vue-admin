@@ -5,11 +5,6 @@
 import { mapState, mapMutations } from 'vuex';
 
 export default {
-    data() {
-        return {
-            a: '',
-        };
-    },
     computed: {
         ...mapState(['message', 'notification']),
     },
