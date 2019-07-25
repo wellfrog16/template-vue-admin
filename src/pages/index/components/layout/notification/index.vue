@@ -27,7 +27,7 @@ export default {
 
         showMessage(options) {
             this.$message(options);
-            this.clearErrorMessage();
+            this.clearMessage();
         },
 
         showNotification(options) {

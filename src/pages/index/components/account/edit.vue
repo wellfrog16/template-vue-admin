@@ -64,7 +64,9 @@ export default {
             const resHalf = this.$refs.tree.getHalfCheckedKeys();
             const result = [...resLeaf, ...resHalf];
             console.log(result);
-            this.$message.success('请查看console.log信息');
+            // this.$message.success('请查看console.log信息');
+            const message = { message: '请查看console.log信息', type: 'info' };
+            this.$store.commit('setState', { message });
         },
     },
 };
