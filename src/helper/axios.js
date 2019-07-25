@@ -21,7 +21,7 @@ function formatResponse(params) {
 
     // 如果没有code，增加code属性
     if (!data.code) {
-        data.code = data.success ? 300 : 500;
+        data.code = data.success ? 200 : 500;
     }
 
     // 如果没有data，增加data属性
