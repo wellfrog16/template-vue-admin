@@ -1,4 +1,4 @@
-import { Loading, Notification } from 'element-ui';
+import { Loading } from 'element-ui';
 import { axios } from '@/utils/cdn';
 import conf from '@/config';
 import { helper } from '@/helper/lakes';
@@ -85,6 +85,8 @@ function axiosInstance(args) {
         const status = [200, 201, 204];
         const method = ['post', 'put', 'delete', 'patch'];
 
+        const { $store } = helper.vue;
+
         // 操作完成提示是否显示
         // 仅控制响应返回成功和自定义错误
         // 非预期返回和服务错误，一定提示Notification
@@ -101,16 +103,20 @@ function axiosInstance(args) {
                     delete: '删除成功',
                 };
                 const message = messages[config.method] || '';
-                !silence && Notification.success({ title: TITLE_SUCESS, message });
+                const notification = { title: TITLE_SUCESS, message, type: 'success' };
+                !silence && $store.commit('setState', { notification });
             } else {
                 let { message } = data;
                 message = message || '服务器返回错误';
-                !silence && Notification.error({ title: TITLE_ERROR, message });
+
+                const notification = { title: TITLE_ERROR, message, type: 'error' };
+                !silence && $store.commit('setState', { notification });
                 return Promise.reject(new Error(`${message} code ${data.code}`));
             }
         } else if (!status.includes(response.status)) { // 非预设 status 状态，需要看具体返回类型决定如果处理
             const message = response.statusText;
-            Notification.error({ title: TITLE_ERROR, message });
+            const notification = { title: TITLE_ERROR, message, type: 'error' };
+            $store.commit('setState', { notification });
             return Promise.reject(new Error(message));
         }
         return data.data;
@@ -127,7 +133,8 @@ function axiosInstance(args) {
         }
 
         loadingInstancce && loadingInstancce.close();
-        Notification.error({ title: TITLE_ERROR, message });
+        const notification = { title: TITLE_ERROR, message, type: 'error' };
+        helper.vue.$store.commit('setState', { notification });
         return Promise.reject(error);
     });
 

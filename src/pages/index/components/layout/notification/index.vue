@@ -20,13 +20,13 @@ export default {
     methods: {
         ...mapMutations(['clearMessage', 'clearNotification']),
 
-        showMessage(message) {
-            this.$message.error(message);
-            this.clearErrorMessage();
+        showMessage(options) {
+            this.$message(options);
+            this.clearMessage();
         },
 
-        showNotification(message) {
-            this.$message.error(message);
+        showNotification(options) {
+            this.$notify(options);
             this.clearNotification();
         },
     },

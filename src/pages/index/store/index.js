@@ -15,13 +15,13 @@ Vue.use(Vuex);
 // 返回 store 实例
 export default new Vuex.Store({
     state: {
-        message: {}, // 全局错误检测
-        notification: {},
+        message: null, // 全局错误检测
+        notification: null,
     },
     mutations: {
         setState: (state, payload) => utils.deepMerge(state, payload),
-        clearMessage: (state) => { state.message = {}; },
-        clearNotification: (state) => { state.notification = {}; },
+        clearMessage: (state) => { state.message = null; },
+        clearNotification: (state) => { state.notification = null; },
     },
     getters: {
         // 账户拥有的路由权限

@@ -20,7 +20,7 @@ export default {
                 return this.roles;
             },
             set(val) {
-                this.$store.commit('member/setState', { roles: val });
+                this.$store.commit('security/account/setState', { roles: val });
                 this.$emit('change');
             },
         },

@@ -13,7 +13,7 @@
         >
             <!-- 主窗口区域 -->
             <el-card :class="$style.windows" :style="windowStyle" v-loading="loading">
-                <el-image v-show="imageVisible" :src="fixedImageUrl" fit="cover" />
+                <el-image v-show="imageVisible" :src="fixedImageUrl" fit="contain" />
                 <video v-show="videoVisible" :width="width" :height="height" />
                 <canvas v-show="canvasVisible" :width="width" :height="height" />
                 <div v-show="alertVisible" :class="$style.alert">
