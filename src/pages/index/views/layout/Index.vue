@@ -44,7 +44,6 @@
 import AsideMenu from '#index/components/common/menu/index.vue';
 import Functions from '#index/components/layout/functions/index.vue';
 import Notification from '#index/components/layout/notification/index.vue';
-// import menu from '@/helper/menu';
 import { $ } from '@/utils/cdn';
 import { storage } from '@/utils/rivers';
 
