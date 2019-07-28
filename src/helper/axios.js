@@ -45,21 +45,28 @@ function formatRequest(params) {
 }
 
 function axiosInstance(args) {
-    const defaultOptions = { notification: true, loading: false };
-    const options = Object.assign({}, defaultOptions, args);
-    const instance = axios.create({
-        baseURL: options.url || conf.server.api,
-        // withCredentials: true,
+    const defaultOptions = {
+        // 自定义
+        notification: true,
+        loading: false,
+        retryMax: 4,
+        retryDelay: 1000,
+
+        // 原生
+        baseURL: conf.server.api,
         timeout: 50000,
+        // withCredentials: true,
         // paramsSerializer(params) {
         //     return Qs.stringFy(setParams(params), { arrayFormat: 'brackets' });
         // },
-    });
+    };
+
+    const options = Object.assign({}, defaultOptions, args);
+    const instance = axios.create({ ...options });
 
     let loadingInstancce = null;
     let myReq = null;
 
-    // toto 根据项目实际调整
     instance.interceptors.request.use((request) => {
         const site = helper.site();
         myReq = formatRequest(request);
@@ -75,8 +82,6 @@ function axiosInstance(args) {
         }
         return myReq;
     }, error => Promise.reject(error));
-
-    // instance.interceptors.request.use(async request => request);
 
     instance.interceptors.response.use((response) => {
         loadingInstancce && loadingInstancce.close();
@@ -121,21 +126,41 @@ function axiosInstance(args) {
         }
         return data.data;
     }, (error) => { // 5xx, 4xx
-        const { $router } = helper.vue;
-        let { message } = error;
-        message.match(/.+code\s(\d{3})$/g);
-        const code = +RegExp.$1;
+        const { config } = error;
 
-        // 无权限
-        if (code === 401) {
-            message = '登陆超时';
-            $router.push({ path: '/login' });
+        config.retryCount = config.retryCount || 0;
+
+        if (
+            !config
+            || !config.retryMax
+            || config.retryCount >= config.retryMax
+        ) {
+            const { $router } = helper.vue;
+            let { message } = error;
+            message.match(/.+code\s(\d{3})$/g);
+            const code = +RegExp.$1;
+
+            // 无权限
+            if (code === 401) {
+                message = '登陆超时';
+                $router.push({ path: '/login' });
+            }
+
+            loadingInstancce && loadingInstancce.close();
+            const notification = { title: TITLE_ERROR, message, type: 'error' };
+            helper.vue.$store.commit('setState', { notification });
+            return Promise.reject(error);
         }
 
-        loadingInstancce && loadingInstancce.close();
-        const notification = { title: TITLE_ERROR, message, type: 'error' };
-        helper.vue.$store.commit('setState', { notification });
-        return Promise.reject(error);
+        config.retryCount += 1;
+
+        const backoff = new Promise((resolve) => {
+            setTimeout(() => {
+                resolve();
+            }, config.retryDelay || 1);
+        });
+
+        return backoff.then(() => instance(config));
     });
 
     return instance;

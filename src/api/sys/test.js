@@ -1,6 +1,6 @@
 import instance from '@/helper/axios';
 
-const axios = instance({ url: 'http://127.0.0.1:8001/test' });
+const axios = instance({ baseURL: 'http://127.0.0.1:8001/test' });
 
 const test = () => {
     const options = {
@@ -10,7 +10,7 @@ const test = () => {
         }],
     };
 
-    return axios.post('', '11', options);
+    return axios.post('11', '11', options);
 };
 
 export default test;

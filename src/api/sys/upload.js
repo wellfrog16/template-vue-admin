@@ -1,7 +1,7 @@
 import instance from '@/helper/axios';
 import { UPLOAD_NAME } from '@/helper/constant';
 
-const axios = instance({ url: 'http://127.0.0.1:8001/service/file/upload' });
+const axios = instance({ baseURL: 'http://127.0.0.1:8001/service/file/upload' });
 
 /**
  * 上传图片或者blob

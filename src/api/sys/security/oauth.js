@@ -1,8 +1,8 @@
 import instance from '@/helper/axios';
 import config from '@/config';
 
-const axios = instance({ url: config.server.easyMock });
-const silence = instance({ url: config.server.easyMock, notification: false });
+const axios = instance({ baseURL: config.server.easyMock });
+const silence = instance({ baseURL: config.server.easyMock, notification: false });
 
 const base = '/oauth';
 

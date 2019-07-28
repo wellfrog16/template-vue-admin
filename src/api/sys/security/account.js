@@ -1,7 +1,7 @@
 import instance from '@/helper/axios';
 import config from '@/config';
 
-const axios = instance({ url: config.server.easyMock });
+const axios = instance({ baseURL: config.server.easyMock });
 
 const base = '/account';
 
