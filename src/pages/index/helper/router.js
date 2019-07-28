@@ -32,6 +32,7 @@ router.beforeEach((to, from, next) => {
 
             // 获取权限信息
             store.dispatch('security/role/listByRoles', { codes: site.roles }).then(() => {
+                // permissions为路由数组
                 ({ permissions } = store.getters);
                 // 将权限信息写入async router中
                 const pms = new Permission(asyncRoutes);

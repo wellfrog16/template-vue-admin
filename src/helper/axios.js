@@ -127,33 +127,35 @@ function axiosInstance(args) {
         return data.data;
     }, (error) => { // 5xx, 4xx
         const { config } = error;
+        let { message } = error;
+        const noReryCode = [401];
 
-        config.retryCount = config.retryCount || 1;
+        config.retryCount = config.retryCount || 0;
+        config.retryCount += 1;
+
+        message.match(/.+code\s(\d{3})$/g);
+        const code = +RegExp.$1;
 
         // 异常处理
         if (
             !config
             || !config.retryMax
             || config.retryCount >= config.retryMax
+            || noReryCode.includes(code)
         ) {
-            const { $router } = helper.vue;
-            let { message } = error;
-            message.match(/.+code\s(\d{3})$/g);
-            const code = +RegExp.$1;
+            const { $router, $store } = helper.vue;
 
-            // 无权限
+            // 无权限，refresh刷新code
             if (code === 401) {
                 message = '登陆超时';
-                $router.push({ path: '/login' });
+                setTimeout(() => $router.push({ path: '/login' }), 0);
             }
 
             loadingInstancce && loadingInstancce.close();
             const notification = { title: TITLE_ERROR, message, type: 'error' };
-            helper.vue.$store.commit('setState', { notification });
+            $store.commit('setState', { notification });
             return Promise.reject(error);
         }
-
-        config.retryCount += 1;
 
         const backoff = new Promise((resolve) => {
             setTimeout(() => {
