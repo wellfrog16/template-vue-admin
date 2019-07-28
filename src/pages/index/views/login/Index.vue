@@ -4,7 +4,7 @@
             <div slot="header" class="clearfix">
                 <span>管理登陆</span>
             </div>
-            <el-form ref="form" :model="form.fields" :rules="form.rules" class="login-form" auto-complete="on">
+            <el-form ref="form" :model="form.fields" :rules="form.rules" class="login-form" auto-complete="on" @submit.native.prevent>
                 <el-form-item prop="name">
                     <el-input
                         v-model="form.fields.name"
@@ -23,6 +23,7 @@
                         auto-complete="on"
                         type="password"
                         show-password
+                        @keyup.enter.native="handleLogin"
                     >
                     </el-input>
                 </el-form-item>
