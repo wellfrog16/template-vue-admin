@@ -47,10 +47,10 @@ function formatRequest(params) {
 function axiosInstance(args) {
     const defaultOptions = {
         // 自定义
-        notification: true,
-        loading: false,
-        retryMax: 4,
-        retryDelay: 1000,
+        notification: true, // notification提示框
+        loading: false, // 全局loading层（不推荐）
+        retryMax: 4, // 自动重试次数
+        retryDelay: 1000, // 重试延迟
 
         // 原生
         baseURL: conf.server.api,
@@ -128,8 +128,9 @@ function axiosInstance(args) {
     }, (error) => { // 5xx, 4xx
         const { config } = error;
 
-        config.retryCount = config.retryCount || 0;
+        config.retryCount = config.retryCount || 1;
 
+        // 异常处理
         if (
             !config
             || !config.retryMax
