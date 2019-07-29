@@ -1,0 +1,35 @@
+@import '../../config.less';
+
+.or-drawer-wrapper {
+    overflow: hidden;
+}
+
+.or-drawer {
+    .el-drawer__body {
+        padding: 0 20px 20px 20px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .drawer-body {
+        flex-grow: 1;
+        overflow-y: auto;
+    }
+
+    .drawer-footer {
+        display: flex;
+        flex: 0 0 auto;
+        margin-top: 10px;
+
+        .el-button {
+            flex-grow: 1;
+        }
+    }
+}

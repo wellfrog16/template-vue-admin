@@ -4,12 +4,20 @@ import Layout from '#index/views/layout/Index.vue';
 const route = {
     path: '/account',
     component: Layout,
-    redirect: { path: '/account/directive' },
+    redirect: { path: '/account/index' },
     meta: {
         title: '账户管理',
         icon: 'menu-fix-icon fas fa-user-shield fa-lg fa-fw',
     },
     children: [
+        {
+            path: 'index',
+            component: () => import('#index/views/account/Index.vue'),
+            meta: {
+                title: '账户列表',
+                icon: 'menu-fix-icon fas fa-users fa-lg fa-fw',
+            },
+        },
         {
             path: 'directive',
             component: () => import('#index/views/account/Directive.vue'),

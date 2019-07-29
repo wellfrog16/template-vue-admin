@@ -61,24 +61,30 @@ export default function (options) {
                                 resolve(true);
                             });
                         })
-                        .catch(err => reject(err));
+                        .catch((err) => {
+                            commit('setState', { loading: false });
+                            reject(err);
+                        });
                 });
             },
 
             // 删除
-            remove({ commit, state }, { vm }) {
+            remove({ commit }, { vm, row }) {
                 commit('setState', { loading: true });
 
                 return new Promise((resolve, reject) => {
                     // 远程删除
-                    api.remove({ id: state.activeUid })
+                    api.remove({ id: row.id })
                         .then((res) => {
                             vm.$nextTick(() => {
                                 commit('setState', { loading: false, overdue: true });
                                 resolve(res);
                             });
                         })
-                        .catch(err => reject(err));
+                        .catch((err) => {
+                            commit('setState', { loading: false });
+                            reject(err);
+                        });
                 });
             },
 

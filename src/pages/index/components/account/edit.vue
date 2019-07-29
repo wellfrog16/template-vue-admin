@@ -1,80 +1,83 @@
 <template>
-    <el-card shadow="never">
-        <div slot="header" :class="$style.header">
-            <span>编辑角色</span>
-            <el-button type="primary" size="mini" @click="handSave">保存权限</el-button>
+    <el-drawer
+        :title="title"
+        :visible.sync="editVisible"
+        :before-close="handleClose"
+        :close-on-click-modal="false"
+        :modal-append-to-body="true"
+        class="or-drawer-wrapper"
+        custom-class="or-drawer"
+    >
+        <div class="container">
+            <div class="drawer-body">
+                <el-form ref="form" :model="form.fields" :rules="form.rules" label-width="50px">
+                    <el-form-item prop="remark" label="备注">
+                        <el-input v-model.trim="form.fields.remark" />
+                    </el-form-item>
+                </el-form>
+            </div>
+            <div class="drawer-footer">
+                <el-button @click="handleClose">取消</el-button>
+                <el-button type="primary" @click="handleSave" :loading="saveBusy">保存</el-button>
+            </div>
         </div>
-        <el-form v-model="form.fields" :rules="form.rules">
-            <el-form-item label="角色名称">
-                <el-input v-model="form.fields.name"></el-input>
-            </el-form-item>
-            <el-form-item label="权限分配">
-                <el-col :span="24">
-                    <el-tree
-                        ref="tree"
-                        :data="routes"
-                        show-checkbox
-                        node-key="path"
-                        default-expand-all
-                    />
-                </el-col>
-            </el-form-item>
-        </el-form>
-    </el-card>
+    </el-drawer>
 </template>
 
 <script>
-// import { _ } from '@/utils/cdn';
-import Permission from '@/utils/permission';
-import { asyncRoutes } from '#index/router';
+import { createNamespacedHelpers } from 'vuex';
+// import { rules } from '@/utils/rivers';
+import AbsEdit from '#index/components/abstract/edit/default.vue';
 
-const permission = new Permission(asyncRoutes);
+const {
+    mapState,
+    mapMutations,
+    mapGetters,
+    mapActions,
+} = createNamespacedHelpers('security/account');
 
 export default {
+    mixins: [AbsEdit],
     data() {
         return {
-            routes: permission.treeData(),
+            saveBusy: false,
             form: {
-                fields: {
-                    name: '',
-                    permissions: [],
+                fields: this.createFields(),
+                rules: {
                 },
-                rules: {},
             },
         };
     },
-    mounted() {
-        this.init();
+    watch: {
+        editVisible(val) {
+            val && this.update();
+        },
+    },
+    computed: {
+        ...mapState(['editVisible', 'activeUid']),
+        ...mapGetters(['activeRow']),
+        title() {
+            return `${this.form.fields.name} 个人信息`;
+        },
     },
     methods: {
-        init() {
-            this.getRoutes();
-        },
+        ...mapMutations(['setState']),
+        ...mapActions(['save']),
 
-        // 这里应该异步获取对应角色权限路由数组
-        getRoutes() {
-            const routes = ['/icon/element-ui', '/ui/table/complex'];
-            this.$refs.tree.setCheckedKeys(routes, true);
-        },
-
-        // 获取选择的权限，发送到后端保存
-        // 后端存储方式 roleName: string, path: json/string
-        handSave() {
-            const resLeaf = this.$refs.tree.getCheckedKeys();
-            const resHalf = this.$refs.tree.getHalfCheckedKeys();
-            const result = [...resLeaf, ...resHalf];
-            console.log(result);
-            // this.$message.success('请查看console.log信息');
-            const message = { message: '请查看console.log信息', type: 'info' };
-            this.$store.commit('setState', { message });
+        // 创建一个空的fileds副本
+        createFields() {
+            const fields = {
+                guid: '',
+                id: '',
+                name: '',
+                gender: '女',
+                income: 0,
+                remark: '',
+                education: '',
+                status: '',
+            };
+            return Object.assign({}, fields);
         },
     },
 };
 </script>
-
-<style lang="less" module>
-.header {
-    display: flex;
-    justify-content: space-between;
-}
-</style>
