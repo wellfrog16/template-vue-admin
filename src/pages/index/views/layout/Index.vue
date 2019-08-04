@@ -34,21 +34,17 @@
                 </transition>
             </el-main>
         </el-container>
-
-        <!-- 通知系统 -->
-        <notification />
     </el-container>
 </template>
 
 <script>
 import AsideMenu from '#index/components/common/menu/index.vue';
 import Functions from '#index/components/layout/functions/index.vue';
-import Notification from '#index/components/layout/notification/index.vue';
 import { $ } from '@/utils/cdn';
 import { storage } from '@/utils/rivers';
 
 export default {
-    components: { AsideMenu, Functions, Notification },
+    components: { AsideMenu, Functions },
     data() {
         return {
             width: 'auto',

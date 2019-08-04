@@ -32,7 +32,8 @@ export default {
     methods: {
         ...mapMutations(['clearMessage', 'clearNotification']),
 
-        showMessage(options) {
+        showMessage(params) {
+            const options = Object.assign({}, params);
             options.duration = options.duration || this.messageDuration;
             const { duration } = options;
             this.$message(options);

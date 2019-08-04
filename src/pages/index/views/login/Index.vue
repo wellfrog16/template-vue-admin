@@ -115,9 +115,13 @@ export default {
                 }).catch((err) => {
                     this.loading = false;
                     let { message } = err;
-                    message.match(/^(.+)code/g);
+                    message.match(/^(.+)code\s(\d{3})/g);
                     message = RegExp.$1;
-                    this.$message.error(message);
+                    const code = +(RegExp.$2);
+
+                    if (code && code < 300) {
+                        this.$message.error(message);
+                    }
                 });
             }).catch(() => {});
         },
