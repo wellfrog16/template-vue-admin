@@ -16,21 +16,20 @@ export default {
     },
     watch: {
         message(val1, val2) {
-            if (val1 && val2) {
-                if (val1.type !== val2.type || val1.message !== val2.message) {
-                    this.showMessage(val1);
-                }
-            }
+            this.isEqual(val1, val2) && this.showMessage(val1);
         },
 
-        notification(val) {
-            val && this.showNotification(val);
+        notification(val1, val2) {
+            this.isEqual(val1, val2) && this.showNotification(val1);
         },
-
-        // todo同样的消息同时只出现一次
     },
     methods: {
         ...mapMutations(['clearMessage', 'clearNotification']),
+
+        isEqual(val1, val2) {
+            return val1
+                && (!val2 || val1.type !== val2.type || val1.message !== val2.message);
+        },
 
         showMessage(params) {
             const options = Object.assign({}, params);
@@ -40,9 +39,12 @@ export default {
             setTimeout(() => this.clearMessage(), duration);
         },
 
-        showNotification(options) {
+        showNotification(params) {
+            const options = Object.assign({}, params);
+            options.duration = options.duration || this.notificationDuration;
+            const { duration } = options;
             this.$notify(options);
-            this.clearNotification();
+            setTimeout(() => this.clearNotification(), duration);
         },
     },
 };
