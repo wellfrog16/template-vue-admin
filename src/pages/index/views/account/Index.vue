@@ -4,7 +4,7 @@
         <x-search class="search" />
 
         <!-- 数据 -->
-        <x-table />
+        <x-table class="table" />
 
         <!-- 分页 -->
         <x-pagination class="pagination flex-row-center" />

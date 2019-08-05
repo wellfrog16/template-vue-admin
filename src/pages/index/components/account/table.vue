@@ -1,7 +1,6 @@
 <template>
     <el-table
         ref="table"
-        class="table"
         height="500"
         border
         stripe
