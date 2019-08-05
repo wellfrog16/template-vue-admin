@@ -1,6 +1,8 @@
 <template>
     <div class="main-wrapper">
-        <el-button type="primary" @click.prevent.stop="handleDriver">开始引导</el-button>
+        <el-card shadow="never">
+            <el-button type="primary" @click.prevent.stop="handleDriver">开始引导</el-button>
+        </el-card>
     </div>
 </template>
 

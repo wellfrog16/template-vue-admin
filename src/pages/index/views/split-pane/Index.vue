@@ -47,9 +47,10 @@ export default {
 
 <style lang="less" module>
 .main {
-    height: 100%;
+    // height: 100%;
     box-sizing: border-box;
     display: flex;
+    flex-direction: row;
 
     :global(.el-card) {
         height: 100%;

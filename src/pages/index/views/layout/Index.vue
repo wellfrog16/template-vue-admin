@@ -162,8 +162,8 @@ export default {
     background-color: #f0f2f5;
     box-sizing: border-box;
     padding: 0;
-    // display: flex;
-    // flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .breadcrumb {

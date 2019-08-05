@@ -108,7 +108,7 @@ export default {
 }
 
 .main {
-    display: flex;
+    flex-direction: row;
 
     :global(.el-card+.el-card) {
         margin-top: 10px;
