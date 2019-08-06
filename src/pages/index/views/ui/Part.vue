@@ -23,11 +23,11 @@
 </template>
 
 <script>
-import Clipboard from '#index/components/ui/part/clipboard.vue';
-import Touch from '#index/components/ui/part/touch.vue';
-import Backtotop from '#index/components/ui/part/backtotop.vue';
-import CountTo from '#index/components/ui/part/count-to.vue';
-import TextEllipsis from '#index/components/ui/part/text-ellipsis.vue';
+import Clipboard from './components/part/clipboard.vue';
+import Touch from './components/part/touch.vue';
+import Backtotop from './components/part/backtotop.vue';
+import CountTo from './components/part/count-to.vue';
+import TextEllipsis from './components/part/text-ellipsis.vue';
 
 export default {
     components: {

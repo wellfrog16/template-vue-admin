@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Migration from '#index/components/echarts/migration/index.vue';
+import Migration from './components/migration/index.vue';
 
 export default {
     components: {

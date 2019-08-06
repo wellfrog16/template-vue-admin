@@ -60,14 +60,14 @@
 </template>
 
 <script>
-import XButton from '#index/components/ui/package/button.vue';
-import XRadio from '#index/components/ui/package/radio.vue';
-import XCheckbox from '#index/components/ui/package/checkbox.vue';
-import XInput from '#index/components/ui/package/input.vue';
-import XSelect from '#index/components/ui/package/select.vue';
-import XCascader from '#index/components/ui/package/cascader.vue';
-import XSlider from '#index/components/ui/package/slider.vue';
-import XTransfer from '#index/components/ui/package/transfer.vue';
+import XButton from './components/package/button.vue';
+import XRadio from './components/package/radio.vue';
+import XCheckbox from './components/package/checkbox.vue';
+import XInput from './components/package/input.vue';
+import XSelect from './components/package/select.vue';
+import XCascader from './components/package/cascader.vue';
+import XSlider from './components/package/slider.vue';
+import XTransfer from './components/package/transfer.vue';
 import XBacktotop from '@/components/backtotop/index.vue';
 
 export default {

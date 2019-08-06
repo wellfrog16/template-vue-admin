@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import Notification from '#index/components/layout/notification/index.vue';
+import Notification from './views/layout/components/notification/index.vue';
 
 export default {
     components: {

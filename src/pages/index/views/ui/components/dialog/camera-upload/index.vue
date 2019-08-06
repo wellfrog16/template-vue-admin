@@ -19,7 +19,7 @@
 
 <script>
 import upload from '@/api/sys/upload';
-import XCol from '#index/components/ui/dialog/col.vue';
+import XCol from '../col.vue';
 import CameraUpload from '@/components/camera-upload/index.vue';
 
 export default {

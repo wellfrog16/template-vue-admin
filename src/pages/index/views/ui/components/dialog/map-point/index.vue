@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import XCol from '#index/components/ui/dialog/col.vue';
+import XCol from '../col.vue';
 import MapPoint from '@/components/map-point/index.vue';
 
 export default {

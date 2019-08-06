@@ -38,8 +38,8 @@
 
 <script>
 import InfoBox from '#index/components/common/info-box/index.vue';
-import EchartLine from '#index/components/home/echart-line/index.vue';
-import XProgress from '#index/components/home/progress.vue';
+import EchartLine from './components/echart-line/index.vue';
+import XProgress from './components/progress.vue';
 
 export default {
     components: {
