@@ -15,21 +15,16 @@ export default {
         ...mapState(['message', 'notification']),
     },
     watch: {
-        message(val1, val2) {
-            this.isEqual(val1, val2) && this.showMessage(val1);
+        message(val) {
+            val && this.showMessage(val);
         },
 
-        notification(val1, val2) {
-            this.isEqual(val1, val2) && this.showNotification(val1);
+        notification(val) {
+            val && this.showNotification(val);
         },
     },
     methods: {
         ...mapMutations(['clearMessage', 'clearNotification']),
-
-        isEqual(val1, val2) {
-            return val1
-                && (!val2 || val1.type !== val2.type || val1.message !== val2.message);
-        },
 
         showMessage(params) {
             const options = Object.assign({}, params);
