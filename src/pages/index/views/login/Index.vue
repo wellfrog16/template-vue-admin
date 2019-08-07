@@ -122,8 +122,10 @@ export default {
                     if (code && code < 300) {
                         this.$message.error(message);
                     }
+
+                    console.warn(err);
                 });
-            }).catch(() => {});
+            }).catch((err) => { console.warn(err); });
         },
     },
 };

@@ -1,5 +1,6 @@
 import apiStore from '#index/store/common/apiStore';
 import { utils, storage } from '@/utils/rivers';
+import { helper } from '@/helper/lakes';
 import oauthApi from '@/api/sys/security/oauth';
 import accountApi from '@/api/sys/security/account';
 import { _ } from '@/utils/cdn';
@@ -69,6 +70,7 @@ const extraStore = {
 
         // 清除vuex和localStorage中的登录信息
         clear({ commit }) {
+            helper.site().destroy();
             commit('setState', { ...extraState });
             commit('security/role/setState', { accountRoleList: [] }, { root: true });
         },

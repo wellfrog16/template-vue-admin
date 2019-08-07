@@ -19,7 +19,7 @@ function site() {
         },
 
         // 方法
-        destory() {
+        destroy() {
             storage.remove(STORAGE_SITE);
         },
     };
