@@ -7,8 +7,8 @@ import { mapState, mapMutations } from 'vuex';
 export default {
     data() {
         return {
-            messageDuration: 3000,
-            notificationDuration: 4500,
+            messageDuration: 3000 + 200,
+            notificationDuration: 4500 + 200,
         };
     },
     computed: {

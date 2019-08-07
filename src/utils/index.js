@@ -145,6 +145,20 @@ function secretPhoneNum(num) {
     return `${val.substr(0, 3)}****${val.substr(7)}`;
 }
 
+/**
+ * 延迟
+ *
+ * @param {number} [time=1000] 毫秒
+ * @returns
+ */
+function delay(time = 1000) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve();
+        }, time || 1);
+    });
+}
+
 function getRandomColor() {
     return '#'+('00000'+(Math.random()*0x1000000<<0).toString(16)).slice(-6); // eslint-disable-line
     // return `hsl(${Math.random()}, 50%, 50%)`;
@@ -171,4 +185,5 @@ export default {
     secretPhoneNum,
     getRandomColor,
     deepMerge,
+    delay,
 };

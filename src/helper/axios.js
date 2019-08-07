@@ -134,6 +134,7 @@ function axiosInstance(args) {
 
         message.match(/.+code\s(\d{3})$/g);
         const code = +RegExp.$1;
+        const { $router, $store, $utils } = window.vueIndex;
 
         // 异常处理
         if (
@@ -142,8 +143,6 @@ function axiosInstance(args) {
             || config.retryCount >= config.retryMax
             || noReryCode.includes(code)
         ) {
-            const { $router, $store } = window.vueIndex;
-
             // 无权限，refresh刷新code
             if (code === 401) {
                 message = '登陆超时';
@@ -156,13 +155,7 @@ function axiosInstance(args) {
             return Promise.reject(error);
         }
 
-        const backoff = new Promise((resolve) => {
-            setTimeout(() => {
-                resolve();
-            }, config.retryDelay || 1);
-        });
-
-        return backoff.then(() => instance(config));
+        return $utils.delay(config.retryDelay).then(() => instance(config));
     });
 
     return instance;
