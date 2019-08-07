@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import XEdit from '#index/components/account/edit2.vue';
+import XEdit from './components/edit2.vue';
 
 export default {
     components: {

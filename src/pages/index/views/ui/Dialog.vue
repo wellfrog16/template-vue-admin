@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import XCameraUpload from '#index/components/ui/dialog/camera-upload/index.vue';
-import XMapPoint from '#index/components/ui/dialog/map-point/index.vue';
+import XCameraUpload from './components/dialog/camera-upload/index.vue';
+import XMapPoint from './components/dialog/map-point/index.vue';
 
 export default {
     components: {

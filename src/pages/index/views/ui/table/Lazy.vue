@@ -13,9 +13,9 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex';
-import XSearch from '#index/components/ui/table/lazy/search.vue';
-import XTable from '#index/components/ui/table/lazy/table.vue';
-import XPagination from '#index/components/ui/table/lazy/pagination.vue';
+import XSearch from '../components/table/lazy/search.vue';
+import XTable from '../components/table/lazy/table.vue';
+import XPagination from '../components/table/lazy/pagination.vue';
 
 const { mapState, mapMutations } = createNamespacedHelpers('lazyTable');
 

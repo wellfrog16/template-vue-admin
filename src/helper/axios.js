@@ -1,10 +1,10 @@
 import { Loading } from 'element-ui';
 import { axios } from '@/utils/cdn';
 import conf from '@/config';
-import { helper } from '@/helper/lakes';
 
 const TITLE_SUCESS = '成功';
 const TITLE_ERROR = '错误';
+const { vueIndex } = window; // vue 实例
 
 /**
  * 格式化返回，根据实际情况调整
@@ -68,7 +68,7 @@ function axiosInstance(args) {
     let myReq = null;
 
     instance.interceptors.request.use((request) => {
-        const site = helper.site();
+        const site = vueIndex.$helper.site();
         myReq = formatRequest(request);
         myReq.headers = site.headers;
 
@@ -90,7 +90,7 @@ function axiosInstance(args) {
         const status = [200, 201, 204];
         const method = ['post', 'put', 'delete', 'patch'];
 
-        const { $store } = helper.vue;
+        const { $store } = vueIndex;
 
         // 操作完成提示是否显示
         // 仅控制响应返回成功和自定义错误
@@ -143,7 +143,7 @@ function axiosInstance(args) {
             || config.retryCount >= config.retryMax
             || noReryCode.includes(code)
         ) {
-            const { $router, $store } = helper.vue;
+            const { $router, $store } = vueIndex;
 
             // 无权限，refresh刷新code
             if (code === 401) {

@@ -6,7 +6,6 @@ import { utils } from '@/utils/rivers';
 import baseForm from './modules/base-form';
 import complexTable from './modules/complex-table';
 import lazyTable from './modules/lazy-table';
-import member from './modules/member';
 import security from './modules/security';
 import mixins from './modules/mixins';
 
@@ -41,7 +40,6 @@ export default new Vuex.Store({
         baseForm,
         complexTable,
         lazyTable,
-        member,
         security,
         mixins,
     },

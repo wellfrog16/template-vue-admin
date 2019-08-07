@@ -98,7 +98,7 @@ export default {
 </script>
 
 <style lang="less" module>
-@import '../../../../../assets/style/config.less';
+@import '~@/assets/style/config.less';
 
 .main {
     display: inline-block;

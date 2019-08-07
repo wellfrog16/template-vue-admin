@@ -39,7 +39,7 @@
 
 <script>
 import AsideMenu from '#index/components/common/menu/index.vue';
-import Functions from '#index/components/layout/functions/index.vue';
+import Functions from './components/functions/index.vue';
 import { $ } from '@/utils/cdn';
 import { storage } from '@/utils/rivers';
 
@@ -91,7 +91,7 @@ export default {
 </script>
 
 <style lang="less" module>
-@import '../../../../assets/style/config.less';
+@import '~@/assets/style/config.less';
 
 @height: 60px;
 

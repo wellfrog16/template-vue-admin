@@ -45,7 +45,7 @@ export default {
 </script>
 
 <style lang="less" module>
-@import '../../../../../assets/style/config.less';
+@import '~@/assets/style/config.less';
 
 @base-size: 90px;
 

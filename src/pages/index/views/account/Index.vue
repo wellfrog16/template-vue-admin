@@ -16,9 +16,9 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex';
-import XSearch from '#index/components/account/search.vue';
-import XTable from '#index/components/account/table.vue';
-import XPagination from '#index/components/account/pagination.vue';
+import XSearch from './components/search.vue';
+import XTable from './components/table.vue';
+import XPagination from './components/pagination.vue';
 
 const { mapState } = createNamespacedHelpers('security/account');
 
@@ -27,7 +27,7 @@ export default {
         XSearch,
         XTable,
         XPagination,
-        XEdit: () => import('#index/components/account/edit.vue'),
+        XEdit: () => import('./components/edit.vue'),
     },
     computed: {
         ...mapState(['loading']),

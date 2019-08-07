@@ -16,9 +16,9 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex';
-import XSearch from '#index/components/research/form/search.vue';
-import XTable from '#index/components/research/form/table.vue';
-import XPagination from '#index/components/research/form/pagination.vue';
+import XSearch from './components/form/search.vue';
+import XTable from './components/form/table.vue';
+import XPagination from './components/form/pagination.vue';
 
 const { mapState } = createNamespacedHelpers('baseForm');
 
@@ -27,7 +27,7 @@ export default {
         XSearch,
         XTable,
         XPagination,
-        XEdit: () => import('#index/components/research/form/edit.vue'),
+        XEdit: () => import('./components/form/edit.vue'),
     },
     computed: {
         ...mapState(['loading']),

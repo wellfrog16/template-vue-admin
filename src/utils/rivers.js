@@ -1,7 +1,6 @@
 import utils from './index';
 import rules from './rules';
 import storage from './storage';
-import oauth from './oauth';
 import loader from './loader';
 import Permission from './permission';
 
@@ -9,7 +8,6 @@ export {
     utils,
     rules,
     storage,
-    oauth,
     loader,
     Permission,
 };
