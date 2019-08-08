@@ -1,5 +1,5 @@
 const Mock = require('mockjs'); // eslint-disable-line
-const helper = require('../helper/helper');
+const helper = require('../helper');
 
 function list(res) {
     const data = Mock.mock({
