@@ -69,7 +69,7 @@ function axiosInstance(args) {
     instance.interceptors.request.use((request) => {
         const site = window.vueIndex.$helper.site();
         myReq = formatRequest(request);
-        myReq.headers = site.headers;
+        Object.assign(myReq.headers, site.headers); // todo深度合并防止bug
 
         // 全屏遮罩，loading参数为0则无loading
         if ((!myReq.params || (myReq.params && myReq.params.loading !== 0)) && options.loading) {
@@ -134,7 +134,6 @@ function axiosInstance(args) {
 
         message.match(/.+code\s(\d{3})$/g);
         const code = +RegExp.$1;
-        const { $router, $store, $utils } = window.vueIndex;
 
         // 异常处理
         if (
@@ -143,6 +142,8 @@ function axiosInstance(args) {
             || config.retryCount >= config.retryMax
             || noReryCode.includes(code)
         ) {
+            const { $router, $store } = window.vueIndex;
+
             // 无权限，refresh刷新code
             if (code === 401) {
                 message = '登陆超时';
@@ -155,7 +156,13 @@ function axiosInstance(args) {
             return Promise.reject(error);
         }
 
-        return $utils.delay(config.retryDelay).then(() => instance(config));
+        const backoff = new Promise((resolve) => {
+            setTimeout(() => {
+                resolve();
+            }, config.retryDelay || 1);
+        });
+
+        return backoff.then(() => instance(config));
     });
 
     return instance;
