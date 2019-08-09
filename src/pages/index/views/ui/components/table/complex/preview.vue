@@ -51,7 +51,7 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex';
-import DescriptionItem from '#index/components/common/description-item.vue';
+import DescriptionItem from '#index/components/description-item.vue';
 import style from '@/assets/style/usr/app.module.less';
 
 const { mapState, mapMutations, mapGetters } = createNamespacedHelpers('complexTable');

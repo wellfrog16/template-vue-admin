@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import InfoBox from '#index/components/common/info-box/index.vue';
+import InfoBox from '#index/components/info-box/index.vue';
 import EchartLine from './components/echart-line/index.vue';
 import XProgress from './components/progress.vue';
 

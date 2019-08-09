@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import AsideMenu from '#index/components/common/menu/index.vue';
+import AsideMenu from '@/components/menu/index.vue';
 import Functions from './components/functions/index.vue';
 import { $ } from '@/utils/cdn';
 import { storage } from '@/utils/rivers';
