@@ -74,7 +74,13 @@ function get(key, { encrypt } = {}) {
     };
 
     handle[item.type] && handle[item.type]();
-    result = encrypt ? JSON.parse(CryptoJS.AES.decrypt(result, SECRET_KEY).toString(CryptoJS.enc.Utf8)) : result;
+
+    try {
+        result = encrypt ? JSON.parse(CryptoJS.AES.decrypt(result, SECRET_KEY).toString(CryptoJS.enc.Utf8)) : result;
+    } catch (err) {
+        console.warn(err);
+        result = '';
+    }
     return result;
 }
 
