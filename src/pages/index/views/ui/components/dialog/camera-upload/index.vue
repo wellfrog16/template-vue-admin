@@ -6,11 +6,20 @@
         <el-alert title="用于拍照上传或者上传图片" type="info" :closable="false" />
         <el-divider><i class="fas fa-camera fa-lg fa-fw" /></el-divider>
         <el-button type="primary" @click="handleOpen">人像上传</el-button>
+        <el-button type="primary" @click="handleOpen2">人像上传</el-button>
 
         <!-- 拍照上传 -->
         <camera-upload
             :visible.sync="cameraUploadVisible"
             :onSubmit="handleSubmit"
+            :upload="false"
+            :http-request="httpRequest"
+        />
+
+        <!-- 拍照上传 -->
+        <camera-upload
+            :visible.sync="cameraUploadVisible2"
+            :onSubmit="handleSubmit2"
             :upload="false"
             :http-request="httpRequest"
         />
@@ -31,6 +40,7 @@ export default {
         return {
             httpRequest: upload,
             cameraUploadVisible: false,
+            cameraUploadVisible2: false,
         };
     },
     methods: {
@@ -38,6 +48,14 @@ export default {
             this.cameraUploadVisible = true;
         },
         handleSubmit(res) {
+            console.log(res);
+            const test = new FormData();
+            upload(test);
+        },
+        handleOpen2() {
+            this.cameraUploadVisible2 = true;
+        },
+        handleSubmit2(res) {
             console.log(res);
             const test = new FormData();
             upload(test);

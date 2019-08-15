@@ -12,7 +12,7 @@
             top="0"
         >
             <!-- 主窗口区域 -->
-            <el-card :class="$style.windows" :style="windowStyle" v-loading="loading">
+            <el-card ref="windows" :class="$style.windows" :style="windowStyle" v-loading="loading">
                 <el-image v-show="imageVisible" :src="fixedImageUrl" fit="contain" />
                 <video v-show="videoVisible" :width="width" :height="height" />
                 <canvas v-show="canvasVisible" :width="width" :height="height" />
@@ -92,7 +92,7 @@ import Camera from '@/utils/camera';
 const TYPE_UPLOAD = 'upload';
 const TYPE_CAMERA = 'camera';
 const WINDOW_IMAGE = 'image';
-const WINDOW_VIDEO = 'vidoe';
+const WINDOW_VIDEO = 'video';
 const WINDOW_CANVAS = 'canvas';
 const WINDOW_PLACEHOLDER = 'placeholder';
 const TIPS_SHOOT_SUCCESS = '照片拍摄成功';
@@ -271,7 +271,7 @@ export default {
 
             // 启动摄像头
             if (!this.camera) {
-                const myWidow = document.querySelector(`.${this.$style.windows}`);
+                const myWidow = this.$refs.windows.$el;
                 const video = myWidow.querySelector('video');
                 const canvas = myWidow.querySelector('canvas');
                 this.canvas = canvas;
