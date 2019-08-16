@@ -12,7 +12,7 @@
     "gh-pages": "npm run build && node build/gh-pages"
   },
   "dependencies": {
-    "element-ui": "^2.11.0",
+    "element-ui": "^2.11.1",
     "vue": "^2.6.10",
     "vue-affix": "^0.5.2",
     "vue-infinite-loading": "^2.4.4",
@@ -31,7 +31,7 @@
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.2.3",
     "gh-pages": "^2.1.1",
-    "less": "^3.0.4",
+    "less": "^3.9.0",
     "less-loader": "^5.0.0",
     "less-plugin-functions": "^1.0.0",
     "mockjs": "^1.0.1-beta3",
