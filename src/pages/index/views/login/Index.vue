@@ -111,7 +111,7 @@ export default {
                 // 登陆
                 this.$store.dispatch('security/account/login', this.form.fields).then(() => {
                     const path = this.$route.query.from || '/home';
-                    this.$router.push({ path });
+                    this.$router.push({ path }).catch(() => {});
                 }).catch((err) => {
                     this.loading = false;
                     let { message } = err;
