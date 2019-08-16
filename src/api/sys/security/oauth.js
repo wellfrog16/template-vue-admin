@@ -2,7 +2,7 @@ import instance from '@/helper/axios';
 import config from '@/config';
 
 const axios = instance({ baseURL: config.server.easyMock });
-const silence = instance({ baseURL: config.server.easyMock, notification: false });
+// const silence = instance({ baseURL: config.server.easyMock, notification: false });
 
 const base = '/oauth';
 
@@ -12,8 +12,21 @@ const insert = params => axios.post(base, params);
 const update = params => axios.put(base, params);
 const remove = params => axios.delete(base, { params });
 
-const token = params => silence.post(`${base}/token`, params);
-const destroy = accessToken => silence.delete(`${base}/token/${accessToken}`);
+// online
+// const token = params => silence.post(`${base}/token`, params);
+// const destroy = accessToken => silence.delete(`${base}/token/${accessToken}`);
+
+// offline
+const token = () => new Promise((resolve) => {
+    resolve({
+        access_token: 'Bearer-123456',
+        refresh_token: 'Bearer-987654',
+    });
+});
+
+const destroy = () => new Promise((resolve) => {
+    resolve({});
+});
 
 export default {
     list,
