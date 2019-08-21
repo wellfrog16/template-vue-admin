@@ -47,18 +47,18 @@ export default {
         handleOpen() {
             this.cameraUploadVisible = true;
         },
-        handleSubmit(res) {
+        handleSubmit(res, done) {
             console.log(res);
             const test = new FormData();
-            upload(test);
+            upload(test).then(() => done()).catch(() => done());
         },
         handleOpen2() {
             this.cameraUploadVisible2 = true;
         },
-        handleSubmit2(res) {
+        handleSubmit2(res, done) {
             console.log(res);
             const test = new FormData();
-            upload(test);
+            upload(test).then(() => done()).catch(() => done());
         },
     },
 };
