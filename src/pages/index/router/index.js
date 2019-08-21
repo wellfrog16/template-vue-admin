@@ -50,16 +50,16 @@ const staticRoutes = [
 ];
 
 const asyncRoutes = [
-    ...routeHome,
-    ...routeDocument,
-    ...routeGuide,
-    ...routeIcon,
-    ...routeUI,
-    ...routeResearch,
-    ...routeEcharts,
-    ...routeAccount,
-    ...routeLog,
-    ...routeSplitPane,
+    routeHome,
+    routeDocument,
+    routeGuide,
+    routeIcon,
+    routeUI,
+    routeResearch,
+    routeEcharts,
+    routeAccount,
+    routeLog,
+    routeSplitPane,
     {
         path: 'https://github.com/wellfrog16/template-vue-admin',
         meta: {
@@ -68,7 +68,7 @@ const asyncRoutes = [
             icon: 'el-icon-link',
         },
     },
-    ...routeIframe,
+    routeIframe,
 ];
 
 const scrollBehavior = (to, from, savedPosition) => {
