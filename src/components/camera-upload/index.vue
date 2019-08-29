@@ -251,13 +251,19 @@ export default {
             // 图片
             if (this.isImageSelected && this.lastWindow === WINDOW_IMAGE) {
                 this.upload && this.uploadImage();
-                !this.upload && this.onSubmit(this.currentFile);
+                if (!this.upload) {
+                    this.loading = true;
+                    this.onSubmit(this.currentFile, () => { this.loading = false; });
+                }
             }
 
             // 拍照
             if (this.isShooted && this.lastWindow === WINDOW_CANVAS) {
                 this.upload && this.canvas.toBlob(blob => this.uploadShoot(blob));
-                !this.upload && this.canvas.toBlob(blob => this.onSubmit(blob));
+                if (!this.upload) {
+                    this.loading = true;
+                    this.canvas.toBlob(blob => this.onSubmit(blob, () => { this.loading = false; }));
+                }
             }
         },
 

@@ -28,4 +28,4 @@ const route = {
     ],
 };
 
-export default [route];
+export default route;
