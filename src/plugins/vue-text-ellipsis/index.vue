@@ -18,7 +18,6 @@
 <script>
 export default {
     props: {
-        id: { type: String },
         effect: { type: String, default: 'dark' },
         type: { type: String, default: 'single' }, // 单行多行，多行暂不支持
         placement: { type: String, default: 'top' }, // tips位置
