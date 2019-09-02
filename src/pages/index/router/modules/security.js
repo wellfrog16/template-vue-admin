@@ -19,6 +19,14 @@ const route = {
             },
         },
         {
+            path: 'test',
+            component: () => import('#index/views/security/components/account/test.vue'),
+            meta: {
+                title: '测试隐藏页',
+                visible: false,
+            },
+        },
+        {
             path: 'directive',
             component: () => import('#index/views/security/Directive.vue'),
             meta: {

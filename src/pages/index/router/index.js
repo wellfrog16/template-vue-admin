@@ -20,10 +20,10 @@ Vue.use(Router);
 // meta: {
 //     title: string 标题
 //     icon: string 路由显示的icon
-//     type: 'iframe' || undefind, 是否是ifreme
-//     url: stirng, 如果是ifreme，需要设置url
+//     type: 'iframe' || 'link' || undefind,
+//     url: stirng, 如果type是ifreme，需要设置url
 //     belong: stirng, 当前的路由在左侧菜单高亮时，归属于的另外一个路由
-//     hidden: boolen 即不在菜单中显示，也不在权限分配中显示
+//     hidden: boolen | undefind 即不在菜单中显示，也不在权限分配中显示
 //     visible: boolen 不在菜单中显示，但是在权限分配中显示
 // }
 
