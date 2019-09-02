@@ -127,7 +127,7 @@ class Permission {
             }
         });
 
-        return [...result];
+        return [...result, ...pms.filter(item => /^http/.test(item))];
     }
 
     /**
