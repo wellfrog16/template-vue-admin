@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import ElementUI from 'element-ui';
+// import 'element-ui/lib/theme-chalk/index.css';
 import InfiniteLoading from 'vue-infinite-loading'; // 滚动加载
 // import VueScrollactive from 'vue-scrollactive'; // 单页定位
 import VueScrollactive from './vue-scrollactive'; // 单页定位
