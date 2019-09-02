@@ -6,7 +6,7 @@ import Login from '#index/views/login/Index.vue';
 import routeResearch from './modules/research';
 import routeEcharts from './modules/echarts';
 import routeIcon from './modules/icon';
-import routeAccount from './modules/account';
+import routeSecurity from './modules/security';
 import routeUI from './modules/ui';
 import routeSplitPane from './modules/split-pane';
 import routeIframe from './modules/iframe';
@@ -62,7 +62,7 @@ const asyncRoutes = [
     routeUI,
     routeResearch,
     routeEcharts,
-    routeAccount,
+    routeSecurity,
     routeLog,
     routeSplitPane,
     {

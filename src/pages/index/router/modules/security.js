@@ -2,17 +2,17 @@ import Layout from '#index/views/layout/Index.vue';
 // import Root from '../../../components/Root.vue';
 
 const route = {
-    path: '/account',
+    path: '/security',
     component: Layout,
-    redirect: { path: '/account/index' },
+    redirect: { path: '/security/account' },
     meta: {
         title: '账户管理',
         icon: 'menu-fix-icon fas fa-user-shield fa-lg fa-fw',
     },
     children: [
         {
-            path: 'index',
-            component: () => import('#index/views/account/Index.vue'),
+            path: 'account',
+            component: () => import('#index/views/security/Account.vue'),
             meta: {
                 title: '账户列表',
                 icon: 'menu-fix-icon fas fa-users fa-lg fa-fw',
@@ -20,15 +20,15 @@ const route = {
         },
         {
             path: 'directive',
-            component: () => import('#index/views/account/Directive.vue'),
+            component: () => import('#index/views/security/Directive.vue'),
             meta: {
                 title: '权限控制',
                 icon: 'menu-fix-icon fab fa-ethereum fa-lg fa-fw',
             },
         },
         {
-            path: 'set',
-            component: () => import('#index/views/account/Set.vue'),
+            path: 'role',
+            component: () => import('#index/views/security/Role.vue'),
             meta: {
                 title: '权限设置',
                 icon: 'menu-fix-icon fas fa-user-cog fa-lg fa-fw',

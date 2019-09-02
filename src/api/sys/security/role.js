@@ -21,14 +21,14 @@ const listByRoles = () => new Promise((resolve) => {
             name: '管理员',
             code: 'admin',
             // eslint-disable-next-line
-            permissions: ["/home", "/document", "/guide", "/icon/element-ui", "/icon/font-awesome", "/ui/package", "/ui/table/complex", "/ui/table/lazy", "/ui/editor", "/ui/dialog", "/ui/part", "/research/mixins", "/research/form", "/echarts/package", "/echarts/migration", "/account/index", "/account/directive", "/account/set", "/log", "/split-pane", "https://github.com/wellfrog16/template-vue-admin", "/iframe"]
+            permissions: ["/home", "/document", "/guide", "/icon/element-ui", "/icon/font-awesome", "/ui/package", "/ui/table/complex", "/ui/table/lazy", "/ui/editor", "/ui/dialog", "/ui/part", "/research/mixins", "/research/form", "/echarts/package", "/echarts/migration", "/security/account", "/security/directive", "/security/role", "/log", "/split-pane", "https://github.com/wellfrog16/template-vue-admin", "/iframe"],
         },
         {
             id: 2,
             name: '网站编辑',
             code: 'editor',
             // eslint-disable-next-line
-            permissions: ["/home", "/document", "/guide", "/icon/element-ui", "/icon/font-awesome", "/ui/package", "/ui/table/complex", "/ui/table/lazy", "/ui/editor", "/ui/part", "/split-pane", "https://github.com/wellfrog16/template-vue-admin", "/iframe"]
+            permissions: ["/home", "/document", "/guide", "/icon/element-ui", "/icon/font-awesome", "/ui/package", "/ui/table/complex", "/ui/table/lazy", "/ui/editor", "/ui/part", "/split-pane", "https://github.com/wellfrog16/template-vue-admin", "/iframe"],
         }],
     });
 });
