@@ -1,13 +1,16 @@
 <template>
     <el-dialog
+        title="上传图片"
         :visible.sync="dialogVisible"
         :before-close="handleClose"
-        class="or-dialog"
-        :custom-class="$style.dialog"
+        :close-on-click-modal="false"
+        :append-to-body="true"
+        class="or-dialog-wrapper"
+        :custom-class="['or-dialog', $style.dialog]"
         top="0"
     >
         <el-upload
-            name="avatar"
+            :name="name"
             :multiple="false"
             :file-list="fileList"
             :show-file-list="true"
@@ -32,6 +35,7 @@ import config from '@/config';
 
 export default {
     props: {
+        name: { type: String, default: 'avatar' },
         visible: { type: Boolean, default: false },
     },
     data() {
