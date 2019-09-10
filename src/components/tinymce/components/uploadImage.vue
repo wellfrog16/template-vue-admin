@@ -6,7 +6,7 @@
         :close-on-click-modal="false"
         :append-to-body="true"
         class="or-dialog-wrapper"
-        :custom-class="['or-dialog', $style.dialog]"
+        :custom-class="`or-dialog ${$style.dialog}`"
         top="0"
     >
         <el-upload
