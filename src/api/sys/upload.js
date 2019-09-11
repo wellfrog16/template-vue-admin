@@ -1,7 +1,9 @@
 import instance from '@/helper/axios';
+import config from '@/config';
 import { UPLOAD_NAME } from '@/helper/constant';
 
-const axios = instance({ baseURL: 'http://127.0.0.1:8001/service/file/upload' });
+// const axios = instance({ baseURL: config.server.upload });
+const silence = instance({ baseURL: config.server.upload, notification: false });
 
 /**
  * 上传图片或者blob
@@ -17,13 +19,13 @@ const upload = (param) => {
         formData.append(UPLOAD_NAME, param);
     }
 
-    const config = {
-        headers: {
-            'Content-Type': 'multipart/form-data',
-        },
-    };
+    const site = window.vueIndex.$helper.site();
+    const headers = Object.assign({
+        'Content-Type': 'multipart/form-data',
+    }, site.headers);
+    const conf = { headers };
 
-    return axios.post('', formData, config).then(res => res.data);
+    return silence.post('', formData, conf).then(res => res);
 };
 
 

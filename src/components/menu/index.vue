@@ -10,12 +10,12 @@
         <template v-for="(item, index) in data">
 
             <!-- 无子菜单 -->
-            <template v-if="!isHidden(item) && (!item.children || isHiddenChildren(item))">
+            <template v-if="!isHiddenItem(item) && (!item.children || isHiddenChildren(item))">
                 <menu-item :item="item" :key="index" />
             </template>
 
             <!-- 有子菜单 -->
-            <template v-if="!isHidden(item) && (item.children && !isHiddenChildren(item))">
+            <template v-if="!isHiddenItem(item) && (item.children && !isHiddenChildren(item))">
                 <submenu-item :item="item" :key="index" :popper-class="popperClass" />
             </template>
         </template>
@@ -25,6 +25,7 @@
 <script>
 import MenuItem from './menu-item.vue';
 import SubmenuItem from './submenu-item.vue';
+import * as helper from './helper';
 
 // todo: 三级菜单通用组件化
 export default {
@@ -40,16 +41,8 @@ export default {
         'popper-class': { type: String, default: '' },
     },
     methods: {
-        isHidden(item) {
-            return !item.meta ? false : item.meta.hidden;
-        },
-        isHiddenChildren(item) {
-            let isHidden = false;
-            if (item.children && item.children.length > 0) {
-                isHidden = item.children.every(item1 => item1.meta && item1.meta.hidden);
-            }
-            return isHidden;
-        },
+        isHiddenItem: item => helper.isHiddenItem(item),
+        isHiddenChildren: item => helper.isHiddenChildren(item),
     },
 };
 </script>

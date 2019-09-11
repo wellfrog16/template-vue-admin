@@ -1,10 +1,10 @@
 <template>
     <x-col
         title="拍照上传"
-        icon="fas fa-camera fa-lg fa-fw"
+        icon="fas fa-camera fa-fw"
     >
         <el-alert title="用于拍照上传或者上传图片" type="info" :closable="false" />
-        <el-divider><i class="fas fa-camera fa-lg fa-fw" /></el-divider>
+        <el-divider><i class="fas fa-camera fa-fw" /></el-divider>
         <el-button type="primary" @click="handleOpen">人像上传</el-button>
         <el-button type="primary" @click="handleOpen2">人像上传</el-button>
 

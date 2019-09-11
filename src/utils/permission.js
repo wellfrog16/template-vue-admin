@@ -87,11 +87,12 @@ class Permission {
      */
     injectRoles(permssions, roles) {
         const routesCopy = _.cloneDeep(this.routes);
+        const DEFAULT_PATH = 'index';
 
         function inject(route, pms, basePath = '') {
             route.forEach((item) => {
                 const path = `${basePath + item.path}`;
-                if (pms.includes(path) || item.path === 'index') {
+                if (pms.includes(path) || item.path === DEFAULT_PATH) {
                     if (!item.meta) { item.meta = {}; }
                     item.meta.roles = roles;
                 }
@@ -102,9 +103,31 @@ class Permission {
             });
         }
 
-        inject(routesCopy, permssions);
-
+        inject(routesCopy, this.constructor.expandPermission(permssions));
         return routesCopy;
+    }
+
+    /**
+     * 展开权限数组
+     * ['/ui/table/complex', '/home'] => ['/ui/table/complex', '/ui/table', '/ui', '/home']
+     *
+     * @static
+     * @param {Array} pms
+     * @memberof Permission
+     */
+    static expandPermission(pms) {
+        const result = new Set();
+
+        const normalPerssions = pms.filter(item => !/^http/.test(item));
+
+        normalPerssions.forEach((item) => {
+            const routeArray = item.match(/\/[a-zA-Z\d_-]+[a-zA-Z\d]/g);
+            for (let i = 1; i <= routeArray.length; i += 1) {
+                result.add(routeArray.slice(0, i).join(''));
+            }
+        });
+
+        return [...result, ...pms.filter(item => /^http/.test(item))];
     }
 
     /**

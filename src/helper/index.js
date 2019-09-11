@@ -1,5 +1,6 @@
 import { storage } from '@/utils/rivers';
 import { STORAGE_SITE } from '@/helper/constant';
+import config from '@/config';
 
 /**
  * 存放header等信息
@@ -24,4 +25,5 @@ function site() {
 
 export default {
     site,
+    config,
 };

@@ -6,7 +6,7 @@ import Login from '#index/views/login/Index.vue';
 import routeResearch from './modules/research';
 import routeEcharts from './modules/echarts';
 import routeIcon from './modules/icon';
-import routeAccount from './modules/account';
+import routeSecurity from './modules/security';
 import routeUI from './modules/ui';
 import routeSplitPane from './modules/split-pane';
 import routeIframe from './modules/iframe';
@@ -17,10 +17,15 @@ import routeLog from './modules/log';
 
 Vue.use(Router);
 
-// 一个空模板，方便子节点使用
-// const Root = Vue.component('root', {
-//     template: '<router-view></router-view>',
-// });
+// meta: {
+//     title: string 标题
+//     icon: string 路由显示的icon
+//     type: 'iframe' || 'link' || undefind,
+//     url: stirng, 如果type是ifreme，需要设置url
+//     belong: stirng, 当前的路由在左侧菜单高亮时，归属于的另外一个路由
+//     hidden: boolen | undefind 即不在菜单中显示，也不在权限分配中显示
+//     visible: boolen 不在菜单中显示，但是在权限分配中显示
+// }
 
 // 静态路由，不参与权限验证
 const staticRoutes = [
@@ -57,7 +62,7 @@ const asyncRoutes = [
     routeUI,
     routeResearch,
     routeEcharts,
-    routeAccount,
+    routeSecurity,
     routeLog,
     routeSplitPane,
     {
