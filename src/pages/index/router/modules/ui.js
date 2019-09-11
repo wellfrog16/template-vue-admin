@@ -64,6 +64,14 @@ const route = {
             },
         },
         {
+            path: 'upload',
+            component: () => import('#index/views/ui/Upload.vue'),
+            meta: {
+                title: '上传',
+                icon: 'menu-fix-icon fas fa-upload fa-lg fa-fw',
+            },
+        },
+        {
             path: 'part',
             component: () => import('#index/views/ui/Part.vue'),
             meta: {
