@@ -3,7 +3,7 @@
         title="图片裁剪"
         :visible.sync="visible"
         :width="dialogWidth"
-        :class="[$style.main, 'or-dialog-wrapper']"
+        class="or-dialog-wrapper"
         custom-class="or-dialog"
         append-to-body
         :close-on-click-modal="false"
@@ -114,10 +114,6 @@ export default {
 </script>
 
 <style lang="less" module>
-.main {
-    line-height: 1;
-}
-
 .container {
     width: 100%;
 }

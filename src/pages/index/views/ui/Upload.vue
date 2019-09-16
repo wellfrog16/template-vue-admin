@@ -44,6 +44,7 @@ export default {
     },
     methods: {
         httpRequest(file, done) {
+            console.log(file);
             upload(file).then((res) => {
                 this.imageSrc = `${this.$helper.config.server.image}/${res.file}`;
                 console.log(res);
@@ -55,6 +56,7 @@ export default {
         },
 
         httpRequest2(file, done) {
+            console.log(file);
             upload(file).then((res) => {
                 this.imageSrc2 = `${this.$helper.config.server.image}/${res.file}`;
                 console.log(res);
