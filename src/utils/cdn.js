@@ -17,6 +17,7 @@ const {
     Driver,
     Split,
     BMap,
+    Cropper,
 } = window;
 
 const baseCdn = 'https://cdn.jsdelivr.net';
@@ -44,4 +45,5 @@ export {
     Driver, // 指引
     Split, // 分割布局
     BMap, // 百度地图
+    Cropper, // 图片剪切
 };
