@@ -16,31 +16,11 @@
 </template>
 
 <script>
+import props from './props'; // 方便复用
+
 export default {
     props: {
-        // 接受的文件格式
-        accept: { type: String, default: '.jpg,.jpeg,.png' },
-
-        // 图片地址
-        imageSrc: { type: String, default: '' },
-
-        // 图片大小限制，默认最大2M
-        maxSize: { type: Number, default: 2 * 1024 * 1024 },
-
-        // 组件宽
-        width: { type: String, default: '200px' },
-
-        // 组件高
-        height: { type: String, default: '200px' },
-
-        // icon的fontsize
-        iconSize: { type: Number, default: 28 },
-
-        // 自定义上传
-        httpRequest: { type: Function },
-
-        // 上传前回调，return false中止上传
-        beforeUpload: { type: Function },
+        ...props,
     },
     data() {
         return {
