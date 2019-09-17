@@ -2,9 +2,11 @@
 
 <a href="https://996.icu"><img src="https://img.shields.io/badge/link-996.icu-red.svg"></a>
 
-## 目前的一些问题
-1. .eslintignore 中如果使用 /*.js会导致npm run lint错误，和之前情况不同，暂无解决办法
-2. eslint无法验证和修复/mock文件夹
+## 说明
+
+* eslint airbnb校验
+* stylelint standard校验
+* 部分功能需要后端支持，可以直接查看源码里的使用方式（如拍照上传、图片裁剪等）
 
 
 ## Project setup
