@@ -14,6 +14,7 @@
         <x-cropper-core
             :visible.sync="cropperVisible"
             :image="image"
+            :image-smoothing-quality="imageSmoothingQuality"
             :cropWidth="parseInt(width, 0)"
             :cropHeight="parseInt(height, 0)"
             @on-finished="handleFinished"
@@ -34,6 +35,9 @@ export default {
     },
     props: {
         ...uploadImageProps, // 图片上传的props
+
+        // 图片质量
+        imageSmoothingQuality: { type: String, default: 'high' },
     },
     data() {
         return {

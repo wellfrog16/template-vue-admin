@@ -28,6 +28,9 @@ export default {
         visible: { type: Boolean, default: false },
         image: { type: HTMLImageElement, required: true },
 
+        // 图片质量
+        imageSmoothingQuality: { type: String, default: 'high' },
+
         // 裁剪容器大小
         containerWdith: { type: Number, default: 600 },
         containerHeight: { type: Number, default: 450 },
@@ -69,26 +72,26 @@ export default {
             const self = this;
             this.cropper = new Cropper(this.image, {
                 viewMode: 1,
-                cropBoxResizable: false, // 是否可以改变crop框大小
+                aspectRatio: self.cropWidth / self.cropHeight,
+                // cropBoxResizable: false, // 是否可以改变crop框大小
                 toggleDragModeOnDblclick: false, // 双击切换拖动模式
                 guides: true, // 网格
                 minContainerHeight: parseInt(this.containerHeight, 0),
                 ready() {
                     const { cropper } = this;
                     cropper.setDragMode('move'); // 拖动模式
-                    cropper.setCropBoxData({ // 裁剪框大小
-                        top: self.cropTop,
-                        left: self.cropLeft,
-                        width: self.cropWidth,
-                        height: self.cropHeight,
-                    });
                 },
             });
         },
 
+        // 完成裁剪
         handleFinish() {
             this.loading = true;
-            this.cropper.getCroppedCanvas().toBlob((blob) => {
+            this.cropper.getCroppedCanvas({
+                width: this.cropWidth,
+                height: this.cropHeight,
+                imageSmoothingQuality: this.imageSmoothingQuality,
+            }).toBlob((blob) => {
                 this.$emit('on-finished', blob);
                 this.loading = false;
                 this.close();
