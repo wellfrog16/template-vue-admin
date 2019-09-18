@@ -6,7 +6,7 @@ import { NProgress } from '@/utils/cdn';
 import { Permission } from '@/utils/rivers';
 
 // 多语言
-import { getLanguage, loadLanguageAsync } from '@/plugins/vue-i18n';
+import { getLanguage, loadLanguageAsync } from '@/helper/i18n';
 
 NProgress.configure({ showSpinner: false });
 

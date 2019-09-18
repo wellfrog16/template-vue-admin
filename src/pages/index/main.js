@@ -13,7 +13,9 @@ import '@/directive';
 
 // 插件
 import '@/plugins';
-import { i18n } from '@/plugins/vue-i18n';
+
+// 多语言
+import { i18n } from '@/helper/i18n';
 
 Vue.config.productionTip = false;
 

@@ -14,7 +14,7 @@ export const i18n = new VueI18n({
 const elHtml = document.querySelector('html');
 elHtml.classList.add(defaultLang);
 
-const loadedLanguages = [defaultLang] // 我们的预装默认语言
+const loadedLanguages = [defaultLang]; // 我们的预装默认语言
 
 /**
  * 设置语言
@@ -46,9 +46,9 @@ export function getLanguage() {
     let lang = '';
 
     // 地址栏获取
-    const matches = window.location.href.match(/[\?&]lang=([a-z\-]+)($|#|&)/);
+    const matches = window.location.href.match(/[?&]lang=([a-z-]+)($|#|&)/);
     if (matches) {
-        lang = matches[1];
+        [, lang] = matches;
         return lang;
     }
 
@@ -72,11 +72,11 @@ export function getLanguage() {
 export function loadLanguageAsync(lang) {
     if (lang && i18n.locale !== lang) {
         if (!loadedLanguages.includes(lang)) {
-            return import(/* webpackChunkName: "lang-[request]" */ `#index/lang/${lang}`).then(msgs => {
+            return import(/* webpackChunkName: "lang-[request]" */ `#index/lang/${lang}`).then((msgs) => {
                 i18n.setLocaleMessage(lang, msgs.default);
                 loadedLanguages.push(lang);
                 return setI18nLanguage(lang);
-            })
+            });
         }
         return Promise.resolve(setI18nLanguage(lang));
     }
