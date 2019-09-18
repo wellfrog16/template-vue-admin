@@ -5,18 +5,27 @@ import { helper } from '@/helper/lakes';
 import { NProgress } from '@/utils/cdn';
 import { Permission } from '@/utils/rivers';
 
+// 多语言
+import { getLanguage, loadLanguageAsync } from '@/plugins/vue-i18n';
+
 NProgress.configure({ showSpinner: false });
 
 const router = createRouter();
 router.beforeEach((to, from, next) => {
     NProgress.start();
 
+    // 多语言，封装一层next，每次路由时判断语言
+    const lang = getLanguage();
+    const handleNext = (params) => {
+        loadLanguageAsync(lang).then(() => next(params));
+    };
+
     // 白名单，不需要登陆的路由数组
     const whiteList = ['/login', '/401'];
     const site = helper.site();
 
     if (whiteList.includes(to.path)) { // 白名单直接放行
-        next();
+        handleNext();
     } else if (site.accessToken) { // 有token，已经登陆
         let { permissions } = store.getters;
 
@@ -46,19 +55,19 @@ router.beforeEach((to, from, next) => {
 
                 router.matcher = createRouter().matcher;
                 router.addRoutes(routes); // 动态添加可访问路由表
-                next({ ...to });
+                handleNext({ ...to });
             }).catch(() => {
-                next({ path: '/login', query: { from: to.path } });
+                handleNext({ path: '/login', query: { from: to.path } });
             });
         // } else if (Permission.hasPermission(to, site.roles)) {
         } else if (Permission.hasPermission(to, site.roles)) {
-            next();
+            handleNext();
         } else {
             console.log('没有权限，带去没有权限的页面');
-            next({ path: '/401' });
+            handleNext({ path: '/401' });
         }
     } else { // 无token，转到登陆页面
-        next({ path: '/login', query: { from: to.path } });
+        handleNext({ path: '/login', query: { from: to.path } });
     }
 });
 

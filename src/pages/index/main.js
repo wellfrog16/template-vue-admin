@@ -13,6 +13,7 @@ import '@/directive';
 
 // 插件
 import '@/plugins';
+import { i18n } from '@/plugins/vue-i18n';
 
 Vue.config.productionTip = false;
 
@@ -22,5 +23,6 @@ Vue.prototype.$utils = utils;
 window.vueIndex = new Vue({
     router,
     store,
+    i18n,
     render: h => h(App),
 }).$mount('#app');

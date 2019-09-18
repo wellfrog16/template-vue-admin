@@ -14,6 +14,7 @@ import routeGuide from './modules/guide';
 import routeDocument from './modules/document';
 import routeHome from './modules/home';
 import routeLog from './modules/log';
+import routeI18n from './modules/i18n';
 
 Vue.use(Router);
 
@@ -63,6 +64,7 @@ const asyncRoutes = [
     routeResearch,
     routeEcharts,
     routeSecurity,
+    routeI18n,
     routeLog,
     routeSplitPane,
     {
