@@ -3,6 +3,7 @@ import touch from './touch';
 
 Vue.directive('tap', touch.tap);
 Vue.directive('press', touch.press);
+Vue.directive('pressup', touch.pressup);
 Vue.directive('swipeleft', touch.swipeleft);
 Vue.directive('swiperight', touch.swiperight);
 Vue.directive('swipeup', touch.swipeup);

@@ -4,6 +4,7 @@
             :class="[$style.box, 'flex-center']"
             v-tap="handleTap"
             v-press="handlePress"
+            v-pressup="handlePressup"
             v-swipeleft="handleSwipeleft"
             v-swiperight="handleSwiperight"
             v-swipeup="handleSwipeup"
@@ -26,6 +27,9 @@ export default {
         },
         handlePress() {
             this.log = 'press';
+        },
+        handlePressup() {
+            this.log = 'pressup';
         },
         handleSwipeleft() {
             this.log = 'swipeleft';

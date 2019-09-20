@@ -18,6 +18,9 @@ export default {
     press: {
         bind(el, binding) { vueTouch(el, binding, 'press'); },
     },
+    pressup: {
+        bind(el, binding) { vueTouch(el, binding, 'press', 'pressup'); },
+    },
     swipeleft: {
         bind(el, binding) { vueTouch(el, binding, 'swipe', 'swipeleft'); },
     },
