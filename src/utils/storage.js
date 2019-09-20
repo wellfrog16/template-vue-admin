@@ -61,7 +61,7 @@ function get(key, { encrypt } = {}) {
             }
         },
         number() {
-            const ss = (new Date().getTime() - new Date(item.createAt).getTime()) / 1000;
+            const ss = (moment().valueOf() - moment(item.createAt).valueOf()) / 1000;
             if (ss > +item.expires) {
                 remove(key);
             } else {
