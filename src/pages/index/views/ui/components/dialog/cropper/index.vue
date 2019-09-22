@@ -12,6 +12,8 @@
             :image-src="imageSrc"
             width="200px"
             height="100px"
+            :cropperWidth="400"
+            :cropperHeight="200"
         />
     </x-col>
 </template>

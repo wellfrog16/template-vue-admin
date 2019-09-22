@@ -15,8 +15,8 @@
             :visible.sync="cropperVisible"
             :image="image"
             :image-smoothing-quality="imageSmoothingQuality"
-            :cropWidth="parseInt(width, 0)"
-            :cropHeight="parseInt(height, 0)"
+            :cropperWidth="cropperWidth || parseInt(width, 0)"
+            :cropperHeight="cropperHeight || parseInt(height, 0)"
             @on-finished="handleFinished"
             @on-cancel="cancel"
         />
@@ -38,6 +38,10 @@ export default {
 
         // 图片质量
         imageSmoothingQuality: { type: String, default: 'high' },
+
+        // 裁剪框大小
+        cropperWidth: { type: Number },
+        cropperHeight: { type: Number },
     },
     data() {
         return {

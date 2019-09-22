@@ -36,12 +36,12 @@ export default {
         containerHeight: { type: Number, default: 450 },
 
         // 裁剪框大小
-        cropWidth: { type: Number, default: 400 },
-        cropHeight: { type: Number, default: 300 },
+        cropperWidth: { type: Number, default: 400 },
+        cropperHeight: { type: Number, default: 300 },
 
         // 裁剪框坐标
-        cropTop: { type: Number, default: 0 },
-        cropLeft: { type: Number, default: 0 },
+        // cropperTop: { type: Number, default: 0 },
+        // cropperLeft: { type: Number, default: 0 },
     },
     data() {
         return {
@@ -72,7 +72,7 @@ export default {
             const self = this;
             this.cropper = new Cropper(this.image, {
                 viewMode: 1,
-                aspectRatio: self.cropWidth / self.cropHeight,
+                aspectRatio: self.cropperWidth / self.cropperHeight,
                 // cropBoxResizable: false, // 是否可以改变crop框大小
                 toggleDragModeOnDblclick: false, // 双击切换拖动模式
                 guides: true, // 网格
@@ -88,8 +88,8 @@ export default {
         handleFinish() {
             this.loading = true;
             this.cropper.getCroppedCanvas({
-                width: this.cropWidth,
-                height: this.cropHeight,
+                width: this.cropperWidth,
+                height: this.cropperHeight,
                 imageSmoothingQuality: this.imageSmoothingQuality,
             }).toBlob((blob) => {
                 this.$emit('on-finished', blob);
