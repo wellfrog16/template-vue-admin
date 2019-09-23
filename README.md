@@ -10,10 +10,8 @@
 
 ## todo
 
-* 优化plugins文件夹
 * mock数据本地化
 * 单页导航功能
-
 
 ## Project setup
 ```

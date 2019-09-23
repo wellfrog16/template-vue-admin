@@ -1,15 +1,4 @@
 import Scrollactive from './index.vue';
+import install from '../install';
 
-const Plugin = {};
-
-Plugin.install = (Vue) => {
-  if (Plugin.install.installed) return;
-
-  Vue.component('vue-scrollactive', Scrollactive);
-};
-
-if (typeof window !== 'undefined' && window.Vue) {
-  Plugin.install(window.Vue);
-}
-
-export default Plugin;
+export default install(Scrollactive, 'vue-scrollactive');
