@@ -12,6 +12,7 @@
 
 * mock数据本地化
 * 单页导航功能
+* backtotop修复
 
 ## Project setup
 ```
