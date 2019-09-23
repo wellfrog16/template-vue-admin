@@ -30,7 +30,7 @@
 
 <script>
 import XUploadImage from '@/components/upload-image/index.vue';
-import upload from '@/api/sys/upload';
+// import upload from '@/api/sys/upload';
 
 export default {
     components: {
@@ -44,27 +44,33 @@ export default {
     },
     methods: {
         httpRequest(file, done) {
-            console.log(file);
-            upload(file).then((res) => {
-                this.imageSrc = `${this.$helper.config.server.image}/${res.file}`;
-                console.log(res);
-                done();
-            }).catch((err) => {
-                console.log(err);
-                done();
-            });
+            // offline
+            this.imageSrc = window.URL.createObjectURL(file);
+            done();
+
+            // online
+            // upload(file).then((res) => {
+            //     this.imageSrc = `${this.$helper.config.server.image}/${res.file}`;
+            //     done();
+            // }).catch((err) => {
+            //     console.log(err);
+            //     done();
+            // });
         },
 
         httpRequest2(file, done) {
-            console.log(file);
-            upload(file).then((res) => {
-                this.imageSrc2 = `${this.$helper.config.server.image}/${res.file}`;
-                console.log(res);
-                done();
-            }).catch((err) => {
-                console.log(err);
-                done();
-            });
+            // offline
+            this.imageSrc2 = window.URL.createObjectURL(file);
+            done();
+
+            // online
+            // upload(file).then((res) => {
+            //     this.imageSrc2 = `${this.$helper.config.server.image}/${res.file}`;
+            //     done();
+            // }).catch((err) => {
+            //     console.log(err);
+            //     done();
+            // });
         },
     },
 };

@@ -21,7 +21,7 @@
 <script>
 import XCol from '../col.vue';
 import XCropper from '@/components/cropper/index.vue';
-import upload from '@/api/sys/upload';
+// import upload from '@/api/sys/upload';
 
 export default {
     components: {
@@ -39,15 +39,18 @@ export default {
         },
 
         httpRequest(file, done) {
-            console.log(file);
-            upload(file).then((res) => {
-                this.imageSrc = `${this.$helper.config.server.image}/${res.file}`;
-                console.log(res);
-                done();
-            }).catch((err) => {
-                console.log(err);
-                done();
-            });
+            // offline
+            this.imageSrc = window.URL.createObjectURL(file);
+            done();
+
+            // online
+            // upload(file).then((res) => {
+            //     this.imageSrc = `${this.$helper.config.server.image}/${res.file}`;
+            //     done();
+            // }).catch((err) => {
+            //     console.log(err);
+            //     done();
+            // });
         },
     },
 };
