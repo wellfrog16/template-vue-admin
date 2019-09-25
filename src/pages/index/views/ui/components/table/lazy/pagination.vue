@@ -12,7 +12,7 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex';
-import api from '@/api/mock/table';
+import api from '@/api/mock/person';
 
 const { mapState, mapMutations, mapGetters } = createNamespacedHelpers('lazyTable');
 

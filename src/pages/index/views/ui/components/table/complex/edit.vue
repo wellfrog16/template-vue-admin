@@ -108,7 +108,7 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex';
-import api from '@/api/mock/table';
+import api from '@/api/mock/person';
 import { rules } from '@/utils/rivers';
 
 const { mapState, mapMutations, mapGetters } = createNamespacedHelpers('complexTable');

@@ -36,7 +36,7 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex';
-import api from '@/api/mock/table';
+import api from '@/api/mock/person';
 import config from '@/config';
 import { PAGE, PAGE_SIZE } from '@/helper/constant';
 import file from '@/utils/file';

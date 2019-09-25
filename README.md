@@ -10,8 +10,9 @@
 
 ## todo
 
-* mock数据本地化
 * 单页导航功能
+* 清理mock文件夹
+* 飞行航线图整理
 
 ## Project setup
 ```

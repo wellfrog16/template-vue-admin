@@ -27,7 +27,7 @@
             </template>
         </el-table-column>
         <el-table-column prop="remark" label="备注" show-overflow-tooltip min-width="300" />
-        <el-table-column label="操作" width="64">
+        <el-table-column label="操作" width="68" align="center">
             <template slot-scope="scope">
                 <el-button @click="handleDelete(scope.row)" type="warning" size="mini" icon="el-icon-delete" />
             </template>
@@ -43,7 +43,7 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex';
-import api from '@/api/mock/table';
+import api from '@/api/mock/person';
 import style from '@/assets/style/usr/app.module.less';
 
 const { mapState, mapMutations } = createNamespacedHelpers('lazyTable');

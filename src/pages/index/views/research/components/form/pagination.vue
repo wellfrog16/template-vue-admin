@@ -14,7 +14,7 @@
 <script>
 import { createNamespacedHelpers } from 'vuex';
 import { PAGE } from '@/helper/constant';
-import api from '@/api/mock/table';
+import api from '@/api/mock/person';
 
 const { mapState, mapMutations, mapGetters } = createNamespacedHelpers('baseForm');
 

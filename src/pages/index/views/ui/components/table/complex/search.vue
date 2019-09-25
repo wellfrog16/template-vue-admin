@@ -43,7 +43,7 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex';
-import api from '@/api/mock/table';
+import api from '@/api/mock/person';
 import file from '@/utils/file';
 import { _ } from '@/utils/cdn';
 // import { helper } from '@/helper/lakes';
