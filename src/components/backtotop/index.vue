@@ -13,7 +13,7 @@ export default {
     name: 'BackToTop',
     props: {
         visibilityHeight: { type: Number, default: 400 },
-        element: { type: String, default: 'body' },
+        element: { default: window },
     },
     data() {
         return {
