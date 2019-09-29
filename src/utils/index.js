@@ -159,6 +159,22 @@ function delay(time = 1000) {
     });
 }
 
+/**
+ * 去掉所有的html标签和&nbsp;之类的特殊符合
+ *
+ * @param {String} str
+ * @returns
+ */
+function deleteHtmlTag(str) {
+    if (!str) { return ''; }
+    return str.replace(/<[^>]+>|&[^>]+;/g, '').trim();
+}
+
+/**
+ * 产生一个随机颜色
+ *
+ * @returns
+ */
 function getRandomColor() {
     return '#'+('00000'+(Math.random()*0x1000000<<0).toString(16)).slice(-6); // eslint-disable-line
     // return `hsl(${Math.random()}, 50%, 50%)`;
@@ -186,4 +202,5 @@ export default {
     getRandomColor,
     deepMerge,
     delay,
+    deleteHtmlTag,
 };
