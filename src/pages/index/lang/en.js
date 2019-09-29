@@ -1,3 +1,4 @@
 export default {
-    lang: 'english',
+    lang: 'en',
+    title: 'english',
 };

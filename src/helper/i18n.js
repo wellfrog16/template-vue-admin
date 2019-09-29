@@ -1,20 +1,10 @@
 import Vue from 'vue';
 import VueI18n from 'vue-i18n'; // 多语言
-import messages from '#index/lang/zh-cn';
 
 Vue.use(VueI18n);
 
-const defaultLang = 'zh-cn';
-
-export const i18n = new VueI18n({
-    locale: defaultLang, // 设置地区
-    messages: { [defaultLang]: messages },
-});
-
-const elHtml = document.querySelector('html');
-elHtml.classList.add(defaultLang);
-
-const loadedLanguages = [defaultLang]; // 我们的预装默认语言
+export const i18n = new VueI18n();
+const loadedLanguages = []; // 我们的预装默认语言
 
 /**
  * 设置语言
@@ -23,6 +13,7 @@ const loadedLanguages = [defaultLang]; // 我们的预装默认语言
  * @returns
  */
 function setI18nLanguage(lang) {
+    const elHtml = document.querySelector('html');
     elHtml.setAttribute('lang', lang);
 
     // 更新className
@@ -58,6 +49,9 @@ export function getLanguage() {
         lang = storageLang;
         return lang;
     }
+
+    // 根据浏览器语言
+    // lang = navigator.language !== 'zh-CN' ? 'en' : 'zh-cn';
 
     return lang;
 }

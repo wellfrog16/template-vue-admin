@@ -1,6 +1,6 @@
 <template>
     <el-card shadow="never">
-        <el-row>当前语言：{{ $t('lang') }}</el-row>
+        <el-row>当前语言：{{ $t('title') }}</el-row>
         <el-divider />
         <el-row>
             <el-dropdown @command="handleCommand">
