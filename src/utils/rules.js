@@ -1,21 +1,5 @@
 const rules = {
     /**
-     * 非空校验
-     *
-     * @param {String} key 校验的字段
-     * @param {JSON} [options={}] { message: 提示信息（不能为空） }
-     * @returns
-     */
-    noEmpty(key, options = {}) {
-        const { message } = Object.assign({ message: '不能为空' }, options);
-        const r = {};
-        r[key] = [
-            { required: true, message, trigger: 'change' },
-        ];
-        return r;
-    },
-
-    /**
      * 自带类型校验
      *
      * @param {String} key 校验的字段
@@ -43,7 +27,7 @@ const rules = {
             allowSpecial: true,
             trigger: 'change',
         }, options);
-        const { name, emptyMessage, trigger } = params;
+        const { name, message, trigger } = params;
         const r = {};
         const rule = [];
 
@@ -54,7 +38,7 @@ const rules = {
 
         // 是否允许为空
         if (!params.allowEmpty) {
-            rule.push({ required: true, message: (emptyMessage || `请输入${name}`), trigger });
+            rule.push({ required: true, message: (message || `请输入${name}`), trigger });
         }
 
         r[key] = rule;

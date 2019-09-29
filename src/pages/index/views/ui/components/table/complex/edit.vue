@@ -141,9 +141,9 @@ export default {
                     ...rules.check('name', {
                         message: '姓名为长度在2-10之间的非空字符', min: 2, max: 10,
                     }),
-                    ...rules.noEmpty('education', { message: '请选择学历' }),
-                    ...rules.noEmpty('status', { message: '请选择状态' }),
-                    ...rules.noEmpty('birthday', { message: '请选择出生日期' }),
+                    ...rules.checkString('education', { message: '请选择学历' }),
+                    ...rules.checkString('status', { message: '请选择状态' }),
+                    ...rules.checkString('birthday', { message: '请选择出生日期' }),
                     ...rules.check('email', { message: '请输入正确的email', type: 'email' }),
                     ...rules.check('zip', { message: '请输入正确的邮编', type: 'string', len: 6 }),
                 },
