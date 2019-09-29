@@ -21,9 +21,6 @@
 import qs from 'qs';
 
 export default {
-    mounted() {
-        console.log(this.$route);
-    },
     methods: {
         handleCommand(command) {
             const {

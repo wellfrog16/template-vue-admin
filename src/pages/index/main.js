@@ -15,7 +15,7 @@ import '@/directive';
 import '@/plugins';
 
 // 多语言
-import { i18n } from '@/helper/i18n';
+import { i18n } from '@/utils/i18n';
 
 Vue.config.productionTip = false;
 
