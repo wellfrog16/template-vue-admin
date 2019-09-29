@@ -13,5 +13,8 @@ import './permission';
 // dom resize
 import './resize';
 
-// outside click
+// 在目标el外点击
 import './outside-click';
+
+// 失去焦点时，过滤两端空格
+import './trim';
