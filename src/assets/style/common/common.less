@@ -1,14 +1,6 @@
 @import '../config.less';
 
 // ------------------------------------全局样式-----------------------------------------
-
-body {
-    font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
-    font-size: @g-fontSize;
-    color: @g-color2;
-    background-color: @g-backgroundColor;
-}
-
 // fontawesome
 .menu-fix-icon {
     vertical-align: middle;
@@ -79,6 +71,23 @@ body {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
+}
+
+.editor-important {
+    img {
+        width: 100% !important;
+        height: initial !important;
+    }
+
+    // 强制编辑器输出样式
+    div, p, span {
+        width: initial !important;
+        line-height: 1.8em !important;
+        font-family: @g-font-family !important;
+        font-size: @g-font-size !important;
+        color: @g-color2 !important;
+        text-align: left !important;
+    }
 }
 
 .gutter() {
