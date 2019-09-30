@@ -1,7 +1,6 @@
 const LessPluginFun = require('less-plugin-functions');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const path = require('path');
-const mock = require('./mock');
 const pages = require('./build/pages');
 
 const resolve = dir => path.join(__dirname, dir);
@@ -15,7 +14,6 @@ module.exports = {
         host: '0.0.0.0',
         port: 8080,
         proxy: null,
-        before(app) { mock(app); },
     },
 
     pages: {
