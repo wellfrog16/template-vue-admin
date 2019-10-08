@@ -5,7 +5,7 @@
 <script>
 import { createNamespacedHelpers } from 'vuex';
 
-const { mapState, mapMutations, mapActions } = createNamespacedHelpers('mixins');
+const { mapState, mapMutations, mapActions } = createNamespacedHelpers('research/tableForm');
 
 export default {
     computed: {

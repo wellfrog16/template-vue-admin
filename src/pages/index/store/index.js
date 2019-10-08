@@ -7,7 +7,7 @@ import baseForm from './modules/base-form';
 import complexTable from './modules/complex-table';
 import lazyTable from './modules/lazy-table';
 import security from './modules/security';
-import mixins from './modules/mixins';
+import research from './modules/research';
 
 Vue.use(Vuex);
 
@@ -41,6 +41,6 @@ export default new Vuex.Store({
         complexTable,
         lazyTable,
         security,
-        mixins,
+        research,
     },
 });

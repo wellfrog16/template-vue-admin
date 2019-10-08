@@ -54,23 +54,18 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex';
-import api from '@/api/mock/person';
 import { rules } from '@/utils/rivers';
+import AbsEdit from '#index/components/abstract/edit/default.vue';
 
-const { mapState, mapMutations, mapGetters } = createNamespacedHelpers('baseForm');
-
-const fields = {
-    guid: '',
-    id: '',
-    name: '',
-    gender: '女',
-    income: 0,
-    remark: '',
-    education: '',
-    status: '',
-};
+const {
+    mapState,
+    mapMutations,
+    mapGetters,
+    mapActions,
+} = createNamespacedHelpers('research/tableForm');
 
 export default {
+    mixins: [AbsEdit],
     data() {
         const self = this;
         return {
@@ -103,55 +98,21 @@ export default {
     },
     methods: {
         ...mapMutations(['setState']),
+        ...mapActions(['save']),
 
         // 创建一个空的fileds副本
         createFields() {
+            const fields = {
+                guid: '',
+                id: '',
+                name: '',
+                gender: '女',
+                income: 0,
+                remark: '',
+                education: '',
+                status: '',
+            };
             return Object.assign({}, fields);
-        },
-
-        // 关闭，保存中禁止关闭
-        handleClose() {
-            !this.saveBusy && this.setState({ editVisible: false });
-            return !this.saveBusy;
-        },
-
-        // 打卡dialog时，更新数据
-        async update() {
-            if (this.activeUid) {
-                // 这里实际开发需要去请求数据并更新，现在用行数据临时更新
-                await api.detail();
-                this.form.fields = { ...this.activeRow };
-            } else {
-                this.form.fields = this.createFields();
-            }
-            this.$nextTick(() => this.$refs.form.clearValidate());
-        },
-
-        // 保存信息
-        handleSave() {
-            this.$refs.form.validate((valid) => {
-                valid && this.save();
-            });
-        },
-
-        // 保存动作
-        async save() {
-            this.saveBusy = true;
-
-            // 更新列表（非刷新获取，仅前端根据当前数据更新）
-            if (this.form.fields.id) {
-                // 远程更新
-                await api.update(this.form.fields);
-            } else {
-                // 远程写入
-                await api.insert(this.form.fields);
-            }
-
-            this.$nextTick(() => {
-                this.saveBusy = false;
-                this.handleClose();
-                this.setState({ overdue: true });
-            });
         },
     },
 };

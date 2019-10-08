@@ -19,12 +19,12 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex';
-import XSearch from './components/mixins/search.vue';
-import XTable from './components/mixins/table.vue';
-import XPagination from './components/mixins/pagination.vue';
-import XCommand from './components/mixins/command.vue';
+import XSearch from './components/table-form/search.vue';
+import XTable from './components/table-form/table.vue';
+import XPagination from './components/table-form/pagination.vue';
+import XCommand from './components/table-form/command.vue';
 
-const { mapState } = createNamespacedHelpers('mixins');
+const { mapState } = createNamespacedHelpers('research/tableForm');
 
 export default {
     components: {
@@ -32,7 +32,7 @@ export default {
         XTable,
         XPagination,
         XCommand,
-        XEdit: () => import('./components/mixins/edit.vue'),
+        XEdit: () => import('./components/table-form/edit.vue'),
     },
     computed: {
         ...mapState(['loading']),

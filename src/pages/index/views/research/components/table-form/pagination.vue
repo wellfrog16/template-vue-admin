@@ -2,7 +2,7 @@
 import { createNamespacedHelpers } from 'vuex';
 import AbsPagination from '#index/components/abstract/pagination/default.vue';
 
-const { mapState, mapMutations } = createNamespacedHelpers('mixins');
+const { mapState, mapMutations } = createNamespacedHelpers('research/tableForm');
 
 export default {
     mixins: [AbsPagination],

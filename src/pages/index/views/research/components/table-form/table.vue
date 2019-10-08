@@ -41,7 +41,7 @@ import { createNamespacedHelpers } from 'vuex';
 import AbsTable from '#index/components/abstract/table/default.vue';
 import style from '@/assets/style/usr/app.module.less';
 
-const { mapState, mapMutations, mapActions } = createNamespacedHelpers('mixins');
+const { mapState, mapMutations, mapActions } = createNamespacedHelpers('research/tableForm');
 
 export default {
     mixins: [AbsTable],
