@@ -27,12 +27,18 @@
             </template>
         </el-table-column>
         <el-table-column prop="remark" label="备注" show-overflow-tooltip min-width="300" />
-        <el-table-column fixed="right" label="操作" width="120">
+        <el-table-column label="操作" width="120">
             <template slot-scope="scope">
                 <el-button @click="showEdit(scope.row)" type="primary" size="mini" icon="el-icon-edit" />
                 <el-button @click="handleRemove(scope.row)" type="warning" size="mini" icon="el-icon-delete" />
             </template>
         </el-table-column>
+
+        <infinite-loading
+            slot="append"
+            @infinite="infiniteHandler"
+            force-use-infinite-wrapper=".el-table__body-wrapper">
+        </infinite-loading>
     </el-table>
 </template>
 
@@ -41,7 +47,7 @@ import { createNamespacedHelpers } from 'vuex';
 import AbsTable from '#index/components/abstract/table/default.vue';
 import style from '@/assets/style/usr/app.module.less';
 
-const { mapState, mapMutations, mapActions } = createNamespacedHelpers('research/tableForm');
+const { mapState, mapMutations, mapActions } = createNamespacedHelpers('research/tableLazy');
 
 export default {
     mixins: [AbsTable],
@@ -90,11 +96,14 @@ export default {
             }
         },
     },
-    mounted() {
-    },
     methods: {
         ...mapMutations(['setState']),
-        ...mapActions(['remove']),
+        ...mapActions(['remove', 'loadList']),
+
+        infiniteHandler(state) {
+            this.setState({ infiniteState: state });
+            this.loadList({ vm: this });
+        },
 
         // 批量选择
         handleSelectionChange(val) {

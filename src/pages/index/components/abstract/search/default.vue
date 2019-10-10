@@ -49,6 +49,13 @@ export default {
             console.warn('请实现filters计算属性');
             return {};
         },
+
+        infiniteState() {
+            console.warn('请实现infiniteState计算属性');
+            return {};
+        },
+
+        lazy: () => false, // 是否是懒加载
     },
     watch: {
         overdue(val) {
@@ -60,7 +67,14 @@ export default {
 
         // 查询
         async search() {
-            await this.checkParams() && this.loadList({ vm: this });
+            if (await this.checkParams()) {
+                if (this.lazy) {
+                    this.infiniteState.reset();
+                    this.setState({ list: [] });
+                } else {
+                    this.loadList({ vm: this });
+                }
+            }
         },
 
         // 刷新

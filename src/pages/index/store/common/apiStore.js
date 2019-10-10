@@ -4,6 +4,7 @@ import { _ } from '@/utils/cdn';
 import {
     RES_TOTAL,
     RES_LIST,
+    PAGE,
     UID,
 } from '@/helper/constant';
 
@@ -38,6 +39,12 @@ export default function (options) {
         mutations: {
             setState: (state, payload) => utils.deepMerge(state, payload),
 
+            // 本地删除list指定id的数据
+            listRemove(state, payload) {
+                const index = state.list.findIndex(item => item.id === payload.id);
+                index > 0 && state.list.splice(index, 1);
+            },
+
             // 强制重置，去掉baseStore之外的所有属性
             reset: state => _.assign(state, myState()),
         },
@@ -50,15 +57,25 @@ export default function (options) {
         actions: {
             // 加载列表
             loadList({ commit, state }, { vm }) {
-                commit('setState', { loading: true });
+                !state.lazy && commit('setState', { loading: true });
 
                 return new Promise((resolve, reject) => {
                     api.list(state.filters)
                         .then((res) => {
-                            commit('setState', { list: res[RES_LIST], total: res[RES_TOTAL] });
+                            let list = [...res[RES_LIST]];
+
+                            // 如果是滚动加载，且有返回数据
+                            if (state.lazy && res[RES_LIST].length > 0) {
+                                list = [...state.list, ...res[RES_LIST]];
+                                commit('setState', { filters: { [PAGE]: +state.filters[PAGE] + 1 } });
+                            }
+                            commit('setState', { list, total: res[RES_TOTAL] });
                             vm.$nextTick(() => {
                                 commit('setState', { loading: false, overdue: false });
-                                resolve(true);
+
+                                // 无限加载的infiniteState需要在“实例state”(modules)中提供infiniteState
+                                state.lazy && (res[RES_LIST].length > 0 ? state.infiniteState.loaded() : state.infiniteState.complete());
+                                resolve(res);
                             });
                         })
                         .catch((err) => {
@@ -69,7 +86,7 @@ export default function (options) {
             },
 
             // 删除
-            remove({ commit }, { vm, row }) {
+            remove({ commit, state }, { vm, row }) {
                 commit('setState', { loading: true });
 
                 return new Promise((resolve, reject) => {
@@ -77,7 +94,12 @@ export default function (options) {
                     api.remove({ id: row.id })
                         .then((res) => {
                             vm.$nextTick(() => {
-                                commit('setState', { loading: false, overdue: true });
+                                if (state.lazy) {
+                                    commit('listRemove', { id: row.id });
+                                    commit('setState', { loading: false });
+                                } else {
+                                    commit('setState', { loading: false, overdue: true });
+                                }
                                 resolve(res);
                             });
                         })

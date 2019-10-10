@@ -19,10 +19,10 @@ const route = {
         },
         {
             path: 'table-lazy',
-            component: () => import('#index/views/research/TableForm.vue'),
+            component: () => import('#index/views/research/TableLazy.vue'),
             meta: {
                 title: '滚动加载',
-                icon: 'el-icon-goods',
+                icon: 'menu-fix-icon fas fa-scroll fa-lg fa-fw',
             },
         },
     ],

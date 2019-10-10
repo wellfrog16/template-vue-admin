@@ -1,4 +1,5 @@
 import Mock from 'mockjs';
+import utils from '@/utils';
 // import instance from '@/helper/axios';
 
 // const axios = instance({ baseURL: 'https://easy-mock.com/mock/5c7b997cd764b271d20acae8' });
@@ -26,7 +27,7 @@ const list = params => new Promise((resolve) => {
     status = (st.includes(status) ? status : '') || '@pick(' + st + ')'; // eslint-disable-line
 
     const key = `list|${ps}`;
-    resolve(Mock.mock({
+    const data = Mock.mock({
         total: '@natural(100, 1000)',
         [key]: [{
             guid: '@guid',
@@ -42,7 +43,9 @@ const list = params => new Promise((resolve) => {
             status,
             birthday: '@date',
         }],
-    }));
+    });
+
+    utils.delay(500).then(() => resolve(data));
 });
 
 const detail = list;
