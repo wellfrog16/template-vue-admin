@@ -1,7 +1,7 @@
 <template>
     <div :class="{fullscreen:fullscreen}" class="tinymce-container editor-container">
         <textarea :id="tinymceId" class="tinymce-textarea" />
-        <uploadImage :visible="uploadImageVisible" @visible="handleUploadImage" @on-success="imageUploadSuccess"/>
+        <uploadImage :visible.sync="uploadImageVisible" @on-success="imageUploadSuccess"/>
     </div>
 </template>
 
@@ -66,10 +66,6 @@ export default {
         this.destroyTinymce();
     },
     methods: {
-        // 上传图片显示控制
-        handleUploadImage(val) {
-            this.uploadImageVisible = val;
-        },
         initTinymce() {
             const self = this;
             window.tinymce.init({

@@ -1,7 +1,7 @@
 <template>
     <el-dialog
         title="上传图片"
-        :visible.sync="dialogVisible"
+        :visible.sync="visible"
         :before-close="handleClose"
         :close-on-click-modal="false"
         :append-to-body="true"
@@ -16,6 +16,7 @@
             :show-file-list="true"
             :on-remove="handleRemove"
             :on-success="handleSuccess"
+            :on-error="handleError"
             :before-upload="beforeUpload"
             accept=".jpg,.jpeg,.png"
             :action="action"
@@ -40,7 +41,6 @@ export default {
     },
     data() {
         return {
-            dialogVisible: false,
             fileList: [],
             imgList: {},
             uploading: false,
@@ -56,18 +56,14 @@ export default {
         },
     },
     watch: {
-        visible(val) { this.dialogVisible = val; },
         count() {
             this.uploading = !this.checkAllSuccess();
         },
     },
-    mounted() {
-        window.aa = this;
-    },
     methods: {
         // 关闭组件
         handleClose() {
-            this.$emit('visible', false);
+            this.$emit('update:visible', false);
         },
 
         // 检测是否所有图片都上传完成
@@ -111,12 +107,22 @@ export default {
                 const item = this.imgList[key];
                 if (item.uid === file.uid) {
                     // 根据上传服务器回传修改
+                    // -------------------------------------------------------
                     item.url = (response.files && response.files.file)
                         || (`${config.server.image}/${response.data.file}`);
                     item.isSuccess = true;
                     this.count += 1;
                 }
             });
+        },
+
+        handleError(err, file) {
+            setTimeout(() => {
+                Object.keys(this.imgList).forEach((key) => {
+                    this.imgList[key].uid === file.uid && delete this.imgList[key];
+                });
+                this.uploading = false;
+            }, 1000);
         },
 
         // 移除图片
@@ -137,6 +143,10 @@ export default {
     :global(.el-dialog__body) {
         max-height: 400px;
         overflow-y: auto;
+    }
+
+    :global(.el-upload-list__item-thumbnail) {
+        object-fit: cover;
     }
 }
 </style>
