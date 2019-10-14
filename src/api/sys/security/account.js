@@ -1,11 +1,33 @@
 import instance from '@/helper/axios';
 import config from '@/config';
+import utils from '@/utils';
 
 const axios = instance({ baseURL: config.server.easyMock });
 
 const base = '/account';
 
-const list = params => axios.get(base, { params });
+// online
+// const list = params => axios.get(base, { params });
+// offline
+const list = () => new Promise((resolve) => {
+    const data = {
+        list: [
+            {
+                id: 1,
+                name: 'admin',
+                roles: ['admin', 'editor'],
+            },
+            {
+                id: 2,
+                name: 'editor',
+                roles: ['editor'],
+            },
+        ],
+        total: 2,
+    };
+
+    utils.delay(500).then(() => resolve(data));
+});
 
 // online
 // const detail = (params) => {
