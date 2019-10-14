@@ -16,7 +16,6 @@
 * 优化富文本编辑上传图片
 * loader cdn
 * 视频拍照获取图片用videoHeight处理
-* 多语言调整
 * 多语言抽象
 
 ## Project setup

@@ -6,7 +6,7 @@ import { NProgress } from '@/utils/cdn';
 import { Permission } from '@/utils/rivers';
 
 // 多语言
-import { getLanguage, loadLanguageAsync } from '@/utils/i18n';
+import { getLanguage, loadLanguageAsync } from '#index/locale';
 
 NProgress.configure({ showSpinner: false });
 

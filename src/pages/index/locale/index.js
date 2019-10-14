@@ -3,7 +3,7 @@ import VueI18n from 'vue-i18n'; // 多语言
 
 Vue.use(VueI18n);
 
-export const i18n = new VueI18n();
+export const i18n = new VueI18n({ locale: 'null' });
 const loadedLanguages = []; // 我们的预装默认语言
 
 /**
@@ -34,10 +34,10 @@ function setI18nLanguage(lang) {
  * @returns 语言
  */
 export function getLanguage() {
-    let lang = '';
+    let lang = 'zh-CN'; // 默认语言
 
     // 地址栏获取
-    const matches = window.location.href.match(/[?&]lang=([a-z-]+)($|#|&)/);
+    const matches = window.location.href.match(/[?&]lang=([a-zA-Z-]+)($|#|&)/);
     if (matches) {
         [, lang] = matches;
         return lang;
@@ -51,7 +51,7 @@ export function getLanguage() {
     }
 
     // 根据浏览器语言
-    // lang = navigator.language !== 'zh-CN' ? 'en' : 'zh-cn';
+    // lang = navigator.language !== 'zh-CN' ? 'en-US' : 'zh-CN';
 
     return lang;
 }
@@ -66,7 +66,7 @@ export function getLanguage() {
 export function loadLanguageAsync(lang) {
     if (lang && i18n.locale !== lang) {
         if (!loadedLanguages.includes(lang)) {
-            return import(/* webpackChunkName: "lang-[request]" */ `#index/lang/${lang}`).then((msgs) => {
+            return import(/* webpackChunkName: "lang-[request]" */ `./lang/${lang}`).then((msgs) => {
                 i18n.setLocaleMessage(lang, msgs.default);
                 loadedLanguages.push(lang);
                 return setI18nLanguage(lang);

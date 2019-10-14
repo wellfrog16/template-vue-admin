@@ -1,4 +1,4 @@
 export default {
-    lang: 'zh-cn',
+    lang: 'zh-CN',
     title: '简体中文',
 };

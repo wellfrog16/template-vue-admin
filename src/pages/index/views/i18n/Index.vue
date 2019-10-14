@@ -8,8 +8,8 @@
                     切换语言<i class="el-icon-arrow-down el-icon--right"></i>
                 </el-button>
                 <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item command="zh-cn">中文</el-dropdown-item>
-                    <el-dropdown-item command="en">English</el-dropdown-item>
+                    <el-dropdown-item command="zh-CN">中文</el-dropdown-item>
+                    <el-dropdown-item command="en-US">English</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
         </el-row>
