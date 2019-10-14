@@ -16,6 +16,7 @@ export default new Vuex.Store({
     state: {
         message: null, // 全局错误检测
         notification: null,
+        lang: '', // 语言
     },
     mutations: {
         setState: (state, payload) => utils.deepMerge(state, payload),

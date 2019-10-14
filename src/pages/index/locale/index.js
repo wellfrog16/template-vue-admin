@@ -20,6 +20,10 @@ function setI18nLanguage(lang) {
     elHtml.classList.remove(i18n.locale);
     elHtml.classList.add(lang);
 
+    // 更新store
+    const { $store } = window.vueIndex;
+    $store && $store.commit('setState', { lang });
+
     // 设置语言
     i18n.locale = lang;
 

@@ -17,27 +17,39 @@
 </template>
 
 <script>
-// import { loadLanguageAsync } from '@/plugins/vue-i18n';
-import qs from 'qs';
+import { mapState } from 'vuex';
+import { loadLanguageAsync } from '#index/locale';
+import Lang from '#index/components/abstract/search/lang.vue';
+// import qs from 'qs';
 
 export default {
+    mixins: [Lang],
+    computed: {
+        ...mapState(['lang']),
+    },
     methods: {
+        refresh() {
+            console.log('语言变化了');
+        },
         handleCommand(command) {
-            const {
-                path,
-                query,
-            } = this.$route;
+            // 路由切换
+            // const {
+            //     path,
+            //     query,
+            // } = this.$route;
 
-            if (query.lang !== command) {
-                query.lang = command;
-                const url = `/#${path}?${qs.stringify(query)}`;
-                window.history.pushState(null, null, url);
-                window.location.reload();
-            }
+            // if (query.lang !== command) {
+            //     query.lang = command;
+            //     const url = `/#${path}?${qs.stringify(query)}`;
+            //     window.history.pushState(null, null, url);
+            //     window.location.reload();
+            // }
             // window.location.href = url;
-            // loadLanguageAsync(command).then(() => {
-            //     console.log('切换完成');
-            // });
+
+            // 直接切换
+            loadLanguageAsync(command).then(() => {
+                console.log('切换完成');
+            });
         },
     },
 };
