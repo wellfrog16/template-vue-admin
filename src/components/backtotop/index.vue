@@ -13,7 +13,7 @@ export default {
     name: 'BackToTop',
     props: {
         visibilityHeight: { type: Number, default: 400 },
-        element: { default: window },
+        element: { type: String, default: '' },
     },
     data() {
         return {
@@ -22,11 +22,11 @@ export default {
     },
     computed: {
         container() {
-            return $(this.element);
+            return this.element ? $(this.element) : $(window);
         },
     },
     mounted() {
-        this.container.on('scroll', () => this.handleScroll());
+        this.container.on('scroll', this.handleScroll);
     },
     beforeDestroy() {
         this.container.unbind();
