@@ -30,6 +30,8 @@ function formatResponse(params) {
 
     params.data = data;
 
+    console.log(params);
+
     return params;
 }
 
@@ -48,7 +50,7 @@ function axiosInstance(args) {
         // 自定义
         notification: true, // notification提示框
         loading: false, // 全局loading层（不推荐）
-        retryMax: 4, // 自动重试次数
+        retryMax: 1, // 自动重试次数
         retryDelay: 1000, // 重试延迟
 
         // 原生

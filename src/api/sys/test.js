@@ -1,6 +1,7 @@
+import qs from 'qs';
 import instance from '@/helper/axios';
 
-const axios = instance({ baseURL: 'http://127.0.0.1:8001/test' });
+const axios = instance();
 
 const test = () => {
     const options = {
@@ -10,7 +11,28 @@ const test = () => {
         }],
     };
 
-    return axios.post('11', '11', options);
+    return axios.get('', '11', options);
 };
 
-export default test;
+const token = () => {
+    const data = {
+        client_id: '11',
+        client_secret: '22',
+        grant_type: 'password',
+        username: 'admin',
+        password: 'password2',
+    };
+
+    const site = window.vueIndex.$helper.site();
+    const headers = Object.assign({
+        'Content-Type': 'application/x-www-form-urlencoded',
+    }, site.headers);
+    const conf = { headers };
+
+    return axios.post('/oauth/token', qs.stringify(data), conf);
+};
+
+export default {
+    test,
+    token,
+};

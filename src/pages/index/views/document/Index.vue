@@ -3,6 +3,7 @@
         文档
         <el-button @click="send">测试</el-button>
         <el-button @click="send2">测试2</el-button>
+        <el-button @click="send3">测试2</el-button>
     </el-card>
 </template>
 
@@ -18,7 +19,7 @@ export default {
     // },
     methods: {
         send() {
-            const res = api();
+            const res = api.test();
             res.then((qq) => {
                 console.log(111);
                 console.log(qq);
@@ -27,6 +28,9 @@ export default {
         send2() {
             const message = { title: '错误', message: '测试', type: 'error' };
             this.$store.commit('setState', { message });
+        },
+        send3() {
+            api.token();
         },
         // async test() {
         //     try {

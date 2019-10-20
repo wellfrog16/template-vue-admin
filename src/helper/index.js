@@ -13,7 +13,7 @@ function site() {
         // 属性等
         ...mySite,
         headers: {
-            authorization: mySite.accessToken,
+            Authorization: mySite.accessToken,
         },
 
         // 方法
