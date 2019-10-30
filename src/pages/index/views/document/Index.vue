@@ -4,6 +4,7 @@
         <el-button @click="send">测试</el-button>
         <el-button @click="send2">测试2</el-button>
         <el-button @click="send3">测试2</el-button>
+        <el-button @click="send4">检测图片宽高</el-button>
     </el-card>
 </template>
 
@@ -39,6 +40,15 @@ export default {
         //         console.log('error');
         //     }
         // },
+        send4() {
+            this.$utils.getImageSize('http://pic1.win4000.com/wallpaper/2019-01-16/5c3eff44cd5d5.jpg')
+                .then((res) => {
+                    console.log(res);
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        },
     },
 };
 </script>

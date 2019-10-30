@@ -160,6 +160,46 @@ function delay(time = 1000) {
 }
 
 /**
+ * 检测图片的宽高
+ *
+ * @param {*} 图片的地址
+ * @return {Json} { width, height }
+ */
+function getImageSize(url) {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.src = url;
+
+        const timeout = 3000; // 检测超时上限
+        const interval = 10; // 检测频率
+        let times = 0; // 已用时
+        let timer = null; // setInterval
+
+        function check() {
+            times += interval;
+
+            // 加载超时
+            if (times >= timeout) {
+                clearInterval(timer);
+                img.src = '';
+                reject(new Error('time out!'));
+            }
+
+            //  只要任何一方大于0
+            // 表示服务器已经返回宽高
+            if (img.width > 0 || img.height > 0) {
+                clearInterval(timer);
+                resolve({
+                    width: img.width,
+                    height: img.height,
+                });
+            }
+        }
+        timer = setInterval(check, interval);
+    });
+}
+
+/**
  * 去掉所有的html标签和&nbsp;之类的特殊符合
  *
  * @param {String} str
@@ -200,6 +240,7 @@ export default {
     currency,
     secretPhoneNum,
     getRandomColor,
+    getImageSize,
     deepMerge,
     delay,
     deleteHtmlTag,
