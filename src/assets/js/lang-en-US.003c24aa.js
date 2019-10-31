@@ -1,0 +1,1 @@
+(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["lang-en-US"],{"768f":function(n,e,i){"use strict";i.r(e),e["default"]={lang:"en-US",title:"english"}}}]);

@@ -1,1 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["lang-en"],{cdd3:function(n,e,i){"use strict";i.r(e),e["default"]={lang:"en",title:"english"}}}]);
