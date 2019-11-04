@@ -16,6 +16,7 @@
 * loader cdn
 * 视频拍照获取图片用videoHeight处理
 * 补充echarts示例
+* restful请求封装
 
 ## Project setup
 ```
