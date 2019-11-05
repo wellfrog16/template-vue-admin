@@ -17,7 +17,6 @@
 * 视频拍照获取图片用videoHeight处理
 * 补充echarts示例
 * restful请求封装
-* 修复百度地图在github上的显示
 
 ## Project setup
 ```
