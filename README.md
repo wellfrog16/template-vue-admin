@@ -17,6 +17,7 @@
 * 视频拍照获取图片用videoHeight处理
 * 补充echarts示例
 * restful请求封装
+* 合并小chunk
 
 ## Project setup
 ```
