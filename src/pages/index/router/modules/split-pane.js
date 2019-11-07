@@ -12,7 +12,7 @@ const route = {
     children: [
         {
             path: 'index',
-            component: () => import('#index/views/split-pane/Index.vue'),
+            component: () => import(/* webpackChunkName: "combine" */'#index/views/split-pane/Index.vue'),
             meta: {
                 title: '页面分割例子',
                 hidden: true,

@@ -12,7 +12,7 @@ const route = {
     children: [
         {
             path: 'index',
-            component: () => import('#index/views/iframe/Index.vue'),
+            component: () => import(/* webpackChunkName: "combine" */'#index/views/iframe/Index.vue'),
             meta: {
                 title: 'iframe例子',
                 type: 'iframe',

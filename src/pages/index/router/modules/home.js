@@ -12,7 +12,7 @@ const route = {
     children: [
         {
             path: 'index',
-            component: () => import('#index/views/home/Index.vue'),
+            component: () => import(/* webpackChunkName: "combine" */'#index/views/home/Index.vue'),
             meta: {
                 hidden: true,
                 title: '首页详细',
