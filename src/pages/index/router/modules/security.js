@@ -12,7 +12,7 @@ const route = {
     children: [
         {
             path: 'account',
-            component: () => import('#index/views/security/Account.vue'),
+            component: () => import(/* webpackChunkName: "security" */'#index/views/security/Account.vue'),
             meta: {
                 title: '账户列表',
                 icon: 'menu-fix-icon fas fa-users fa-lg fa-fw',
@@ -20,7 +20,7 @@ const route = {
         },
         {
             path: 'test',
-            component: () => import('#index/views/security/components/account/test.vue'),
+            component: () => import(/* webpackChunkName: "security" */'#index/views/security/components/account/test.vue'),
             meta: {
                 title: '测试隐藏页',
                 visible: false,
@@ -28,7 +28,7 @@ const route = {
         },
         {
             path: 'directive',
-            component: () => import('#index/views/security/Directive.vue'),
+            component: () => import(/* webpackChunkName: "security" */'#index/views/security/Directive.vue'),
             meta: {
                 title: '权限控制',
                 icon: 'menu-fix-icon fab fa-ethereum fa-lg fa-fw',
@@ -36,7 +36,7 @@ const route = {
         },
         {
             path: 'role',
-            component: () => import('#index/views/security/Role.vue'),
+            component: () => import(/* webpackChunkName: "security" */'#index/views/security/Role.vue'),
             meta: {
                 title: '权限设置',
                 icon: 'menu-fix-icon fas fa-user-cog fa-lg fa-fw',

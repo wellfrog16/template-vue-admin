@@ -12,7 +12,7 @@ const route = {
     children: [
         {
             path: 'package',
-            component: () => import('#index/views/echarts/Package.vue'),
+            component: () => import(/* webpackChunkName: "echarts" */'#index/views/echarts/Package.vue'),
             meta: {
                 title: '图表合集',
                 icon: 'el-icon-goods',
@@ -28,7 +28,7 @@ const route = {
         // },
         {
             path: 'migration',
-            component: () => import('#index/views/echarts/Migration.vue'),
+            component: () => import(/* webpackChunkName: "echarts" */'#index/views/echarts/Migration.vue'),
             meta: {
                 title: '飞机航线图',
                 icon: 'menu-fix-icon fas fa-dove fa-lg fa-fw',

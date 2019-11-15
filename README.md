@@ -16,9 +16,12 @@
 * loader cdn
 * 视频拍照获取图片用videoHeight处理
 * 补充echarts示例
+<<<<<<< HEAD
 * restful请求封装
 * 合并小chunk
 * 前端分页table组件
+=======
+>>>>>>> de5192ddabffc10bf85c1e9f87560e37cdac3584
 
 ## Project setup
 ```

@@ -11,7 +11,7 @@ const route = {
     children: [
         {
             path: 'table-form',
-            component: () => import('#index/views/research/TableForm.vue'),
+            component: () => import(/* webpackChunkName: "research" */'#index/views/research/TableForm.vue'),
             meta: {
                 title: '基础表格和表单',
                 icon: 'menu-fix-icon fab fa-wpforms fa-lg fa-fw',
@@ -19,7 +19,7 @@ const route = {
         },
         {
             path: 'table-lazy',
-            component: () => import('#index/views/research/TableLazy.vue'),
+            component: () => import(/* webpackChunkName: "research" */'#index/views/research/TableLazy.vue'),
             meta: {
                 title: '滚动加载',
                 icon: 'menu-fix-icon fas fa-scroll fa-lg fa-fw',

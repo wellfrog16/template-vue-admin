@@ -11,7 +11,7 @@ const route = {
     children: [
         {
             path: 'element-ui',
-            component: () => import('#index/views/icon/ElIcon.vue'),
+            component: () => import(/* webpackChunkName: "icon" */'#index/views/icon/ElIcon.vue'),
             meta: {
                 title: 'element-ui',
                 icon: 'el-icon-platform-eleme',
@@ -19,7 +19,7 @@ const route = {
         },
         {
             path: 'font-awesome',
-            component: () => import('#index/views/icon/FontAwesome.vue'),
+            component: () => import(/* webpackChunkName: "icon" */'#index/views/icon/FontAwesome.vue'),
             meta: {
                 title: 'font-awesome',
                 icon: 'menu-fix-icon fab fa-font-awesome fa-lg fa-fw',

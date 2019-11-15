@@ -11,7 +11,7 @@ const route = {
     children: [
         {
             path: 'index',
-            component: () => import('#index/views/log/Index.vue'),
+            component: () => import(/* webpackChunkName: "combine" */'#index/views/log/Index.vue'),
             meta: {
                 title: '日志',
                 hidden: true,
