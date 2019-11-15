@@ -23,7 +23,22 @@ function site() {
     };
 }
 
+function restful(axios, base) {
+    const insert = params => axios.post(base, params);
+    const update = (id, params) => axios.pust(`${base}/${id}`, params);
+    const detail = id => axios.get(`${base}/${id}`);
+    const remove = id => axios.delete(`${base}/${id}`);
+
+    return {
+        insert,
+        update,
+        detail,
+        remove,
+    };
+}
+
 export default {
     site,
+    restful,
     config,
 };

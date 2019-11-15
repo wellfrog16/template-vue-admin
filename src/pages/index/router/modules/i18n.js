@@ -11,7 +11,7 @@ const route = {
     children: [
         {
             path: 'index',
-            component: () => import('#index/views/i18n/Index.vue'),
+            component: () => import(/* webpackChunkName: "combine" */'#index/views/i18n/Index.vue'),
             meta: {
                 title: '多语言',
                 hidden: true,

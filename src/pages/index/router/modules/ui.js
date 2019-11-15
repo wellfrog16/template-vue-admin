@@ -14,7 +14,7 @@ const route = {
     children: [
         {
             path: 'package',
-            component: () => import('#index/views/ui/Package.vue'),
+            component: () => import(/* webpackChunkName: "ui" */'#index/views/ui/Package.vue'),
             meta: {
                 title: 'ElementUI',
                 icon: 'el-icon-platform-eleme',
@@ -49,7 +49,7 @@ const route = {
         },
         {
             path: 'editor',
-            component: () => import('#index/views/ui/Editor.vue'),
+            component: () => import(/* webpackChunkName: "ui" */'#index/views/ui/Editor.vue'),
             meta: {
                 title: '富文本框',
                 icon: 'menu-fix-icon far fa-credit-card fa-lg fa-fw',
@@ -57,7 +57,7 @@ const route = {
         },
         {
             path: 'dialog',
-            component: () => import('#index/views/ui/Dialog.vue'),
+            component: () => import(/* webpackChunkName: "ui-dialog" */'#index/views/ui/Dialog.vue'),
             meta: {
                 title: '对话框组件',
                 icon: 'menu-fix-icon far fa-window-maximize fa-lg fa-fw',
@@ -65,7 +65,7 @@ const route = {
         },
         {
             path: 'upload',
-            component: () => import('#index/views/ui/Upload.vue'),
+            component: () => import(/* webpackChunkName: "ui" */'#index/views/ui/Upload.vue'),
             meta: {
                 title: '上传',
                 icon: 'menu-fix-icon fas fa-upload fa-lg fa-fw',
@@ -73,7 +73,7 @@ const route = {
         },
         {
             path: 'part',
-            component: () => import('#index/views/ui/Part.vue'),
+            component: () => import(/* webpackChunkName: "ui-part" */'#index/views/ui/Part.vue'),
             meta: {
                 title: '小组件',
                 icon: 'menu-fix-icon fas fa-puzzle-piece fa-lg fa-fw',

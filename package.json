@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --report",
     "eslint": "vue-cli-service lint",
     "eslint2": "eslint src/pages/index/components/home/**/* --fix",
     "stylelint": "stylelint */**/*.{css,less,vue} --fix",
