@@ -18,6 +18,7 @@
 * 补充echarts示例
 * restful请求封装
 * 合并小chunk
+* 前端分页table组件
 
 ## Project setup
 ```
