@@ -14,9 +14,6 @@ const test = () => {
     return axios.get('', '11', options);
 };
 
-const translate = w => axios.get('/service/translate', { params: { w } });
-
 export default {
     test,
-    translate,
 };

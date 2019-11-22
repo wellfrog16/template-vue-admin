@@ -5,10 +5,6 @@
         <el-button @click="send2">测试2</el-button>
         <el-button @click="send3">测试2</el-button>
         <el-button @click="send4">检测图片宽高</el-button>
-        <div>
-
-            <el-button @click="send5">翻译</el-button>
-        </div>
     </el-card>
 </template>
 
@@ -52,9 +48,6 @@ export default {
                 .catch((err) => {
                     console.log(err);
                 });
-        },
-        send5() {
-            api.translate('dog');
         },
     },
 };

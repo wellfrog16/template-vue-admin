@@ -2,6 +2,13 @@ const ghpages = require('gh-pages');
 
 ghpages.publish('dist', {
     message: 'Updates'
-}, (err) => {
-    console.log(err);
+}, () => {
+    ghpages.publish('docs', {
+        src: 'index.html',
+        message: 'Updates',
+        dest: 'docs',
+        add: true,
+    }, () => {
+        console.log('finished');
+    });
 });
