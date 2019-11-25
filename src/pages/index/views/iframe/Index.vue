@@ -1,31 +1,41 @@
 <template>
-    <div :class="$style.main">
-        <iframe :src='url' frameborder="0" :class="$style.iframe"></iframe>
+    <div :class="$style.main" v-loading="loading">
+        <iframe :src='url' frameborder="0" :class="$style.iframe" @load="handleLoad"></iframe>
     </div>
 </template>
 
 <script>
-import { $ } from '@/utils/cdn';
+// 容器
+let container = null;
 
 export default {
     data() {
         return {
             url: '',
+            loading: true,
         };
+    },
+    mounted() {
+        container = document.querySelector(`.${this.$style.main}`);
     },
     beforeRouteEnter(to, from, next) {
         if (to.meta.type === 'iframe' && to.meta.url) {
-            next((state) => {
-                $(`${state.$style.main}`).show();
-                state.url = to.meta.url;
+            next((vm) => {
+                vm.loading = true;
+                vm.url = to.meta.url;
+                container.classList.remove('hide');
             });
         }
         next();
     },
     beforeRouteLeave(to, from, next) {
-        $(`.${this.$style.main}`).hide(() => {
-            next();
-        });
+        container.classList.add('hide');
+        next();
+    },
+    methods: {
+        handleLoad() {
+            this.loading = false;
+        },
     },
 };
 </script>
