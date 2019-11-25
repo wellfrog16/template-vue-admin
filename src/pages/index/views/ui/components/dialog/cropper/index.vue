@@ -10,7 +10,7 @@
             :http-request="httpRequest"
             :icon-size="30"
             :image-src="imageSrc"
-            width="200px"
+            width="280px"
             height="100px"
             :cropperWidth="400"
             :cropperHeight="200"
