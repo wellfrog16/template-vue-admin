@@ -4,6 +4,7 @@
 > 文件路径：src/pages/index/helper/index.js
 
 ### site()
+登录后获取登录人员信息等。也可以在登录时保存其他相关信息以便调用
 
 * <b>返回值</b> `{Json}` 站点属性，详细内容如下
 
@@ -17,9 +18,6 @@
 |headers|Json|
 |headers.Authorization|String|token信息
 |destroy|Function|清空站点信息
-
-* <b>用法</b><br>
-登录后获取登录人员信息等。也可以在登录时保存其他相关信息以便调用
 
 ### restful(axios, base)
 
