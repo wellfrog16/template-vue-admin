@@ -112,7 +112,7 @@ export default {
                 education: '',
                 status: '',
             };
-            return Object.assign({}, fields);
+            return { ...fields };
         },
     },
 };

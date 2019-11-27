@@ -12,6 +12,7 @@
     "gh-pages": "npm run build && node build/gh-pages"
   },
   "dependencies": {
+    "core-js": "^3.4.3",
     "element-ui": "^2.13.0",
     "mockjs": "^1.1.0",
     "qs": "^6.9.1",
@@ -25,14 +26,14 @@
     "xlsx": "^0.15.3"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.11.0",
-    "@vue/cli-plugin-eslint": "^3.11.0",
-    "@vue/cli-service": "^3.11.0",
-    "@vue/eslint-config-airbnb": "^4.0.1",
+    "@vue/cli-plugin-babel": "^4.1.1",
+    "@vue/cli-plugin-eslint": "^4.1.1",
+    "@vue/cli-service": "^4.1.1",
+    "@vue/eslint-config-airbnb": "^5.0.0",
     "babel-eslint": "^10.0.3",
     "babel-plugin-component": "^1.1.1",
-    "eslint": "^5.16.0",
-    "eslint-plugin-vue": "^5.2.3",
+    "eslint": "^6.7.1",
+    "eslint-plugin-vue": "^6.0.1",
     "gh-pages": "^2.1.1",
     "less": "^3.10.3",
     "less-loader": "^5.0.0",

@@ -89,8 +89,8 @@ export default {
             this.options = [];
             if (key) {
                 this.options = this.currentRoute
-                    .filter(item => item.title.join('$$').indexOf(key) !== -1)
-                    .map(item => ({ label: item.title, value: item.meta }));
+                    .filter((item) => item.title.join('$$').indexOf(key) !== -1)
+                    .map((item) => ({ label: item.title, value: item.meta }));
             }
         },
     },

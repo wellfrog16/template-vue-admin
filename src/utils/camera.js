@@ -15,12 +15,13 @@ function error(that, err) {
 
 class Camera {
     constructor(video, option) {
-        const param = Object.assign({
+        const param = {
             width: 480,
             height: 320,
             successCallback: () => {},
             errorCallback: () => {},
-        }, option);
+            ...option,
+        };
         this.video = video;
         this.constraints = { video: { width: param.width, height: param.height } };
         this.canvas = param.canvas;

@@ -49,7 +49,7 @@ export default {
     },
     computed: {
         allReady() {
-            return !Object.keys(this.imgList).every(item => this.imgList[item].isSuccess);
+            return !Object.keys(this.imgList).every((item) => this.imgList[item].isSuccess);
         },
         action() {
             return config.server.upload || 'https://httpbin.org/post';
@@ -68,12 +68,12 @@ export default {
 
         // 检测是否所有图片都上传完成
         checkAllSuccess() {
-            return Object.keys(this.imgList).every(item => this.imgList[item].isSuccess);
+            return Object.keys(this.imgList).every((item) => this.imgList[item].isSuccess);
         },
 
         // 提交图片
         handleSubmit() {
-            const arr = Object.keys(this.imgList).map(v => this.imgList[v]);
+            const arr = Object.keys(this.imgList).map((v) => this.imgList[v]);
             this.$emit('on-success', arr);
             this.imgList = {};
             this.fileList = [];

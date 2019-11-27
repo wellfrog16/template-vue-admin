@@ -64,7 +64,7 @@ function openDownloadDialog(param, saveName) {
  * @returns
  */
 function export2excel(param) {
-    const args = Object.assign({ name: 'excel.xlsx' }, param);
+    const args = { name: 'excel.xlsx', ...param };
 
     const option = {};
     if (args.headerProp) {

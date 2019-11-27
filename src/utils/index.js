@@ -82,17 +82,17 @@ function createCode(canvas) {
         ctx.shadowOffsetY = _.random(-3, 3);
         ctx.shadowBlur = _.random(-3, 3);
         ctx.shadowColor = 'rgba(0, 0, 0, 0.3)';
-        const x = 80 / 5 * (i + 1);
+        const x = (80 / 5) * (i + 1);
         const y = 39 / 2;
         const deg = _.random(-25, 25);
 
         // 设置旋转角度和坐标原点
         ctx.translate(x, y);
-        ctx.rotate(deg * Math.PI / 180);
+        ctx.rotate((deg * Math.PI) / 180);
         ctx.fillText(char, 0, 0);
 
         // 恢复旋转角度和坐标原点
-        ctx.rotate(-deg * Math.PI / 180);
+        ctx.rotate((-deg * Math.PI) / 180);
         ctx.translate(-x, -y);
     }
 

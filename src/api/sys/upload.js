@@ -20,12 +20,10 @@ const upload = (param) => {
     }
 
     const site = window.vueIndex.$helper.site();
-    const headers = Object.assign({
-        'Content-Type': 'multipart/form-data',
-    }, site.headers);
+    const headers = { 'Content-Type': 'multipart/form-data', ...site.headers };
     const conf = { headers };
 
-    return silence.post('', formData, conf).then(res => res);
+    return silence.post('', formData, conf).then((res) => res);
 };
 
 

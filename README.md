@@ -16,6 +16,7 @@
 * loader cdn
 * 视频拍照获取图片用videoHeight处理
 * 补充echarts示例
+* router的path为官方path，/开头，修改iframe的path方案
 
 ## Project setup
 ```

@@ -6,11 +6,11 @@ const axios = instance({ baseURL: config.server.easyMock });
 
 const base = '/oauth';
 
-const list = params => axios.get(base, { params });
-const detail = params => axios.get(base, { params });
-const insert = params => axios.post(base, params);
-const update = params => axios.put(base, params);
-const remove = params => axios.delete(base, { params });
+const list = (params) => axios.get(base, { params });
+const detail = (params) => axios.get(base, { params });
+const insert = (params) => axios.post(base, params);
+const update = (params) => axios.put(base, params);
+const remove = (params) => axios.delete(base, { params });
 
 // online
 // const token = params => silence.post(`${base}/token`, params);

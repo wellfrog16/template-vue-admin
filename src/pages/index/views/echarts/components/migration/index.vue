@@ -29,7 +29,7 @@ export default {
             function getAirportCoord(idx) {
                 return [data.airports[idx][3], data.airports[idx][4]];
             }
-            const routes = data.routes.map(airline => [
+            const routes = data.routes.map((airline) => [
                 getAirportCoord(airline[1]),
                 getAirportCoord(airline[2]),
             ]);

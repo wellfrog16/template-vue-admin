@@ -15,7 +15,7 @@ function isLoaded(url) {
  * @returns
  */
 function loadScript(urls) {
-    return Promise.all(urls.map(url => new Promise((resolve, reject) => {
+    return Promise.all(urls.map((url) => new Promise((resolve, reject) => {
         // 如果已经加载，直接返回
         if (isLoaded(url)) { resolve(); } else {
             const head = document.getElementsByTagName('head')[0];

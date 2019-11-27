@@ -43,9 +43,9 @@ const detail = () => new Promise((resolve) => {
         roles: ['admin', 'editor'],
     });
 });
-const insert = params => axios.post(base, params);
-const update = params => axios.put(base, params);
-const remove = params => axios.delete(base, { params });
+const insert = (params) => axios.post(base, params);
+const update = (params) => axios.put(base, params);
+const remove = (params) => axios.delete(base, { params });
 
 export default {
     list,

@@ -167,7 +167,7 @@ export default {
 
         // 创建一个空的fileds副本
         createFields() {
-            return Object.assign({}, fields);
+            return { ...fields };
         },
 
         // 关闭，保存中禁止关闭

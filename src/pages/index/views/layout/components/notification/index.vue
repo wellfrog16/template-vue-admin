@@ -27,7 +27,7 @@ export default {
         ...mapMutations(['clearMessage', 'clearNotification']),
 
         showMessage(params) {
-            const options = Object.assign({}, params);
+            const options = { ...params };
             options.duration = options.duration || this.messageDuration;
             const { duration } = options;
             this.$message(options);
@@ -35,7 +35,7 @@ export default {
         },
 
         showNotification(params) {
-            const options = Object.assign({}, params);
+            const options = { ...params };
             options.duration = options.duration || this.notificationDuration;
             const { duration } = options;
             this.$notify(options);

@@ -16,7 +16,7 @@ import utils from '@/utils';
 
 // ----------------------------------------------------------------
 // offline
-const list = params => new Promise((resolve) => {
+const list = (params) => new Promise((resolve) => {
     const { ps } = params;
     let { education, status } = params;
 

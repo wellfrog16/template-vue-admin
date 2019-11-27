@@ -74,7 +74,7 @@ class Permission {
      * @memberof Permission
      */
     static isShowChildren(children) {
-        return children.some(item => !(item.meta && item.meta.hidden));
+        return children.some((item) => !(item.meta && item.meta.hidden));
     }
 
     /**
@@ -118,7 +118,7 @@ class Permission {
     static expandPermission(pms) {
         const result = new Set();
 
-        const normalPerssions = pms.filter(item => !/^http/.test(item));
+        const normalPerssions = pms.filter((item) => !/^http/.test(item));
 
         normalPerssions.forEach((item) => {
             const routeArray = item.match(/\/[a-zA-Z\d_-]+[a-zA-Z\d]/g);
@@ -127,7 +127,7 @@ class Permission {
             }
         });
 
-        return [...result, ...pms.filter(item => /^http/.test(item))];
+        return [...result, ...pms.filter((item) => /^http/.test(item))];
     }
 
     /**
@@ -139,7 +139,7 @@ class Permission {
      */
     static checkPermission(storeRoles, roles) {
         if (roles && roles instanceof Array && roles.length > 0) {
-            return storeRoles.some(role => roles.includes(role));
+            return storeRoles.some((role) => roles.includes(role));
         }
         return false;
     }
@@ -154,7 +154,7 @@ class Permission {
      */
     static hasPermission(route, roles) {
         if (route.meta && route.meta.roles) {
-            return roles.some(role => route.meta.roles.includes(role));
+            return roles.some((role) => route.meta.roles.includes(role));
         }
         // return true; // 无权限则默认可以访问
         return false; // 无权限则默认禁止访问

@@ -62,7 +62,7 @@ function axiosInstance(args) {
         // },
     };
 
-    const options = Object.assign({}, defaultOptions, args);
+    const options = { ...defaultOptions, ...args };
     const instance = axios.create({ ...options });
 
     let loadingInstancce = null;
@@ -82,7 +82,7 @@ function axiosInstance(args) {
             });
         }
         return myReq;
-    }, error => Promise.reject(error));
+    }, (error) => Promise.reject(error));
 
     instance.interceptors.response.use((response) => {
         loadingInstancce && loadingInstancce.close();

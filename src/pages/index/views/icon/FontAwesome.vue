@@ -53,8 +53,8 @@ export default {
     computed: {
         fliterItems() {
             return this.category === ''
-                ? items.filter(item => this.key === '' || (this.key !== '' && item.name.includes(this.key)))
-                : items.filter(item => (item.category === this.category) && (this.key === '' || (this.key !== '' && item.name.includes(this.key))));
+                ? items.filter((item) => this.key === '' || (this.key !== '' && item.name.includes(this.key)))
+                : items.filter((item) => (item.category === this.category) && (this.key === '' || (this.key !== '' && item.name.includes(this.key))));
         },
     },
     mounted() {

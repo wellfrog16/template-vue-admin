@@ -25,13 +25,14 @@ function myState() {
 
 export default function (options) {
     // 接口必要的方法
-    const api = Object.assign({
+    const api = {
         list: () => { console.warn('请实现list接口方法'); },
         insert: () => { console.warn('请实现insert接口方法'); },
         update: () => { console.warn('请实现update接口方法'); },
         remove: () => { console.warn('请实现remove接口方法'); },
         // detail: () => { console.warn('请实现detail接口方法'); },
-    }, options);
+        ...options,
+    };
 
     return {
         namespaced: true,
@@ -41,17 +42,17 @@ export default function (options) {
 
             // 本地删除list指定id的数据
             listRemove(state, payload) {
-                const index = state.list.findIndex(item => item.id === payload.id);
+                const index = state.list.findIndex((item) => item.id === payload.id);
                 index > 0 && state.list.splice(index, 1);
             },
 
             // 强制重置，去掉baseStore之外的所有属性
-            reset: state => _.assign(state, myState()),
+            reset: (state) => _.assign(state, myState()),
         },
         getters: {
             // 当前编辑行
             activeRow(state) {
-                return state.list.find(item => item.id === state.activeUid);
+                return state.list.find((item) => item.id === state.activeUid);
             },
         },
         actions: {
@@ -122,7 +123,7 @@ export default function (options) {
                                 resolve(res);
                             });
                         })
-                        .catch(err => reject(err));
+                        .catch((err) => reject(err));
                 });
             },
         },

@@ -10,7 +10,7 @@ const extraStore = {
     getters: {
         // 选中行的uid
         multipleSelectionUid(state) {
-            return state.multipleSelection.map(item => item.id).join(',');
+            return state.multipleSelection.map((item) => item.id).join(',');
         },
     },
     actions: {
@@ -27,7 +27,7 @@ const extraStore = {
                             resolve(res);
                         });
                     })
-                    .catch(err => reject(err));
+                    .catch((err) => reject(err));
             });
         },
     },

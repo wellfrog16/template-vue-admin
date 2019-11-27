@@ -23,7 +23,7 @@ const extraStore = {
                         commit('setState', { accountRoleList: res[RES_LIST] });
                         resolve(res[RES_LIST]);
                     })
-                    .catch(err => reject(err));
+                    .catch((err) => reject(err));
             });
         },
     },

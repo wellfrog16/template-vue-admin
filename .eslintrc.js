@@ -22,7 +22,7 @@ module.exports = {
             alignAttributesVertically: true,
             ignores: [],
         }],
-        'vue/mustache-interpolation-spacing': [2, 'always' | 'never'],
+        'vue/mustache-interpolation-spacing': [2, 'always'],
         'vue/v-bind-style': [2, 'shorthand'],
         'vue/script-indent': ['error', 4],
 

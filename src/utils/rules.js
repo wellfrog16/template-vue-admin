@@ -7,7 +7,7 @@ const rules = {
      * @returns
      */
     check(key, options = {}) {
-        const params = Object.assign({ required: true, trigger: 'blur' }, options);
+        const params = { required: true, trigger: 'blur', ...options };
         const r = {};
         r[key] = [{ ...params }];
         return r;
@@ -21,12 +21,13 @@ const rules = {
      * @returns
      */
     checkString(key, options = {}) {
-        const params = Object.assign({
+        const params = {
             name: '此项',
             allowEmpty: false,
             allowSpecial: true,
             trigger: 'change',
-        }, options);
+            ...options,
+        };
         const { name, message, trigger } = params;
         const r = {};
         const rule = [];
@@ -53,7 +54,7 @@ const rules = {
      * @returns
      */
     isPhoneNumber(key, options = {}) {
-        const params = Object.assign({ allowEmpty: true }, options);
+        const params = { allowEmpty: true, ...options };
         const r = {};
         const rule = [
             { pattern: /^1\d{10}$/, message: '请输入正确的手机号', trigger: 'change' },
