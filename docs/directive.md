@@ -137,4 +137,26 @@ methods: {
 |swipedown|下滑|Function
 
 ### trim
-文本框过滤空格
+文本框失去焦点时过滤空格
+
+* <b>用法</b>
+
+```html
+<el-input
+    v-model="form.fields.name"
+    v-trim="{ target: form.fields, key: 'name' }"
+/>
+```
+
+```javascript
+data() {
+    return {
+        form: {
+            fields: {
+                age: 18,
+                name: '',
+            },
+        },
+    };
+},
+```
