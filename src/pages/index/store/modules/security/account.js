@@ -22,38 +22,34 @@ const extraStore = {
     actions: {
         // 登陆
         async login({ commit, dispatch }, account) {
-            try {
-                // 先清理数据残留
-                dispatch('clear');
+            // 先清理数据残留
+            dispatch('clear');
 
-                // 获取token
-                const oauthRes = await oauthApi.token(account);
-                const token = {
-                    accessToken: oauthRes.access_token,
-                    refreshToken: oauthRes.refresh_token,
-                };
-                commit('setState', token);
+            // 获取token
+            const oauthRes = await oauthApi.token(account);
+            const token = {
+                accessToken: oauthRes.access_token,
+                refreshToken: oauthRes.refresh_token,
+            };
+            commit('setState', token);
 
-                // 保存至localStorage
-                let site = _.assign({}, token);
-                storage.set(STORAGE_SITE, site, { encrypt: true });
+            // 保存至localStorage
+            let site = _.assign({}, token);
+            storage.set(STORAGE_SITE, site, { encrypt: true });
 
-                // 获取账户信息
-                const accountRes = await accountApi.detail({ name: account.name, silence: 1 });
-                const acc = {
-                    accountId: accountRes.id,
-                    accountName: accountRes.name,
-                    roles: accountRes.roles,
-                };
-                commit('setState', acc);
+            // 获取账户信息
+            const accountRes = await accountApi.detail({ name: account.name, silence: 1 });
+            const acc = {
+                accountId: accountRes.id,
+                accountName: accountRes.name,
+                roles: accountRes.roles,
+            };
+            commit('setState', acc);
 
-                // 保存至localStorage
-                site = _.assign(site, acc);
-                storage.set(STORAGE_SITE, site, { encrypt: true });
-                return true;
-            } catch (err) {
-                throw err;
-            }
+            // 保存至localStorage
+            site = _.assign(site, acc);
+            storage.set(STORAGE_SITE, site, { encrypt: true });
+            return true;
         },
 
         // 登出
@@ -61,8 +57,6 @@ const extraStore = {
             try {
                 await oauthApi.destroy(state.accessToken);
                 return true;
-            } catch (err) {
-                throw err;
             } finally {
                 dispatch('clear');
             }

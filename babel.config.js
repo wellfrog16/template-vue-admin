@@ -1,6 +1,7 @@
 module.exports = {
     presets: [
-        '@vue/app',
+        // '@vue/app',
+        '@vue/cli-plugin-babel/preset',
     ],
     // 暂时关闭按需加载
     // plugins: [
