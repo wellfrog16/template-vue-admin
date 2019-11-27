@@ -3,6 +3,7 @@ import { Hammer } from '@/utils/cdn';
 function vueTouch(el, binding, re, ev = re) {
     const hammertime = new Hammer.Manager(el);
     const recognizers = {
+        pan: Hammer.Pan,
         tap: Hammer.Tap,
         press: Hammer.Press,
         swipe: Hammer.Swipe,
@@ -14,6 +15,21 @@ function vueTouch(el, binding, re, ev = re) {
 export default {
     tap: {
         bind(el, binding) { vueTouch(el, binding, 'tap'); },
+    },
+    pan: {
+        bind(el, binding) { vueTouch(el, binding, 'pan'); },
+    },
+    panstart: {
+        bind(el, binding) { vueTouch(el, binding, 'pan', 'panstart'); },
+    },
+    panend: {
+        bind(el, binding) { vueTouch(el, binding, 'pan', 'panend'); },
+    },
+    panup: {
+        bind(el, binding) { vueTouch(el, binding, 'pan', 'panup'); },
+    },
+    pandown: {
+        bind(el, binding) { vueTouch(el, binding, 'pan', 'pandown'); },
     },
     press: {
         bind(el, binding) { vueTouch(el, binding, 'press'); },

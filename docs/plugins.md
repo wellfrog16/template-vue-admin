@@ -70,3 +70,12 @@ default(t, b, c, d) {
 // 默认值
 { boundariesElement: 'body', gpuAcceleration: false }
 ```
+
+* <b>用法</b>
+
+```html
+<!-- 最大长度由外框决定 -->
+<div>
+    <vue-text-ellipsis content="长文本" />
+</div>
+```
