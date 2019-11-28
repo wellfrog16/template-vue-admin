@@ -37,7 +37,8 @@ function getUrlParam(url) {
  */
 function setRootSize(maxSize = 75) {
     $(() => {
-        let fontSize = window.innerWidth / 10;
+        // let fontSize = window.innerWidth / 10;
+        let fontSize = document.body.clientWidth / 10;
         fontSize = fontSize > maxSize ? maxSize : fontSize;
         $('html').css('font-size', fontSize);
     });
