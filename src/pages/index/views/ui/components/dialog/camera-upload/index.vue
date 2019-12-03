@@ -12,7 +12,6 @@
         <camera-upload
             :visible.sync="cameraUploadVisible"
             :onSubmit="handleSubmit"
-            :upload="false"
             :http-request="httpRequest"
         />
 
@@ -20,7 +19,6 @@
         <camera-upload
             :visible.sync="cameraUploadVisible2"
             :onSubmit="handleSubmit2"
-            :upload="false"
             :http-request="httpRequest"
         />
     </x-col>

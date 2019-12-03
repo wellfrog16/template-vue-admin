@@ -9,7 +9,7 @@
                     <x-upload-image
                         :http-request="httpRequest"
                         :icon-size="60"
-                        :image-src="imageSrc"
+                        :src="imageSrc"
                         width="400px"
                         height="300px"
                     />
@@ -18,7 +18,7 @@
                     <x-upload-image
                         :http-request="httpRequest2"
                         :icon-size="60"
-                        :image-src="imageSrc2"
+                        :src="imageSrc2"
                         width="200px"
                         height="300px"
                     />

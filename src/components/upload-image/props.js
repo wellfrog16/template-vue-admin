@@ -3,7 +3,7 @@ export default {
     accept: { type: String, default: '.jpg,.jpeg,.png' },
 
     // 图片地址
-    imageSrc: { type: String, default: '' },
+    src: { type: String, default: '' },
 
     // 图片大小限制，默认最大2M
     maxSize: { type: Number, default: 2 * 1024 * 1024 },

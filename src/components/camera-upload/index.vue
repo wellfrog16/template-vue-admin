@@ -84,8 +84,6 @@
 </template>
 
 <script>
-// 需要axios支持，可以考虑解耦
-// import { axios } from '@/utils/cdn';
 import Camera from '@/utils/camera';
 
 // 常量
@@ -100,16 +98,16 @@ const TIPS_START_CAMERA_FAILED = '打开摄像头失败';
 
 export default {
     props: {
-        name: { type: String, default: 'avatar' }, // 上传的文件字段名
+        // name: { type: String, default: 'avatar' }, // 上传的文件字段名
         visible: { type: Boolean, default: false }, // 组件显示
         title: { type: String, default: '拍照上传' },
         type: { type: Array, default: () => [TYPE_UPLOAD, TYPE_CAMERA] }, // 功能默认包含 上传和拍照
         width: { type: Number, default: 480 },
         height: { type: Number, default: 320 },
-        upload: { type: Boolean, default: true }, // 保存时是否上传图片
+        autoUpload: { type: Boolean, default: false }, // 保存时是否调用el-upload上传图片(不包含拍照)
         onSuccess: { type: Function }, // 上传成功的钩子
         onError: { type: Function }, // 上传失败的钩子
-        onSubmit: { type: Function }, // 保存时不上传，则执行submit
+        onSubmit: { type: Function }, // 保存时不自动上传，则执行submit
         submitText: { type: String, default: '保存' },
         src: { type: String }, // 默认显示的图片路径
         httpRequest: { type: Function }, // 上传用接口，返回promise对象
@@ -250,7 +248,7 @@ export default {
         handleSave() {
             // 图片
             if (this.isImageSelected && this.lastWindow === WINDOW_IMAGE) {
-                this.upload && this.uploadImage();
+                this.autoUpload && this.uploadImage();
                 if (!this.upload) {
                     this.loading = true;
                     this.onSubmit(this.currentFile, () => { this.loading = false; });
@@ -259,7 +257,7 @@ export default {
 
             // 拍照
             if (this.isShooted && this.lastWindow === WINDOW_CANVAS) {
-                this.upload && this.canvas.toBlob((blob) => this.uploadShoot(blob));
+                this.autoUpload && this.canvas.toBlob((blob) => this.uploadShoot(blob));
                 if (!this.upload) {
                     this.loading = true;
                     this.canvas.toBlob((blob) => this.onSubmit(blob, () => { this.loading = false; }));
