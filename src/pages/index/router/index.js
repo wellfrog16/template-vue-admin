@@ -15,6 +15,7 @@ import routeDocument from './modules/document';
 import routeHome from './modules/home';
 import routeLog from './modules/log';
 import routeI18n from './modules/i18n';
+import routeTest from './modules/test';
 
 Vue.use(Router);
 
@@ -76,6 +77,7 @@ const asyncRoutes = [
         },
     },
     routeIframe,
+    routeTest,
 ];
 
 const scrollBehavior = (to, from, savedPosition) => {

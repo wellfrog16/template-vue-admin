@@ -46,6 +46,7 @@ const listByRoles = () => new Promise((resolve) => {
                 '/split-pane',
                 'https://github.com/wellfrog16/template-vue-admin',
                 '/iframe',
+                '/test',
             ],
         },
         {
@@ -67,6 +68,7 @@ const listByRoles = () => new Promise((resolve) => {
                 '/split-pane',
                 'https://github.com/wellfrog16/template-vue-admin',
                 '/iframe',
+                '/test',
             ],
         }],
     });
