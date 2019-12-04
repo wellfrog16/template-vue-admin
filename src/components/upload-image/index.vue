@@ -80,7 +80,7 @@ export default {
 </script>
 
 <style lang="less" module>
-@import '~@/assets/style/config.less';
+@import '~@/assets/style/usr/index.config.less';
 
 .uploader {
     display: inline-block;

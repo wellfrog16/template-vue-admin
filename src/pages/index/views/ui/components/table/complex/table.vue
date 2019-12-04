@@ -53,7 +53,7 @@
 <script>
 import { createNamespacedHelpers } from 'vuex';
 import api from '@/api/mock/person';
-import style from '@/assets/style/usr/app.module.less';
+import style from '@/assets/style/usr/index.module.less';
 
 const { mapState, mapMutations } = createNamespacedHelpers('complexTable');
 

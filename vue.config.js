@@ -58,6 +58,16 @@ module.exports = {
             less: {
                 plugins: [new LessPluginFun()],
             },
+            // postcss: {
+            //     plugins: [
+            //         require('postcss-pxtorem') ({ // eslint-disable-line
+            //             rootValue: 36, // 设计稿1rem = 36px
+            //             minPixelValue: 4,
+            //             selectorBlackList: ['px'], // 忽略转换正则匹配项
+            //             propList: ['*'],
+            //         }),
+            //     ],
+            // },
         },
         // 启用 CSS modules for all css / pre-processor files.
         requireModuleExtension: true,
@@ -66,7 +76,8 @@ module.exports = {
     chainWebpack: (config) => {
         config.resolve.alias
             .set('@', resolve('src'))
-            .set('#index', resolve('src/pages/index'));
+            .set('#index', resolve('src/pages/index'))
+            .set('#web', resolve('src/pages/web'));
 
         config.module
             .rule('eslint')
