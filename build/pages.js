@@ -8,7 +8,7 @@ const pages = env => {
             chunks: ['chunk-vendors', 'chunk-common', 'index'],
             prod: true,
         },
-        single: {
+        web: {
             entry: 'src/pages/web/main.js',
             template: 'template/web.html',
             filename: 'web.html',
