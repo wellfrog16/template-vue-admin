@@ -14,6 +14,9 @@ const test = () => {
     return axios.get('', '11', options);
 };
 
+const test2 = (params) => axios.post('/mp-weixin/login', params);
+
 export default {
     test,
+    test2,
 };
