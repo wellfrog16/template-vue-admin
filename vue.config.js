@@ -1,6 +1,6 @@
 const LessPluginFun = require('less-plugin-functions');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
-const path = require('path');
+const path = require('path'); // eslint-disable-line
 const pages = require('./build/pages');
 
 const resolve = (dir) => path.join(__dirname, dir);
