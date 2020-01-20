@@ -54,7 +54,7 @@ function axiosInstance(args) {
         retryDelay: 1000, // 重试延迟
 
         // 原生
-        baseURL: conf.server.api,
+        baseURL: conf.serverConfig.server.api,
         timeout: 50000,
         // withCredentials: true,
         // paramsSerializer(params) {

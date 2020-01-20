@@ -3,7 +3,7 @@ import config from '@/config';
 import { UPLOAD_NAME } from '@/helper/constant';
 
 // const axios = instance({ baseURL: config.server.upload });
-const silence = instance({ baseURL: config.server.upload, notification: false });
+const silence = instance({ baseURL: config.serverConfig.server.upload, notification: false });
 
 /**
  * 上传图片或者blob
