@@ -1,5 +1,7 @@
 <template>
     <div id="functions" :class="$style.main">
+        <x-server />
+
         <!-- 路由搜索 -->
         <x-search />
 
@@ -19,6 +21,7 @@ import XSearch from './search.vue';
 import Screenfull from './screenfull.vue';
 import Notification from './notification.vue';
 import User from './user.vue';
+import XServer from './server.vue';
 
 export default {
     components: {
@@ -26,6 +29,7 @@ export default {
         Screenfull,
         Notification,
         User,
+        XServer,
     },
     data() {
         return {

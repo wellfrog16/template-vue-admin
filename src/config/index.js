@@ -17,9 +17,9 @@ const serverId = storage.get(STORAGE_SERVER) || 1;
 
 // 深度合并
 const config = process.env.NODE_ENV === 'production'
-    ? _.merge(settings, { serverConfig: prodConfig })
-    : _.merge(settings, { serverConfig: devConfig.find((server) => server.id === serverId) });
+    ? _.merge(settings, prodConfig)
+    : _.merge(settings, devConfig);
 
-console.log(config);
+export const server = config.servers.find((s) => s.id === serverId);
 
 export default config;

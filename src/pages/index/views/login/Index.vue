@@ -39,7 +39,7 @@
                     ></el-input>
                     <canvas
                         width="80"
-                        height="40"
+                        height="32"
                         ref="canvas"
                         :class="$style.canvas"
                         @click="refreshCode"
@@ -47,7 +47,7 @@
                     ></canvas>
                 </el-form-item>
 
-                <el-form-item>
+                <el-form-item v-show="serverVisible">
                     <el-select v-model="form.fields.serverId" placeholder="请选择" :class="$style['server-select']">
                         <el-option
                             v-for="item in servers"
@@ -55,7 +55,7 @@
                             :label="item.name"
                             :value="item.id">
                         </el-option>
-                        <i class="fas fa-server fa-lg fa-fw" slot="prefix"></i>
+                        <i class="fas fa-server fa-lg fa-fw" slot="prefix" />
                     </el-select>
                 </el-form-item>
 
@@ -67,7 +67,7 @@
 
 <script>
 import { utils, rules, storage } from '@/utils/rivers';
-import config from '@/config/dev';
+import config from '@/config';
 import { STORAGE_SERVER } from '@/helper/constant';
 
 export default {
@@ -80,12 +80,12 @@ export default {
             }
         };
 
-        const serverId = storage.get(STORAGE_SERVER) || 1;
-        console.log(serverId);
+        const site = this.$helper.site();
 
         return {
             loading: false,
-            servers: config,
+            servers: config.servers,
+            serverVisible: config.serverVisible,
             preset: {
                 name: 'admin',
                 password: 'admin888',
@@ -95,7 +95,7 @@ export default {
                 fields: {
                     name: 'admin',
                     password: 'admin888',
-                    serverId,
+                    serverId: site.server.id,
                     code: '',
                 },
                 rules: {
