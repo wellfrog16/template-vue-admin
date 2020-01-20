@@ -179,6 +179,11 @@ export default {
 
 .server-select {
     width: 100%;
+
+    i {
+        position: relative;
+        left: 2px;
+    }
 }
 
 .canvas {
