@@ -18,6 +18,7 @@
 * 补充echarts示例
 * router的path为官方path，/开头，修改iframe的path方案
 * config配置html可以配置
+* uid唯一标识符问题调整
 
 ## Project setup
 ```
