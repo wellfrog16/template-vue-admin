@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import XCol from '../col.vue';
 import XCropper from '@/components/cropper/index.vue';
+import XCol from '../col.vue';
 // import upload from '@/api/sys/upload';
 
 export default {

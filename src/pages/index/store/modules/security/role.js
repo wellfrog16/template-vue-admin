@@ -1,7 +1,7 @@
-import apiStore from '#index/store/common/apiStore';
 import { utils } from '@/utils/rivers';
 import api from '@/api/sys/security/role';
 import { RES_LIST } from '@/helper/constant';
+import apiStore from '#index/store/common/apiStore';
 
 const store = apiStore(api);
 const extraStore = {

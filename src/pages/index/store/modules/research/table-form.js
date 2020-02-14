@@ -1,6 +1,6 @@
-import apiStore from '#index/store/common/apiStore';
 import { utils } from '@/utils/rivers';
 import api from '@/api/mock/person';
+import apiStore from '#index/store/common/apiStore';
 
 const store = apiStore(api);
 const extraStore = {

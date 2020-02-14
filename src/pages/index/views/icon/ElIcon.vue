@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import { elIcons } from './items';
 import { ClipboardJS } from '@/utils/cdn';
+import { elIcons } from './items';
 
 export default {
     data() {

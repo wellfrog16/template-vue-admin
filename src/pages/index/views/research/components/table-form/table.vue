@@ -38,8 +38,8 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex';
-import AbsTable from '#index/components/abstract/table/default.vue';
 import style from '@/assets/style/usr/index.module.less';
+import AbsTable from '#index/components/abstract/table/default.vue';
 
 const { mapState, mapMutations, mapActions } = createNamespacedHelpers('research/tableForm');
 

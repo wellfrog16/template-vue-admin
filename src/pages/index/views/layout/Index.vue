@@ -39,9 +39,9 @@
 
 <script>
 import AsideMenu from '@/components/menu/index.vue';
-import Functions from './components/functions/index.vue';
 import { $ } from '@/utils/cdn';
 import { storage } from '@/utils/rivers';
+import Functions from './components/functions/index.vue';
 
 export default {
     components: { AsideMenu, Functions },

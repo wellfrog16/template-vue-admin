@@ -34,8 +34,8 @@
 </template>
 
 <script>
-import { items } from './items';
 import { ClipboardJS } from '@/utils/cdn';
+import { items } from './items';
 
 export default {
     data() {

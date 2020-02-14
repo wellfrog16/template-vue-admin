@@ -1,5 +1,5 @@
-import Layout from '#index/views/layout/Index.vue';
 import Root from '@/components/Root.vue';
+import Layout from '#index/views/layout/Index.vue';
 
 const icon = 'menu-fix-icon fas fa-pager fa-lg fa-fw';
 

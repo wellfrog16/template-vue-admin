@@ -1,5 +1,5 @@
-import helper from './index';
 import config from '@/config';
+import helper from './index';
 
 export {
     helper,

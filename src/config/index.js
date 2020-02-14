@@ -1,8 +1,8 @@
 import { PAGE, PAGE_SIZE, STORAGE_SERVER } from '@/helper/constant';
-import devConfig from './dev';
-import prodConfig from './prod';
 import { _ } from '@/utils/cdn';
 import { storage } from '@/utils/rivers';
+import devConfig from './dev';
+import prodConfig from './prod';
 // 基础配置，一些默认设置
 
 const settings = {

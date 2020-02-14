@@ -1,9 +1,9 @@
 import Vue from 'vue';
+import { helper } from '@/helper/lakes';
+import { utils } from '@/utils/rivers';
 import store from './store';
 import router from './helper/router';
 import App from './App.vue';
-import { helper } from '@/helper/lakes';
-import { utils } from '@/utils/rivers';
 
 // 过滤器
 import '@/utils/filters';

@@ -60,6 +60,7 @@
 </template>
 
 <script>
+import XBacktotop from '@/components/backtotop/index.vue';
 import XButton from './components/package/button.vue';
 import XRadio from './components/package/radio.vue';
 import XCheckbox from './components/package/checkbox.vue';
@@ -68,7 +69,6 @@ import XSelect from './components/package/select.vue';
 import XCascader from './components/package/cascader.vue';
 import XSlider from './components/package/slider.vue';
 import XTransfer from './components/package/transfer.vue';
-import XBacktotop from '@/components/backtotop/index.vue';
 
 export default {
     components: {
