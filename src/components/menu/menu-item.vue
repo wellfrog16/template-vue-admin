@@ -29,7 +29,7 @@ export default {
     },
     methods: {
         link() {
-            this.isLink && window.open(this.item.path);
+            this.isLink && window.open(this.item.meta.url);
         },
     },
 };

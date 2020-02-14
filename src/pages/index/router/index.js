@@ -69,11 +69,12 @@ const asyncRoutes = [
     routeLog,
     routeSplitPane,
     {
-        path: 'https://github.com/wellfrog16/template-vue-admin',
+        path: '/link-to-template',
         meta: {
             title: '外链',
             type: 'link',
             icon: 'el-icon-link',
+            url: 'https://github.com/wellfrog16/template-vue-admin',
         },
     },
     routeIframe,
