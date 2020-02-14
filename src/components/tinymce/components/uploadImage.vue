@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import config from '@/config';
+import { server } from '@/config';
 
 export default {
     props: {
@@ -52,7 +52,7 @@ export default {
             return !Object.keys(this.imgList).every((item) => this.imgList[item].isSuccess);
         },
         action() {
-            return config.server.upload || 'https://httpbin.org/post';
+            return server.upload || 'https://httpbin.org/post';
         },
     },
     watch: {
@@ -109,7 +109,7 @@ export default {
                     // 根据上传服务器回传修改
                     // -------------------------------------------------------
                     item.url = (response.files && response.files.file)
-                        || (`${config.server.image}/${response.data.file}`);
+                        || (`${server.image}/${response.data.file}`);
                     item.isSuccess = true;
                     this.count += 1;
                 }

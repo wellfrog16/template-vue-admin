@@ -19,8 +19,9 @@ import { i18n } from '#index/locale';
 
 Vue.config.productionTip = false;
 
-Vue.prototype.$helper = helper;
-Vue.prototype.$utils = utils;
+Vue.prototype.$helper = helper; // 辅助
+Vue.prototype.$utils = utils; // 工具
+Vue.prototype.$bus = new Vue(); // 事件总线
 
 window.vueIndex = new Vue({
     router,

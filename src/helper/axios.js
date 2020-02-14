@@ -1,6 +1,6 @@
 import { Loading } from 'element-ui';
 import { axios } from '@/utils/cdn';
-import conf from '@/config';
+import { server } from '@/config';
 
 const TITLE_SUCESS = '成功';
 const TITLE_ERROR = '错误';
@@ -54,7 +54,7 @@ function axiosInstance(args) {
         retryDelay: 1000, // 重试延迟
 
         // 原生
-        baseURL: conf.server.api,
+        baseURL: server.api || '',
         timeout: 50000,
         // withCredentials: true,
         // paramsSerializer(params) {

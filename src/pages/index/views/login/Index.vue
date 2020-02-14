@@ -4,7 +4,7 @@
             <div slot="header" class="clearfix">
                 <span>管理登录</span>
             </div>
-            <el-form ref="form" :model="form.fields" :rules="form.rules" class="login-form" auto-complete="on" @submit.native.prevent>
+            <el-form ref="form" :model="form.fields" :rules="form.rules" auto-complete="on" @submit.native.prevent>
                 <el-form-item prop="name">
                     <el-input
                         v-model="form.fields.name"
@@ -39,12 +39,24 @@
                     ></el-input>
                     <canvas
                         width="80"
-                        height="40"
+                        height="32"
                         ref="canvas"
                         :class="$style.canvas"
                         @click="refreshCode"
                         onselectstart="return false"
                     ></canvas>
+                </el-form-item>
+
+                <el-form-item v-show="serverVisible">
+                    <el-select v-model="form.fields.serverId" placeholder="请选择" :class="$style['server-select']">
+                        <el-option
+                            v-for="item in servers"
+                            :key="item.id"
+                            :label="item.name"
+                            :value="item.id">
+                        </el-option>
+                        <i class="fas fa-server fa-lg fa-fw" slot="prefix" />
+                    </el-select>
                 </el-form-item>
 
                 <el-button :class="$style.login" type="primary" @click="handleLogin" :loading="loading">登 入</el-button>
@@ -54,7 +66,9 @@
 </template>
 
 <script>
-import { utils, rules } from '@/utils/rivers';
+import { utils, rules, storage } from '@/utils/rivers';
+import config from '@/config';
+import { STORAGE_SERVER } from '@/helper/constant';
 
 export default {
     data() {
@@ -66,8 +80,12 @@ export default {
             }
         };
 
+        const site = this.$helper.site();
+
         return {
             loading: false,
+            servers: config.servers,
+            serverVisible: config.serverVisible,
             preset: {
                 name: 'admin',
                 password: 'admin888',
@@ -77,6 +95,7 @@ export default {
                 fields: {
                     name: 'admin',
                     password: 'admin888',
+                    serverId: site.server.id,
                     code: '',
                 },
                 rules: {
@@ -110,6 +129,7 @@ export default {
 
                 // 登陆
                 this.$store.dispatch('security/account/login', this.form.fields).then(() => {
+                    storage.set(STORAGE_SERVER, this.form.fields.serverId); // 保存server选择
                     const path = this.$route.query.from || '/home';
                     this.$router.push({ path }).catch(() => {});
                 }).catch((err) => {
@@ -138,6 +158,11 @@ export default {
     background-color: @g-color-primary;
     color: #fff;
     height: 100vh;
+
+    :global(.el-input__prefix) {
+        display: flex;
+        align-items: center;
+    }
 }
 
 .box {
@@ -150,6 +175,15 @@ export default {
 
 .input-code {
     width: 220px !important;
+}
+
+.server-select {
+    width: 100%;
+
+    i {
+        position: relative;
+        left: 2px;
+    }
 }
 
 .canvas {

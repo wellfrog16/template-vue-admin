@@ -1,5 +1,5 @@
 import { storage } from '@/utils/rivers';
-import { STORAGE_SITE } from '@/helper/constant';
+import { STORAGE_SITE, STORAGE_SERVER } from '@/helper/constant';
 import config from '@/config';
 
 /**
@@ -8,10 +8,17 @@ import config from '@/config';
  * @returns json
  */
 function site() {
+    // 站点登陆信息，数据在登陆逻辑里
     const mySite = storage.get(STORAGE_SITE, { encrypt: true }) || {};
+
+    // 站点服务器信息
+    const serverId = storage.get(STORAGE_SERVER) || 1;
+    const server = config.servers.find((s) => s.id === serverId) || {};
+
     return {
         // 属性等
         ...mySite,
+        server,
         headers: {
             Authorization: mySite.accessToken,
         },
