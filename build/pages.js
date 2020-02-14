@@ -8,14 +8,6 @@ const pages = env => {
             chunks: ['chunk-vendors', 'chunk-common', 'index'],
             prod: true,
         },
-        web: {
-            entry: 'src/pages/web/main.js',
-            template: 'template/web.html',
-            filename: 'web.html',
-            title: '我的网站',
-            chunks: ['chunk-vendors', 'chunk-common', 'web'],
-            prod: true,
-        },
     };
 
     if (env === 'production') {

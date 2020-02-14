@@ -12,8 +12,6 @@
     "gh-pages": "npm run build && node build/gh-pages"
   },
   "dependencies": {
-    "bootstrap": "^4.4.1",
-    "bootstrap-vue": "^2.2.2",
     "core-js": "^3.6.4",
     "element-ui": "^2.13.0",
     "mockjs": "^1.1.0",
