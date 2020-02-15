@@ -42,7 +42,7 @@ export default function (options) {
 
             // 本地删除list指定id的数据
             listRemove(state, payload) {
-                const index = state.list.findIndex((item) => item.id === payload.id);
+                const index = state.list.findIndex((item) => item[UID] === payload[UID]);
                 index > 0 && state.list.splice(index, 1);
             },
 
@@ -52,7 +52,7 @@ export default function (options) {
         getters: {
             // 当前编辑行
             activeRow(state) {
-                return state.list.find((item) => item.id === state.activeUid);
+                return state.list.find((item) => item[UID] === state.activeUid);
             },
         },
         actions: {
@@ -92,11 +92,11 @@ export default function (options) {
 
                 return new Promise((resolve, reject) => {
                     // 远程删除
-                    api.remove({ id: row.id })
+                    api.remove({ id: row[UID] })
                         .then((res) => {
                             vm.$nextTick(() => {
                                 if (state.lazy) {
-                                    commit('listRemove', { id: row.id });
+                                    commit('listRemove', { id: row[UID] });
                                     commit('setState', { loading: false });
                                 } else {
                                     commit('setState', { loading: false, overdue: true });

@@ -17,7 +17,6 @@
 * 视频拍照获取图片用videoHeight处理
 * 补充echarts示例
 * config配置html可以配置
-* uid唯一标识符问题调整
 
 ## Project setup
 ```
