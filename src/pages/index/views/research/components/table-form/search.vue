@@ -20,14 +20,7 @@
                 />
             </el-form-item>
             <el-form-item>
-                <el-select style="width: 120px;" v-model="form.fields.education" clearable @clear="search" placeholder="所有学历">
-                    <el-option
-                        v-for="item in edus"
-                        :key="item"
-                        :label="item"
-                        :value="item"
-                    />
-                </el-select>
+                <select-edu style="width: 120px;" v-model="form.fields.education" clearable @clear="search" placeholder="所有学历" />
             </el-form-item>
             <el-form-item>
                 <el-button type="primary" icon="el-icon-search" @click="search">查询</el-button>
@@ -43,14 +36,17 @@
 <script>
 import { createNamespacedHelpers } from 'vuex';
 import AbsSearch from '#index/components/abstract/search/default.vue';
+import SelectEdu from '#index/components/select-edu.vue';
 
 const { mapState, mapMutations, mapActions } = createNamespacedHelpers('research/tableForm');
 
 export default {
     mixins: [AbsSearch],
+    components: {
+        SelectEdu,
+    },
     data() {
         return {
-            edus: ['专科', '本科', '硕士研究生', '博士研究生', '其他'],
             form: {
                 fields: {
                     q: '',
@@ -73,6 +69,10 @@ export default {
         // 新建
         handleCreate() {
             this.setState({ activeUid: 0, editVisible: true });
+        },
+
+        test() {
+            console.log('test');
         },
     },
 };

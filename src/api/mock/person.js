@@ -68,6 +68,14 @@ const remove = () => new Promise((resolve) => {
     resolve(true);
 });
 
+const edus = () => new Promise((resolve) => {
+    const data = {
+        list: ['专科', '本科', '硕士研究生', '博士研究生', '其他'],
+    };
+
+    utils.delay(2500).then(() => resolve(data));
+});
+
 export default {
     detail,
     list,
@@ -75,4 +83,5 @@ export default {
     update,
     remove,
     updateStatus,
+    edus,
 };
