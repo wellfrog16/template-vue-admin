@@ -118,7 +118,7 @@ class Permission {
     static expandPermission(pms) {
         const result = new Set();
 
-        const normalPerssions = pms.filter((item) => !/^http/.test(item));
+        const normalPerssions = pms.filter((item) => !/^http/.test(item)); // 未来删除，可能已经不在使用（http）
 
         normalPerssions.forEach((item) => {
             const routeArray = item.match(/\/[a-zA-Z\d_-]+[a-zA-Z\d]/g);
