@@ -8,6 +8,9 @@ export default {
     // 图片大小限制，默认最大2M
     maxSize: { type: Number, default: 2 * 1024 * 1024 },
 
+    // 图片显示风格，todo: 校验
+    fit: { type: String, default: 'contain' },
+
     // 组件宽
     width: { type: String, default: '200px' },
 

@@ -21,7 +21,7 @@
 
 <script>
 import MapPoint from '@/components/map-point/index.vue';
-import XCol from '../col.vue';
+import XCol from '#index/components/col-card.vue';
 
 export default {
     components: {

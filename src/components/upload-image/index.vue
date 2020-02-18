@@ -8,7 +8,7 @@
         :before-upload="handleBeforeUpload"
         v-loading="loading"
     >
-        <el-image v-if="hasImage" :src="src" fit="contain" :style="imageSizeStyle" :class="$style.photo">
+        <el-image v-if="hasImage" :src="src" :fit="fit" :style="imageSizeStyle" :class="$style.photo">
             <div slot="placeholder">加载中... </div>
         </el-image>
         <i v-else :class="[$style.icon, 'el-icon-plus']" :style="iconSizeStyle" />

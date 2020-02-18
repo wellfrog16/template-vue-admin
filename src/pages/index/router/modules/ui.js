@@ -6,15 +6,15 @@ const icon = 'menu-fix-icon fas fa-pager fa-lg fa-fw';
 const route = {
     path: '/ui',
     component: Layout,
-    redirect: { path: '/ui/package' },
+    redirect: { path: '/ui/element-ui' },
     meta: {
         title: '组件',
         icon: 'menu-fix-icon fas fa-puzzle-piece fa-lg fa-fw',
     },
     children: [
         {
-            path: 'package',
-            component: () => import(/* webpackChunkName: "ui" */'#index/views/ui/Package.vue'),
+            path: 'element-ui',
+            component: () => import(/* webpackChunkName: "ui" */'#index/views/ui/ElementUI.vue'),
             meta: {
                 title: 'ElementUI',
                 icon: 'el-icon-platform-eleme',
@@ -64,11 +64,11 @@ const route = {
             },
         },
         {
-            path: 'upload',
-            component: () => import(/* webpackChunkName: "ui" */'#index/views/ui/Upload.vue'),
+            path: 'package',
+            component: () => import(/* webpackChunkName: "ui" */'#index/views/ui/Package.vue'),
             meta: {
-                title: '上传',
-                icon: 'menu-fix-icon fas fa-upload fa-lg fa-fw',
+                title: '简单二次封装',
+                icon: 'menu-fix-icon fas fa-box fa-lg fa-fw',
             },
         },
         {

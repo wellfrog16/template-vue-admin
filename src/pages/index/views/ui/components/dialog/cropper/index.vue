@@ -20,7 +20,7 @@
 
 <script>
 import XCropper from '@/components/cropper/index.vue';
-import XCol from '../col.vue';
+import XCol from '#index/components/col-card.vue';
 // import upload from '@/api/sys/upload';
 
 export default {
