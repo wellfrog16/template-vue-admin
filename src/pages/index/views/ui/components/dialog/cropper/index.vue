@@ -34,10 +34,6 @@ export default {
         };
     },
     methods: {
-        handleOpen() {
-            this.visible = true;
-        },
-
         httpRequest(file, done) {
             // offline
             this.imageSrc = window.URL.createObjectURL(file);

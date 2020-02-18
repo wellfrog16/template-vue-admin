@@ -1,14 +1,8 @@
 <template>
     <div :class="$style.main">
         <x-upload-image
-            :accept="accept"
-            :icon-size="iconSize"
-            :src="src"
-            :max-size="maxSize"
-            :width="width"
-            :height="height"
+            v-bind="$props"
             :http-request="handleHttpRequest"
-            :before-upload="beforeUpload"
         />
 
         <x-cropper-core
@@ -49,8 +43,6 @@ export default {
             image: new Image(),
             handleDone: null,
         };
-    },
-    computed: {
     },
     methods: {
         handleHttpRequest(file, done) {
