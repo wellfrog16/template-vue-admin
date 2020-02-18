@@ -3,7 +3,7 @@
         <x-upload-image
             :accept="accept"
             :icon-size="iconSize"
-            :image-src="src"
+            :src="src"
             :max-size="maxSize"
             :width="width"
             :height="height"

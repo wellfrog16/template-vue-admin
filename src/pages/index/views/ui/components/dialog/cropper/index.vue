@@ -9,8 +9,8 @@
         <x-cropper
             :http-request="httpRequest"
             :icon-size="30"
-            :image-src="imageSrc"
-            width="280px"
+            :src="imageSrc"
+            width="200px"
             height="100px"
             :cropperWidth="400"
             :cropperHeight="200"
@@ -41,6 +41,7 @@ export default {
         httpRequest(file, done) {
             // offline
             this.imageSrc = window.URL.createObjectURL(file);
+            console.log(this.imageSrc);
             done();
 
             // online
