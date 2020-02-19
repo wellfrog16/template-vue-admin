@@ -1,3 +1,5 @@
+@import '../../usr/index.config.less';
+
 .or-drawer-wrapper {
     overflow: hidden;
 }
@@ -28,6 +30,27 @@
 
         .el-button {
             flex-grow: 1;
+        }
+    }
+}
+
+// 修复抽屉title的蓝色边框bug
+.el-drawer {
+    &:focus {
+        outline-color: white;
+    }
+
+    > header {
+        > span:focus {
+            outline-color: white;
+        }
+
+        > button:focus {
+            outline-color: white;
+        }
+
+        > button:hover {
+            color: @g-color-primary;
         }
     }
 }
