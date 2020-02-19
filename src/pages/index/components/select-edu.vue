@@ -1,6 +1,6 @@
 <script>
 import api from '@/api/mock/person';
-import AsyncSelect from '#index/components/abstract/async-select.vue';
+import AsyncSelect from '@/components/async-select.vue';
 
 export default {
     mixins: [AsyncSelect],

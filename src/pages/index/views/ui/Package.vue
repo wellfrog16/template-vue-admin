@@ -3,16 +3,21 @@
         <el-row :gutter="20" :class="$style.row">
             <!-- 上传 -->
             <x-upload />
+
+            <!-- 限制日期选择 -->
+            <x-limit-picker />
         </el-row>
     </div>
 </template>
 
 <script>
 import XUpload from './components/package/upload.vue';
+import XLimitPicker from './components/package/limit-picker.vue';
 
 export default {
     components: {
         XUpload,
+        XLimitPicker,
     },
 };
 </script>
