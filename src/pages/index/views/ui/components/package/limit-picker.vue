@@ -3,7 +3,7 @@
         title="限制选择"
         icon="el-icon-date"
     >
-        <el-alert title="限制制定范围的日期选择" type="info" :closable="false" />
+        <el-alert title="限制指定天数范围的日期选择" type="info" :closable="false" />
         <el-divider><i class="el-icon-date" /></el-divider>
         <el-form>
             <el-form-item label="限制天数">
