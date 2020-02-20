@@ -20,8 +20,8 @@ export default new Vuex.Store({
     },
     mutations: {
         setState: (state, payload) => utils.deepMerge(state, payload),
-        clearMessage: (state) => { state.message = null; },
-        clearNotification: (state) => { state.notification = null; },
+        clearMessage: state => { state.message = null; },
+        clearNotification: state => { state.notification = null; },
     },
     getters: {
         // 账户拥有的路由权限

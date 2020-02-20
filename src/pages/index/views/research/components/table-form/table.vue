@@ -55,7 +55,7 @@ export default {
                 { key: '游学', value: 'warning' },
             ];
 
-            const result = list.find((item) => item.key === status);
+            const result = list.find(item => item.key === status);
             return result ? result.value : '';
         },
         genderFilter(gender) {

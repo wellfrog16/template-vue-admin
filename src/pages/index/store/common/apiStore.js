@@ -42,17 +42,17 @@ export default function (options) {
 
             // 本地删除list指定id的数据
             listRemove(state, payload) {
-                const index = state.list.findIndex((item) => item[UID] === payload[UID]);
+                const index = state.list.findIndex(item => item[UID] === payload[UID]);
                 index > 0 && state.list.splice(index, 1);
             },
 
             // 强制重置，去掉baseStore之外的所有属性
-            reset: (state) => _.assign(state, myState()),
+            reset: state => _.assign(state, myState()),
         },
         getters: {
             // 当前编辑行
             activeRow(state) {
-                return state.list.find((item) => item[UID] === state.activeUid);
+                return state.list.find(item => item[UID] === state.activeUid);
             },
         },
         actions: {
@@ -62,7 +62,7 @@ export default function (options) {
 
                 return new Promise((resolve, reject) => {
                     api.list(state.filters)
-                        .then((res) => {
+                        .then(res => {
                             let list = [...res[RES_LIST]];
 
                             // 如果是滚动加载，且有返回数据
@@ -79,7 +79,7 @@ export default function (options) {
                                 resolve(res);
                             });
                         })
-                        .catch((err) => {
+                        .catch(err => {
                             commit('setState', { loading: false });
                             reject(err);
                         });
@@ -93,7 +93,7 @@ export default function (options) {
                 return new Promise((resolve, reject) => {
                     // 远程删除
                     api.remove({ id: row[UID] })
-                        .then((res) => {
+                        .then(res => {
                             vm.$nextTick(() => {
                                 if (state.lazy) {
                                     commit('listRemove', { id: row[UID] });
@@ -104,7 +104,7 @@ export default function (options) {
                                 resolve(res);
                             });
                         })
-                        .catch((err) => {
+                        .catch(err => {
                             commit('setState', { loading: false });
                             reject(err);
                         });
@@ -117,13 +117,13 @@ export default function (options) {
                     const save = fields[UID] ? api.update : api.insert;
 
                     save({ ...fields })
-                        .then((res) => {
+                        .then(res => {
                             vm.$nextTick(() => {
                                 commit('setState', { overdue: true });
                                 resolve(res);
                             });
                         })
-                        .catch((err) => reject(err));
+                        .catch(err => reject(err));
                 });
             },
         },

@@ -21,7 +21,7 @@ export default {
     methods: {
         send() {
             const res = api.test();
-            res.then((qq) => {
+            res.then(qq => {
                 console.log(111);
                 console.log(qq);
             });
@@ -42,10 +42,10 @@ export default {
         // },
         send4() {
             this.$utils.getImageSize('http://pic1.win4000.com/wallpaper/2019-01-16/5c3eff44cd5d5.jpg')
-                .then((res) => {
+                .then(res => {
                     console.log(res);
                 })
-                .catch((err) => {
+                .catch(err => {
                     console.log(err);
                 });
         },

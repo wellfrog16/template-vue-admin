@@ -57,8 +57,8 @@ class Camera {
     start() {
         if (this.constructor.isSupport()) {
             this.getUserMedia(
-                (stream) => { success(this, stream); },
-                (err) => { error(this, err); },
+                stream => { success(this, stream); },
+                err => { error(this, err); },
             );
         } else {
             throw new Error('不支持访问用户媒体');

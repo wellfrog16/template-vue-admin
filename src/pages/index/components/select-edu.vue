@@ -7,8 +7,8 @@ export default {
     methods: {
         loadList() {
             this.disabled = true;
-            api.edus().then((res) => {
-                this.options = res.list.map((item) => ({
+            api.edus().then(res => {
+                this.options = res.list.map(item => ({
                     label: item,
                     value: item,
                 }));

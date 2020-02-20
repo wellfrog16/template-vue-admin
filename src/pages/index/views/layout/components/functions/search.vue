@@ -56,7 +56,7 @@ export default {
         // 拍平路由
         formatRoutes(routes, path = '', title = []) {
             let result = [];
-            routes.forEach((route) => {
+            routes.forEach(route => {
                 if (route.meta && !route.meta.hidden) {
                     const data = {};
                     data.title = [...title, route.meta.title];
@@ -89,8 +89,8 @@ export default {
             this.options = [];
             if (key) {
                 this.options = this.currentRoute
-                    .filter((item) => item.title.join('$$').indexOf(key) !== -1)
-                    .map((item) => ({ label: item.title, value: item.meta }));
+                    .filter(item => item.title.join('$$').indexOf(key) !== -1)
+                    .map(item => ({ label: item.title, value: item.meta }));
             }
         },
     },

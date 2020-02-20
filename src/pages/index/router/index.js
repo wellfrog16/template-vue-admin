@@ -93,7 +93,7 @@ const scrollBehavior = (to, from, savedPosition) => {
         position.selector = to.hash;
     }
     // check if any matched route config has meta that requires scrolling to top
-    if (to.matched.some((m) => !m.meta.scrollToTop)) {
+    if (to.matched.some(m => !m.meta.scrollToTop)) {
         // cords will be used if no selector is provided,
         // or if the selector didn't match any element.
         position.x = 0;

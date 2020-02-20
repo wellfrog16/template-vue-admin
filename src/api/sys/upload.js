@@ -11,7 +11,7 @@ const silence = instance({ baseURL: server.upload, notification: false });
  * @param {*} param param可以是FormData | blob | file
  * @returns
  */
-const upload = (param) => {
+const upload = param => {
     let formData = param;
 
     if (!(param instanceof FormData)) {
@@ -23,7 +23,7 @@ const upload = (param) => {
     const headers = { 'Content-Type': 'multipart/form-data', ...site.headers };
     const conf = { headers };
 
-    return silence.post('', formData, conf).then((res) => res);
+    return silence.post('', formData, conf).then(res => res);
 };
 
 

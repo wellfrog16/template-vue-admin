@@ -5,7 +5,7 @@ export function isHiddenItem(item) {
 export function isHiddenChildren(item) {
     let isHidden = false;
     if (item.children && item.children.length > 0) {
-        isHidden = item.children.every((item1) => item1.meta && (item1.meta.hidden || item1.meta.visible === false));
+        isHidden = item.children.every(item1 => item1.meta && (item1.meta.hidden || item1.meta.visible === false));
     }
     return isHidden;
 }

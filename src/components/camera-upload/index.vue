@@ -257,10 +257,10 @@ export default {
 
             // 拍照
             if (this.isShooted && this.lastWindow === WINDOW_CANVAS) {
-                this.autoUpload && this.canvas.toBlob((blob) => this.uploadShoot(blob));
+                this.autoUpload && this.canvas.toBlob(blob => this.uploadShoot(blob));
                 if (!this.upload) {
                     this.loading = true;
-                    this.canvas.toBlob((blob) => this.onSubmit(blob, () => { this.loading = false; }));
+                    this.canvas.toBlob(blob => this.onSubmit(blob, () => { this.loading = false; }));
                 }
             }
         },
@@ -362,7 +362,7 @@ export default {
             const reader = new FileReader();
 
             // 转base64
-            reader.onload = (e) => {
+            reader.onload = e => {
                 this.imageUrl = e.target.result;
             };
             reader.readAsDataURL(this.currentFile);
@@ -397,8 +397,8 @@ export default {
             if (allowUpload === true) {
                 this.loading = true;
                 this.httpRequest(file)
-                    .then((res) => this.handleUploadSuccess(res, file))
-                    .catch((err) => this.handleUploadError(err, file));
+                    .then(res => this.handleUploadSuccess(res, file))
+                    .catch(err => this.handleUploadError(err, file));
             }
         },
 

@@ -41,8 +41,8 @@ export default {
         'popper-class': { type: String, default: '' },
     },
     methods: {
-        isHiddenItem: (item) => helper.isHiddenItem(item),
-        isHiddenChildren: (item) => helper.isHiddenChildren(item),
+        isHiddenItem: item => helper.isHiddenItem(item),
+        isHiddenChildren: item => helper.isHiddenChildren(item),
     },
 };
 </script>

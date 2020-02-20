@@ -12,7 +12,7 @@ const extraStore = {
     getters: {
         // 选中行的uid
         multipleSelectionUid(state) {
-            return state.multipleSelection.map((item) => item.id).join(',');
+            return state.multipleSelection.map(item => item.id).join(',');
         },
     },
     actions: {
@@ -23,13 +23,13 @@ const extraStore = {
             return new Promise((resolve, reject) => {
                 // 远程删除
                 api.remove({ id: getters.multipleSelectionUid })
-                    .then((res) => {
+                    .then(res => {
                         vm.$nextTick(() => {
                             commit('setState', { loading: false, overdue: true });
                             resolve(res);
                         });
                     })
-                    .catch((err) => reject(err));
+                    .catch(err => reject(err));
             });
         },
     },

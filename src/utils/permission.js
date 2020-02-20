@@ -26,7 +26,7 @@ class Permission {
      */
     static filterMenu(routes) {
         const res = [];
-        routes.forEach((item) => {
+        routes.forEach(item => {
             if (!(item.meta && item.meta.hidden)) {
                 res.push(item);
             }
@@ -49,7 +49,7 @@ class Permission {
      * @memberof Permission
      */
     transformToTree(routes, bathPath = '') {
-        const res = routes.map((item) => {
+        const res = routes.map(item => {
             const data = {
                 path: !bathPath ? item.path : `${bathPath}/${item.path}`,
                 label: (item.meta && item.meta.title) || '未定义',
@@ -74,7 +74,7 @@ class Permission {
      * @memberof Permission
      */
     static isShowChildren(children) {
-        return children.some((item) => !(item.meta && item.meta.hidden));
+        return children.some(item => !(item.meta && item.meta.hidden));
     }
 
     /**
@@ -90,7 +90,7 @@ class Permission {
         const DEFAULT_PATH = 'index';
 
         function inject(route, pms, basePath = '') {
-            route.forEach((item) => {
+            route.forEach(item => {
                 const path = `${basePath + item.path}`;
                 if (pms.includes(path) || item.path === DEFAULT_PATH) {
                     if (!item.meta) { item.meta = {}; }
@@ -118,16 +118,16 @@ class Permission {
     static expandPermission(pms) {
         const result = new Set();
 
-        const normalPerssions = pms.filter((item) => !/^http/.test(item)); // 未来删除，可能已经不在使用（http）
+        const normalPerssions = pms.filter(item => !/^http/.test(item)); // 未来删除，可能已经不在使用（http）
 
-        normalPerssions.forEach((item) => {
+        normalPerssions.forEach(item => {
             const routeArray = item.match(/\/[a-zA-Z\d_-]+[a-zA-Z\d]/g);
             for (let i = 1; i <= routeArray.length; i += 1) {
                 result.add(routeArray.slice(0, i).join(''));
             }
         });
 
-        return [...result, ...pms.filter((item) => /^http/.test(item))];
+        return [...result, ...pms.filter(item => /^http/.test(item))];
     }
 
     /**
@@ -139,7 +139,7 @@ class Permission {
      */
     static checkPermission(storeRoles, roles) {
         if (roles && roles instanceof Array && roles.length > 0) {
-            return storeRoles.some((role) => roles.includes(role));
+            return storeRoles.some(role => roles.includes(role));
         }
         return false;
     }
@@ -154,7 +154,7 @@ class Permission {
      */
     static hasPermission(route, roles) {
         if (route.meta && route.meta.roles) {
-            return roles.some((role) => route.meta.roles.includes(role));
+            return roles.some(role => route.meta.roles.includes(role));
         }
         // return true; // 无权限则默认可以访问
         return false; // 无权限则默认禁止访问
@@ -169,7 +169,7 @@ class Permission {
      */
     static filterAsyncRoutes(routers, roles) {
         const result = [];
-        routers.forEach((item) => {
+        routers.forEach(item => {
             // const routerCopy = _.cloneDeep(router);
             if (this.hasPermission(item, roles)) {
                 if (item.children) {

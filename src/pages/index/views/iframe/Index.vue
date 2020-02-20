@@ -20,7 +20,7 @@ export default {
     },
     beforeRouteEnter(to, from, next) {
         if (to.meta.type === 'iframe' && to.meta.url) {
-            next((vm) => {
+            next(vm => {
                 vm.loading = true;
                 vm.url = to.meta.url;
                 container.classList.remove('hide');

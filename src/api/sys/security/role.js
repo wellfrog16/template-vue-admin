@@ -5,7 +5,7 @@ const axios = instance({ baseURL: server.easyMock });
 
 const base = '/role';
 
-const list = (params) => axios.get(base, { params });
+const list = params => axios.get(base, { params });
 
 // online
 // const listByRoles = (params) => {
@@ -14,7 +14,7 @@ const list = (params) => axios.get(base, { params });
 // };
 
 // offline
-const listByRoles = () => new Promise((resolve) => {
+const listByRoles = () => new Promise(resolve => {
     resolve({
         list: [{
             id: 1,
@@ -75,10 +75,10 @@ const listByRoles = () => new Promise((resolve) => {
     });
 });
 
-const detail = (params) => axios.get(base, { params });
-const insert = (params) => axios.post(base, params);
-const update = (params) => axios.put(base, params);
-const remove = (params) => axios.delete(base, { params });
+const detail = params => axios.get(base, { params });
+const insert = params => axios.post(base, params);
+const update = params => axios.put(base, params);
+const remove = params => axios.delete(base, { params });
 
 export default {
     list,

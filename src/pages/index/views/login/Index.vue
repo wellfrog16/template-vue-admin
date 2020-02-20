@@ -132,7 +132,7 @@ export default {
                     storage.set(STORAGE_SERVER, this.form.fields.serverId); // 保存server选择
                     const path = this.$route.query.from || '/home';
                     this.$router.push({ path }).catch(() => {});
-                }).catch((err) => {
+                }).catch(err => {
                     this.loading = false;
                     let { message } = err;
                     message.match(/^(.+)code\s(\d{3})/g);
@@ -145,7 +145,7 @@ export default {
 
                     console.warn(err);
                 });
-            }).catch((err) => { console.warn(err); });
+            }).catch(err => { console.warn(err); });
         },
     },
 };

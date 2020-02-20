@@ -90,7 +90,7 @@ function export2excel(param) {
     }
 
     const list = [];
-    data.forEach((item) => {
+    data.forEach(item => {
         list.push(_.pick(item, args.headerProp));
     });
 

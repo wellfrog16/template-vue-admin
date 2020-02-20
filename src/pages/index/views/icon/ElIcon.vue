@@ -37,7 +37,7 @@ export default {
             },
         });
 
-        this.clipboard.on('success', (e) => {
+        this.clipboard.on('success', e => {
             this.$message.success('复制成功');
             e.clearSelection();
         });

@@ -26,7 +26,7 @@ const extraStore = {
 
         // 本地列表更新
         listUpdate(state, payload) {
-            const index = state.list.findIndex((item) => item.id === payload.item.id);
+            const index = state.list.findIndex(item => item.id === payload.item.id);
             state.list.splice(index, 1, payload.item);
         },
 
@@ -35,15 +35,15 @@ const extraStore = {
 
         // 本地删除
         listRemove(state, payload) {
-            payload.multipleSelection.forEach((row) => {
-                const index = state.list.findIndex((item) => item.id === row.guid);
+            payload.multipleSelection.forEach(row => {
+                const index = state.list.findIndex(item => item.id === row.guid);
                 state.list.splice(index, 1);
             });
         },
 
         // 本地批量更新状态
         listUpdateStatus(state, payload) {
-            state.multipleSelection.forEach((item) => {
+            state.multipleSelection.forEach(item => {
                 item.status = payload.status;
             });
             state.multipleSelection = [];
@@ -60,7 +60,7 @@ const extraStore = {
 
         // 选中行的guid
         multipleSelectionUid(state) {
-            return state.multipleSelection.map((item) => item.id).join(',');
+            return state.multipleSelection.map(item => item.id).join(',');
         },
     },
 };

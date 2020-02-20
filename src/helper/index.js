@@ -13,7 +13,7 @@ function site() {
 
     // 站点服务器信息
     const serverId = storage.get(STORAGE_SERVER) || 1;
-    const server = config.servers.find((s) => s.id === serverId) || {};
+    const server = config.servers.find(s => s.id === serverId) || {};
 
     return {
         // 属性等
@@ -31,10 +31,10 @@ function site() {
 }
 
 function restful(axios, base) {
-    const insert = (params) => axios.post(base, params);
+    const insert = params => axios.post(base, params);
     const update = (id, params) => axios.pust(`${base}/${id}`, params);
-    const detail = (id) => axios.get(`${base}/${id}`);
-    const remove = (id) => axios.delete(`${base}/${id}`);
+    const detail = id => axios.get(`${base}/${id}`);
+    const remove = id => axios.delete(`${base}/${id}`);
 
     return {
         insert,

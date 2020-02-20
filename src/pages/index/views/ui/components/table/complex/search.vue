@@ -68,7 +68,7 @@ export default {
     computed: {
         ...mapState(['list', 'filters']),
         ...mapGetters(['queryPath']),
-        query: (v) => v.$route.query,
+        query: v => v.$route.query,
     },
     watch: {
         query: {

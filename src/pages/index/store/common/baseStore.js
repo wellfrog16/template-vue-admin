@@ -25,12 +25,12 @@ export default function baseStore() {
             setState: (state, payload) => utils.deepMerge(state, payload),
 
             // 强制重置，去掉baseStore之外的所有属性
-            reset: (state) => _.assign(state, myState()),
+            reset: state => _.assign(state, myState()),
         },
         getters: {
             // 当前编辑行
             activeRow(state) {
-                return state.list.find((item) => item.id === state.activeUid);
+                return state.list.find(item => item.id === state.activeUid);
             },
         },
     };

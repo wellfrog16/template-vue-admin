@@ -16,7 +16,7 @@ router.beforeEach((to, from, next) => {
 
     // 多语言，封装一层next，每次路由时判断语言
     const lang = getLanguage();
-    const handleNext = (params) => {
+    const handleNext = params => {
         loadLanguageAsync(lang).then(() => next(params));
     };
 

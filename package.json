@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --report",
     "eslint": "vue-cli-service lint",
-    "eslint2": "eslint src/**/* --fix",
+    "eslint2": "eslint src/**/*.{js,vue} --fix",
     "stylelint": "stylelint */**/*.{css,less,vue} --fix",
     "log": "git log --pretty=oneline",
     "gh-pages": "npm run build && node build/gh-pages"

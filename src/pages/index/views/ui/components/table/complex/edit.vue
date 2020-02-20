@@ -188,7 +188,7 @@ export default {
 
         // 保存信息
         handleSave() {
-            this.$refs.form.validate((valid) => {
+            this.$refs.form.validate(valid => {
                 valid && this.save();
             });
         },

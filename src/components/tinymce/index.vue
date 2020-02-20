@@ -85,7 +85,7 @@ export default {
                 link_title: false, // 取消链接的title设置，默认不设置，为空
                 nonbreaking_force_tab: true, // 允许用户按下tab键时，插入3个空格
 
-                init_instance_callback: (editor) => {
+                init_instance_callback: editor => {
                     if (self.value) {
                         editor.setContent(self.value);
                     }
@@ -158,7 +158,7 @@ export default {
         },
         imageUploadSuccess(arr) {
             const self = this;
-            arr.forEach((v) => {
+            arr.forEach(v => {
                 window.tinymce.get(self.tinymceId).insertContent(`<img src="${v.url}" >`);
             });
         },

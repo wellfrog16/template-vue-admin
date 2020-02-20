@@ -19,11 +19,11 @@ const extraStore = {
         listByRoles({ commit }, { codes }) {
             return new Promise((resolve, reject) => {
                 api.listByRoles({ codes })
-                    .then((res) => {
+                    .then(res => {
                         commit('setState', { accountRoleList: res[RES_LIST] });
                         resolve(res[RES_LIST]);
                     })
-                    .catch((err) => reject(err));
+                    .catch(err => reject(err));
             });
         },
     },

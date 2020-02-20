@@ -20,6 +20,6 @@ const config = process.env.NODE_ENV === 'production'
     ? _.merge(settings, prodConfig)
     : _.merge(settings, devConfig);
 
-export const server = config.servers.find((s) => s.id === serverId);
+export const server = config.servers.find(s => s.id === serverId);
 
 export default config;

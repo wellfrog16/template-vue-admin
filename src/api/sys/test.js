@@ -5,7 +5,7 @@ const axios = instance();
 
 const test = () => {
     const options = {
-        transformResponse: [(data) => {
+        transformResponse: [data => {
             console.log(5678);
             return data;
         }],
@@ -14,7 +14,7 @@ const test = () => {
     return axios.get('', '11', options);
 };
 
-const test2 = (params) => axios.post('/mp-weixin/login', params);
+const test2 = params => axios.post('/mp-weixin/login', params);
 
 export default {
     test,

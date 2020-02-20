@@ -23,13 +23,13 @@ export default {
 
         this.myChart.showLoading();
 
-        api.flights().then((data) => {
+        api.flights().then(data => {
             this.myChart.hideLoading();
 
             function getAirportCoord(idx) {
                 return [data.airports[idx][3], data.airports[idx][4]];
             }
-            const routes = data.routes.map((airline) => [
+            const routes = data.routes.map(airline => [
                 getAirportCoord(airline[1]),
                 getAirportCoord(airline[2]),
             ]);

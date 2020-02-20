@@ -18,13 +18,13 @@ const extraStore = {
         // },
 
         listRemove(state, payload) {
-            payload.multipleSelection.forEach((row) => {
-                const index = state.list.findIndex((item) => item.id === row.id);
+            payload.multipleSelection.forEach(row => {
+                const index = state.list.findIndex(item => item.id === row.id);
                 state.list.splice(index, 1);
             });
         },
         listUpdateStatus(state, payload) {
-            state.multipleSelection.forEach((item) => {
+            state.multipleSelection.forEach(item => {
                 item.status = payload.status;
             });
             state.multipleSelection = [];
@@ -33,7 +33,7 @@ const extraStore = {
     getters: {
         // 选中行的uid
         multipleSelectionUid(state) {
-            return state.multipleSelection.map((item) => item.id).join(',');
+            return state.multipleSelection.map(item => item.id).join(',');
         },
     },
 };

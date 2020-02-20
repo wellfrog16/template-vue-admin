@@ -9,7 +9,7 @@ const base = '/account';
 // online
 // const list = params => axios.get(base, { params });
 // offline
-const list = () => new Promise((resolve) => {
+const list = () => new Promise(resolve => {
     const data = {
         list: [
             {
@@ -36,16 +36,16 @@ const list = () => new Promise((resolve) => {
 //     return axios.get(`${base}/${name}`, { params });
 // };
 // offline
-const detail = () => new Promise((resolve) => {
+const detail = () => new Promise(resolve => {
     resolve({
         accountId: 1,
         accountName: 'admin',
         roles: ['admin', 'editor'],
     });
 });
-const insert = (params) => axios.post(base, params);
-const update = (params) => axios.put(base, params);
-const remove = (params) => axios.delete(base, { params });
+const insert = params => axios.post(base, params);
+const update = params => axios.put(base, params);
+const remove = params => axios.delete(base, { params });
 
 export default {
     list,

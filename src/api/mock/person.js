@@ -16,7 +16,7 @@ import utils from '@/utils';
 
 // ----------------------------------------------------------------
 // offline
-const list = (params) => new Promise((resolve) => {
+const list = params => new Promise(resolve => {
     const { ps } = params;
     let { education, status } = params;
 
@@ -50,25 +50,25 @@ const list = (params) => new Promise((resolve) => {
 
 const detail = list;
 
-const insert = () => new Promise((resolve) => {
+const insert = () => new Promise(resolve => {
     resolve(Mock.mock({
         guid: '@guid',
     }));
 });
 
-const update = () => new Promise((resolve) => {
+const update = () => new Promise(resolve => {
     resolve(true);
 });
 
-const updateStatus = () => new Promise((resolve) => {
+const updateStatus = () => new Promise(resolve => {
     resolve(true);
 });
 
-const remove = () => new Promise((resolve) => {
+const remove = () => new Promise(resolve => {
     resolve(true);
 });
 
-const edus = () => new Promise((resolve) => {
+const edus = () => new Promise(resolve => {
     const data = {
         list: ['专科', '本科', '硕士研究生', '博士研究生', '其他'],
     };

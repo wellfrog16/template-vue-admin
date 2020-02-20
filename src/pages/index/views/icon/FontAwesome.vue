@@ -53,8 +53,8 @@ export default {
     computed: {
         fliterItems() {
             return this.category === ''
-                ? items.filter((item) => this.key === '' || (this.key !== '' && item.name.includes(this.key)))
-                : items.filter((item) => (item.category === this.category) && (this.key === '' || (this.key !== '' && item.name.includes(this.key))));
+                ? items.filter(item => this.key === '' || (this.key !== '' && item.name.includes(this.key)))
+                : items.filter(item => (item.category === this.category) && (this.key === '' || (this.key !== '' && item.name.includes(this.key))));
         },
     },
     mounted() {
@@ -64,7 +64,7 @@ export default {
             },
         });
 
-        this.clipboard.on('success', (e) => {
+        this.clipboard.on('success', e => {
             this.$message.success('复制成功');
             e.clearSelection();
         });

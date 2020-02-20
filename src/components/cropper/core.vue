@@ -91,7 +91,7 @@ export default {
                 width: this.cropperWidth,
                 height: this.cropperHeight,
                 imageSmoothingQuality: this.imageSmoothingQuality,
-            }).toBlob((blob) => {
+            }).toBlob(blob => {
                 this.$emit('on-finished', blob);
                 this.loading = false;
                 this.close();

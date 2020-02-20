@@ -16,6 +16,7 @@ module.exports = {
         'no-underscore-dangle': [2, { 'allow': ['_id'] }], // nedb专用
         'no-unused-expressions': [2, { 'allowShortCircuit': true, 'allowTernary': true }], // ? 允许 a && a()写法
         'no-param-reassign': [2, { 'props': true, 'ignorePropertyModificationsFor': ['state', 'item', 'el', 'params', 'vm'] }], // 允许vuex里的state，备用item, el, params
+        "arrow-parens": [2, 'as-needed'],
         'vue/html-indent': ['error', 4, {
             attribute: 1,
             closeBracket: 0,

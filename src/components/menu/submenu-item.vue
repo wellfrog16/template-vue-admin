@@ -40,8 +40,8 @@ export default {
             data.path = `${this.item.path}/${data.path}`;
             return data;
         },
-        isHiddenItem: (item) => helper.isHiddenItem(item),
-        isHiddenChildren: (item) => helper.isHiddenChildren(item),
+        isHiddenItem: item => helper.isHiddenItem(item),
+        isHiddenChildren: item => helper.isHiddenChildren(item),
     },
 };
 </script>

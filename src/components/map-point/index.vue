@@ -92,7 +92,7 @@ export default {
 
             const geoc = new BMap.Geocoder();
 
-            map.addEventListener('click', (e) => {
+            map.addEventListener('click', e => {
                 // 通过点击百度地图，可以获取到对应的point,由point的lng、lat属性就可以获取对应的经度纬度
                 this.point = e.point;
                 geoc.getLocation(this.point, () => {

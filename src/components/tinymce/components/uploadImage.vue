@@ -49,7 +49,7 @@ export default {
     },
     computed: {
         allReady() {
-            return !Object.keys(this.imgList).every((item) => this.imgList[item].isSuccess);
+            return !Object.keys(this.imgList).every(item => this.imgList[item].isSuccess);
         },
         action() {
             return server.upload || 'https://httpbin.org/post';
@@ -68,12 +68,12 @@ export default {
 
         // 检测是否所有图片都上传完成
         checkAllSuccess() {
-            return Object.keys(this.imgList).every((item) => this.imgList[item].isSuccess);
+            return Object.keys(this.imgList).every(item => this.imgList[item].isSuccess);
         },
 
         // 提交图片
         handleSubmit() {
-            const arr = Object.keys(this.imgList).map((v) => this.imgList[v]);
+            const arr = Object.keys(this.imgList).map(v => this.imgList[v]);
             this.$emit('on-success', arr);
             this.imgList = {};
             this.fileList = [];
@@ -89,7 +89,7 @@ export default {
             this.imgList[uid] = {};
             this.uploading = true;
 
-            return new Promise((resolve) => {
+            return new Promise(resolve => {
                 const img = new Image();
                 img.src = url.createObjectURL(file);
                 img.onload = function onload() {
@@ -103,7 +103,7 @@ export default {
 
         // 文件上传成功写入文件地址
         handleSuccess(response, file) {
-            Object.keys(this.imgList).forEach((key) => {
+            Object.keys(this.imgList).forEach(key => {
                 const item = this.imgList[key];
                 if (item.uid === file.uid) {
                     // 根据上传服务器回传修改
@@ -118,7 +118,7 @@ export default {
 
         handleError(err, file) {
             setTimeout(() => {
-                Object.keys(this.imgList).forEach((key) => {
+                Object.keys(this.imgList).forEach(key => {
                     this.imgList[key].uid === file.uid && delete this.imgList[key];
                 });
                 this.uploading = false;
@@ -127,7 +127,7 @@ export default {
 
         // 移除图片
         handleRemove(file) {
-            Object.keys(this.imgList).forEach((key) => {
+            Object.keys(this.imgList).forEach(key => {
                 this.imgList[key].uid === file.uid && delete this.imgList[key];
                 this.count -= 1;
             });

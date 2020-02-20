@@ -23,7 +23,7 @@ function getUrlParam(url) {
     const result = {};
     if (!isEmpty(url) && url.split('?').length === 2) {
         const query = url.split('?')[1].split('&');
-        query.forEach((item) => {
+        query.forEach(item => {
             const arr = item.split('=');
             result[arr[0]] = arr[1]; // eslint-disable-line
         });
@@ -153,7 +153,7 @@ function secretPhoneNum(num) {
  * @returns
  */
 function delay(time = 1000) {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
         setTimeout(() => {
             resolve();
         }, time || 1);
@@ -240,7 +240,7 @@ function deepMerge(target, obj) {
  * @returns
  */
 function file2base64(file) {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => resolve(reader.result);

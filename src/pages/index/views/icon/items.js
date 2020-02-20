@@ -1791,7 +1791,7 @@ const elIcons = [
 ];
 
 function transform(arr, category, prepend) {
-    return arr.map((item) => ({ category, name: item, prepend }));
+    return arr.map(item => ({ category, name: item, prepend }));
 }
 
 const items = transform(solid, 'solid', 'fas').concat(
