@@ -44,8 +44,16 @@ export default {
 
 <style lang="less" module>
 .main {
+    display: flex;
+    flex-direction: row;
+
     > * + * {
         margin-left: 30px;
+    }
+
+    > * {
+        display: flex;
+        align-items: center;
     }
 }
 </style>
