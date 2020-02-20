@@ -1,5 +1,5 @@
 <template>
-    <div :class="$style.main">
+    <div>
         <i class="fas fa-server fa-lg fa-fw" />
         {{ serverName }}
     </div>
@@ -16,10 +16,3 @@ export default {
     },
 };
 </script>
-
-<style lang="less" module>
-.main {
-    line-height: 1;
-    display: inline-block;
-}
-</style>

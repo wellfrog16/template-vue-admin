@@ -101,8 +101,6 @@ export default {
 @import '~@/assets/style/usr/index.config.less';
 
 .main {
-    display: inline-block;
-
     i {
         cursor: pointer;
     }

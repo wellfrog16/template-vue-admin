@@ -24,7 +24,7 @@ export default {
     },
     mounted() {
         const site = helper.site();
-        this.username = site.username;
+        this.username = site.username || 'admin';
     },
     methods: {
         // 通知
