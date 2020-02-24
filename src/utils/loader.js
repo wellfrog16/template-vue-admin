@@ -3,9 +3,14 @@
 // 1、如当前页面已经存在，则不加载
 // 2、实现按库名加载对应的js和css
 
-function isLoaded(url) {
+function isScriptLoaded(url) {
     // const script = url && document.querySelector("script[src='" + url + "']");
     return url && document.querySelector(`script[src="${url}"]`);
+}
+
+function isCssLoaded(url) {
+    // const script = url && document.querySelector("script[src='" + url + "']");
+    return url && document.querySelector(`link[href="${url}"]`);
 }
 
 /**
@@ -17,7 +22,7 @@ function isLoaded(url) {
 function loadScript(urls) {
     return Promise.all(urls.map(url => new Promise((resolve, reject) => {
         // 如果已经加载，直接返回
-        if (isLoaded(url)) { resolve(); } else {
+        if (isScriptLoaded(url)) { resolve(); } else {
             const head = document.getElementsByTagName('head')[0];
             const script = document.createElement('script');
             script.type = 'text/javascript';
@@ -48,13 +53,17 @@ function loadScript(urls) {
  *
  * @param {String} url
  */
-function loadCss(fn, url) {
+function loadCss(urls) {
     const head = document.getElementsByTagName('head')[0];
-    const link = document.createElement('link');
-    link.type = 'text/css';
-    link.rel = 'stylesheet';
-    link.href = url;
-    head.appendChild(link);
+    urls.filter(url => isCssLoaded(url))
+        .forEach(url => {
+            const link = document.createElement('link');
+            link.type = 'text/css';
+            link.rel = 'stylesheet';
+            link.href = url;
+            head.appendChild(link);
+        });
+
 
     // const t = document.createStyleSheet;
     // const r = t ? 'rules' : 'cssRules';

@@ -1,6 +1,7 @@
-import {
+import libs, {
     $, _,
 } from '@/utils/cdn';
+import loader from './loader';
 
 
 /**
@@ -221,6 +222,16 @@ function getRandomColor() {
     // return `hsl(${Math.random()}, 50%, 50%)`;
 }
 
+function loadCdn(name) {
+    const { js, css } = libs[name];
+    // console.log(libs);
+    // console.log(name);
+    loader.loadCss(css);
+    loader.loadScript(js);
+    console.log(loader);
+    // loader.loadCss()
+}
+
 function customizer(objValue, srcValue) {
     if (_.isPlainObject(srcValue)) {
         return _.mergeWith(objValue, srcValue, customizer);
@@ -275,4 +286,5 @@ export default {
     deleteHtmlTag,
     file2base64,
     base642file,
+    loadCdn,
 };
