@@ -15,7 +15,8 @@ import TextEllipsis from './vue-text-ellipsis'; // 省略号
 // import './element-ui';
 
 // 插件
-Vue.use(ElementUI, { size: 'small', zIndex: 2000 });
+Vue.use(ElementUI, { size: 'medium', zIndex: 2000 });
+// Vue.use(ElementUI, { size: 'small', zIndex: 2000 });
 Vue.use(InfiniteLoading);
 Vue.use(Affix);
 Vue.use(VueScrollactive);
