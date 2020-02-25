@@ -10,6 +10,7 @@
 
 ## todo
 
+* 注意el-image和el-table的fixed有bug
 * 单页导航功能
 * 飞行航线图整理
 * 优化富文本编辑上传图片
