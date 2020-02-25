@@ -2,6 +2,9 @@ export default {
     // 接受的文件格式
     accept: { type: String, default: '.jpg,.jpeg,.png' },
 
+    // 显示类型，image | button
+    type: { type: String, default: 'image' },
+
     // 图片地址
     src: { type: String, default: '' },
 

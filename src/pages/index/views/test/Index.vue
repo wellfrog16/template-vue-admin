@@ -5,12 +5,13 @@
 </template>
 
 <script>
-import api from '@/api/sys/test';
+import api from '@/api/sys/upload';
 
 export default {
     mounted() {
         console.log(File);
-        api.test2({ code: '999' });
+        api();
+        // api.test2({ code: '999' });
     },
 };
 </script>
