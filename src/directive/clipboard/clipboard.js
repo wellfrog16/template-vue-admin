@@ -1,4 +1,4 @@
-import { ClipboardJS } from '@/utils/cdn';
+import utils from '@/utils';
 
 export default {
     bind(el, binding) {
@@ -7,19 +7,22 @@ export default {
         } else if (binding.arg === 'error') {
             el.clipboardError = binding.value;
         } else {
-            const clipboard = new ClipboardJS(el, {
-                text() { return binding.value; },
-                action() { return binding.arg === 'cut' ? 'cut' : 'copy'; },
+            // 加载clipboard js
+            utils.loadCdn('clipboard').then(ClipboardJS => {
+                const clipboard = new ClipboardJS(el, {
+                    text() { return binding.value; },
+                    action() { return binding.arg === 'cut' ? 'cut' : 'copy'; },
+                });
+                clipboard.on('success', e => {
+                    const callback = el.clipboardSuccess;
+                    callback && callback(e);
+                });
+                clipboard.on('error', e => {
+                    const callback = el.clipboardError;
+                    callback && callback(e);
+                });
+                el.clipboard = clipboard;
             });
-            clipboard.on('success', e => {
-                const callback = el.clipboardSuccess;
-                callback && callback(e);
-            });
-            clipboard.on('error', e => {
-                const callback = el.clipboardError;
-                callback && callback(e);
-            });
-            el.clipboard = clipboard;
         }
     },
     update(el, binding) {

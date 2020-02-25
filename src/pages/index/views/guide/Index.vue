@@ -1,5 +1,5 @@
 <template>
-    <div class="main-wrapper">
+    <div class="main-wrapper" v-loading="loading">
         <el-card shadow="never">
             <el-button type="primary" @click.prevent.stop="handleDriver">开始引导</el-button>
         </el-card>
@@ -7,11 +7,18 @@
 </template>
 
 <script>
-import { Driver } from '@/utils/cdn';
-
 export default {
+    data() {
+        return {
+            loading: false,
+        };
+    },
     methods: {
-        handleDriver() {
+        async handleDriver() {
+            // 可以进入页面时加载cdn资源，这里是点击才加载
+            this.loading = true;
+            const Driver = await this.$utils.loadCdn('driver');
+            this.loading = false;
             const driver = new Driver({
                 allowClose: false,
                 doneBtnText: '完成',

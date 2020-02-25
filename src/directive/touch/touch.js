@@ -1,15 +1,17 @@
-import { Hammer } from '@/utils/cdn';
+import utils from '@/utils';
 
 function vueTouch(el, binding, re, ev = re) {
-    const hammertime = new Hammer.Manager(el);
-    const recognizers = {
-        pan: Hammer.Pan,
-        tap: Hammer.Tap,
-        press: Hammer.Press,
-        swipe: Hammer.Swipe,
-    };
-    hammertime.add(new recognizers[re]());
-    hammertime.on(ev, binding.value);
+    utils.loadCdn('hammer').then(Hammer => {
+        const hammertime = new Hammer.Manager(el);
+        const recognizers = {
+            pan: Hammer.Pan,
+            tap: Hammer.Tap,
+            press: Hammer.Press,
+            swipe: Hammer.Swipe,
+        };
+        hammertime.add(new recognizers[re]());
+        hammertime.on(ev, binding.value);
+    });
 }
 
 export default {

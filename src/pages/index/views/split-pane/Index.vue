@@ -21,22 +21,20 @@
 </template>
 
 <script>
-import { Split } from '@/utils/cdn';
-
 export default {
     mounted() {
-        this.$utils.loadCdn('split');
-
-        Split([`.${this.$style.side}`, `.${this.$style.wrapper}`], {
-            sizes: [25, 75],
-            minSize: [250, 500],
-            expandToMin: true,
-        });
-        Split([`.${this.$style.header}`, `.${this.$style.content}`], {
-            sizes: [25, 75],
-            minSize: [100, 300],
-            // expandToMin: true,
-            direction: 'vertical',
+        this.$utils.loadCdn('split').then(Split => {
+            Split([`.${this.$style.side}`, `.${this.$style.wrapper}`], {
+                sizes: [25, 75],
+                minSize: [250, 500],
+                expandToMin: true,
+            });
+            Split([`.${this.$style.header}`, `.${this.$style.content}`], {
+                sizes: [25, 75],
+                minSize: [100, 300],
+                // expandToMin: true,
+                direction: 'vertical',
+            });
         });
     },
     methods: {

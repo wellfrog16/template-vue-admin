@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { Cropper } from '@/utils/cdn';
+let Cropper = null;
 
 export default {
     props: {
@@ -64,6 +64,11 @@ export default {
         visible(val) {
             val && this.$nextTick(() => this.update());
         },
+    },
+    created() {
+        this.$utils.loadCdn('cropper').then(Obj => {
+            Cropper = Obj;
+        });
     },
     methods: {
         // 更新待裁剪图片

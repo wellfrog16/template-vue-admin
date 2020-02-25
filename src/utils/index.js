@@ -223,13 +223,15 @@ function getRandomColor() {
 }
 
 function loadCdn(name) {
-    const { js, css } = libs[name];
-    // console.log(libs);
-    // console.log(name);
-    loader.loadCss(css);
-    loader.loadScript(js);
-    console.log(loader);
-    // loader.loadCss()
+    if (!libs[name]) { throw new Error(`${name} 不存在`); }
+    const { js, css, objFun } = libs[name];
+    Array.isArray(css) && loader.loadCss(css);
+
+    return new Promise((resolve, reject) => {
+        loader.loadScript(js)
+            .then(() => resolve(objFun()))
+            .catch(() => reject(new Error(`load ${name} failed`)));
+    });
 }
 
 function customizer(objValue, srcValue) {

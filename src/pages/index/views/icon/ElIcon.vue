@@ -20,7 +20,6 @@
 </template>
 
 <script>
-import { ClipboardJS } from '@/utils/cdn';
 import { elIcons } from './items';
 
 export default {
@@ -31,15 +30,17 @@ export default {
         };
     },
     mounted() {
-        this.clipboard = new ClipboardJS(`.${this.$style.list}>div>div`, {
-            text(trigger) {
-                return trigger.querySelector('i').className;
-            },
-        });
+        this.$utils.loadCdn('clipboard').then(ClipboardJS => {
+            this.clipboard = new ClipboardJS(`.${this.$style.list}>div>div`, {
+                text(trigger) {
+                    return trigger.querySelector('i').className;
+                },
+            });
 
-        this.clipboard.on('success', e => {
-            this.$message.success('复制成功');
-            e.clearSelection();
+            this.clipboard.on('success', e => {
+                this.$message.success('复制成功');
+                e.clearSelection();
+            });
         });
     },
     destroyed() {

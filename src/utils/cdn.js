@@ -20,17 +20,65 @@ const {
     Cropper,
 } = window;
 
-const baseCdn = '//cdn.jsdelivr.net';
+const baseCdn = '//cdn.jsdelivr.net/npm';
 
 export default {
-    jquerys: `${baseCdn}/npm/jquery@3.3.1`,
-    tinymce: `${baseCdn}/npm/tinymce@5.0.5/tinymce.min.js`,
-    jqueryTinymce: `${baseCdn}/npm/tinymce@5.0.5/jquery.tinymce.min.js`,
-    split: {
+    jquerys: `${baseCdn}/jquery@3.3.1`,
+    tinymce: `${baseCdn}/tinymce@5.0.5/tinymce.min.js`,
+    jqueryTinymce: `${baseCdn}/tinymce@5.0.5/jquery.tinymce.min.js`,
+
+    // 手势
+    hammer: {
+        objFun: () => window.Hammer,
         js: [
-            `${baseCdn}/npm/split.js@1.5.11`,
+            `${baseCdn}/hammerjs@2.0.8`,
         ],
-        css: [],
+    },
+
+    // 图片剪切
+    cropper: {
+        objFun: () => window.Cropper,
+        js: [
+            `${baseCdn}/cropperjs@1.5.5/dist/cropper.min.js`,
+        ],
+        css: [
+            `${baseCdn}/cropperjs@1.5.5/dist/cropper.min.css`,
+        ],
+    },
+
+    // 全屏插件
+    screenfull: {
+        objFun: () => window.screenfull,
+        js: [
+            `${baseCdn}/screenfull@4.0.1`,
+        ],
+    },
+
+    // 提示帮助指引
+    clipboard: {
+        objFun: () => window.ClipboardJS,
+        js: [
+            `${baseCdn}/clipboard@2.0.4`,
+        ],
+    },
+
+    // 提示帮助指引
+    driver: {
+        objFun: () => window.Driver,
+        js: [
+            `${baseCdn}/driver.js@0.9.7`,
+        ],
+        css: [
+            `${baseCdn}/driver.js@0.9.7/dist/driver.min.css`,
+        ],
+    },
+
+    // 分割布局
+    split: {
+        objFun: () => window.Split,
+        js: [
+            `${baseCdn}/split.js@1.5.11`,
+        ],
     },
 };
 

@@ -1,15 +1,16 @@
-// 加载js文件，未完成
-// todo
-// 1、如当前页面已经存在，则不加载
-// 2、实现按库名加载对应的js和css
+// 加载js文件
 
 function isScriptLoaded(url) {
-    // const script = url && document.querySelector("script[src='" + url + "']");
-    return url && document.querySelector(`script[src="${url}"]`);
+    const script = url && document.querySelector(`script[src="${url}"]`);
+    return script && script.dataset.loader === 1;
+}
+
+function getScript(url) {
+    const script = url && document.querySelector(`script[src="${url}"]`);
+    return script && !script.dataset.loader ? script : null;
 }
 
 function isCssLoaded(url) {
-    // const script = url && document.querySelector("script[src='" + url + "']");
     return url && document.querySelector(`link[href="${url}"]`);
 }
 
@@ -23,27 +24,56 @@ function loadScript(urls) {
     return Promise.all(urls.map(url => new Promise((resolve, reject) => {
         // 如果已经加载，直接返回
         if (isScriptLoaded(url)) { resolve(); } else {
-            const head = document.getElementsByTagName('head')[0];
-            const script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.src = url;
-            if (script.readyState) {
-                script.onreadystatechange = () => {
-                    if (script.readyState === 'loaded' || script.readyState === 'complete') {
-                        script.onreadystatechange = null;
+            const myScript = getScript(url);
+
+            // （非）多个程序同时加载同一个cdn资源
+            if (!myScript) {
+                const head = document.getElementsByTagName('head')[0];
+                const script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.src = url;
+                if (script.readyState) {
+                    script.onreadystatechange = () => {
+                        if (script.readyState === 'loaded' || script.readyState === 'complete') {
+                            script.onreadystatechange = null;
+                            script.dataset.loaded = 1;
+                            resolve();
+                        }
+                    };
+                } else {
+                    script.onload = () => {
+                        script.dataset.loaded = 1;
+                        resolve();
+                    };
+                }
+
+                // 加载失败删除标签，并返回reject
+                script.onerror = () => {
+                    head.removeChild(script);
+                    reject();
+                };
+                head.appendChild(script);
+            } else { // 多个程序同时加载同一个cdn资源，则用计时器检测loader状态
+                const timeout = 3000; // 检测超时上限
+                const interval = 10; // 检测频率
+                let times = 0; // 已用时
+                let timer = null; // setInterval
+
+                timer = setInterval(() => {
+                    times += interval;
+
+                    // 加载超时
+                    if (times >= timeout) {
+                        clearInterval(timer);
+                        reject(new Error('time out!'));
+                    }
+
+                    if (+myScript.dataset.loaded === 1) {
+                        clearInterval(timer);
                         resolve();
                     }
-                };
-            } else {
-                script.onload = resolve;
+                }, interval);
             }
-
-            // 加载失败删除标签，并返回reject
-            script.onerror = () => {
-                head.removeChild(script);
-                reject();
-            };
-            head.appendChild(script);
         }
     })));
 }
@@ -55,7 +85,7 @@ function loadScript(urls) {
  */
 function loadCss(urls) {
     const head = document.getElementsByTagName('head')[0];
-    urls.filter(url => isCssLoaded(url))
+    urls.filter(url => !isCssLoaded(url))
         .forEach(url => {
             const link = document.createElement('link');
             link.type = 'text/css';
@@ -63,24 +93,6 @@ function loadCss(urls) {
             link.href = url;
             head.appendChild(link);
         });
-
-
-    // const t = document.createStyleSheet;
-    // const r = t ? 'rules' : 'cssRules';
-    // const s = t ? 'styleSheet' : 'sheet';
-    // const l = document.getElementsByTagName('link');
-    // // passed url or last url node
-    // url || (url = l[l.length - 1]);
-    // function check() {
-    //     try {
-    //         return url && url[s] && url[s][r] && url[s][r][0];
-    //     } catch (e) {
-    //         return false;
-    //     }
-    // }
-    // (function poll() {
-    //     (check() && setTimeout(fn, 0)) || setTimeout(poll, 100);
-    // }());
 }
 
 export default {
