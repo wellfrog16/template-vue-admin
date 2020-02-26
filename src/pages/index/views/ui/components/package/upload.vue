@@ -3,27 +3,29 @@
         title="上传"
         icon="fas fa-upload"
     >
-        <el-alert title="上传图片，显示支持fit" type="info" :closable="false" />
+        <el-alert title="上传图片，显示支持图片fit以及button。" type="info" :closable="false" />
         <el-divider><i class="fas fa-upload" /></el-divider>
         <el-row>
             <el-col :span="12">
                 <x-upload-image
                     :http-request="httpRequest"
-                    :icon-size="20"
-                    :src="imageSrc"
-                    width="200px"
-                    height="100px"
+                    :imageOptions="{
+                        width: '150px',
+                        height: '100px',
+                        src: imageSrc,
+                        iconSize: 20,
+                    }"
                 />
             </el-col>
             <el-col :span="12">
                 <x-upload-image
                     :http-request="httpRequest2"
-                    :icon-size="20"
-                    :src="imageSrc2"
-                    fit="cover"
-                    width="100px"
-                    height="100px"
+                    type="button"
+                    :buttonOptions="{
+                        type: 'primary',
+                    }"
                 />
+                <el-alert :title="result" type="info" :closable="false" />
             </el-col>
         </el-row>
     </x-col>
@@ -42,6 +44,7 @@ export default {
         return {
             imageSrc: '',
             imageSrc2: '',
+            result: '图片路径',
         };
     },
     methods: {
@@ -62,7 +65,7 @@ export default {
 
         httpRequest2(file, done) {
             // offline
-            this.imageSrc2 = window.URL.createObjectURL(file);
+            this.result = window.URL.createObjectURL(file);
             done();
 
             // online

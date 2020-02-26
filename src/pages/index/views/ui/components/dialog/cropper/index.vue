@@ -8,10 +8,12 @@
 
         <x-cropper
             :http-request="httpRequest"
-            :icon-size="30"
-            :src="imageSrc"
-            width="200px"
-            height="100px"
+            :imageOptions="{
+                width: '200px',
+                height: '100px',
+                src: imageSrc,
+                iconSize: 30,
+            }"
             :cropperWidth="400"
             :cropperHeight="200"
         />

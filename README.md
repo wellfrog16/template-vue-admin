@@ -17,7 +17,6 @@
 * 视频拍照获取图片用videoHeight处理
 * 补充echarts示例
 * config配置html可以配置
-* upload-image组件可以是按钮和图片两种
 * 增加拖拽上传组件
 
 ## Project setup

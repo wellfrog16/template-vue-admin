@@ -3,14 +3,15 @@
         <x-upload-image
             v-bind="$props"
             :http-request="handleHttpRequest"
+            type="image"
         />
 
         <x-cropper-core
             :visible.sync="cropperVisible"
             :image="image"
             :image-smoothing-quality="imageSmoothingQuality"
-            :cropperWidth="cropperWidth || parseInt(width, 0)"
-            :cropperHeight="cropperHeight || parseInt(height, 0)"
+            :cropperWidth="cropperWidth || parseInt(imgOptions.width, 0)"
+            :cropperHeight="cropperHeight || parseInt(imgOptions.height, 0)"
             @on-finished="handleFinished"
             @on-cancel="cancel"
         />
@@ -18,7 +19,7 @@
 </template>
 
 <script>
-import uploadImageProps from '../upload-image/props';
+import uploadImageProps, { imageOptions } from '../upload-image/props';
 import XUploadImage from '../upload-image/index.vue';
 import XCropperCore from './core.vue';
 
@@ -43,6 +44,11 @@ export default {
             image: new Image(),
             handleDone: null,
         };
+    },
+    computed: {
+        imgOptions() {
+            return { ...imageOptions, ...this.imageOptions };
+        },
     },
     methods: {
         handleHttpRequest(file, done) {

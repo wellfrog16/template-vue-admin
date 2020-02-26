@@ -1,6 +1,6 @@
 <template>
     <el-upload
-        :class="$style.uploader"
+        :class="[$style.uploader, `upload-type-${type}`]"
         action=""
         :show-file-list="false"
         :accept="accept"
@@ -8,15 +8,20 @@
         :before-upload="handleBeforeUpload"
         v-loading="loading"
     >
-        <el-image v-if="hasImage" :src="src" :fit="fit" :style="imageSizeStyle" :class="$style.photo">
-            <div slot="placeholder">加载中... </div>
-        </el-image>
-        <i v-else :class="[$style.icon, 'el-icon-plus']" :style="iconSizeStyle" />
+        <template v-if="isImageType">
+            <el-image v-if="hasImage" :src="imgOptions.src" :fit="imgOptions.fit" :style="imageSizeStyle" :class="$style.photo">
+                <div slot="placeholder">加载中... </div>
+            </el-image>
+            <i v-else :class="[$style.icon, imgOptions.icon]" :style="iconSizeStyle" />
+        </template>
+        <template v-if="isButtonType">
+            <el-button :size="btnOptions.size" :type="btnOptions.type" :icon="btnOptions.icon">{{ btnOptions.text }}</el-button>
+        </template>
     </el-upload>
 </template>
 
 <script>
-import props from './props'; // 方便复用
+import props, { imageOptions, buttonOptions } from './props'; // 方便复用
 
 export default {
     props: {
@@ -28,23 +33,37 @@ export default {
         };
     },
     computed: {
+        imgOptions() {
+            return { ...imageOptions, ...this.imageOptions };
+        },
+        btnOptions() {
+            return { ...buttonOptions, ...this.buttonOptions };
+        },
         hasImage() {
-            return !!this.src;
+            return !!this.imgOptions.src;
         },
         imageSizeStyle() {
+            const options = this.imgOptions;
             return {
-                width: this.width,
-                height: this.height,
-                'line-height': this.height,
+                width: options.width,
+                height: options.height,
+                'line-height': options.height,
             };
         },
         iconSizeStyle() {
+            const options = this.imgOptions;
             return {
-                width: this.width,
-                height: this.height,
-                'line-height': this.height,
-                'font-size': `${this.iconSize}px`,
+                width: options.width,
+                height: options.height,
+                'line-height': options.height,
+                'font-size': `${options.iconSize}px`,
             };
+        },
+        isImageType() {
+            return this.type === 'image';
+        },
+        isButtonType() {
+            return this.type === 'button';
         },
     },
     methods: {
@@ -87,11 +106,14 @@ export default {
     line-height: 1;
 
     :global(.el-upload) {
-        border: 1px dashed @g-color-border1;
-        border-radius: 6px;
         cursor: pointer;
         position: relative;
         overflow: hidden;
+    }
+
+    &:global(.upload-type-image .el-upload) {
+        border: 1px dashed @g-color-border1;
+        border-radius: 6px;
 
         &:hover {
             border-color: @g-color-primary;
