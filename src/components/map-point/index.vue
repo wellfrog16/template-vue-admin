@@ -129,6 +129,8 @@ export default {
 </script>
 
 <style lang="less" module>
+@import '~@/assets/style/usr/index.config.less';
+
 .main {
     :global(.el-dialog__body) {
         position: relative;
@@ -148,6 +150,6 @@ export default {
     z-index: 5;
     text-align: center;
     padding: 4px;
-    background-color: #fff;
+    background-color: @g-white;
 }
 </style>

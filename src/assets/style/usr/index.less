@@ -22,7 +22,7 @@ body {
     font-family: @g-font-family;
     font-size: @g-font-size;
     color: @g-color2;
-    background-color: @g-background-color;
+    background-color: @g-white;
 
     &.lock {
         overflow: hidden;
@@ -36,7 +36,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #999;
+    background-color: @g-color3;
 }
 
 a {
@@ -53,7 +53,7 @@ a {
     height: 100%;
 
     .search {
-        background-color: #fff;
+        background-color: @g-white;
         padding: 20px 20px 15px 20px;
         margin-bottom: 10px;
         flex: 0 0 37px;
@@ -71,7 +71,7 @@ a {
 
     .pagination {
         flex: 0 0 38px;
-        background-color: #fff;
+        background-color: @g-white;
         display: flex;
         justify-content: space-between;
         margin-top: 10px;

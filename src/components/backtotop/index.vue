@@ -53,7 +53,7 @@ export default {
     height: 40px;
     font-size: 20px;
     background-color: @g-color-primary;
-    color: #fff;
+    color: @g-white;
     border-radius: 10px;
     cursor: pointer;
 }

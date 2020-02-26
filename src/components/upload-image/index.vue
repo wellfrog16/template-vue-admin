@@ -122,7 +122,7 @@ export default {
 }
 
 .icon {
-    color: #8c939d;
+    color: @g-color2;
     text-align: center;
 
     &:hover {

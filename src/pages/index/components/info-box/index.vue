@@ -51,7 +51,7 @@ export default {
 
 .main {
     border: 1px solid @g-color-border3;
-    background-color: #fff;
+    background-color: @g-white;
     height: @base-size;
     overflow: hidden;
     display: flex;
@@ -61,7 +61,7 @@ export default {
     width: @base-size;
     height: @base-size;
     flex: 0 0 @base-size;
-    color: #fff;
+    color: @g-white;
     font-size: 30px;
 }
 
