@@ -166,6 +166,7 @@ export default {
     padding: 0;
     display: flex;
     flex-direction: column;
+    height: 0;
     // height: @page-height;
 }
 
