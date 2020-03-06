@@ -46,6 +46,8 @@ export default {
 </script>
 
 <style lang="less" module>
+@import '~@/assets/style/usr/index.config.less';
+
 .main {
     // height: 100%;
     box-sizing: border-box;
@@ -64,7 +66,7 @@ export default {
 }
 
 .side {
-    background-color: #fff;
+    background-color: @g-white;
 }
 
 .wrapper {
@@ -72,6 +74,6 @@ export default {
 }
 
 .header, .content {
-    background-color: #fff;
+    background-color: @g-white;
 }
 </style>

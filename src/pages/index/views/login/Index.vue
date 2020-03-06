@@ -156,7 +156,7 @@ export default {
 
 .main {
     background-color: @g-color-primary;
-    color: #fff;
+    color: @g-white;
     height: 100vh;
 
     :global(.el-input__prefix) {

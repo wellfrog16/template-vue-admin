@@ -100,7 +100,7 @@ export default {
     height: @height;
     line-height: @height;
     margin: 0;
-    color: #fff;
+    color: @g-white;
     text-align: center;
     font-size: 20px;
 }
@@ -139,7 +139,7 @@ export default {
     height: @height;
     line-height: @height;
     border-bottom: 1px solid @g-color-border4;
-    background-color: #fff;
+    background-color: @g-white;
     display: flex;
     justify-content: space-between;
     position: relative;
