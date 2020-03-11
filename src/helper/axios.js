@@ -1,5 +1,5 @@
 import { Loading } from 'element-ui';
-import { axios } from '@/utils/cdn';
+import { axios, _ } from '@/utils/cdn';
 import { server } from '@/config';
 
 const TITLE_SUCESS = '成功';
@@ -26,6 +26,20 @@ function formatResponse(params) {
     // 如果没有data，增加data属性
     if (!data.data) {
         data.data = data.resData || {};
+    }
+
+    if (_.isString(data.data)) {
+        const info = data.data;
+        data.data = {};
+        data.data.info = info;
+    }
+
+    if (_.isArray(data.data)) {
+        const list = data.data;
+        const { total, pages, size } = data;
+        data.data = {};
+        data.data.list = list;
+        data.data.page = { total, pages, size };
     }
 
     params.data = data;
