@@ -18,6 +18,7 @@
 * 补充echarts示例
 * config配置html可以配置
 * 增加拖拽上传组件
+* 树形异步组件封装
 
 ## Project setup
 ```
