@@ -1,11 +1,13 @@
 <script>
+import { UID } from '@/helper/constant';
+
 export default {
     methods: {
         setState() { console.warn('请实现setState方法'); },
 
         // 编辑
         showEdit(row) {
-            this.setState({ activeUid: row.id, editVisible: true });
+            this.setState({ activeUid: row[UID], editVisible: true });
         },
 
         // 删除确认
