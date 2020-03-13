@@ -289,4 +289,5 @@ export default {
     file2base64,
     base642file,
     loadCdn,
+    _,
 };
