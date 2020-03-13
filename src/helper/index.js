@@ -32,7 +32,7 @@ function site() {
 
 function restful(axios, base) {
     const insert = params => axios.post(base, params);
-    const update = (id, params) => axios.pust(`${base}/${id}`, params);
+    const update = (id, params) => axios.put(`${base}/${id}`, params);
     const detail = id => axios.get(`${base}/${id}`);
     const remove = id => axios.delete(`${base}/${id}`);
 
@@ -44,8 +44,24 @@ function restful(axios, base) {
     };
 }
 
+/**
+ * 把半路径的图片，拼接图片服务器地址成为全路径
+ * 根据项目修改拼接方式
+ *
+ * @param {String} url
+ * @returns
+ */
+function combineImageUrl(url) {
+    // 站点服务器信息
+    const serverId = storage.get(STORAGE_SERVER) || 1;
+    const server = config.servers.find(s => s.id === serverId) || {};
+
+    return server.image + url;
+}
+
 export default {
     site,
     restful,
     config,
+    combineImageUrl,
 };
