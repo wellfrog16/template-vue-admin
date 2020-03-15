@@ -19,6 +19,7 @@
 * config配置html可以配置
 * 增加拖拽上传组件
 * 树形异步组件封装
+* 去store化，只保留必要的store(vuex)。其余采用局部store来处理组件共享数据
 
 ## Project setup
 ```
