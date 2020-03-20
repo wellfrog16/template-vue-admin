@@ -7,6 +7,7 @@
 * eslint airbnb校验
 * stylelint standard校验
 * 部分功能需要后端支持，可以直接查看源码里的使用方式（如拍照上传、图片裁剪等）
+* babel-eslint 如果升级到9以上（包含9），会导致i18n里的语言懒加载报错，暂时保持在8的版本
 
 ## todo
 
