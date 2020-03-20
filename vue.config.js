@@ -3,7 +3,7 @@ const StyleLintPlugin = require('stylelint-webpack-plugin');
 const path = require('path'); // eslint-disable-line
 const pages = require('./build/pages');
 
-const resolve = (dir) => path.join(__dirname, dir);
+const resolve = dir => path.join(__dirname, dir);
 
 module.exports = {
     publicPath: './',
@@ -20,7 +20,7 @@ module.exports = {
         ...pages(process.env.NODE_ENV),
     },
 
-    configureWebpack: (config) => {
+    configureWebpack: config => {
         if (process.env.NODE_ENV === 'production') {
             config.optimization.minimizer[0].options.terserOptions.compress.drop_console = true; // eslint-disable-line
         } else {
@@ -73,7 +73,7 @@ module.exports = {
         requireModuleExtension: true,
     },
 
-    chainWebpack: (config) => {
+    chainWebpack: config => {
         config.resolve.alias
             .set('@', resolve('src'))
             .set('#index', resolve('src/pages/index'))
@@ -83,7 +83,7 @@ module.exports = {
             .rule('eslint')
             .use('eslint-loader')
             .loader('eslint-loader')
-            .tap((options) => {
+            .tap(options => {
                 const option = options;
                 option.emitError = true;
                 // 修改它的选项...
