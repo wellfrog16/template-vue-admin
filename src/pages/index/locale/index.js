@@ -70,12 +70,12 @@ export function getLanguage() {
 export function loadLanguageAsync(lang) {
     if (lang && i18n.locale !== lang) {
         if (!loadedLanguages.includes(lang)) {
-            // return import(/* webpackChunkName: "lang-[request]" */ `./lang/${lang}`).then(msgs => {
-            //     i18n.setLocaleMessage(lang, msgs.default);
-            //     loadedLanguages.push(lang);
-            //     return setI18nLanguage(lang);
-            // });
-            return setI18nLanguage(lang);
+            return import(/* webpackChunkName: "lang-[request]" */ `./lang/${lang}`).then(msgs => {
+                i18n.setLocaleMessage(lang, msgs.default);
+                loadedLanguages.push(lang);
+                return setI18nLanguage(lang);
+            });
+            // return setI18nLanguage(lang);
         }
         return Promise.resolve(setI18nLanguage(lang));
     }
