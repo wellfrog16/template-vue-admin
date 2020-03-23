@@ -103,7 +103,7 @@ function axiosInstance(args) {
         const { data, config } = formatResponse(response);
 
         const status = [200, 201, 204];
-        const method = ['post', 'put', 'delete', 'patch'];
+        const method = ['post', 'put', 'delete', 'patch', 'get'];
 
         const { $store } = window.vueIndex;
 
@@ -124,7 +124,7 @@ function axiosInstance(args) {
                 };
                 const message = messages[config.method] || '';
                 const notification = { title: TITLE_SUCESS, message, type: 'success' };
-                !silence && $store.commit('setState', { notification });
+                !silence && message && $store.commit('setState', { notification });
             } else {
                 let { message } = data;
                 message = message || '服务器返回错误';
