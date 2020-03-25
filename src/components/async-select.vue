@@ -46,8 +46,13 @@ export default {
             },
         },
     },
-    mounted() {
-        this.loadList();
+    async mounted() {
+        try {
+            await this.loadList();
+            this.$emit('load');
+        } catch {
+            this.$emit('error');
+        }
     },
     methods: {
         loadList() {
