@@ -9,7 +9,8 @@
     "eslint2": "eslint src/pages/index/components/home/**/* --fix",
     "stylelint": "stylelint */**/*.{css,less,vue} --fix",
     "log": "git log --pretty=oneline",
-    "gh-pages": "npm run build && node build/gh-pages"
+    "gh-pages": "npm run build && node build/gh-pages",
+    "update": "npx npm-check-updates"
   },
   "dependencies": {
     "core-js": "^3.6.4",
