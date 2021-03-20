@@ -65,7 +65,7 @@ const extraStore = {
         // 清除vuex和localStorage中的登录信息
         clear({ commit }) {
             helper.site().destroy();
-            commit('setState', { ...extraState });
+            commit('setState', { ...extraState }); // todo 似乎有误，待确认
             commit('security/role/setState', { accountRoleList: [] }, { root: true });
         },
     },
