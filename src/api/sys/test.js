@@ -15,8 +15,13 @@ const test = () => {
 };
 
 const test2 = params => axios.post('/mp-weixin/login', params);
+const testGet = params => axios.get('https://jsonplaceholder.typicode.com/posts/1', { params });
+const testPost = params => axios.post('https://jsonplaceholder.typicode.com/posts', params);
+
 
 export default {
     test,
     test2,
+    testGet,
+    testPost,
 };

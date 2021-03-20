@@ -2,17 +2,26 @@
     <el-card shadow="never">
         测试
         <div :class="$style.test"></div>
+        <el-button @click="mytest">测试</el-button>
     </el-card>
 </template>
 
 <script>
-// import api from '@/api/sys/upload';
+import api from '@/api/sys/test';
+import api2 from '@/api/mock/echarts';
 
 export default {
     mounted() {
         // console.log(File);
         // api();
         // api.test2({ code: '999' });
+    },
+    methods: {
+        mytest() {
+            api.testGet({ name: 'get' });
+            api.testPost({ name: 'post' });
+            api2.flights();
+        },
     },
 };
 </script>

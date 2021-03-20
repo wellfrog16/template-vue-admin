@@ -4,6 +4,9 @@ import { server } from '@/config';
 
 const TITLE_SUCESS = '成功';
 const TITLE_ERROR = '错误';
+const GLOBAL_LOADING = false; // 全局loading
+let loadingInstancce = null;
+let loadingCount = 0;
 
 /**
  * 格式化返回，根据实际情况调整
@@ -22,6 +25,8 @@ function formatResponse(params) {
     if (!data.code) {
         data.code = data.success ? 200 : 500;
     }
+
+    data.code = 200;
 
     // 如果没有data，增加data属性
     if (!data.data) {
@@ -63,7 +68,7 @@ function axiosInstance(args) {
     const defaultOptions = {
         // 自定义
         notification: true, // notification提示框
-        loading: false, // 全局loading层（不推荐）
+        // loading: false, // 全局loading层（不推荐）
         retryMax: 1, // 自动重试次数
         retryDelay: 1000, // 重试延迟
 
@@ -79,7 +84,6 @@ function axiosInstance(args) {
     const options = { ...defaultOptions, ...args };
     const instance = axios.create({ ...options });
 
-    let loadingInstancce = null;
     let myReq = null;
 
     instance.interceptors.request.use(request => {
@@ -88,22 +92,26 @@ function axiosInstance(args) {
         Object.assign(myReq.headers, site.headers); // todo深度合并防止bug
 
         // 全屏遮罩，loading参数为0则无loading
-        if ((!myReq.params || (myReq.params && myReq.params.loading !== 0)) && options.loading) {
-            loadingInstancce = Loading.service({
-                fullscreen: true,
-                spinner: 'el-icon-loading',
-                text: '加载中',
-            });
+        if ((myReq.params?.loading !== 0 && myReq.data?.loading !== 0) && GLOBAL_LOADING) {
+            if (loadingCount === 0) {
+                loadingInstancce = Loading.service({
+                    fullscreen: true,
+                    spinner: 'el-icon-loading',
+                    text: '加载中',
+                });
+            }
+            loadingCount += 1;
         }
         return myReq;
     }, error => Promise.reject(error));
 
     instance.interceptors.response.use(response => {
-        loadingInstancce && loadingInstancce.close();
+        loadingCount -= 1;
+        loadingInstancce && loadingCount === 0 && loadingInstancce.close();
         const { data, config } = formatResponse(response);
 
         const status = [200, 201, 204];
-        const method = ['post', 'put', 'delete', 'patch'];
+        const method = ['post', 'put', 'delete', 'patch', 'get'];
 
         const { $store } = window.vueIndex;
 
@@ -124,7 +132,7 @@ function axiosInstance(args) {
                 };
                 const message = messages[config.method] || '';
                 const notification = { title: TITLE_SUCESS, message, type: 'success' };
-                !silence && $store.commit('setState', { notification });
+                !silence && message && $store.commit('setState', { notification });
             } else {
                 let { message } = data;
                 message = message || '服务器返回错误';
@@ -147,6 +155,7 @@ function axiosInstance(args) {
 
         config.retryCount = config.retryCount || 0;
         config.retryCount += 1;
+        loadingCount -= 1;
 
         message.match(/.+code\s(\d{3})$/g);
         const code = +RegExp.$1;
@@ -166,7 +175,7 @@ function axiosInstance(args) {
                 setTimeout(() => $router.push({ path: '/login' }), 0);
             }
 
-            loadingInstancce && loadingInstancce.close();
+            loadingInstancce && loadingCount === 0 && loadingInstancce.close();
             const notification = { title: TITLE_ERROR, message, type: 'error' };
             $store.commit('setState', { notification });
             return Promise.reject(error);

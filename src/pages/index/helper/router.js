@@ -3,7 +3,7 @@ import { helper } from '@/helper/lakes';
 import { NProgress } from '@/utils/cdn';
 import { Permission } from '@/utils/rivers';
 import store from '#index/store';
-import createRouter, { asyncRoutes } from '#index/router';
+import createRouter, { staticRoutes, asyncRoutes } from '#index/router';
 
 // 多语言
 import { getLanguage, loadLanguageAsync } from '#index/locale';
@@ -21,7 +21,7 @@ router.beforeEach((to, from, next) => {
     };
 
     // 白名单，不需要登陆的路由数组
-    const whiteList = ['/login', '/401'];
+    const whiteList = Permission.getPaths(staticRoutes);
     const site = helper.site();
 
     if (whiteList.includes(to.path)) { // 白名单直接放行

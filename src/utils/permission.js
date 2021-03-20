@@ -181,6 +181,30 @@ class Permission {
 
         return result;
     }
+
+    /**
+     * 递归过去路由包含的所有path
+     *
+     * @static
+     * @param {Array} routers 路由数组
+     * @param {String} basePath 基础路径
+     * @returns
+     * @memberof Permission
+     */
+    static getPaths(routers, basePath = '') {
+        let result1 = [];
+        if (!Array.isArray(routers)) { return []; }
+        routers.forEach(router => {
+            const path = basePath + (basePath ? '/' : '') + router.path;
+            result1.push(path);
+
+            if (router.children && router.children.length > 0) {
+                const result2 = Permission.getPaths(router.children, path);
+                result1 = result1.concat(result2);
+            }
+        });
+        return result1;
+    }
 }
 
 export default Permission;
