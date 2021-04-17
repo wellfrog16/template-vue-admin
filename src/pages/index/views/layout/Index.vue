@@ -1,6 +1,6 @@
 <template>
     <el-container :class="$style.container">
-        <el-aside :class="$style.aside" :width="width">
+        <el-aside :class="$style.aside" width="auto">
             <h1 :class="$style.logo"><span>管理系统logo</span></h1>
             <aside-menu
                 class="aside-menu"
@@ -47,7 +47,6 @@ export default {
     components: { AsideMenu, Functions },
     data() {
         return {
-            width: 'auto',
             collapse: false,
             menuData: this.$store.getters.routes,
         };
