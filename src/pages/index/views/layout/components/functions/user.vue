@@ -1,6 +1,6 @@
 <template>
     <el-dropdown @command="handleCommand">
-        <span class="el-dropdown-link" :class="$style['dropdown-link']">
+        <span :class="$style['dropdown-link']">
             <i class="fas fa-user fa-lg fa-fw"></i>
             <span v-text="username"></span>
             <i class="el-icon-arrow-down el-icon--right"></i>

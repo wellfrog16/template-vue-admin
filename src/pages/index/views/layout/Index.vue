@@ -15,7 +15,7 @@
         </el-aside>
         <el-container>
             <el-header :class="$style.header">
-                <div :class="$style.left">
+                <div>
                     <i :class="[$style.switch, 'fas fa-bars fa-lg']" @click="toggle" id="asideToggle" />
                     <el-breadcrumb separator="/" :class="$style.breadcrumb" id="breadcrumb">
                         <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
@@ -141,13 +141,9 @@ export default {
     background-color: @g-white;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     position: relative;
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
-
-    .left {
-        display: flex;
-        align-items: center;
-    }
 }
 
 .switch {
